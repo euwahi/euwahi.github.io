@@ -2,38 +2,70 @@
 <html lang="pt-BR">
 <head>
   <meta charset="UTF-8">
-  <title>Leitor de Mangá</title>
+  <title>Meus Mangás</title>
   <style>
     body {
       background-color: #121212;
       color: #eee;
       font-family: Arial, sans-serif;
-      text-align: center;
+      max-width: 800px;
+      margin: 50px auto;
       padding: 20px;
     }
     h1 {
+      text-align: center;
       margin-bottom: 30px;
     }
-    .manga-link {
-      display: inline-block;
-      padding: 15px 25px;
+    .manga-card {
       background: #1e1e1e;
-      color: #4a90e2;
-      text-decoration: none;
-      border-radius: 8px;
-      box-shadow: 0 0 10px rgba(74, 144, 226, 0.7);
-      transition: background 0.3s ease;
+      border-radius: 10px;
+      padding: 15px;
+      margin-bottom: 20px;
+      box-shadow: 0 0 10px #4a90e2;
+      display: flex;
+      align-items: center;
+      transition: transform 0.3s;
     }
-    .manga-link:hover {
-      background: #2c2c2c;
+    .manga-card:hover {
+      transform: scale(1.02);
+    }
+    .manga-card img {
+      width: 120px;
+      height: 180px;
+      object-fit: cover;
+      border-radius: 8px;
+      margin-right: 20px;
+    }
+    .manga-info {
+      flex: 1;
+    }
+    .manga-info h2 {
+      margin: 0;
+      color: #4a90e2;
+    }
+    .manga-info a {
+      text-decoration: none;
+      color: #fff;
+      background: #4a90e2;
+      padding: 8px 12px;
+      border-radius: 5px;
+      display: inline-block;
+      margin-top: 10px;
     }
   </style>
 </head>
 <body>
 
-  <h1>Leitor de Mangá</h1>
+  <h1>Meus Mangás</h1>
 
-  <a href="manga1.html" class="manga-link">Mangá 1</a>
+  <div class="manga-card">
+    <img src="https://via.placeholder.com/120x180.png?text=Capa+Manga+1" alt="Capa Manga 1">
+    <div class="manga-info">
+      <h2>Mangá 1</h2>
+      <p>Descrição breve do mangá 1.</p>
+      <a href="manga1.html">Ver capítulos</a>
+    </div>
+  </div>
 
 </body>
 </html>
