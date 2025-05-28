@@ -4,59 +4,45 @@
   <meta charset="UTF-8" />
   <title>Laços Profanos - Scan</title>
   <style>
-    /* Reset básico */
-    * {
-      box-sizing: border-box;
-    }
     body {
-      margin: 0;
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
       background-color: #121212;
       color: #eee;
-      padding: 20px;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      margin: 40px;
     }
     h1 {
       text-align: center;
-      margin-bottom: 30px;
       font-weight: 700;
       letter-spacing: 1.2px;
+      margin-bottom: 30px;
     }
     .manga-list {
       display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+      grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
       gap: 20px;
-      max-width: 900px;
-      margin: 0 auto;
     }
     .manga-item {
       background: #1e1e1e;
-      border-radius: 12px;
-      overflow: hidden;
+      border-radius: 10px;
+      box-shadow: 0 0 15px rgba(74, 144, 226, 0.7);
       text-align: center;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.7);
-      transition: transform 0.3s ease, box-shadow 0.3s ease;
-      cursor: pointer;
+      padding: 10px;
       text-decoration: none;
-      color: #eee;
+      color: #4a90e2;
+      font-weight: 600;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      user-select: none;
     }
     .manga-item:hover {
-      transform: translateY(-8px);
-      box-shadow: 0 8px 24px rgba(0,0,0,0.9);
+      transform: scale(1.05);
+      box-shadow: 0 0 25px #82b1ff;
+      color: #82b1ff;
     }
     .manga-item img {
-      width: 100%;
-      display: block;
-      border-bottom: 3px solid #4a90e2;
-      transition: filter 0.3s ease;
-    }
-    .manga-item:hover img {
-      filter: brightness(1.1);
-    }
-    .manga-title {
-      padding: 12px 8px;
-      font-weight: 600;
-      font-size: 1rem;
-      user-select: none;
+      max-width: 100%;
+      border-radius: 8px;
+      margin-bottom: 8px;
+      box-shadow: 0 0 10px rgba(74, 144, 226, 0.5);
     }
   </style>
 </head>
@@ -65,19 +51,19 @@
   <h1>Laços Profanos - Scan</h1>
 
   <div class="manga-list">
-    <a href="manga1.html" class="manga-item" title="Mangá 1">
-      <img src="https://via.placeholder.com/160x220/2a2a2a/ffffff?text=Mangá+1" alt="Mangá 1" />
-      <div class="manga-title">Mangá 1</div>
+    <a href="manga1.html" class="manga-item">
+      <img src="https://via.placeholder.com/150x200/2a2a2a/4a90e2?text=Mangá+1" alt="Mangá 1" />
+      Mangá 1
     </a>
 
-    <a href="manga2.html" class="manga-item" title="Mangá 2">
-      <img src="https://via.placeholder.com/160x220/2a2a2a/ffffff?text=Mangá+2" alt="Mangá 2" />
-      <div class="manga-title">Mangá 2</div>
+    <a href="manga2.html" class="manga-item">
+      <img src="https://via.placeholder.com/150x200/2a2a2a/4a90e2?text=Mangá+2" alt="Mangá 2" />
+      Mangá 2
     </a>
 
-    <a href="manga3.html" class="manga-item" title="Mangá 3">
-      <img src="https://via.placeholder.com/160x220/2a2a2a/ffffff?text=Mangá+3" alt="Mangá 3" />
-      <div class="manga-title">Mangá 3</div>
+    <a href="manga3.html" class="manga-item">
+      <img src="https://via.placeholder.com/150x200/2a2a2a/4a90e2?text=Mangá+3" alt="Mangá 3" />
+      Mangá 3
     </a>
   </div>
 
