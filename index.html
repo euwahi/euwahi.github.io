@@ -2,97 +2,84 @@
 <html lang="pt-BR">
 <head>
   <meta charset="UTF-8" />
-  <title>Mangá 1 - Laços Profanos Scan</title>
+  <title>Laços Profanos - Scan</title>
   <style>
+    /* Reset básico */
+    * {
+      box-sizing: border-box;
+    }
     body {
-      font-family: Arial, sans-serif;
-      background: #f5f5f5;
+      margin: 0;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background-color: #121212;
+      color: #eee;
       padding: 20px;
-      max-width: 700px;
-      margin: auto;
     }
     h1 {
       text-align: center;
+      margin-bottom: 30px;
+      font-weight: 700;
+      letter-spacing: 1.2px;
     }
-    .cover {
-      display: block;
+    .manga-list {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+      gap: 20px;
+      max-width: 900px;
       margin: 0 auto;
-      max-width: 300px;
-      border-radius: 8px;
-      box-shadow: 0 0 10px rgba(0,0,0,0.2);
     }
-    .sinopse {
-      margin-top: 20px;
-      font-size: 16px;
-      line-height: 1.4;
-    }
-    .chapters {
-      margin-top: 30px;
-    }
-    .chapter {
-      margin: 8px 0;
-    }
-    a.chapter-link {
-      color: #2a7ae2;
-      text-decoration: none;
-    }
-    a.chapter-link:hover {
-      text-decoration: underline;
-    }
-    .buttons {
-      margin-top: 20px;
+    .manga-item {
+      background: #1e1e1e;
+      border-radius: 12px;
+      overflow: hidden;
       text-align: center;
-    }
-    button {
-      background-color: #2a7ae2;
-      border: none;
-      color: white;
-      padding: 12px 20px;
-      margin: 5px;
-      border-radius: 5px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.7);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
       cursor: pointer;
-      font-size: 16px;
-      transition: background-color 0.3s;
-    }
-    button:hover {
-      background-color: #1f5bbf;
-    }
-    .back-link {
-      display: block;
-      margin: 30px auto 0;
-      text-align: center;
-      color: #555;
       text-decoration: none;
-      font-size: 14px;
+      color: #eee;
     }
-    .back-link:hover {
-      text-decoration: underline;
+    .manga-item:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 8px 24px rgba(0,0,0,0.9);
+    }
+    .manga-item img {
+      width: 100%;
+      display: block;
+      border-bottom: 3px solid #4a90e2;
+      transition: filter 0.3s ease;
+    }
+    .manga-item:hover img {
+      filter: brightness(1.1);
+    }
+    .manga-title {
+      padding: 12px 8px;
+      font-weight: 600;
+      font-size: 1rem;
+      user-select: none;
     }
   </style>
 </head>
 <body>
 
-  <h1>Mangá 1</h1>
+  <h1>Laços Profanos - Scan</h1>
 
-  <img class="cover" src="https://via.placeholder.com/300x400?text=Mangá+1" alt="Mangá 1 Capa" />
+  <div class="manga-list">
+    <a href="manga1.html" class="manga-item" title="Mangá 1">
+      <img src="https://via.placeholder.com/160x220/2a2a2a/ffffff?text=Mangá+1" alt="Mangá 1" />
+      <div class="manga-title">Mangá 1</div>
+    </a>
 
-  <p class="sinopse">
-    Esta é a sinopse do Mangá 1. Aqui você pode colocar um resumo da história, personagens, ou qualquer informação importante para o leitor.
-  </p>
+    <a href="manga2.html" class="manga-item" title="Mangá 2">
+      <img src="https://via.placeholder.com/160x220/2a2a2a/ffffff?text=Mangá+2" alt="Mangá 2" />
+      <div class="manga-title">Mangá 2</div>
+    </a>
 
-  <div class="buttons">
-    <button onclick="location.href='capitulo1.html'">Primeiro Capítulo</button>
-    <button onclick="location.href='capitulo3.html'">Último Capítulo</button>
+    <a href="manga3.html" class="manga-item" title="Mangá 3">
+      <img src="https://via.placeholder.com/160x220/2a2a2a/ffffff?text=Mangá+3" alt="Mangá 3" />
+      <div class="manga-title">Mangá 3</div>
+    </a>
   </div>
-
-  <div class="chapters">
-    <h2>Capítulos</h2>
-    <div class="chapter"><a class="chapter-link" href="capitulo1.html">Capítulo 1</a></div>
-    <div class="chapter"><a class="chapter-link" href="capitulo2.html">Capítulo 2</a></div>
-    <div class="chapter"><a class="chapter-link" href="capitulo3.html">Capítulo 3</a></div>
-  </div>
-
-  <a class="back-link" href="index.html">← Voltar para a lista de mangás</a>
 
 </body>
 </html>
