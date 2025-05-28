@@ -1,106 +1,42 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-  <meta charset="UTF-8" />
-  <title>Mangá 1 - Laços Profanos Scan</title>
+  <meta charset="UTF-8">
+  <title>Mangá 1</title>
   <style>
     body {
       background-color: #121212;
       color: #eee;
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      max-width: 700px;
-      margin: 40px auto;
+      font-family: Arial, sans-serif;
+      max-width: 800px;
+      margin: 50px auto;
       padding: 20px;
-      border-radius: 8px;
-      box-shadow: 0 0 20px rgba(0,0,0,0.9);
     }
     h1 {
       text-align: center;
-      font-weight: 700;
-      letter-spacing: 1.2px;
-      margin-bottom: 15px;
-    }
-    .cover {
-      display: block;
-      margin: 0 auto 20px;
-      max-width: 300px;
-      border-radius: 12px;
-      box-shadow: 0 0 15px #4a90e2;
-      transition: transform 0.3s ease;
-      cursor: default;
-    }
-    .cover:hover {
-      transform: scale(1.05);
-    }
-    .sinopse {
-      font-size: 1.1rem;
-      line-height: 1.5;
       margin-bottom: 30px;
-      padding: 15px;
-      background-color: #1e1e1e;
-      border-radius: 8px;
-      box-shadow: inset 0 0 8px rgba(74, 144, 226, 0.7);
-    }
-    .buttons {
-      text-align: center;
-      margin-bottom: 30px;
-    }
-    button {
-      background-color: #4a90e2;
-      border: none;
-      color: white;
-      padding: 12px 25px;
-      margin: 0 12px;
-      font-size: 1rem;
-      border-radius: 8px;
-      cursor: pointer;
-      transition: background-color 0.3s ease;
-      box-shadow: 0 4px 12px rgba(74, 144, 226, 0.6);
-      user-select: none;
-    }
-    button:hover {
-      background-color: #3672c4;
-      box-shadow: 0 6px 18px rgba(54, 114, 196, 0.8);
-    }
-    .chapters {
-      background-color: #1e1e1e;
-      border-radius: 8px;
-      padding: 20px;
-      box-shadow: inset 0 0 12px rgba(74, 144, 226, 0.7);
-    }
-    .chapters h2 {
-      margin-top: 0;
-      margin-bottom: 15px;
-      font-weight: 600;
-      border-bottom: 2px solid #4a90e2;
-      padding-bottom: 6px;
-    }
-    .chapter {
-      margin: 8px 0;
-    }
-    .chapter a {
       color: #4a90e2;
-      text-decoration: none;
-      font-weight: 500;
-      transition: color 0.3s ease;
-      user-select: none;
     }
-    .chapter a:hover {
-      color: #82b1ff;
-      text-decoration: underline;
+    .chapter-link {
+      display: block;
+      background: #1e1e1e;
+      color: #4a90e2;
+      padding: 15px;
+      margin-bottom: 10px;
+      text-decoration: none;
+      border-radius: 8px;
+      box-shadow: 0 0 10px #4a90e2;
+      transition: transform 0.3s;
+    }
+    .chapter-link:hover {
+      transform: scale(1.02);
     }
     .back-link {
       display: block;
+      margin-top: 30px;
       text-align: center;
-      margin-top: 40px;
       color: #888;
       text-decoration: none;
-      font-size: 0.9rem;
-      user-select: none;
-    }
-    .back-link:hover {
-      color: #4a90e2;
-      text-decoration: underline;
     }
   </style>
 </head>
@@ -108,25 +44,9 @@
 
   <h1>Mangá 1</h1>
 
-  <img src="https://via.placeholder.com/300x400/2a2a2a/4a90e2?text=Mangá+1" alt="Capa Mangá 1" class="cover" />
+  <a class="chapter-link" href="capitulo1.html">Capítulo 1</a>
 
-  <p class="sinopse">
-    Sinopse do Mangá 1: aqui você coloca um resumo breve e chamativo para que os fãs saibam do que se trata o mangá.
-  </p>
-
-  <div class="buttons">
-    <button onclick="window.location.href='capitulo1.html'">Primeiro Capítulo</button>
-    <button onclick="window.location.href='capitulo3.html'">Último Capítulo</button>
-  </div>
-
-  <div class="chapters">
-    <h2>Capítulos</h2>
-    <div class="chapter"><a href="capitulo1.html">Capítulo 1</a></div>
-    <div class="chapter"><a href="capitulo2.html">Capítulo 2</a></div>
-    <div class="chapter"><a href="capitulo3.html">Capítulo 3</a></div>
-  </div>
-
-  <a href="index.html" class="back-link">← Voltar para a lista de mangás</a>
+  <a class="back-link" href="index.html">← Voltar para a lista de mangás</a>
 
 </body>
 </html>
