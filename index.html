@@ -2,7 +2,7 @@
 <html lang="pt-BR">
 <head>
   <meta charset="UTF-8">
-  <title>Mangá 1</title>
+  <title>Meus Mangás</title>
   <style>
     body {
       background-color: #121212;
@@ -15,38 +15,58 @@
     h1 {
       text-align: center;
       margin-bottom: 30px;
-      color: #4a90e2;
     }
-    .chapter-link {
-      display: block;
+    .manga-card {
       background: #1e1e1e;
-      color: #4a90e2;
+      border-radius: 10px;
       padding: 15px;
-      margin-bottom: 10px;
-      text-decoration: none;
-      border-radius: 8px;
+      margin-bottom: 20px;
       box-shadow: 0 0 10px #4a90e2;
+      display: flex;
+      align-items: center;
       transition: transform 0.3s;
     }
-    .chapter-link:hover {
+    .manga-card:hover {
       transform: scale(1.02);
     }
-    .back-link {
-      display: block;
-      margin-top: 30px;
-      text-align: center;
-      color: #888;
+    .manga-card img {
+      width: 120px;
+      height: 180px;
+      object-fit: cover;
+      border-radius: 8px;
+      margin-right: 20px;
+    }
+    .manga-info {
+      flex: 1;
+    }
+    .manga-info h2 {
+      margin: 0;
+      color: #4a90e2;
+    }
+    .manga-info a {
       text-decoration: none;
+      color: #fff;
+      background: #4a90e2;
+      padding: 8px 12px;
+      border-radius: 5px;
+      display: inline-block;
+      margin-top: 10px;
     }
   </style>
 </head>
 <body>
 
-  <h1>Mangá 1</h1>
+  <h1>Meus Mangás</h1>
 
-  <a class="chapter-link" href="capitulo1.html">Capítulo 1</a>
-
-  <a class="back-link" href="index.html">← Voltar para a lista de mangás</a>
+  <div class="manga-card">
+    <img src="https://via.placeholder.com/120x180.png?text=Capa+Manga+1" alt="Capa Manga 1">
+    <div class="manga-info">
+      <h2>Mangá 1</h2>
+      <p>Descrição breve do mangá 1.</p>
+      <a href="manga1.html">Ver capítulos</a>
+    </div>
+  </div>
 
 </body>
 </html>
+
