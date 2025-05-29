@@ -35,7 +35,7 @@
     }
     .buttons {
       text-align: center;
-      margin-bottom: 20px;
+      margin: 20px 0; /* Mantém espaçamento elegante */
     }
     button {
       background-color: #4a90e2;
@@ -53,12 +53,20 @@
       background-color: #3672c4;
       box-shadow: 0 6px 18px rgba(54, 114, 196, 0.8);
     }
+    .sinopse {
+      font-size: 1.1rem;
+      line-height: 1.6;
+      background-color: #1e1e1e;
+      padding: 15px;
+      border-radius: 8px;
+      box-shadow: inset 0 0 8px rgba(74, 144, 226, 0.7);
+      margin-bottom: 30px;
+    }
     .chapters {
       background-color: #1e1e1e;
       border-radius: 8px;
       padding: 20px;
       box-shadow: inset 0 0 12px rgba(74, 144, 226, 0.7);
-      margin-bottom: 20px;
     }
     .chapters h2 {
       margin-top: 0;
@@ -80,15 +88,6 @@
       color: #82b1ff;
       text-decoration: underline;
     }
-    .sinopse {
-      font-size: 1.1rem;
-      line-height: 1.6;
-      background-color: #1e1e1e;
-      padding: 15px;
-      border-radius: 8px;
-      box-shadow: inset 0 0 8px rgba(74, 144, 226, 0.7);
-      margin-bottom: 30px;
-    }
     .back-link {
       display: block;
       text-align: center;
@@ -106,26 +105,26 @@
 </head>
 <body>
 
-  <h1>Laços Profanos 1: O Último Anjo</h1>
-
-  <img src="https://via.placeholder.com/300x400/2a2a2a/ffffff?text=Mangá+1" alt="Capa Mangá 1" class="cover">
+  <h1>Laços profanos 1: O último anjo</h1>
 
   <div class="buttons">
     <button onclick="window.location.href='capitulo1.html'">Primeiro Capítulo</button>
     <button onclick="window.location.href='capitulo1.html'">Último Capítulo</button>
   </div>
 
-  <div class="chapters">
-    <h2>Capítulos</h2>
-    <div class="chapter"><a href="capitulo1.html">Capítulo 1</a></div>
-  </div>
+  <img src="https://via.placeholder.com/300x400/2a2a2a/ffffff?text=Mangá+1" alt="Capa Mangá 1" class="cover">
 
   <p class="sinopse">
     Após anos congelado em uma estalactite, Hamiah, o último anjo de sua espécie, desperta em um mundo devastado. O reino que um dia conheceu agora está sob o domínio de uma rainha ambiciosa, Olivia, que busca poder e riquezas a qualquer custo, enquanto humanos são escravizados sob a tirania de Enaya, a cruel líder do exército demoníaco. Determinado a restaurar o equilíbrio, Hamiah se une a um grupo de rebeldes que luta pela liberdade. Ao longo de sua jornada, ele descobre que os inimigos nem sempre são claros e que aliados inesperados podem surgir em meio ao caos. Com o destino do reino em jogo, Hamiah deve enfrentar desafios que testarão sua coragem e seus ideais.
   </p>
 
+  <div class="chapters">
+    <h2>Capítulos</h2>
+    <div class="chapter"><a href="capitulo1.html">Capítulo 1</a></div>
+  </div>
+
   <a href="index.html" class="back-link">← Voltar para a lista de mangás</a>
 
 </body>
-                           </html>
-    
+  </html>
+  
