@@ -132,310 +132,267 @@
 <html lang="pt-BR">
 <head>
   <meta charset="UTF-8">
-  <title>Página de Comentários</title>
+  <title>Comentários</title>
   <style>
     body {
       font-family: Arial, sans-serif;
-      background-color: #1b1b1b;
-      color: #f0f0f0;
-      max-width: 800px;
-      margin: auto;
-      padding: 20px;
+      background: #121212;
+      color: #fff;
+      margin: 0;
+      padding: 0 20px;
     }
-
-    h1 {
-      color: #4a90e2;
-      text-align: center;
+    header {
+      background: #1f1f1f;
+      padding: 15px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
     }
-
-    #warning {
-      color: #ff5e5e;
-      font-weight: bold;
-      text-align: center;
-      margin-bottom: 10px;
-    }
-
     .menu {
+      display: none;
+      flex-direction: column;
+      background: #2b2b2b;
       position: absolute;
-      top: 10px;
+      top: 60px;
       right: 20px;
-      cursor: pointer;
-      z-index: 1000;
+      padding: 10px;
+      border-radius: 5px;
     }
-
-    .menu-bar {
-      width: 25px;
-      height: 3px;
-      background-color: #fff;
+    .menu a {
+      color: #fff;
+      text-decoration: none;
       margin: 5px 0;
     }
-
-    .dropdown {
-      display: none;
-      position: absolute;
-      right: 10px;
-      top: 50px;
-      background-color: #333;
-      padding: 10px;
-      border-radius: 5px;
-    }
-
-    .dropdown a {
-      display: block;
-      color: white;
-      text-decoration: none;
-      padding: 5px 0;
-    }
-
-    .dropdown a:hover {
-      text-decoration: underline;
-    }
-
-    .comment {
-      border: 1px solid #444;
-      margin: 10px 0;
-      padding: 10px;
-      border-radius: 5px;
-      background-color: #2b2b2b;
-    }
-
-    .comment img {
-      width: 40px;
-      height: 40px;
-      border-radius: 50%;
-      vertical-align: middle;
+    .hamburger {
       cursor: pointer;
+      display: flex;
+      flex-direction: column;
+      gap: 5px;
     }
-
-    .comment strong {
-      cursor: pointer;
+    .hamburger span {
+      width: 25px;
+      height: 3px;
+      background: #fff;
     }
-
-    .reply-box {
-      margin-left: 20px;
-      margin-top: 10px;
+    h1 {
+      margin-top: 30px;
+      color: #4a90e2;
     }
-
-    .reply-btn, .delete-btn {
-      background: #4a90e2;
-      border: none;
-      color: white;
-      padding: 5px 10px;
-      margin-right: 5px;
-      border-radius: 5px;
-      cursor: pointer;
-    }
-
-    #comment-form textarea {
+    textarea {
       width: 100%;
       padding: 10px;
-      background: #333;
-      border: 1px solid #555;
-      color: white;
+      background: #222;
+      border: 1px solid #333;
       border-radius: 5px;
+      color: #fff;
+      resize: vertical;
     }
-
-    #comment-form button {
-      margin-top: 10px;
+    button {
       background: #4a90e2;
+      color: #fff;
       border: none;
       padding: 10px;
-      color: white;
+      margin-top: 10px;
       border-radius: 5px;
       cursor: pointer;
     }
-
-    #bio-modal {
-      display: none;
-      position: fixed;
-      background: #222;
-      padding: 20px;
-      border: 1px solid #444;
-      border-radius: 10px;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      z-index: 999;
-      color: white;
-    }
-
-    #bio-modal img {
-      width: 200px;
-      height: 200px;
-      border-radius: 10px;
-      display: block;
-      margin: auto;
-    }
-
-    #bio-modal p {
-      text-align: center;
+    .comment {
+      background: #1c1c1c;
+      padding: 10px;
+      border-radius: 5px;
       margin-top: 10px;
     }
-
-    #bio-modal button {
-      display: block;
-      margin: 10px auto 0;
-      background: #4a90e2;
-      border: none;
-      padding: 8px 20px;
-      border-radius: 5px;
+    .comment img {
+      width: 30px;
+      height: 30px;
+      border-radius: 50%;
       cursor: pointer;
-      color: white;
+    }
+    .user-info {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .reply-box {
+      margin-top: 10px;
     }
   </style>
 </head>
 <body>
+  <header>
+    <h2>Comentários</h2>
+    <div class="hamburger" onclick="toggleMenu()">
+      <span></span>
+      <span></span>
+      <span></span>
+    </div>
+    <div class="menu" id="menu">
+      <a href="#" onclick="showLogin()">Login</a>
+      <a href="#" onclick="showRegister()">Cadastre-se</a>
+      <a href="#" onclick="editProfile()">Editar perfil</a>
+    </div>
+  </header>
 
-<div class="menu" onclick="toggleMenu()">
-  <div class="menu-bar"></div>
-  <div class="menu-bar"></div>
-  <div class="menu-bar"></div>
-</div>
+  <p style="color: red; font-weight: bold;">Proibido spoiler sujeito a ban!</p>
+  <h1>Comentários</h1>
 
-<div class="dropdown" id="menuDropdown">
-  <a href="#" onclick="showLogin()">Login</a>
-  <a href="#" onclick="showRegister()">Cadastrar-se</a>
-  <a href="perfil.html">Editar Perfil</a>
-</div>
+  <div id="commentSection">
+    <textarea id="commentText" placeholder="Digite seu comentário..."></textarea>
+    <button onclick="postComment()">Comentar</button>
+  </div>
 
-<div id="warning">🚫 Proibido spoiler sujeito a ban!</div>
-<h1>Comentários</h1>
+  <div id="commentsContainer"></div>
 
-<div id="comment-form">
-  <textarea id="commentText" placeholder="Digite seu comentário..."></textarea>
-  <button onclick="postComment()">Comentar</button>
-</div>
+  <!-- Modais -->
+  <div id="modal" style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:#000000aa; justify-content:center; align-items:center;">
+    <div style="background:#222; padding:20px; border-radius:10px; max-width:300px; color:#fff;">
+      <div id="modalContent"></div>
+      <button onclick="closeModal()">Fechar</button>
+    </div>
+  </div>
 
-<div id="commentsContainer"></div>
+  <script>
+    let comments = JSON.parse(localStorage.getItem('comments')) || [];
 
-<!-- Modal de bio -->
-<div id="bio-modal">
-  <img id="modal-img" src="">
-  <p id="modal-bio"></p>
-  <button onclick="closeModal()">Fechar</button>
-</div>
+    function toggleMenu() {
+      const menu = document.getElementById('menu');
+      menu.style.display = menu.style.display === 'flex' ? 'none' : 'flex';
+    }
 
-<script>
-  let users = JSON.parse(localStorage.getItem('users')) || {};
-  let comments = JSON.parse(localStorage.getItem('comments')) || [];
+    function getLoggedUser() {
+      const username = localStorage.getItem('loggedUser');
+      if (!username) return null;
+      const user = JSON.parse(localStorage.getItem('user_' + username));
+      return user ? { name: username, ...user } : null;
+    }
 
-  function toggleMenu() {
-    const dropdown = document.getElementById('menuDropdown');
-    dropdown.style.display = dropdown.style.display === 'block' ? 'none' : 'block';
-  }
+    function showLogin() {
+      const user = prompt("Usuário:");
+      const pass = prompt("Senha:");
+      const stored = JSON.parse(localStorage.getItem('user_' + user));
+      if (stored && stored.password === pass) {
+        localStorage.setItem('loggedUser', user);
+        alert("Logado como " + user);
+      } else {
+        alert("Usuário ou senha incorretos.");
+      }
+    }
 
-  function showLogin() {
-    const user = prompt("Usuário:");
-    const pass = prompt("Senha:");
-    if (users[user] && users[user].senha === pass) {
-      localStorage.setItem('loggedUser', user);
-      alert("Logado como: " + user);
+    function showRegister() {
+      const user = prompt("Escolha um usuário:");
+      if (localStorage.getItem('user_' + user)) {
+        alert("Usuário já existe."); return;
+      }
+      const pass = prompt("Escolha uma senha:");
+      localStorage.setItem('user_' + user, JSON.stringify({ password: pass }));
+      alert("Cadastro realizado!");
+    }
+
+    function editProfile() {
+      const user = getLoggedUser();
+      if (!user) {
+        alert("Crie sua conta ou faça login para usar isso.");
+        return;
+      }
+      const img = prompt("Link da foto de perfil:", user.img || '');
+      const bio = prompt("Digite sua bio:", user.bio || '');
+      localStorage.setItem('user_' + user.name, JSON.stringify({ ...user, img, bio }));
+      alert("Perfil atualizado!");
+    }
+
+    function saveComments() {
+      try {
+        localStorage.setItem('comments', JSON.stringify(comments));
+        console.log('Comentários salvos:', comments);
+      } catch (e) {
+        console.error('Erro ao salvar comentários:', e);
+      }
+    }
+
+    function postComment(parentId = null) {
+      const user = getLoggedUser();
+      if (!user) {
+        alert("Faça login para comentar.");
+        return;
+      }
+      const text = parentId ? document.getElementById(`reply-${parentId}`).value : document.getElementById('commentText').value;
+      if (!text.trim()) return;
+
+      const comment = {
+        id: Date.now(),
+        user,
+        text,
+        parent: parentId,
+        time: new Date().toLocaleString()
+      };
+      comments.push(comment);
+      saveComments();
       renderComments();
-    } else {
-      alert("Usuário ou senha incorretos.");
-    }
-  }
-
-  function showRegister() {
-    const user = prompt("Novo usuário:");
-    if (users[user]) {
-      alert("Esse nome de usuário já existe.");
-      return;
-    }
-    const pass = prompt("Senha:");
-    users[user] = { senha: pass, bio: "", foto: "" };
-    localStorage.setItem('users', JSON.stringify(users));
-    alert("Cadastro realizado com sucesso!");
-  }
-
-  function getLoggedUser() {
-    return localStorage.getItem('loggedUser');
-  }
-
-  function getUserInfo(user) {
-    return users[user] || {};
-  }
-
-  function postComment(parentId = null) {
-    const user = getLoggedUser();
-    if (!user) {
-      alert("Faça login para comentar.");
-      return;
+      if (!parentId) {
+        document.getElementById('commentText').value = '';
+      } else {
+        document.getElementById(`reply-${parentId}`).value = '';
+        document.getElementById(`box-${parentId}`).style.display = 'none';
+      }
     }
 
-    const text = parentId ? document.getElementById(`reply-${parentId}`).value : document.getElementById('commentText').value;
-    if (!text.trim()) return;
+    function deleteComment(id) {
+      comments = comments.filter(c => c.id !== id && c.parent !== id);
+      saveComments();
+      renderComments();
+    }
 
-    const comment = {
-      id: Date.now(),
-      user,
-      text,
-      parent: parentId,
-      time: new Date().toLocaleString()
-    };
-    comments.push(comment);
-    localStorage.setItem('comments', JSON.stringify(comments));
+    function showReplyBox(id) {
+      const box = document.getElementById(`box-${id}`);
+      box.style.display = box.style.display === 'block' ? 'none' : 'block';
+    }
+
+    function showUserProfile(user) {
+      const u = JSON.parse(localStorage.getItem('user_' + user.name));
+      document.getElementById('modalContent').innerHTML = `
+        <img src="${u.img || 'https://via.placeholder.com/150'}" style="width:100%; border-radius:10px;"><br>
+        <strong>${user.name}</strong>
+        <p>${u.bio || 'Sem bio.'}</p>
+      `;
+      document.getElementById('modal').style.display = 'flex';
+    }
+
+    function closeModal() {
+      document.getElementById('modal').style.display = 'none';
+    }
+
+    function renderComments() {
+      comments = JSON.parse(localStorage.getItem('comments')) || [];
+      const container = document.getElementById('commentsContainer');
+      container.innerHTML = '';
+      const roots = comments.filter(c => !c.parent);
+      roots.forEach(c => renderComment(c, container, 0));
+    }
+
+    function renderComment(c, container, level) {
+      const div = document.createElement('div');
+      div.className = 'comment';
+      div.style.marginLeft = level * 20 + 'px';
+      div.innerHTML = `
+        <div class="user-info">
+          <img src="${c.user.img || 'https://via.placeholder.com/30'}" onclick='showUserProfile(${JSON.stringify(c.user)})'>
+          <strong onclick='showUserProfile(${JSON.stringify(c.user)})' style="cursor:pointer">${c.user.name}</strong>
+        </div>
+        <p>${c.text}</p>
+        <small>${c.time}</small><br>
+        <button onclick="showReplyBox(${c.id})">Responder</button>
+        <button onclick="deleteComment(${c.id})">Excluir</button>
+        <div class="reply-box" id="box-${c.id}" style="display:none;">
+          <textarea id="reply-${c.id}" placeholder="Responder..."></textarea>
+          <button onclick="postComment(${c.id})">Enviar resposta</button>
+        </div>
+      `;
+      container.appendChild(div);
+      comments.filter(r => r.parent === c.id).forEach(reply => renderComment(reply, container, level + 1));
+    }
+
     renderComments();
-    if (!parentId) document.getElementById('commentText').value = '';
-    else document.getElementById(`reply-${parentId}`).value = '';
-  }
-
-  function deleteComment(id) {
-    comments = comments.filter(c => c.id !== id && c.parent !== id);
-    localStorage.setItem('comments', JSON.stringify(comments));
-    renderComments();
-  }
-
-  function renderComments() {
-    const container = document.getElementById('commentsContainer');
-    container.innerHTML = '';
-    const roots = comments.filter(c => !c.parent);
-    roots.forEach(c => renderComment(c, container, 0));
-  }
-
-  function renderComment(comment, container, level) {
-    const div = document.createElement('div');
-    div.className = 'comment';
-    div.style.marginLeft = `${level * 20}px`;
-
-    const userInfo = getUserInfo(comment.user);
-    const img = userInfo.foto || 'https://via.placeholder.com/40';
-
-    div.innerHTML = `
-      <img src="${img}" onclick="showBio('${comment.user}')">
-      <strong onclick="showBio('${comment.user}')">${comment.user}</strong>
-      <p>${comment.text}</p>
-      <small>${comment.time}</small><br>
-      <button class="reply-btn" onclick="showReply(${comment.id})">Responder</button>
-      <button class="delete-btn" onclick="deleteComment(${comment.id})">Apagar</button>
-      <div class="reply-box" id="box-${comment.id}" style="display:none;">
-        <textarea id="reply-${comment.id}" placeholder="Digite sua resposta..."></textarea>
-        <button onclick="postComment(${comment.id})">Enviar</button>
-      </div>
-    `;
-
-    container.appendChild(div);
-
-    const replies = comments.filter(c => c.parent === comment.id);
-    replies.forEach(r => renderComment(r, container, level + 1));
-  }
-
-  function showReply(id) {
-    document.getElementById(`box-${id}`).style.display = 'block';
-  }
-
-  function showBio(user) {
-    const info = getUserInfo(user);
-    document.getElementById('modal-img').src = info.foto || 'https://via.placeholder.com/200';
-    document.getElementById('modal-bio').innerText = info.bio || 'Sem bio';
-    document.getElementById('bio-modal').style.display = 'block';
-  }
-
-  function closeModal() {
-    document.getElementById('bio-modal').style.display = 'none';
-  }
-
-  renderComments();
-</script>
+  </script>
 </body>
 </html>
+
