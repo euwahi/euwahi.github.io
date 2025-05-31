@@ -1,214 +1,235 @@
 <!DOCTYPE html>
-<html lang="pt">
+<html lang="pt-BR">
 <head>
   <meta charset="UTF-8">
   <title>Meus Mangás</title>
   <style>
     body {
-      background-color: #000;
-      color: #fff;
-      font-family: Arial, sans-serif;
-      margin: 0;
-      padding: 0;
+      background: linear-gradient(135deg, #0f0f0f, #1c1c1c);
+      color: #e0e0e0;
+      font-family: 'Arial', sans-serif;
+      max-width: 500px;
+      margin: 50px auto;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 0 20px rgba(0,0,0,0.7);
     }
-    header {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      background-color: #111;
-      padding: 10px 20px;
-    }
-    h1 {
-      color: #fff;
-    }
-    .menu-icon {
-      font-size: 30px;
+    h1 { text-align: center; margin-bottom: 30px; color: #4a90e2; }
+
+    /* Hambúrguer */
+    .menu-toggle {
       cursor: pointer;
-      transition: transform 0.3s;
+      display: inline-block;
+      padding: 10px;
+      background: #4a90e2;
+      border-radius: 5px;
+      margin-bottom: 20px;
     }
-    .menu-icon:hover {
-      transform: scale(1.2);
-    }
+
     .menu {
       display: none;
       flex-direction: column;
-      background-color: #111;
-      position: absolute;
-      top: 50px;
-      right: 20px;
-      border: 1px solid #333;
-      padding: 10px;
+      gap: 10px;
     }
-    .menu button {
-      background-color: #000;
-      color: #00f;
-      border: 1px solid #00f;
-      margin: 5px 0;
-      padding: 5px;
-      cursor: pointer;
-      transition: transform 0.3s;
-    }
-    .menu button:hover {
-      transform: scale(1.1);
-    }
-    .card {
-      border: 1px solid #00f;
-      margin: 10px;
-      padding: 10px;
+
+    .menu.show {
       display: flex;
-      background-color: #111;
-      transition: transform 0.3s;
+    }
+
+    .form-group, .form-profile {
+      margin-bottom: 20px;
+      background: #111;
+      padding: 10px;
+      border-radius: 8px;
+    }
+
+    input, textarea {
+      width: 100%;
+      padding: 10px;
+      background: #222;
+      border: 1px solid #333;
+      border-radius: 5px;
+      color: #fff;
+      margin-top: 5px;
+    }
+
+    button {
+      width: 100%;
+      padding: 10px;
+      background: linear-gradient(45deg, #4a90e2, #0077cc);
+      border: none;
+      border-radius: 5px;
+      color: #fff;
+      font-weight: bold;
       cursor: pointer;
+      transition: background 0.3s ease;
+      margin-top: 10px;
     }
-    .card:hover {
-      transform: scale(1.05);
+
+    button:hover {
+      background: linear-gradient(45deg, #0077cc, #4a90e2);
     }
-    .card img {
+
+    .manga-card {
+      display: flex;
+      align-items: center;
+      background: #1c1c1c;
+      border-radius: 10px;
+      padding: 15px;
+      margin-top: 30px;
+      box-shadow: 0 0 10px #4a90e2;
+      text-decoration: none;
+      color: inherit;
+      transition: transform 0.3s ease;
+    }
+
+    .manga-card:hover {
+      transform: translateY(-5px);
+    }
+
+    .manga-card img {
       width: 100px;
       height: 150px;
-      margin-right: 10px;
+      object-fit: cover;
+      border-radius: 8px;
+      margin-right: 15px;
     }
-    #form-container {
-      margin: 20px;
+
+    .manga-info h2 {
+      margin: 0;
+      color: #4a90e2;
     }
-    #form-container input, #form-container textarea {
-      display: block;
-      margin: 10px 0;
-      padding: 5px;
-      width: 200px;
-    }
-    #meus-mangas {
-      color: #fff;
-      font-size: 24px;
+
+    .status {
       text-align: center;
-      margin-top: 20px;
+      margin-top: 15px;
+      font-size: 0.9em;
+      color: #999;
+    }
+
+    #profileSection {
+      display: none;
+    }
+
+    img.profile-pic {
+      max-width: 100px;
+      margin: 10px 0;
+      border-radius: 10px;
     }
   </style>
 </head>
 <body>
 
-<header>
-  <h1 id="meus-mangas">Meus Mangás</h1>
-  <div class="menu-icon" onclick="toggleMenu()">☰</div>
-  <div class="menu" id="menu">
-    <button onclick="mostrarFormulario('login')">Login</button>
-    <button onclick="mostrarFormulario('cadastro')">Cadastro</button>
-    <button onclick="editarPerfil()">Editar Perfil</button>
+<h1>Meus Mangás</h1>
+
+<div class="menu-toggle" onclick="toggleMenu()">☰ Menu</div>
+<div class="menu" id="menu">
+  <div class="form-group">
+    <h3>Cadastro</h3>
+    <input type="text" id="regUser" placeholder="Usuário">
+    <input type="password" id="regPass" placeholder="Senha">
+    <button onclick="register()">Cadastrar</button>
   </div>
-</header>
 
-<div id="form-container"></div>
+  <div class="form-group">
+    <h3>Login</h3>
+    <input type="text" id="loginUser" placeholder="Usuário">
+    <input type="password" id="loginPass" placeholder="Senha">
+    <button onclick="login()">Entrar</button>
+  </div>
 
-<div id="mangas"></div>
+  <button onclick="openProfile()">Editar Perfil</button>
+</div>
+
+<div id="profileSection" class="form-profile">
+  <h3>Editar Perfil</h3>
+  <input type="file" id="profilePic" accept="image/*" onchange="previewPic(event)">
+  <img id="picPreview" class="profile-pic" src="" alt="">
+  <textarea id="bio" placeholder="Sua bio..."></textarea>
+  <button onclick="saveProfile()">Salvar Perfil</button>
+</div>
+
+<div class="status" id="status"></div>
+
+<a class="manga-card" href="manga1.html">
+  <img src="https://via.placeholder.com/100x150.png?text=Mangá+1" alt="Capa Manga 1">
+  <div class="manga-info">
+    <h2>Laços Profanos 1</h2>
+    <p>O último anjo desperta para lutar por esperança e redenção.</p>
+  </div>
+</a>
 
 <script>
-  const usuarios = [];
-  let usuarioLogado = null;
-
-  const mangas = [
-    { nome: "Naruto", capa: "https://via.placeholder.com/100x150", descricao: "Um jovem ninja busca ser Hokage." },
-    { nome: "One Piece", capa: "https://via.placeholder.com/100x150", descricao: "Piratas em busca do maior tesouro." },
-    { nome: "Bleach", capa: "https://via.placeholder.com/100x150", descricao: "Adolescente obtém poderes de ceifador." }
-  ];
-
   function toggleMenu() {
-    const menu = document.getElementById('menu');
-    menu.style.display = menu.style.display === 'flex' ? 'none' : 'flex';
+    document.getElementById('menu').classList.toggle('show');
   }
 
-  function mostrarFormulario(tipo) {
-    const container = document.getElementById('form-container');
-    if (tipo === 'login') {
-      container.innerHTML = `
-        <h2>Login</h2>
-        <input id="login-usuario" placeholder="Usuário">
-        <button onclick="login()">Entrar</button>
-      `;
-    } else if (tipo === 'cadastro') {
-      container.innerHTML = `
-        <h2>Cadastro</h2>
-        <input id="cadastro-usuario" placeholder="Usuário">
-        <button onclick="cadastrar()">Cadastrar</button>
-      `;
-    }
-  }
+  function register() {
+    const user = document.getElementById('regUser').value.trim();
+    const pass = document.getElementById('regPass').value;
 
-  function editarPerfil() {
-    const container = document.getElementById('form-container');
-    if (!usuarioLogado) {
-      container.innerHTML = `<p>Faça seu login, ou cadastre-se para isso.</p>`;
+    if (localStorage.getItem('user_' + user)) {
+      alert('Usuário já existe. Escolha outro nome.');
       return;
     }
-    container.innerHTML = `
-      <h2>Editar Perfil</h2>
-      <input id="bio" placeholder="Biografia">
-      <input id="foto" placeholder="URL da foto">
-      <button onclick="salvarPerfil()">Salvar</button>
-    `;
-  }
 
-  function salvarPerfil() {
-    const bio = document.getElementById('bio').value;
-    const foto = document.getElementById('foto').value;
-    usuarioLogado.bio = bio;
-    usuarioLogado.foto = foto;
-    alert("Perfil atualizado!");
-    document.getElementById('form-container').innerHTML = "";
-  }
-
-  function cadastrar() {
-    const usuario = document.getElementById('cadastro-usuario').value;
-    if (usuarios.find(u => u.nome === usuario)) {
-      alert(`${usuario} já usa esse usuário.`);
-      return;
-    }
-    const novoUsuario = { nome: usuario, bio: "", foto: "" };
-    usuarios.push(novoUsuario);
-    usuarioLogado = novoUsuario;
-    alert("Cadastro realizado e logado!");
-    document.getElementById('form-container').innerHTML = "";
+    localStorage.setItem('user_' + user, pass);
+    alert('Cadastro realizado com sucesso!');
   }
 
   function login() {
-    const usuario = document.getElementById('login-usuario').value;
-    const user = usuarios.find(u => u.nome === usuario);
-    if (user) {
-      usuarioLogado = user;
-      alert("Login realizado!");
-      document.getElementById('form-container').innerHTML = "";
+    const user = document.getElementById('loginUser').value.trim();
+    const pass = document.getElementById('loginPass').value;
+    const storedPass = localStorage.getItem('user_' + user);
+
+    if (storedPass === pass) {
+      localStorage.setItem('loggedUser', user);
+      document.getElementById('status').textContent = 'Logado como: ' + user;
     } else {
-      alert("Usuário não encontrado.");
+      alert('Usuário ou senha incorretos.');
     }
   }
 
-  function mostrarMangas() {
-    const container = document.getElementById('mangas');
-    mangas.forEach(manga => {
-      const card = document.createElement('div');
-      card.className = 'card';
-      card.innerHTML = `
-        <img src="${manga.capa}" alt="Capa">
-        <div>
-          <h3>${manga.nome}</h3>
-          <p>${manga.descricao}</p>
-        </div>
-      `;
-      card.onclick = () => interagirManga(manga.nome);
-      container.appendChild(card);
-    });
-  }
-
-  function interagirManga(nomeManga) {
-    if (!usuarioLogado) {
-      alert("Crie uma conta para interagir.");
-    } else {
-      alert(`Interagindo com ${nomeManga}`);
+  function openProfile() {
+    const user = localStorage.getItem('loggedUser');
+    if (!user) {
+      alert('Crie sua conta ou faça login para usar isso.');
+      return;
     }
+
+    document.getElementById('profileSection').style.display = 'block';
+
+    const pic = localStorage.getItem('profilePic_' + user);
+    const bio = localStorage.getItem('bio_' + user);
+    if (pic) document.getElementById('picPreview').src = pic;
+    if (bio) document.getElementById('bio').value = bio;
   }
 
-  mostrarMangas();
+  function previewPic(event) {
+    const reader = new FileReader();
+    reader.onload = function () {
+      document.getElementById('picPreview').src = reader.result;
+    };
+    reader.readAsDataURL(event.target.files[0]);
+  }
+
+  function saveProfile() {
+    const user = localStorage.getItem('loggedUser');
+    if (!user) return;
+
+    const pic = document.getElementById('picPreview').src;
+    const bio = document.getElementById('bio').value;
+    localStorage.setItem('profilePic_' + user, pic);
+    localStorage.setItem('bio_' + user, bio);
+    alert('Perfil salvo!');
+  }
+
+  // Mostrar status se estiver logado
+  const loggedUser = localStorage.getItem('loggedUser');
+  if (loggedUser) {
+    document.getElementById('status').textContent = 'Logado como: ' + loggedUser;
+  }
 </script>
 
 </body>
-  </html>
-  
+</html>
