@@ -129,3 +129,295 @@
 </body>
     </html>
   
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <title>Comentários</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #111;
+      color: #eee;
+      padding: 20px;
+      max-width: 800px;
+      margin: auto;
+    }
+
+    .menu {
+      position: absolute;
+      top: 10px;
+      right: 20px;
+      cursor: pointer;
+      font-size: 24px;
+      user-select: none;
+    }
+
+    .menu-content {
+      display: none;
+      position: absolute;
+      top: 40px;
+      right: 20px;
+      background: #222;
+      padding: 10px;
+      border-radius: 5px;
+    }
+
+    .menu-content button {
+      display: block;
+      background: none;
+      color: #fff;
+      border: none;
+      text-align: left;
+      width: 100%;
+      padding: 5px 10px;
+      cursor: pointer;
+    }
+
+    input, textarea {
+      width: 100%;
+      padding: 10px;
+      margin: 5px 0 15px;
+      border-radius: 5px;
+      border: 1px solid #333;
+      background: #222;
+      color: #fff;
+    }
+
+    .comment {
+      background: #1c1c1c;
+      border-radius: 10px;
+      padding: 10px;
+      margin-bottom: 10px;
+    }
+
+    .comment .info {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .comment img {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      cursor: pointer;
+    }
+
+    .comment strong {
+      cursor: pointer;
+    }
+
+    .replies {
+      margin-left: 20px;
+      margin-top: 10px;
+    }
+
+    .modal {
+      display: none;
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      background: rgba(0,0,0,0.7);
+      justify-content: center;
+      align-items: center;
+    }
+
+    .modal-content {
+      background: #222;
+      padding: 20px;
+      border-radius: 10px;
+      text-align: center;
+    }
+
+    .modal-content img {
+      max-width: 200px;
+      border-radius: 50%;
+    }
+
+    .hidden { display: none; }
+
+    button {
+      background: #4a90e2;
+      border: none;
+      padding: 10px;
+      color: white;
+      cursor: pointer;
+      border-radius: 5px;
+    }
+  </style>
+</head>
+<body>
+
+<div class="menu" onclick="toggleMenu()">☰</div>
+<div class="menu-content" id="menuContent">
+  <button onclick="showLogin()">Login/Cadastro</button>
+  <button onclick="showProfileEdit()">Editar Perfil</button>
+</div>
+
+<h1>Comentários</h1>
+
+<div id="commentSection"></div>
+
+<div id="commentForm" class="hidden">
+  <textarea id="newComment" placeholder="Escreva um comentário..."></textarea>
+  <button onclick="postComment()">Comentar</button>
+</div>
+
+<div id="loginForm" class="hidden">
+  <input type="text" id="loginUser" placeholder="Usuário">
+  <input type="password" id="loginPass" placeholder="Senha">
+  <button onclick="login()">Entrar</button>
+</div>
+
+<div id="registerForm" class="hidden">
+  <input type="text" id="regUser" placeholder="Novo usuário">
+  <input type="password" id="regPass" placeholder="Senha">
+  <input type="text" id="regPhoto" placeholder="URL da foto de perfil">
+  <textarea id="regBio" placeholder="Sua bio"></textarea>
+  <button onclick="register()">Cadastrar</button>
+</div>
+
+<div id="editForm" class="hidden">
+  <input type="text" id="editPhoto" placeholder="URL nova da foto">
+  <textarea id="editBio" placeholder="Nova bio"></textarea>
+  <button onclick="saveProfile()">Salvar</button>
+</div>
+
+<div id="modal" class="modal" onclick="closeModal()">
+  <div class="modal-content" id="modalContent">
+    <img id="modalImg" src="">
+    <p id="modalBio"></p>
+  </div>
+</div>
+
+<script>
+  const page = location.pathname; // Usado para salvar comentários por página
+
+  const users = JSON.parse(localStorage.getItem("users") || "{}");
+  let loggedUser = localStorage.getItem("loggedUser") || "";
+
+  function toggleMenu() {
+    const menu = document.getElementById('menuContent');
+    menu.style.display = menu.style.display === 'block' ? 'none' : 'block';
+  }
+
+  function showLogin() {
+    document.getElementById("loginForm").classList.toggle("hidden");
+    document.getElementById("registerForm").classList.toggle("hidden");
+  }
+
+  function showProfileEdit() {
+    if (!loggedUser) {
+      alert("Crie sua conta ou faça login para usar isso.");
+      return;
+    }
+    const user = users[loggedUser];
+    document.getElementById("editPhoto").value = user.photo;
+    document.getElementById("editBio").value = user.bio;
+    document.getElementById("editForm").classList.toggle("hidden");
+  }
+
+  function register() {
+    const user = document.getElementById("regUser").value;
+    const pass = document.getElementById("regPass").value;
+    const photo = document.getElementById("regPhoto").value;
+    const bio = document.getElementById("regBio").value;
+    if (users[user]) return alert("Usuário já existe.");
+    users[user] = { pass, photo, bio };
+    localStorage.setItem("users", JSON.stringify(users));
+    alert("Cadastro realizado!");
+  }
+
+  function login() {
+    const user = document.getElementById("loginUser").value;
+    const pass = document.getElementById("loginPass").value;
+    if (!users[user] || users[user].pass !== pass) return alert("Login inválido.");
+    loggedUser = user;
+    localStorage.setItem("loggedUser", user);
+    document.getElementById("commentForm").classList.remove("hidden");
+    renderComments();
+  }
+
+  function saveProfile() {
+    const photo = document.getElementById("editPhoto").value;
+    const bio = document.getElementById("editBio").value;
+    users[loggedUser].photo = photo;
+    users[loggedUser].bio = bio;
+    localStorage.setItem("users", JSON.stringify(users));
+    alert("Perfil atualizado!");
+    document.getElementById("editForm").classList.add("hidden");
+    renderComments();
+  }
+
+  function renderComments() {
+    const section = document.getElementById("commentSection");
+    section.innerHTML = "";
+    const comments = JSON.parse(localStorage.getItem("comments_" + page) || "[]");
+
+    comments.forEach((c, i) => {
+      const div = document.createElement("div");
+      div.className = "comment";
+      div.innerHTML = `
+        <div class="info">
+          <img src="${users[c.user]?.photo}" onclick="showModal('${c.user}')">
+          <strong onclick="showModal('${c.user}')">${c.user}</strong>
+        </div>
+        <p>${c.text}</p>
+        ${loggedUser ? `<button onclick="reply(${i})">Responder</button>` : ""}
+        <div class="replies" id="reply${i}">
+          ${c.replies.map(r => `
+            <div class="comment">
+              <div class="info">
+                <img src="${users[r.user]?.photo}" onclick="showModal('${r.user}')">
+                <strong onclick="showModal('${r.user}')">${r.user}</strong>
+              </div>
+              <p>${r.text}</p>
+            </div>
+          `).join('')}
+        </div>
+      `;
+      section.appendChild(div);
+    });
+  }
+
+  function postComment() {
+    const text = document.getElementById("newComment").value;
+    if (!text.trim()) return;
+    const comments = JSON.parse(localStorage.getItem("comments_" + page) || "[]");
+    comments.push({ user: loggedUser, text, replies: [] });
+    localStorage.setItem("comments_" + page, JSON.stringify(comments));
+    document.getElementById("newComment").value = "";
+    renderComments();
+  }
+
+  function reply(index) {
+    const r = prompt("Escreva sua resposta:");
+    if (!r) return;
+    const comments = JSON.parse(localStorage.getItem("comments_" + page) || "[]");
+    comments[index].replies.push({ user: loggedUser, text: r });
+    localStorage.setItem("comments_" + page, JSON.stringify(comments));
+    renderComments();
+  }
+
+  function showModal(user) {
+    const data = users[user];
+    document.getElementById("modalImg").src = data.photo;
+    document.getElementById("modalBio").textContent = data.bio;
+    document.getElementById("modal").style.display = "flex";
+  }
+
+  function closeModal() {
+    document.getElementById("modal").style.display = "none";
+  }
+
+  // Inicialização
+  if (loggedUser) {
+    document.getElementById("commentForm").classList.remove("hidden");
+  }
+  renderComments();
+</script>
+
+</body>
+  </html>
+  
