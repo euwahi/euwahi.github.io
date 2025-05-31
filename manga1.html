@@ -135,264 +135,253 @@
   <title>Comentários</title>
   <style>
     body {
+      background: #111;
+      color: #eee;
       font-family: Arial, sans-serif;
-      background: #121212;
-      color: #fff;
-      margin: 0;
-      padding: 0 20px;
+      padding: 20px;
+      max-width: 800px;
+      margin: auto;
     }
-    header {
-      background: #1f1f1f;
-      padding: 15px;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
+    .hamburger {
+      cursor: pointer;
+      width: 30px;
+      height: 20px;
+      position: relative;
+      margin-bottom: 20px;
+    }
+    .hamburger span {
+      background: #eee;
+      display: block;
+      height: 4px;
+      margin: 5px 0;
     }
     .menu {
       display: none;
       flex-direction: column;
-      background: #2b2b2b;
-      position: absolute;
-      top: 60px;
-      right: 20px;
-      padding: 10px;
-      border-radius: 5px;
-    }
-    .menu a {
-      color: #fff;
-      text-decoration: none;
-      margin: 5px 0;
-    }
-    .hamburger {
-      cursor: pointer;
-      display: flex;
-      flex-direction: column;
-      gap: 5px;
-    }
-    .hamburger span {
-      width: 25px;
-      height: 3px;
-      background: #fff;
-    }
-    h1 {
-      margin-top: 30px;
-      color: #4a90e2;
-    }
-    textarea {
-      width: 100%;
-      padding: 10px;
+      gap: 10px;
       background: #222;
-      border: 1px solid #333;
-      border-radius: 5px;
-      color: #fff;
-      resize: vertical;
-    }
-    button {
-      background: #4a90e2;
-      color: #fff;
-      border: none;
       padding: 10px;
-      margin-top: 10px;
-      border-radius: 5px;
-      cursor: pointer;
+      border-radius: 8px;
+    }
+    .comment-box, .reply-box {
+      margin-bottom: 20px;
     }
     .comment {
-      background: #1c1c1c;
+      background: #222;
       padding: 10px;
-      border-radius: 5px;
-      margin-top: 10px;
+      margin-bottom: 10px;
+      border-radius: 8px;
     }
-    .comment img {
-      width: 30px;
-      height: 30px;
-      border-radius: 50%;
-      cursor: pointer;
-    }
-    .user-info {
+    .comment .user-info {
       display: flex;
       align-items: center;
       gap: 10px;
+      cursor: pointer;
     }
-    .reply-box {
-      margin-top: 10px;
+    .comment .user-info img {
+      width: 30px;
+      height: 30px;
+      border-radius: 50%;
+    }
+    .replies {
+      margin-left: 30px;
+    }
+    .profile-popup {
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      background: #222;
+      padding: 20px;
+      border-radius: 10px;
+      display: none;
+    }
+    .likes {
+      display: flex;
+      gap: 10px;
+      margin-top: 5px;
+    }
+    button {
+      background: #333;
+      color: #eee;
+      border: none;
+      padding: 5px 10px;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+    input, textarea {
+      width: 100%;
+      padding: 8px;
+      margin-top: 5px;
+      border-radius: 5px;
+      border: none;
     }
   </style>
 </head>
 <body>
-  <header>
-    <h2>Comentários</h2>
-    <div class="hamburger" onclick="toggleMenu()">
-      <span></span>
-      <span></span>
-      <span></span>
-    </div>
-    <div class="menu" id="menu">
-      <a href="#" onclick="showLogin()">Login</a>
-      <a href="#" onclick="showRegister()">Cadastre-se</a>
-      <a href="#" onclick="editProfile()">Editar perfil</a>
-    </div>
-  </header>
+  <div class="hamburger" onclick="toggleMenu()">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+  <div class="menu" id="menu">
+    <button onclick="showLogin()">Login</button>
+    <button onclick="showRegister()">Cadastre-se</button>
+    <button onclick="showProfileForm()">Editar Perfil</button>
+  </div>
 
-  <p style="color: red; font-weight: bold;">Proibido spoiler sujeito a ban!</p>
+  <h2>Proibido spoiler sujeito a ban!</h2>
   <h1>Comentários</h1>
-
-  <div id="commentSection">
-    <textarea id="commentText" placeholder="Digite seu comentário..."></textarea>
+  <div class="comment-box">
+    <textarea id="commentInput" placeholder="Escreva um comentário..."></textarea>
     <button onclick="postComment()">Comentar</button>
   </div>
+  <div id="comments"></div>
 
-  <div id="commentsContainer"></div>
+  <div class="profile-popup" id="profilePopup" onclick="closeProfilePopup()"></div>
 
-  <!-- Modais -->
-  <div id="modal" style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:#000000aa; justify-content:center; align-items:center;">
-    <div style="background:#222; padding:20px; border-radius:10px; max-width:300px; color:#fff;">
-      <div id="modalContent"></div>
-      <button onclick="closeModal()">Fechar</button>
-    </div>
-  </div>
+  <div id="modals"></div>
 
   <script>
-    let comments = JSON.parse(localStorage.getItem('comments')) || [];
+    let currentUser = localStorage.getItem('loggedUser');
 
     function toggleMenu() {
-      const menu = document.getElementById('menu');
-      menu.style.display = menu.style.display === 'flex' ? 'none' : 'flex';
-    }
-
-    function getLoggedUser() {
-      const username = localStorage.getItem('loggedUser');
-      if (!username) return null;
-      const user = JSON.parse(localStorage.getItem('user_' + username));
-      return user ? { name: username, ...user } : null;
+      document.getElementById('menu').style.display =
+        document.getElementById('menu').style.display === 'flex' ? 'none' : 'flex';
     }
 
     function showLogin() {
-      const user = prompt("Usuário:");
-      const pass = prompt("Senha:");
-      const stored = JSON.parse(localStorage.getItem('user_' + user));
-      if (stored && stored.password === pass) {
+      const user = prompt('Usuário:');
+      const pass = prompt('Senha:');
+      if (localStorage.getItem('user_' + user) === pass) {
         localStorage.setItem('loggedUser', user);
-        alert("Logado como " + user);
+        alert('Logado como ' + user);
+        location.reload();
       } else {
-        alert("Usuário ou senha incorretos.");
+        alert('Usuário ou senha incorretos.');
       }
     }
 
     function showRegister() {
-      const user = prompt("Escolha um usuário:");
+      const user = prompt('Novo usuário:');
       if (localStorage.getItem('user_' + user)) {
-        alert("Usuário já existe."); return;
+        alert('Usuário já existe!'); return;
       }
-      const pass = prompt("Escolha uma senha:");
-      localStorage.setItem('user_' + user, JSON.stringify({ password: pass }));
-      alert("Cadastro realizado!");
+      const pass = prompt('Nova senha:');
+      localStorage.setItem('user_' + user, pass);
+      alert('Usuário cadastrado com sucesso!');
     }
 
-    function editProfile() {
-      const user = getLoggedUser();
-      if (!user) {
-        alert("Crie sua conta ou faça login para usar isso.");
-        return;
-      }
-      const img = prompt("Link da foto de perfil:", user.img || '');
-      const bio = prompt("Digite sua bio:", user.bio || '');
-      localStorage.setItem('user_' + user.name, JSON.stringify({ ...user, img, bio }));
-      alert("Perfil atualizado!");
+    function showProfileForm() {
+      if (!currentUser) return alert('Crie sua conta ou faça login para usar isso.');
+      const currentData = JSON.parse(localStorage.getItem('profile_' + currentUser)) || {};
+      const form = `
+        <div class="profile-popup" style="display:block; z-index:99" onclick="event.stopPropagation()">
+          <h3>Editar Perfil</h3>
+          <input id="profileImg" placeholder="URL da foto" value="${currentData.img || ''}"><br>
+          <textarea id="profileBio" placeholder="Bio">${currentData.bio || ''}</textarea><br>
+          <button onclick="saveProfile()">Salvar</button>
+        </div>`;
+      document.getElementById('modals').innerHTML = form;
     }
 
-    function saveComments() {
-      try {
-        localStorage.setItem('comments', JSON.stringify(comments));
-        console.log('Comentários salvos:', comments);
-      } catch (e) {
-        console.error('Erro ao salvar comentários:', e);
-      }
+    function saveProfile() {
+      const img = document.getElementById('profileImg').value;
+      const bio = document.getElementById('profileBio').value;
+      localStorage.setItem('profile_' + currentUser, JSON.stringify({ img, bio }));
+      document.getElementById('modals').innerHTML = '';
+    }
+
+    function closeProfilePopup() {
+      document.getElementById('profilePopup').style.display = 'none';
     }
 
     function postComment(parentId = null) {
-      const user = getLoggedUser();
-      if (!user) {
-        alert("Faça login para comentar.");
-        return;
-      }
-      const text = parentId ? document.getElementById(`reply-${parentId}`).value : document.getElementById('commentText').value;
-      if (!text.trim()) return;
-
-      const comment = {
+      if (!currentUser) return alert('Faça login para comentar.');
+      const input = parentId ? document.getElementById('reply_' + parentId) : document.getElementById('commentInput');
+      const text = input.value.trim();
+      if (!text) return;
+      const comments = JSON.parse(localStorage.getItem('comments') || '[]');
+      comments.push({
         id: Date.now(),
-        user,
+        user: currentUser,
         text,
         parent: parentId,
-        time: new Date().toLocaleString()
-      };
-      comments.push(comment);
-      saveComments();
+        likes: 0,
+        dislikes: 0
+      });
+      localStorage.setItem('comments', JSON.stringify(comments));
+      input.value = '';
       renderComments();
-      if (!parentId) {
-        document.getElementById('commentText').value = '';
-      } else {
-        document.getElementById(`reply-${parentId}`).value = '';
-        document.getElementById(`box-${parentId}`).style.display = 'none';
-      }
-    }
-
-    function deleteComment(id) {
-      comments = comments.filter(c => c.id !== id && c.parent !== id);
-      saveComments();
-      renderComments();
-    }
-
-    function showReplyBox(id) {
-      const box = document.getElementById(`box-${id}`);
-      box.style.display = box.style.display === 'block' ? 'none' : 'block';
-    }
-
-    function showUserProfile(user) {
-      const u = JSON.parse(localStorage.getItem('user_' + user.name));
-      document.getElementById('modalContent').innerHTML = `
-        <img src="${u.img || 'https://via.placeholder.com/150'}" style="width:100%; border-radius:10px;"><br>
-        <strong>${user.name}</strong>
-        <p>${u.bio || 'Sem bio.'}</p>
-      `;
-      document.getElementById('modal').style.display = 'flex';
-    }
-
-    function closeModal() {
-      document.getElementById('modal').style.display = 'none';
     }
 
     function renderComments() {
-      comments = JSON.parse(localStorage.getItem('comments')) || [];
-      const container = document.getElementById('commentsContainer');
+      const comments = JSON.parse(localStorage.getItem('comments') || '[]');
+      const container = document.getElementById('comments');
       container.innerHTML = '';
-      const roots = comments.filter(c => !c.parent);
-      roots.forEach(c => renderComment(c, container, 0));
+      comments.filter(c => !c.parent).forEach(c => {
+        container.innerHTML += commentHTML(c, comments);
+      });
     }
 
-    function renderComment(c, container, level) {
-      const div = document.createElement('div');
-      div.className = 'comment';
-      div.style.marginLeft = level * 20 + 'px';
-      div.innerHTML = `
-        <div class="user-info">
-          <img src="${c.user.img || 'https://via.placeholder.com/30'}" onclick='showUserProfile(${JSON.stringify(c.user)})'>
-          <strong onclick='showUserProfile(${JSON.stringify(c.user)})' style="cursor:pointer">${c.user.name}</strong>
-        </div>
-        <p>${c.text}</p>
-        <small>${c.time}</small><br>
-        <button onclick="showReplyBox(${c.id})">Responder</button>
-        <button onclick="deleteComment(${c.id})">Excluir</button>
-        <div class="reply-box" id="box-${c.id}" style="display:none;">
-          <textarea id="reply-${c.id}" placeholder="Responder..."></textarea>
-          <button onclick="postComment(${c.id})">Enviar resposta</button>
-        </div>
-      `;
-      container.appendChild(div);
-      comments.filter(r => r.parent === c.id).forEach(reply => renderComment(reply, container, level + 1));
+    function commentHTML(comment, all) {
+      const profile = JSON.parse(localStorage.getItem('profile_' + comment.user)) || {};
+      let replies = all.filter(r => r.parent === comment.id).map(r => commentHTML(r, all)).join('');
+      return `
+        <div class="comment">
+          <div class="user-info" onclick="viewProfile('${comment.user}')">
+            <img src="${profile.img || 'https://via.placeholder.com/30'}">
+            <b>${comment.user}</b>
+          </div>
+          <p>${comment.text}</p>
+          <div class="likes">
+            <button onclick="likeComment(${comment.id})">👍 ${comment.likes}</button>
+            <button onclick="dislikeComment(${comment.id})">👎 ${comment.dislikes}</button>
+            <button onclick="replyTo(${comment.id})">Responder</button>
+            <button onclick="deleteComment(${comment.id})">Excluir</button>
+          </div>
+          <div class="reply-box" id="replyBox_${comment.id}"></div>
+          <div class="replies">${replies}</div>
+        </div>`;
+    }
+
+    function viewProfile(user) {
+      const profile = JSON.parse(localStorage.getItem('profile_' + user)) || {};
+      const popup = document.getElementById('profilePopup');
+      popup.innerHTML = `<img src="${profile.img || 'https://via.placeholder.com/100'}" style="width:100px"><p>${user}</p><p>${profile.bio || ''}</p>`;
+      popup.style.display = 'block';
+    }
+
+    function replyTo(id) {
+      if (!currentUser) return alert('Faça login para comentar.');
+      const box = document.getElementById('replyBox_' + id);
+      box.innerHTML = `<textarea id="reply_${id}" placeholder="Responder..."></textarea><button onclick="postComment(${id})">Enviar</button>`;
+    }
+
+    function deleteComment(id) {
+      let comments = JSON.parse(localStorage.getItem('comments') || '[]');
+      comments = comments.filter(c => c.id !== id && c.parent !== id);
+      localStorage.setItem('comments', JSON.stringify(comments));
+      renderComments();
+    }
+
+    function likeComment(id) {
+      const comments = JSON.parse(localStorage.getItem('comments') || '[]');
+      const c = comments.find(x => x.id === id);
+      c.likes++;
+      localStorage.setItem('comments', JSON.stringify(comments));
+      renderComments();
+    }
+
+    function dislikeComment(id) {
+      const comments = JSON.parse(localStorage.getItem('comments') || '[]');
+      const c = comments.find(x => x.id === id);
+      c.dislikes++;
+      localStorage.setItem('comments', JSON.stringify(comments));
+      renderComments();
     }
 
     renderComments();
   </script>
 </body>
 </html>
-
