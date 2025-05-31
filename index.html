@@ -1,13 +1,12 @@
 <!DOCTYPE html>
-<html lang="pt-BR">
+<html lang="pt">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Mangás</title>
+  <title>Meus Mangás</title>
   <style>
     body {
       background-color: #000;
-      color: #00f;
+      color: #fff;
       font-family: Arial, sans-serif;
       margin: 0;
       padding: 0;
@@ -16,185 +15,200 @@
       display: flex;
       justify-content: space-between;
       align-items: center;
-      padding: 10px;
-      background: #111;
+      background-color: #111;
+      padding: 10px 20px;
+    }
+    h1 {
+      color: #fff;
+    }
+    .menu-icon {
+      font-size: 30px;
+      cursor: pointer;
+      transition: transform 0.3s;
+    }
+    .menu-icon:hover {
+      transform: scale(1.2);
     }
     .menu {
-      cursor: pointer;
-      font-size: 24px;
-    }
-    .menu-content {
       display: none;
       flex-direction: column;
-      background: #111;
+      background-color: #111;
       position: absolute;
       top: 50px;
-      right: 10px;
+      right: 20px;
+      border: 1px solid #333;
       padding: 10px;
     }
-    .menu-content button {
-      background: none;
-      border: none;
-      color: white;
-      margin: 5px 0;
-      cursor: pointer;
-    }
-    .menu-content button:hover {
-      color: #0af;
-    }
-    .form {
-      display: none;
-      background: #111;
-      padding: 20px;
-      margin: 20px;
-      border-radius: 10px;
-    }
-    .form input {
-      display: block;
-      margin-bottom: 10px;
-      padding: 8px;
-      width: 100%;
-      background: #222;
-      color: #fff;
+    .menu button {
+      background-color: #000;
+      color: #00f;
       border: 1px solid #00f;
-    }
-    .form button {
-      padding: 10px;
-      background: #00f;
-      color: white;
-      border: none;
+      margin: 5px 0;
+      padding: 5px;
       cursor: pointer;
+      transition: transform 0.3s;
     }
-    .form button:hover {
-      background: #0af;
-    }
-    .btn-branco {
-      color: white;
-      background: none;
-      border: 1px solid white;
-      padding: 10px;
-      cursor: pointer;
-    }
-    .btn-branco:hover {
-      background: white;
-      color: black;
+    .menu button:hover {
+      transform: scale(1.1);
     }
     .card {
       border: 1px solid #00f;
-      padding: 20px;
+      margin: 10px;
+      padding: 10px;
+      display: flex;
+      background-color: #111;
+      transition: transform 0.3s;
+      cursor: pointer;
+    }
+    .card:hover {
+      transform: scale(1.05);
+    }
+    .card img {
+      width: 100px;
+      height: 150px;
+      margin-right: 10px;
+    }
+    #form-container {
       margin: 20px;
-      border-radius: 10px;
-      background: #111;
+    }
+    #form-container input, #form-container textarea {
+      display: block;
+      margin: 10px 0;
+      padding: 5px;
+      width: 200px;
+    }
+    #meus-mangas {
+      color: #fff;
+      font-size: 24px;
+      text-align: center;
+      margin-top: 20px;
     }
   </style>
 </head>
 <body>
 
 <header>
-  <h1>Mangás</h1>
-  <div class="menu">☰</div>
+  <h1 id="meus-mangas">Meus Mangás</h1>
+  <div class="menu-icon" onclick="toggleMenu()">☰</div>
+  <div class="menu" id="menu">
+    <button onclick="mostrarFormulario('login')">Login</button>
+    <button onclick="mostrarFormulario('cadastro')">Cadastro</button>
+    <button onclick="editarPerfil()">Editar Perfil</button>
+  </div>
 </header>
 
-<div class="menu-content">
-  <button onclick="showForm('login')">Login</button>
-  <button onclick="showForm('cadastro')">Cadastrar-se</button>
-</div>
+<div id="form-container"></div>
 
-<div id="login" class="form">
-  <h2>Login</h2>
-  <input type="text" placeholder="Usuário" id="loginUser">
-  <input type="password" placeholder="Senha">
-  <button onclick="login()">Entrar</button>
-</div>
-
-<div id="cadastro" class="form">
-  <h2>Cadastrar-se</h2>
-  <input type="text" placeholder="Usuário" id="cadastroUser">
-  <input type="password" placeholder="Senha">
-  <input type="file" id="foto">
-  <textarea placeholder="Biografia" id="bio"></textarea>
-  <button onclick="cadastrar()">Cadastrar</button>
-</div>
-
-<button class="btn-branco">Meus Mangás</button>
-
-<div class="card">
-  <h2>Comentário</h2>
-  <p>Comentário de exemplo.</p>
-  <button onclick="interagir()">Curtir</button>
-  <button onclick="interagir()">Descurtir</button>
-  <button onclick="interagir()">Responder</button>
-</div>
-
-<div class="card">
-  <h2>Perfil</h2>
-  <div id="perfil">
-    <p>Faça seu login, ou cadastre-se para isso.</p>
-  </div>
-  <button onclick="editarPerfil()">Editar perfil</button>
-</div>
+<div id="mangas"></div>
 
 <script>
-  const menu = document.querySelector('.menu');
-  const menuContent = document.querySelector('.menu-content');
   const usuarios = [];
+  let usuarioLogado = null;
 
-  let logado = null;
+  const mangas = [
+    { nome: "Naruto", capa: "https://via.placeholder.com/100x150", descricao: "Um jovem ninja busca ser Hokage." },
+    { nome: "One Piece", capa: "https://via.placeholder.com/100x150", descricao: "Piratas em busca do maior tesouro." },
+    { nome: "Bleach", capa: "https://via.placeholder.com/100x150", descricao: "Adolescente obtém poderes de ceifador." }
+  ];
 
-  menu.addEventListener('click', () => {
-    menuContent.style.display = menuContent.style.display === 'flex' ? 'none' : 'flex';
-  });
-
-  function showForm(tipo) {
-    document.querySelectorAll('.form').forEach(f => f.style.display = 'none');
-    document.getElementById(tipo).style.display = 'block';
+  function toggleMenu() {
+    const menu = document.getElementById('menu');
+    menu.style.display = menu.style.display === 'flex' ? 'none' : 'flex';
   }
 
-  function cadastrar() {
-    const user = document.getElementById('cadastroUser').value;
-    if (usuarios.includes(user)) {
-      alert(user + ' já usa esse usuário');
-      return;
+  function mostrarFormulario(tipo) {
+    const container = document.getElementById('form-container');
+    if (tipo === 'login') {
+      container.innerHTML = `
+        <h2>Login</h2>
+        <input id="login-usuario" placeholder="Usuário">
+        <button onclick="login()">Entrar</button>
+      `;
+    } else if (tipo === 'cadastro') {
+      container.innerHTML = `
+        <h2>Cadastro</h2>
+        <input id="cadastro-usuario" placeholder="Usuário">
+        <button onclick="cadastrar()">Cadastrar</button>
+      `;
     }
-    usuarios.push(user);
-    logado = user;
-    alert('Cadastrado com sucesso!');
-    atualizarPerfil();
-  }
-
-  function login() {
-    const user = document.getElementById('loginUser').value;
-    if (!usuarios.includes(user)) {
-      alert('Usuário não encontrado!');
-      return;
-    }
-    logado = user;
-    alert('Logado com sucesso!');
-    atualizarPerfil();
-  }
-
-  function interagir() {
-    if (!logado) {
-      alert('Crie uma conta para comentar');
-      return;
-    }
-    alert('Interagiu com sucesso!');
   }
 
   function editarPerfil() {
-    if (!logado) {
-      alert('Faça seu login, ou cadastre-se para isso');
+    const container = document.getElementById('form-container');
+    if (!usuarioLogado) {
+      container.innerHTML = `<p>Faça seu login, ou cadastre-se para isso.</p>`;
       return;
     }
-    const novaBio = prompt('Digite sua nova biografia:');
-    document.getElementById('perfil').innerHTML = '<p>Usuário: ' + logado + '</p><p>Biografia: ' + novaBio + '</p>';
+    container.innerHTML = `
+      <h2>Editar Perfil</h2>
+      <input id="bio" placeholder="Biografia">
+      <input id="foto" placeholder="URL da foto">
+      <button onclick="salvarPerfil()">Salvar</button>
+    `;
   }
 
-  function atualizarPerfil() {
-    document.getElementById('perfil').innerHTML = '<p>Usuário: ' + logado + '</p>';
+  function salvarPerfil() {
+    const bio = document.getElementById('bio').value;
+    const foto = document.getElementById('foto').value;
+    usuarioLogado.bio = bio;
+    usuarioLogado.foto = foto;
+    alert("Perfil atualizado!");
+    document.getElementById('form-container').innerHTML = "";
   }
+
+  function cadastrar() {
+    const usuario = document.getElementById('cadastro-usuario').value;
+    if (usuarios.find(u => u.nome === usuario)) {
+      alert(`${usuario} já usa esse usuário.`);
+      return;
+    }
+    const novoUsuario = { nome: usuario, bio: "", foto: "" };
+    usuarios.push(novoUsuario);
+    usuarioLogado = novoUsuario;
+    alert("Cadastro realizado e logado!");
+    document.getElementById('form-container').innerHTML = "";
+  }
+
+  function login() {
+    const usuario = document.getElementById('login-usuario').value;
+    const user = usuarios.find(u => u.nome === usuario);
+    if (user) {
+      usuarioLogado = user;
+      alert("Login realizado!");
+      document.getElementById('form-container').innerHTML = "";
+    } else {
+      alert("Usuário não encontrado.");
+    }
+  }
+
+  function mostrarMangas() {
+    const container = document.getElementById('mangas');
+    mangas.forEach(manga => {
+      const card = document.createElement('div');
+      card.className = 'card';
+      card.innerHTML = `
+        <img src="${manga.capa}" alt="Capa">
+        <div>
+          <h3>${manga.nome}</h3>
+          <p>${manga.descricao}</p>
+        </div>
+      `;
+      card.onclick = () => interagirManga(manga.nome);
+      container.appendChild(card);
+    });
+  }
+
+  function interagirManga(nomeManga) {
+    if (!usuarioLogado) {
+      alert("Crie uma conta para interagir.");
+    } else {
+      alert(`Interagindo com ${nomeManga}`);
+    }
+  }
+
+  mostrarMangas();
 </script>
 
 </body>
-    </html>
-    
+  </html>
+  
