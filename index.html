@@ -64,3 +64,83 @@
 
 </body>
   </html>
+
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <title>Meus Mangás</title>
+  <style>
+    body { background-color: #121212; color: #eee; font-family: Arial; max-width: 800px; margin: 50px auto; padding: 20px; }
+    h1 { text-align: center; margin-bottom: 30px; }
+    .manga-card { background: #1e1e1e; border-radius: 10px; padding: 15px; margin-bottom: 20px; box-shadow: 0 0 10px #4a90e2; display: flex; align-items: center; text-decoration: none; color: inherit; }
+    .manga-card img { width: 120px; height: 180px; object-fit: cover; border-radius: 8px; margin-right: 20px; cursor: pointer; }
+    .manga-info h2 { margin: 0; color: #4a90e2; }
+    form { margin-bottom: 20px; }
+    input { margin: 5px 0; padding: 8px; width: 100%; border-radius: 5px; border: none; }
+    button { background: #4a90e2; color: white; border: none; padding: 10px; border-radius: 5px; cursor: pointer; margin-top: 10px; width: 100%; }
+  </style>
+</head>
+<body>
+
+<h1>Meus Mangás</h1>
+
+<div>
+  <h2>Cadastro</h2>
+  <form id="registerForm">
+    <input type="text" id="regUser" placeholder="Usuário" required>
+    <input type="password" id="regPass" placeholder="Senha" required>
+    <button type="submit">Cadastrar</button>
+  </form>
+
+  <h2>Login</h2>
+  <form id="loginForm">
+    <input type="text" id="loginUser" placeholder="Usuário" required>
+    <input type="password" id="loginPass" placeholder="Senha" required>
+    <button type="submit">Entrar</button>
+  </form>
+
+  <p id="status"></p>
+</div>
+
+<a class="manga-card" href="manga1.html">
+  <img src="https://via.placeholder.com/120x180.png?text=Capa+Manga+1" alt="Capa Manga 1">
+  <div class="manga-info">
+    <h2>Laços profanos 1: O último anjo</h2>
+    <p>Em um mundo dominado por demônios, o último anjo desperta para lutar por esperança e redenção.</p>
+  </div>
+</a>
+
+<script>
+  // Cadastro
+  document.getElementById('registerForm').addEventListener('submit', function(e) {
+    e.preventDefault();
+    const user = document.getElementById('regUser').value;
+    const pass = document.getElementById('regPass').value;
+    localStorage.setItem('user_' + user, pass);
+    alert('Cadastro realizado com sucesso!');
+  });
+
+  // Login
+  document.getElementById('loginForm').addEventListener('submit', function(e) {
+    e.preventDefault();
+    const user = document.getElementById('loginUser').value;
+    const pass = document.getElementById('loginPass').value;
+    const storedPass = localStorage.getItem('user_' + user);
+    if (storedPass === pass) {
+      localStorage.setItem('loggedUser', user);
+      document.getElementById('status').textContent = 'Logado como: ' + user;
+    } else {
+      alert('Usuário ou senha incorretos.');
+    }
+  });
+
+  // Exibir status se estiver logado
+  const loggedUser = localStorage.getItem('loggedUser');
+  if (loggedUser) {
+    document.getElementById('status').textContent = 'Logado como: ' + loggedUser;
+  }
+</script>
+
+</body>
+</html>
