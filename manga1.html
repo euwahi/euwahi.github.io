@@ -129,12 +129,12 @@
 </body>
     </html>
 
-<!DOCTYPE html>
+    <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Laços Profanos Scan</title>
+  <title>Comentários</title>
   <style>
     body {
       font-family: Arial, sans-serif;
@@ -189,14 +189,23 @@
       box-shadow: 0 0 10px rgba(0,0,0,0.5);
     }
     .comentarios {
-      margin-top: 50px;
+      margin-top: 30px;
+    }
+    .aviso {
+      background: #ff0000;
+      color: #fff;
+      padding: 10px;
+      border-radius: 5px;
+      margin-bottom: 20px;
+      text-align: center;
+      font-weight: bold;
     }
   </style>
 </head>
 <body>
 
   <header>
-    <h1>Laços Profanos Scan</h1>
+    <h1>Comentários</h1>
     <div class="menu-icon" onclick="toggleMenu()">☰</div>
     <div class="menu" id="menu">
       <a href="https://disqus.com/profile/login/">Login</a>
@@ -205,9 +214,12 @@
   </header>
 
   <div class="container">
-    <p>Leia nossos mangás e deixe seu comentário!</p>
+    <div class="aviso">
+      🚫 Proibido spoiler. Sujeito a ban!
+    </div>
 
-    <!-- Caixa de comentários -->
+    <p>Leia e participe das discussões, respeitando todos os leitores!</p>
+
     <div class="comentarios">
       <h2>Comentários</h2>
       <div id="disqus_thread"></div>
@@ -239,4 +251,5 @@
   </noscript>
 
 </body>
-</html>
+ </html>
+                                                    
