@@ -13,9 +13,12 @@
       padding: 20px;
       position: relative;
     }
-    h1 { text-align: center; margin-bottom: 20px; color: #00f; }
+    h1 {
+      text-align: center;
+      margin-bottom: 20px;
+      color: #fff; /* Agora é branco */
+    }
 
-    /* Menu hamburguer estilizado */
     .hamburger {
       position: absolute;
       top: 20px;
@@ -35,6 +38,7 @@
       background-color: #00f;
       border-radius: 2px;
     }
+
     .menu {
       position: absolute;
       top: 60px;
@@ -111,6 +115,7 @@
       background: #00f;
       color: #fff;
     }
+
     .status {
       margin-top: 10px;
       font-size: 0.9em;
@@ -120,14 +125,12 @@
 </head>
 <body>
 
-<!-- Hamburguer -->
 <div class="hamburger" onclick="toggleMenu()">
   <div class="bar"></div>
   <div class="bar"></div>
   <div class="bar"></div>
 </div>
 
-<!-- Menu -->
 <div class="menu" id="menu">
   <button onclick="showForm('login')">Login</button>
   <button onclick="showForm('register')">Cadastrar-se</button>
@@ -135,7 +138,6 @@
 
 <h1>Meus Mangás</h1>
 
-<!-- Formulário de Cadastro -->
 <div class="form-group" id="registerForm">
   <h2>Cadastro</h2>
   <input type="text" id="regUser" placeholder="Usuário">
@@ -143,7 +145,6 @@
   <button class="form-btn" onclick="register()">Cadastrar</button>
 </div>
 
-<!-- Formulário de Login -->
 <div class="form-group" id="loginForm">
   <h2>Login</h2>
   <input type="text" id="loginUser" placeholder="Usuário">
@@ -151,10 +152,8 @@
   <button class="form-btn" onclick="login()">Entrar</button>
 </div>
 
-<!-- Status de login -->
 <div class="status" id="status"></div>
 
-<!-- Link para mangá -->
 <a class="manga-card" href="manga1.html">
   <h2>Laços Profanos 1</h2>
   <p>O último anjo desperta para lutar por esperança e redenção.</p>
@@ -180,14 +179,21 @@
   function register() {
     const user = document.getElementById('regUser').value;
     const pass = document.getElementById('regPass').value;
-    localStorage.setItem('user_' + user, pass);
-    alert('Cadastro realizado!');
+    const existing = localStorage.getItem('user_' + user);
+    
+    if (existing !== null) {
+      alert(`O usuário "${user}" já está em uso.`);
+    } else {
+      localStorage.setItem('user_' + user, pass);
+      alert('Cadastro realizado com sucesso!');
+    }
   }
 
   function login() {
     const user = document.getElementById('loginUser').value;
     const pass = document.getElementById('loginPass').value;
     const storedPass = localStorage.getItem('user_' + user);
+    
     if (storedPass === pass) {
       localStorage.setItem('loggedUser', user);
       document.getElementById('status').textContent = 'Logado como: ' + user;
@@ -203,5 +209,5 @@
 </script>
 
 </body>
-    </html>
-  
+  </html>
+    
