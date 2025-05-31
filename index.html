@@ -16,7 +16,6 @@
     }
     h1 { text-align: center; margin-bottom: 30px; color: #4a90e2; }
 
-    /* Hambúrguer */
     .menu-toggle {
       cursor: pointer;
       display: inline-block;
@@ -167,6 +166,7 @@
   function register() {
     const user = document.getElementById('regUser').value.trim();
     const pass = document.getElementById('regPass').value;
+    if (!user || !pass) return alert('Preencha todos os campos.');
 
     if (localStorage.getItem('user_' + user)) {
       alert('Usuário já existe. Escolha outro nome.');
@@ -224,7 +224,6 @@
     alert('Perfil salvo!');
   }
 
-  // Mostrar status se estiver logado
   const loggedUser = localStorage.getItem('loggedUser');
   if (loggedUser) {
     document.getElementById('status').textContent = 'Logado como: ' + loggedUser;
