@@ -129,7 +129,7 @@
 </body>
     </html>
 
-    <!DOCTYPE html>
+       <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
   <meta charset="UTF-8">
@@ -145,40 +145,12 @@
     }
     header {
       background: #1c1c1c;
-      padding: 10px 20px;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
+      padding: 20px;
+      text-align: center;
     }
     h1 {
       color: #00f0ff;
       margin: 0;
-    }
-    .menu-icon {
-      font-size: 24px;
-      cursor: pointer;
-      user-select: none;
-    }
-    .menu {
-      display: none;
-      flex-direction: column;
-      background: #1c1c1c;
-      position: absolute;
-      top: 60px;
-      right: 20px;
-      border: 1px solid #333;
-      border-radius: 8px;
-      overflow: hidden;
-    }
-    .menu a {
-      color: #fff;
-      padding: 10px;
-      text-decoration: none;
-      transition: background 0.3s;
-    }
-    .menu a:hover {
-      background: #00f0ff;
-      color: #000;
     }
     .container {
       max-width: 800px;
@@ -187,9 +159,6 @@
       background: #1c1c1c;
       border-radius: 8px;
       box-shadow: 0 0 10px rgba(0,0,0,0.5);
-    }
-    .comentarios {
-      margin-top: 30px;
     }
     .aviso {
       background: #ff0000;
@@ -206,32 +175,19 @@
 
   <header>
     <h1>Comentários</h1>
-    <div class="menu-icon" onclick="toggleMenu()">☰</div>
-    <div class="menu" id="menu">
-      <a href="https://disqus.com/profile/login/">Login</a>
-      <a href="https://disqus.com/profile/signup/">Cadastrar-se</a>
-    </div>
   </header>
 
   <div class="container">
     <div class="aviso">
-      🚫 Proibido spoiler. Sujeito a ban!
+      🚫 Não pode spoiler. Sujeito a ban!
     </div>
 
-    <p>Leia e participe das discussões, respeitando todos os leitores!</p>
+    <p>Leia e participe das discussões respeitando todos os leitores!</p>
 
-    <div class="comentarios">
-      <h2>Comentários</h2>
-      <div id="disqus_thread"></div>
-    </div>
+    <div id="disqus_thread"></div>
   </div>
 
   <script>
-    function toggleMenu() {
-      const menu = document.getElementById('menu');
-      menu.style.display = (menu.style.display === 'flex') ? 'none' : 'flex';
-    }
-
     var disqus_config = function () {
       this.page.url = window.location.href;
       this.page.identifier = window.location.pathname;
@@ -251,5 +207,4 @@
   </noscript>
 
 </body>
- </html>
-                                                    
+</html>
