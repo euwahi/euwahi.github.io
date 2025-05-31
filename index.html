@@ -6,17 +6,16 @@
   <style>
     body {
       font-family: Arial, sans-serif;
-      background: #f4f4f4;
-      color: #333;
+      background: #0f0f0f;
+      color: #f0f0f0;
       max-width: 500px;
       margin: 50px auto;
       padding: 20px;
       position: relative;
     }
+    h1 { text-align: center; margin-bottom: 20px; color: #00f; }
 
-    h1 { text-align: center; margin-bottom: 20px; }
-
-    /* Menu hamburguer */
+    /* Menu hamburguer estilizado */
     .hamburger {
       position: absolute;
       top: 20px;
@@ -25,20 +24,24 @@
       display: flex;
       flex-direction: column;
       gap: 5px;
+      transition: transform 0.3s;
+    }
+    .hamburger:hover {
+      transform: scale(1.2);
     }
     .bar {
       width: 30px;
       height: 4px;
-      background-color: #333;
+      background-color: #00f;
       border-radius: 2px;
     }
     .menu {
       position: absolute;
       top: 60px;
       left: 20px;
-      background: #fff;
+      background: #111;
+      border: 1px solid #00f;
       border-radius: 8px;
-      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
       display: none;
       flex-direction: column;
       overflow: hidden;
@@ -46,24 +49,24 @@
     .menu button {
       background: none;
       border: none;
-      padding: 12px 20px;
+      padding: 12px;
       cursor: pointer;
       text-align: left;
-      width: 100%;
+      width: 150px;
+      color: #fff;
       transition: background 0.3s;
     }
     .menu button:hover {
-      background: #e0f0ff;
+      background: #00f;
     }
 
     .form-group {
       margin-top: 20px;
       display: none;
-      background: #fff;
+      background: #111;
       padding: 15px;
       border-radius: 8px;
-      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-      transition: transform 0.3s ease;
+      border: 1px solid #00f;
     }
     .form-group.active {
       display: block;
@@ -71,52 +74,47 @@
     input {
       width: 100%;
       padding: 10px;
-      margin-top: 10px;
-      border: 1px solid #ccc;
-      border-radius: 6px;
+      margin-top: 8px;
       box-sizing: border-box;
-      transition: border-color 0.3s;
-    }
-    input:focus {
-      border-color: #007BFF;
-      outline: none;
+      background: #222;
+      border: 1px solid #00f;
+      color: #fff;
     }
     .form-btn {
       width: 100%;
-      padding: 12px;
-      margin-top: 15px;
-      background: #007BFF;
+      padding: 10px;
+      margin-top: 10px;
+      background: #00f;
       color: #fff;
       border: none;
-      border-radius: 6px;
       cursor: pointer;
-      transition: background 0.3s;
+      transition: transform 0.3s;
+      border-radius: 4px;
     }
     .form-btn:hover {
-      background: #0056b3;
+      transform: scale(1.05);
     }
 
     .manga-card {
       display: block;
       margin-top: 20px;
-      background: #fff;
+      background: #111;
       padding: 15px;
       border-radius: 8px;
       text-decoration: none;
       color: inherit;
-      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-      transition: transform 0.2s ease, box-shadow 0.2s ease;
+      border: 1px solid #00f;
+      transition: transform 0.3s, background 0.3s;
     }
     .manga-card:hover {
-      transform: scale(1.03);
-      box-shadow: 0 6px 12px rgba(0,0,0,0.15);
-      background: #e0f0ff;
+      transform: scale(1.05);
+      background: #00f;
+      color: #fff;
     }
-
     .status {
       margin-top: 10px;
       font-size: 0.9em;
-      color: green;
+      color: #0f0;
     }
   </style>
 </head>
@@ -182,12 +180,8 @@
   function register() {
     const user = document.getElementById('regUser').value;
     const pass = document.getElementById('regPass').value;
-    if(user && pass){
-      localStorage.setItem('user_' + user, pass);
-      alert('Cadastro realizado!');
-    } else {
-      alert('Preencha todos os campos!');
-    }
+    localStorage.setItem('user_' + user, pass);
+    alert('Cadastro realizado!');
   }
 
   function login() {
@@ -209,5 +203,5 @@
 </script>
 
 </body>
-  </html>
+    </html>
   
