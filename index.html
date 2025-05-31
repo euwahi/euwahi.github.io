@@ -2,128 +2,120 @@
 <html lang="pt-BR">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="shortcut icon" href="https://cdn.discordapp.com/attachments/1106990977962496081/1377602911777062922/7_Sem_Titulo_20250529073954.png?ex=68399030&is=68383eb0&hm=06b57ea9499b6287f4e8ff83fcebf3e80454bffd20ec7b2a94d236d541fcdc09&" type="image/x-icon">
   <title>Meus Mangás</title>
   <style>
     body {
-      background-color: #121212;
-      color: #eee;
-      font-family: Arial, sans-serif;
-      max-width: 800px;
+      background: linear-gradient(135deg, #0f0f0f, #1c1c1c);
+      color: #e0e0e0;
+      font-family: 'Arial', sans-serif;
+      max-width: 500px;
       margin: 50px auto;
       padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 0 20px rgba(0,0,0,0.7);
     }
-    h1 {
-      text-align: center;
-      margin-bottom: 30px;
+    h1 { text-align: center; margin-bottom: 30px; color: #4a90e2; }
+    .form-group {
+      margin-bottom: 20px;
+    }
+    input {
+      width: 100%;
+      padding: 10px;
+      background: #222;
+      border: 1px solid #333;
+      border-radius: 5px;
+      color: #fff;
+      outline: none;
+      transition: border 0.3s ease;
+    }
+    input:focus {
+      border-color: #4a90e2;
+    }
+    button {
+      width: 100%;
+      padding: 10px;
+      background: linear-gradient(45deg, #4a90e2, #0077cc);
+      border: none;
+      border-radius: 5px;
+      color: #fff;
+      font-weight: bold;
+      cursor: pointer;
+      transition: background 0.3s ease;
+    }
+    button:hover {
+      background: linear-gradient(45deg, #0077cc, #4a90e2);
     }
     .manga-card {
-      background: #1e1e1e;
-      border-radius: 10px;
-      padding: 15px;
-      margin-bottom: 20px;
-      box-shadow: 0 0 10px #4a90e2;
       display: flex;
       align-items: center;
-      transition: transform 0.3s;
-      text-decoration: none; /* Remove sublinhado do link */
-      color: inherit; /* Mantém a cor do texto */
+      background: #1c1c1c;
+      border-radius: 10px;
+      padding: 15px;
+      margin-top: 30px;
+      box-shadow: 0 0 10px #4a90e2;
+      text-decoration: none;
+      color: inherit;
+      transition: transform 0.3s ease;
     }
     .manga-card:hover {
-      transform: scale(1.02);
+      transform: translateY(-5px);
     }
     .manga-card img {
-      width: 120px;
-      height: 180px;
+      width: 100px;
+      height: 150px;
       object-fit: cover;
       border-radius: 8px;
-      margin-right: 20px;
-      cursor: pointer;
-    }
-    .manga-info {
-      flex: 1;
+      margin-right: 15px;
     }
     .manga-info h2 {
       margin: 0;
       color: #4a90e2;
     }
-  </style>
-</head>
-<body>
-
-  <h1>Meus Mangás</h1>
-
-  <a class="manga-card" href="manga1.html">
-    <img src="https://via.placeholder.com/120x180.png?text=Capa+Manga+1" alt="Capa Manga 1">
-    <div class="manga-info">
-      <h2>Laços profanos 1: O último anjo</h2>
-      <p>Em um mundo dominado por demônios, o último anjo desperta para lutar por esperança e redenção.</p>
-    </div>
-  </a>
-
-</body>
-  </html>
-
-<!DOCTYPE html>
-<html lang="pt-BR">
-<head>
-  <meta charset="UTF-8">
-  <title>Meus Mangás</title>
-  <style>
-    body { background-color: #121212; color: #eee; font-family: Arial; max-width: 800px; margin: 50px auto; padding: 20px; }
-    h1 { text-align: center; margin-bottom: 30px; }
-    .manga-card { background: #1e1e1e; border-radius: 10px; padding: 15px; margin-bottom: 20px; box-shadow: 0 0 10px #4a90e2; display: flex; align-items: center; text-decoration: none; color: inherit; }
-    .manga-card img { width: 120px; height: 180px; object-fit: cover; border-radius: 8px; margin-right: 20px; cursor: pointer; }
-    .manga-info h2 { margin: 0; color: #4a90e2; }
-    form { margin-bottom: 20px; }
-    input { margin: 5px 0; padding: 8px; width: 100%; border-radius: 5px; border: none; }
-    button { background: #4a90e2; color: white; border: none; padding: 10px; border-radius: 5px; cursor: pointer; margin-top: 10px; width: 100%; }
+    .status {
+      text-align: center;
+      margin-top: 15px;
+      font-size: 0.9em;
+      color: #999;
+    }
   </style>
 </head>
 <body>
 
 <h1>Meus Mangás</h1>
 
-<div>
+<div class="form-group">
   <h2>Cadastro</h2>
-  <form id="registerForm">
-    <input type="text" id="regUser" placeholder="Usuário" required>
-    <input type="password" id="regPass" placeholder="Senha" required>
-    <button type="submit">Cadastrar</button>
-  </form>
-
-  <h2>Login</h2>
-  <form id="loginForm">
-    <input type="text" id="loginUser" placeholder="Usuário" required>
-    <input type="password" id="loginPass" placeholder="Senha" required>
-    <button type="submit">Entrar</button>
-  </form>
-
-  <p id="status"></p>
+  <input type="text" id="regUser" placeholder="Usuário">
+  <input type="password" id="regPass" placeholder="Senha">
+  <button onclick="register()">Cadastrar</button>
 </div>
 
+<div class="form-group">
+  <h2>Login</h2>
+  <input type="text" id="loginUser" placeholder="Usuário">
+  <input type="password" id="loginPass" placeholder="Senha">
+  <button onclick="login()">Entrar</button>
+</div>
+
+<div class="status" id="status"></div>
+
 <a class="manga-card" href="manga1.html">
-  <img src="https://via.placeholder.com/120x180.png?text=Capa+Manga+1" alt="Capa Manga 1">
+  <img src="https://via.placeholder.com/100x150.png?text=Mangá+1" alt="Capa Manga 1">
   <div class="manga-info">
-    <h2>Laços profanos 1: O último anjo</h2>
-    <p>Em um mundo dominado por demônios, o último anjo desperta para lutar por esperança e redenção.</p>
+    <h2>Laços Profanos 1</h2>
+    <p>O último anjo desperta para lutar por esperança e redenção.</p>
   </div>
 </a>
 
 <script>
-  // Cadastro
-  document.getElementById('registerForm').addEventListener('submit', function(e) {
-    e.preventDefault();
+  function register() {
     const user = document.getElementById('regUser').value;
     const pass = document.getElementById('regPass').value;
     localStorage.setItem('user_' + user, pass);
     alert('Cadastro realizado com sucesso!');
-  });
+  }
 
-  // Login
-  document.getElementById('loginForm').addEventListener('submit', function(e) {
-    e.preventDefault();
+  function login() {
     const user = document.getElementById('loginUser').value;
     const pass = document.getElementById('loginPass').value;
     const storedPass = localStorage.getItem('user_' + user);
@@ -133,9 +125,8 @@
     } else {
       alert('Usuário ou senha incorretos.');
     }
-  });
+  }
 
-  // Exibir status se estiver logado
   const loggedUser = localStorage.getItem('loggedUser');
   if (loggedUser) {
     document.getElementById('status').textContent = 'Logado como: ' + loggedUser;
