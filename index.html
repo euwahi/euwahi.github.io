@@ -15,7 +15,7 @@
     }
     h1 { text-align: center; margin-bottom: 20px; }
 
-    /* Menu hamburguer */
+    /* Hamburguer */
     .hamburger {
       position: absolute;
       top: 20px;
@@ -24,53 +24,48 @@
       display: flex;
       flex-direction: column;
       gap: 4px;
-      transition: transform 0.2s, background 0.2s;
-      padding: 5px;
-      border-radius: 5px;
-    }
-    .hamburger:hover {
-      transform: scale(1.1);
-      background: rgba(0, 0, 0, 0.1);
     }
     .bar {
       width: 25px;
       height: 3px;
       background-color: #333;
-      border-radius: 2px;
-      transition: background 0.2s;
+      transition: all 0.3s;
     }
-
+    .hamburger:hover .bar {
+      transform: scaleX(1.2);
+    }
     .menu {
       position: absolute;
       top: 50px;
       left: 20px;
-      background: #fff;
+      background: white;
       border: 1px solid #ccc;
-      border-radius: 4px;
+      border-radius: 8px;
       display: none;
       flex-direction: column;
-      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+      box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+      overflow: hidden;
     }
     .menu button {
       background: none;
       border: none;
-      padding: 10px 20px;
+      padding: 12px 16px;
       cursor: pointer;
       text-align: left;
       width: 100%;
-      transition: background 0.2s, transform 0.2s;
+      font-size: 16px;
+      transition: background 0.3s;
     }
     .menu button:hover {
       background: #f0f0f0;
-      transform: translateX(5px);
     }
 
     .form-group {
       margin-top: 20px;
       display: none;
-      background: #fff;
+      background: white;
       padding: 15px;
-      border-radius: 5px;
+      border-radius: 8px;
       box-shadow: 0 2px 5px rgba(0,0,0,0.1);
     }
     .form-group.active {
@@ -79,44 +74,41 @@
     input {
       width: 100%;
       padding: 10px;
-      margin-top: 8px;
+      margin-top: 10px;
       border: 1px solid #ccc;
-      border-radius: 4px;
+      border-radius: 6px;
       box-sizing: border-box;
     }
     .form-btn {
       width: 100%;
-      padding: 10px;
-      margin-top: 10px;
+      padding: 12px;
+      margin-top: 12px;
       background: #333;
       color: #fff;
       border: none;
-      border-radius: 4px;
+      border-radius: 6px;
       cursor: pointer;
-      transition: background 0.2s, transform 0.2s;
+      transition: background 0.3s;
     }
     .form-btn:hover {
       background: #555;
-      transform: scale(1.05);
     }
-
     .manga-card {
       display: block;
       margin-top: 20px;
-      background: #fff;
+      background: white;
       padding: 15px;
-      border-radius: 4px;
+      border-radius: 8px;
       text-decoration: none;
       color: inherit;
       border: 1px solid #ccc;
       box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-      transition: transform 0.2s, box-shadow 0.2s;
+      transition: transform 0.3s, box-shadow 0.3s;
     }
     .manga-card:hover {
-      transform: scale(1.03);
-      box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+      transform: scale(1.05);
+      box-shadow: 0 4px 10px rgba(0,0,0,0.2);
     }
-
     .status {
       margin-top: 10px;
       font-size: 0.9em;
@@ -186,8 +178,12 @@
   function register() {
     const user = document.getElementById('regUser').value;
     const pass = document.getElementById('regPass').value;
-    localStorage.setItem('user_' + user, pass);
-    alert('Cadastro realizado!');
+    if (user && pass) {
+      localStorage.setItem('user_' + user, pass);
+      alert('Cadastro realizado!');
+    } else {
+      alert('Preencha todos os campos!');
+    }
   }
 
   function login() {
@@ -209,4 +205,5 @@
 </script>
 
 </body>
-</html>
+  </html>
+  
