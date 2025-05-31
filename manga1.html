@@ -128,3 +128,115 @@
 
 </body>
     </html>
+
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Laços Profanos Scan</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #0e0e0e;
+      color: #fff;
+      margin: 0;
+      padding: 0;
+    }
+    header {
+      background: #1c1c1c;
+      padding: 10px 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    h1 {
+      color: #00f0ff;
+      margin: 0;
+    }
+    .menu-icon {
+      font-size: 24px;
+      cursor: pointer;
+      user-select: none;
+    }
+    .menu {
+      display: none;
+      flex-direction: column;
+      background: #1c1c1c;
+      position: absolute;
+      top: 60px;
+      right: 20px;
+      border: 1px solid #333;
+      border-radius: 8px;
+      overflow: hidden;
+    }
+    .menu a {
+      color: #fff;
+      padding: 10px;
+      text-decoration: none;
+      transition: background 0.3s;
+    }
+    .menu a:hover {
+      background: #00f0ff;
+      color: #000;
+    }
+    .container {
+      max-width: 800px;
+      margin: 50px auto;
+      padding: 20px;
+      background: #1c1c1c;
+      border-radius: 8px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.5);
+    }
+    .comentarios {
+      margin-top: 50px;
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <h1>Laços Profanos Scan</h1>
+    <div class="menu-icon" onclick="toggleMenu()">☰</div>
+    <div class="menu" id="menu">
+      <a href="https://disqus.com/profile/login/">Login</a>
+      <a href="https://disqus.com/profile/signup/">Cadastrar-se</a>
+    </div>
+  </header>
+
+  <div class="container">
+    <p>Leia nossos mangás e deixe seu comentário!</p>
+
+    <!-- Caixa de comentários -->
+    <div class="comentarios">
+      <h2>Comentários</h2>
+      <div id="disqus_thread"></div>
+    </div>
+  </div>
+
+  <script>
+    function toggleMenu() {
+      const menu = document.getElementById('menu');
+      menu.style.display = (menu.style.display === 'flex') ? 'none' : 'flex';
+    }
+
+    var disqus_config = function () {
+      this.page.url = window.location.href;
+      this.page.identifier = window.location.pathname;
+    };
+
+    (function() {
+      var d = document, s = d.createElement('script');
+      s.src = 'https://lacosprofanosscan.disqus.com/embed.js';
+      s.setAttribute('data-timestamp', +new Date());
+      (d.head || d.body).appendChild(s);
+    })();
+  </script>
+
+  <noscript>
+    Por favor, habilite o JavaScript para visualizar os 
+    <a href="https://disqus.com/?ref_noscript">comentários via Disqus.</a>
+  </noscript>
+
+</body>
+</html>
