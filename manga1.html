@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+ <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
   <meta charset="UTF-8">
@@ -128,8 +128,7 @@
 
 </body>
     </html>
-  
-<!DOCTYPE html>
+  <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
   <meta charset="UTF-8">
@@ -244,6 +243,16 @@
       color: white;
       cursor: pointer;
       border-radius: 5px;
+      margin-right: 5px;
+    }
+
+    #warning {
+      background: #ff0000aa;
+      padding: 10px;
+      border-radius: 10px;
+      text-align: center;
+      margin-bottom: 15px;
+      font-weight: bold;
     }
   </style>
 </head>
@@ -251,14 +260,12 @@
 
 <div class="menu" onclick="toggleMenu()">☰</div>
 <div class="menu-content" id="menuContent">
-  <button onclick="showLogin()">Login/Cadastro</button>
-  <button onclick="showProfileEdit()">Editar Perfil</button>
+  <button onclick="showLogin()">Login</button>
+  <button onclick="showRegister()">Cadastrar-se</button>
+  <button onclick="showProfileEdit()">Editar perfil</button>
 </div>
 
-  <p style="background:#400; padding:10px; border-radius:8px; color:#fff; font-weight:bold; text-align:center;">
-  🚫 Proibido spoiler — sujeito a ban!
-  </p>
-  
+<div id="warning">🚫 Proibido spoiler! Sujeito a ban!</div>
 <h1>Comentários</h1>
 
 <div id="commentSection"></div>
@@ -296,8 +303,7 @@
 </div>
 
 <script>
-  const page = location.pathname; // Usado para salvar comentários por página
-
+  const page = location.pathname;
   const users = JSON.parse(localStorage.getItem("users") || "{}");
   let loggedUser = localStorage.getItem("loggedUser") || "";
 
@@ -307,8 +313,13 @@
   }
 
   function showLogin() {
-    document.getElementById("loginForm").classList.toggle("hidden");
-    document.getElementById("registerForm").classList.toggle("hidden");
+    hideForms();
+    document.getElementById("loginForm").classList.remove("hidden");
+  }
+
+  function showRegister() {
+    hideForms();
+    document.getElementById("registerForm").classList.remove("hidden");
   }
 
   function showProfileEdit() {
@@ -317,9 +328,16 @@
       return;
     }
     const user = users[loggedUser];
-    document.getElementById("editPhoto").value = user.photo;
-    document.getElementById("editBio").value = user.bio;
-    document.getElementById("editForm").classList.toggle("hidden");
+    document.getElementById("editPhoto").value = user.photo || "";
+    document.getElementById("editBio").value = user.bio || "";
+    hideForms();
+    document.getElementById("editForm").classList.remove("hidden");
+  }
+
+  function hideForms() {
+    ["loginForm", "registerForm", "editForm"].forEach(id => {
+      document.getElementById(id).classList.add("hidden");
+    });
   }
 
   function register() {
@@ -350,39 +368,8 @@
     users[loggedUser].bio = bio;
     localStorage.setItem("users", JSON.stringify(users));
     alert("Perfil atualizado!");
-    document.getElementById("editForm").classList.add("hidden");
+    hideForms();
     renderComments();
-  }
-
-  function renderComments() {
-    const section = document.getElementById("commentSection");
-    section.innerHTML = "";
-    const comments = JSON.parse(localStorage.getItem("comments_" + page) || "[]");
-
-    comments.forEach((c, i) => {
-      const div = document.createElement("div");
-      div.className = "comment";
-      div.innerHTML = `
-        <div class="info">
-          <img src="${users[c.user]?.photo}" onclick="showModal('${c.user}')">
-          <strong onclick="showModal('${c.user}')">${c.user}</strong>
-        </div>
-        <p>${c.text}</p>
-        ${loggedUser ? `<button onclick="reply(${i})">Responder</button>` : ""}
-        <div class="replies" id="reply${i}">
-          ${c.replies.map(r => `
-            <div class="comment">
-              <div class="info">
-                <img src="${users[r.user]?.photo}" onclick="showModal('${r.user}')">
-                <strong onclick="showModal('${r.user}')">${r.user}</strong>
-              </div>
-              <p>${r.text}</p>
-            </div>
-          `).join('')}
-        </div>
-      `;
-      section.appendChild(div);
-    });
   }
 
   function postComment() {
@@ -395,24 +382,73 @@
     renderComments();
   }
 
-  function reply(index) {
-    const r = prompt("Escreva sua resposta:");
-    if (!r) return;
+  function reply(index, isReply = false, replyIndex = null) {
+    const text = prompt("Digite sua resposta:");
+    if (!text) return;
     const comments = JSON.parse(localStorage.getItem("comments_" + page) || "[]");
-    comments[index].replies.push({ user: loggedUser, text: r });
+    if (isReply) {
+      comments[index].replies.push({ user: loggedUser, text });
+    } else {
+      comments[index].replies.push({ user: loggedUser, text });
+    }
+    localStorage.setItem("comments_" + page, JSON.stringify(comments));
+    renderComments();
+  }
+
+  function deleteComment(index, replyIndex = null) {
+    const comments = JSON.parse(localStorage.getItem("comments_" + page) || "[]");
+    if (replyIndex === null) {
+      comments.splice(index, 1);
+    } else {
+      comments[index].replies.splice(replyIndex, 1);
+    }
     localStorage.setItem("comments_" + page, JSON.stringify(comments));
     renderComments();
   }
 
   function showModal(user) {
     const data = users[user];
-    document.getElementById("modalImg").src = data.photo;
-    document.getElementById("modalBio").textContent = data.bio;
+    document.getElementById("modalImg").src = data.photo || "";
+    document.getElementById("modalBio").textContent = data.bio || "";
     document.getElementById("modal").style.display = "flex";
   }
 
   function closeModal() {
     document.getElementById("modal").style.display = "none";
+  }
+
+  function renderComments() {
+    const section = document.getElementById("commentSection");
+    section.innerHTML = "";
+    const comments = JSON.parse(localStorage.getItem("comments_" + page) || "[]");
+
+    comments.forEach((c, i) => {
+      const div = document.createElement("div");
+      div.className = "comment";
+      div.innerHTML = `
+        <div class="info">
+          <img src="${users[c.user]?.photo || ''}" onclick="showModal('${c.user}')">
+          <strong onclick="showModal('${c.user}')">${c.user}</strong>
+        </div>
+        <p>${c.text}</p>
+        ${loggedUser ? `<button onclick="reply(${i})">Responder</button>` : ""}
+        ${loggedUser === c.user ? `<button onclick="deleteComment(${i})">Apagar</button>` : ""}
+        <div class="replies">
+          ${c.replies.map((r, j) => `
+            <div class="comment">
+              <div class="info">
+                <img src="${users[r.user]?.photo || ''}" onclick="showModal('${r.user}')">
+                <strong onclick="showModal('${r.user}')">${r.user}</strong>
+              </div>
+              <p>${r.text}</p>
+              ${loggedUser ? `<button onclick="reply(${i}, true, ${j})">Responder</button>` : ""}
+              ${loggedUser === r.user ? `<button onclick="deleteComment(${i}, ${j})">Apagar</button>` : ""}
+            </div>
+          `).join("")}
+        </div>
+      `;
+      section.appendChild(div);
+    });
   }
 
   // Inicialização
@@ -423,4 +459,5 @@
 </script>
 
 </body>
-  </html>
+</html>
+
