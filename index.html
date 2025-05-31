@@ -2,212 +2,199 @@
 <html lang="pt-BR">
 <head>
   <meta charset="UTF-8">
-  <title>Meus Mangás</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Mangás</title>
   <style>
     body {
+      background-color: #000;
+      color: #00f;
       font-family: Arial, sans-serif;
-      background: #0f0f0f;
-      color: #f0f0f0;
-      max-width: 500px;
-      margin: 50px auto;
-      padding: 20px;
-      position: relative;
+      margin: 0;
+      padding: 0;
     }
-    h1 {
-      text-align: center;
-      margin-bottom: 20px;
-      color: #fff; /* Agora é branco */
-    }
-
-    .hamburger {
-      position: absolute;
-      top: 20px;
-      left: 20px;
-      cursor: pointer;
+    header {
       display: flex;
-      flex-direction: column;
-      gap: 5px;
-      transition: transform 0.3s;
-    }
-    .hamburger:hover {
-      transform: scale(1.2);
-    }
-    .bar {
-      width: 30px;
-      height: 4px;
-      background-color: #00f;
-      border-radius: 2px;
-    }
-
-    .menu {
-      position: absolute;
-      top: 60px;
-      left: 20px;
+      justify-content: space-between;
+      align-items: center;
+      padding: 10px;
       background: #111;
-      border: 1px solid #00f;
-      border-radius: 8px;
+    }
+    .menu {
+      cursor: pointer;
+      font-size: 24px;
+    }
+    .menu-content {
       display: none;
       flex-direction: column;
-      overflow: hidden;
+      background: #111;
+      position: absolute;
+      top: 50px;
+      right: 10px;
+      padding: 10px;
     }
-    .menu button {
+    .menu-content button {
       background: none;
       border: none;
-      padding: 12px;
+      color: white;
+      margin: 5px 0;
       cursor: pointer;
-      text-align: left;
-      width: 150px;
-      color: #fff;
-      transition: background 0.3s;
     }
-    .menu button:hover {
-      background: #00f;
+    .menu-content button:hover {
+      color: #0af;
     }
-
-    .form-group {
-      margin-top: 20px;
+    .form {
       display: none;
       background: #111;
-      padding: 15px;
-      border-radius: 8px;
-      border: 1px solid #00f;
+      padding: 20px;
+      margin: 20px;
+      border-radius: 10px;
     }
-    .form-group.active {
+    .form input {
       display: block;
-    }
-    input {
+      margin-bottom: 10px;
+      padding: 8px;
       width: 100%;
-      padding: 10px;
-      margin-top: 8px;
-      box-sizing: border-box;
       background: #222;
+      color: #fff;
       border: 1px solid #00f;
-      color: #fff;
     }
-    .form-btn {
-      width: 100%;
+    .form button {
       padding: 10px;
-      margin-top: 10px;
       background: #00f;
-      color: #fff;
+      color: white;
       border: none;
       cursor: pointer;
-      transition: transform 0.3s;
-      border-radius: 4px;
     }
-    .form-btn:hover {
-      transform: scale(1.05);
+    .form button:hover {
+      background: #0af;
     }
-
-    .manga-card {
-      display: block;
-      margin-top: 20px;
-      background: #111;
-      padding: 15px;
-      border-radius: 8px;
-      text-decoration: none;
-      color: inherit;
+    .btn-branco {
+      color: white;
+      background: none;
+      border: 1px solid white;
+      padding: 10px;
+      cursor: pointer;
+    }
+    .btn-branco:hover {
+      background: white;
+      color: black;
+    }
+    .card {
       border: 1px solid #00f;
-      transition: transform 0.3s, background 0.3s;
-    }
-    .manga-card:hover {
-      transform: scale(1.05);
-      background: #00f;
-      color: #fff;
-    }
-
-    .status {
-      margin-top: 10px;
-      font-size: 0.9em;
-      color: #0f0;
+      padding: 20px;
+      margin: 20px;
+      border-radius: 10px;
+      background: #111;
     }
   </style>
 </head>
 <body>
 
-<div class="hamburger" onclick="toggleMenu()">
-  <div class="bar"></div>
-  <div class="bar"></div>
-  <div class="bar"></div>
-</div>
+<header>
+  <h1>Mangás</h1>
+  <div class="menu">☰</div>
+</header>
 
-<div class="menu" id="menu">
+<div class="menu-content">
   <button onclick="showForm('login')">Login</button>
-  <button onclick="showForm('register')">Cadastrar-se</button>
+  <button onclick="showForm('cadastro')">Cadastrar-se</button>
 </div>
 
-<h1>Meus Mangás</h1>
-
-<div class="form-group" id="registerForm">
-  <h2>Cadastro</h2>
-  <input type="text" id="regUser" placeholder="Usuário">
-  <input type="password" id="regPass" placeholder="Senha">
-  <button class="form-btn" onclick="register()">Cadastrar</button>
-</div>
-
-<div class="form-group" id="loginForm">
+<div id="login" class="form">
   <h2>Login</h2>
-  <input type="text" id="loginUser" placeholder="Usuário">
-  <input type="password" id="loginPass" placeholder="Senha">
-  <button class="form-btn" onclick="login()">Entrar</button>
+  <input type="text" placeholder="Usuário" id="loginUser">
+  <input type="password" placeholder="Senha">
+  <button onclick="login()">Entrar</button>
 </div>
 
-<div class="status" id="status"></div>
+<div id="cadastro" class="form">
+  <h2>Cadastrar-se</h2>
+  <input type="text" placeholder="Usuário" id="cadastroUser">
+  <input type="password" placeholder="Senha">
+  <input type="file" id="foto">
+  <textarea placeholder="Biografia" id="bio"></textarea>
+  <button onclick="cadastrar()">Cadastrar</button>
+</div>
 
-<a class="manga-card" href="manga1.html">
-  <h2>Laços Profanos 1</h2>
-  <p>O último anjo desperta para lutar por esperança e redenção.</p>
-</a>
+<button class="btn-branco">Meus Mangás</button>
+
+<div class="card">
+  <h2>Comentário</h2>
+  <p>Comentário de exemplo.</p>
+  <button onclick="interagir()">Curtir</button>
+  <button onclick="interagir()">Descurtir</button>
+  <button onclick="interagir()">Responder</button>
+</div>
+
+<div class="card">
+  <h2>Perfil</h2>
+  <div id="perfil">
+    <p>Faça seu login, ou cadastre-se para isso.</p>
+  </div>
+  <button onclick="editarPerfil()">Editar perfil</button>
+</div>
 
 <script>
-  function toggleMenu() {
-    const menu = document.getElementById('menu');
-    menu.style.display = (menu.style.display === 'flex') ? 'none' : 'flex';
+  const menu = document.querySelector('.menu');
+  const menuContent = document.querySelector('.menu-content');
+  const usuarios = [];
+
+  let logado = null;
+
+  menu.addEventListener('click', () => {
+    menuContent.style.display = menuContent.style.display === 'flex' ? 'none' : 'flex';
+  });
+
+  function showForm(tipo) {
+    document.querySelectorAll('.form').forEach(f => f.style.display = 'none');
+    document.getElementById(tipo).style.display = 'block';
   }
 
-  function showForm(form) {
-    document.getElementById('registerForm').classList.remove('active');
-    document.getElementById('loginForm').classList.remove('active');
-    if (form === 'register') {
-      document.getElementById('registerForm').classList.add('active');
-    } else {
-      document.getElementById('loginForm').classList.add('active');
+  function cadastrar() {
+    const user = document.getElementById('cadastroUser').value;
+    if (usuarios.includes(user)) {
+      alert(user + ' já usa esse usuário');
+      return;
     }
-    document.getElementById('menu').style.display = 'none';
-  }
-
-  function register() {
-    const user = document.getElementById('regUser').value;
-    const pass = document.getElementById('regPass').value;
-    const existing = localStorage.getItem('user_' + user);
-    
-    if (existing !== null) {
-      alert(`O usuário "${user}" já está em uso.`);
-    } else {
-      localStorage.setItem('user_' + user, pass);
-      alert('Cadastro realizado com sucesso!');
-    }
+    usuarios.push(user);
+    logado = user;
+    alert('Cadastrado com sucesso!');
+    atualizarPerfil();
   }
 
   function login() {
     const user = document.getElementById('loginUser').value;
-    const pass = document.getElementById('loginPass').value;
-    const storedPass = localStorage.getItem('user_' + user);
-    
-    if (storedPass === pass) {
-      localStorage.setItem('loggedUser', user);
-      document.getElementById('status').textContent = 'Logado como: ' + user;
-    } else {
-      alert('Usuário ou senha incorretos.');
+    if (!usuarios.includes(user)) {
+      alert('Usuário não encontrado!');
+      return;
     }
+    logado = user;
+    alert('Logado com sucesso!');
+    atualizarPerfil();
   }
 
-  const loggedUser = localStorage.getItem('loggedUser');
-  if (loggedUser) {
-    document.getElementById('status').textContent = 'Logado como: ' + loggedUser;
+  function interagir() {
+    if (!logado) {
+      alert('Crie uma conta para comentar');
+      return;
+    }
+    alert('Interagiu com sucesso!');
+  }
+
+  function editarPerfil() {
+    if (!logado) {
+      alert('Faça seu login, ou cadastre-se para isso');
+      return;
+    }
+    const novaBio = prompt('Digite sua nova biografia:');
+    document.getElementById('perfil').innerHTML = '<p>Usuário: ' + logado + '</p><p>Biografia: ' + novaBio + '</p>';
+  }
+
+  function atualizarPerfil() {
+    document.getElementById('perfil').innerHTML = '<p>Usuário: ' + logado + '</p>';
   }
 </script>
 
 </body>
-  </html>
+    </html>
     
