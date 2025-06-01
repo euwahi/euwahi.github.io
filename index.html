@@ -2,86 +2,103 @@
 <html lang="pt-BR">
 <head>
   <meta charset="UTF-8">
-  <title>Meus Mangás</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Laços Profanos</title>
   <style>
     body {
-      background: linear-gradient(135deg, #0f0f0f, #1c1c1c);
-      color: #e0e0e0;
-      font-family: 'Arial', sans-serif;
-      max-width: 500px;
-      margin: 50px auto;
-      padding: 20px;
-      border-radius: 10px;
-      box-shadow: 0 0 20px rgba(0,0,0,0.7);
-    }
-    h1 {
-      text-align: center;
-      margin-bottom: 30px;
-      color: #4a90e2;
-    }
-    .manga-card {
-      display: flex;
-      align-items: center;
-      background: #1c1c1c;
-      border-radius: 10px;
-      padding: 15px;
-      margin-top: 30px;
-      box-shadow: 0 0 10px #4a90e2;
-      text-decoration: none;
-      color: inherit;
-      transition: transform 0.3s ease;
-    }
-    .manga-card:hover {
-      transform: translateY(-5px);
-    }
-    .manga-card img {
-      width: 100px;
-      height: 150px;
-      object-fit: cover;
-      border-radius: 8px;
-      margin-right: 15px;
-    }
-    .manga-info h2 {
+      background-color: #121212;
+      color: white;
+      font-family: Arial, sans-serif;
       margin: 0;
-      color: #4a90e2;
+      padding: 20px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .card {
+      max-width: 300px;
+      margin: 20px;
+      padding: 20px;
+      border: 2px solid #a3005b;
+      border-radius: 10px;
+      background-color: #1a1a1a;
+      text-align: center;
+    }
+
+    .logo {
+      border-radius: 50%;
+      margin-bottom: 10px;
+      width: 100px;
+      height: 100px;
+      display: block;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .botao {
+      display: inline-block;
+      padding: 10px 20px;
+      background-color: #a3005b;
+      color: white;
+      text-decoration: none;
+      border-radius: 5px;
+      font-weight: bold;
+      transition: transform 0.3s;
+      margin-top: 10px;
+    }
+
+    .botao:hover {
+      transform: scale(1.1);
+    }
+
+    .ranking {
+      text-align: left;
+      margin-bottom: 20px;
+    }
+
+    .valor {
+      color: #00ff00;
     }
   </style>
 </head>
 <body>
 
-<h1>Meus Mangás</h1>
+  <!-- Card DOADORES -->
+  <div class="card">
+    <img src="https://cdn.discordapp.com/attachments/1106990977962496081/1377602911777062922/7_Sem_Titulo_20250529073954.png?ex=683cdbf0&is=683b8a70&hm=fb7cfde5d22da8cf1e0fde8e3d2c0bcf4289c898c21ea4a227d711fa2961acac&" 
+         alt="Logo Laços Profanos" 
+         class="logo">
 
-<a class="manga-card" href="manga1.html">
-  <img src="https://via.placeholder.com/100x150.png?text=Mangá+1" alt="Capa Manga 1">
-  <div class="manga-info">
-    <h2>Laços Profanos 1</h2>
-    <p>O último anjo desperta para lutar por esperança e redenção.</p>
+    <h3>DOADORES DE LAÇOS PROFANOS</h3>
+
+    <div class="ranking">
+      <p>Top1 do ranking <span class="valor">R$ 04,00</span></p>
+      <p>Jozé real oficial <span class="valor">R$ 02,00</span></p>
+      <p>ajnopse bob <span class="valor">R$ 01,00</span></p>
+      <p>Anônimo amigo <span class="valor">R$ 01,00</span></p>
+    </div>
+
+    <a href="https://tipa.ai/lacosprofanos" target="_blank" class="botao">
+      DOE PARA LAÇOS PROFANOS
+    </a>
   </div>
-</a>
+
+  <!-- Card MEUS MANGÁS -->
+  <div class="card">
+    <img src="https://via.placeholder.com/100" 
+         alt="Meus Mangás" 
+         class="logo">
+
+    <h3>MEUS MANGÁS</h3>
+
+    <p>Aqui você encontra meus mangás e histórias exclusivas.</p>
+
+    <a href="https://seusite.com/mangas" target="_blank" class="botao">
+      VEJA MEUS MANGÁS
+    </a>
+  </div>
 
 </body>
-</html>
-<div style="max-width: 300px; margin: 20px auto; padding: 20px; border: 2px solid #a3005b; border-radius: 10px; background-color: #1a1a1a; color: white; font-family: Arial, sans-serif; text-align: center;">
-  
-  <img src="https://cdn.discordapp.com/attachments/1106990977962496081/1377602911777062922/7_Sem_Titulo_20250529073954.png?ex=683cdbf0&is=683b8a70&hm=fb7cfde5d22da8cf1e0fde8e3d2c0bcf4289c898c21ea4a227d711fa2961acac&/100" alt="Logo Laços Profanos" style="border-radius: 50%; margin-bottom: 10px; width: 100px; height: 100px; display: block; margin-left: auto; margin-right: auto;">
-
-  <h3 style="margin-bottom: 20px;">DOADORES DE LAÇOS PROFANOS</h3>
-
-  <div style="text-align: left; margin-bottom: 20px;">
-    <p>Top1 do ranking <span style="color: #00ff00;">R$ 04,00</span></p>
-    <p>Jozé real oficial <span style="color: #00ff00;">R$ 02,00</span></p>
-    <p>ajnopse bob <span style="color: #00ff00;">R$ 01,00</span></p>
-    <p>Anônimo amigo <span style="color: #00ff00;">R$ 01,00</span></p>
-  </div>
-
-  <a href="https://tipa.ai/lacosprofanos" target="_blank" style="display: inline-block; padding: 10px 20px; background-color: #a3005b; color: white; text-decoration: none; border-radius: 5px; font-weight: bold; transition: transform 0.3s;">
-    DOE PARA LAÇOS PROFANOS
-  </a>
-</div>
-
-<style>
-  a:hover {
-    transform: scale(1.1);
-  }
-      </style>
-                         
+      </html>
+      
