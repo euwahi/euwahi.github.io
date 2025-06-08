@@ -1,101 +1,43 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="shortcut icon" href="https://cdn.discordapp.com/attachments/1106990977962496081/1377602911777062922/7_Sem_Titulo_20250529073954.png?ex=68399030&is=68383eb0&hm=06b57ea9499b6287f4e8ff83fcebf3e80454bffd20ec7b2a94d236d541fcdc09&" type="image/x-icon">
-  <title> Lp:Ua - Laços Profanos Scan</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Laços Profanos - Capítulo 1</title>
   <style>
     body {
       background-color: #121212;
       color: #eee;
       font-family: Arial, sans-serif;
-      max-width: 700px;
-      margin: 40px auto;
-      padding: 20px;
-      border-radius: 8px;
-      box-shadow: 0 0 20px rgba(0,0,0,0.9);
+      max-width: 600px;
+      margin: 20px auto;
+      padding: 10px;
     }
     h1 {
       text-align: center;
-      font-weight: bold;
-      margin-bottom: 20px;
       color: #4a90e2;
+      margin-bottom: 20px;
     }
-    .cover {
-      display: block;
-      margin: 0 auto 20px;
-      max-width: 300px;
+    .webtoon-container {
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+    }
+    .page {
+      width: 100%;
       border-radius: 12px;
       box-shadow: 0 0 15px #4a90e2;
+      cursor: zoom-in;
       transition: transform 0.3s ease;
-      cursor: pointer;
     }
-    .cover:hover {
+    .page:hover {
       transform: scale(1.05);
     }
-    .buttons {
-      display: flex;
-      justify-content: center;
-      flex-wrap: wrap;
-      gap: 10px;
-      margin-bottom: 20px;
-    }
-    button {
-      background-color: #4a90e2;
-      border: none;
-      color: white;
-      padding: 12px 25px;
-      font-size: 1rem;
-      border-radius: 8px;
-      cursor: pointer;
-      transition: background-color 0.3s ease;
-      box-shadow: 0 4px 12px rgba(74, 144, 226, 0.6);
-    }
-    button:hover {
-      background-color: #3672c4;
-      box-shadow: 0 6px 18px rgba(54, 114, 196, 0.8);
-    }
-    .chapters {
-      background-color: #1e1e1e;
-      border-radius: 8px;
-      padding: 20px;
-      box-shadow: inset 0 0 12px rgba(74, 144, 226, 0.7);
-      margin-bottom: 20px;
-    }
-    .chapters h2 {
-      margin-top: 0;
-      margin-bottom: 15px;
-      font-weight: 600;
-      border-bottom: 2px solid #4a90e2;
-      padding-bottom: 6px;
-    }
-    .chapter {
-      margin: 10px 0;
-    }
-    .chapter a {
-      color: #4a90e2;
-      text-decoration: none;
-      font-weight: 500;
-      transition: color 0.3s ease;
-    }
-    .chapter a:hover {
-      color: #82b1ff;
-      text-decoration: underline;
-    }
-    .sinopse {
-      font-size: 1.1rem;
-      line-height: 1.6;
-      background-color: #1e1e1e;
-      padding: 15px;
-      border-radius: 8px;
-      box-shadow: inset 0 0 8px rgba(74, 144, 226, 0.7);
-      margin-bottom: 30px;
-    }
+    /* Botão voltar */
     .back-link {
       display: block;
       text-align: center;
-      margin-top: 40px;
+      margin-top: 30px;
       color: #888;
       text-decoration: none;
       font-size: 0.9rem;
@@ -105,58 +47,23 @@
       color: #4a90e2;
       text-decoration: underline;
     }
-    a:hover {
-      transform: scale(1.1);
-    }
   </style>
 </head>
 <body>
 
-  <h1>Laços Profanos I: O Último Anjo</h1>
+  <h1>Laços Profanos - Capítulo 1</h1>
 
-  <img src="https://cdn.discordapp.com/attachments/1106990977962496081/1381092312620208198/43_Sem_Titulo_20250607230458.png?ex=684641f2&is=6844f072&hm=1fbfe248fb1384f6f9c169c94a90c0ab3dd87d5fc4b1c528f41f6a765595d534&" alt="Capa Mangá 1" class="cover">
-
-  <div class="buttons">
-    <button onclick="window.location.href='capitulo1.html'">📖 Primeiro Capítulo</button>
-    <button onclick="window.location.href='capitulo1.html'">📚 Último Capítulo</button>
+  <div class="webtoon-container" id="webtoon-container">
+    <!-- Imagens das páginas do capítulo -->
+    <img src="paginas/cap1_01.jpg" alt="Página 1" class="page" />
+    <img src="paginas/cap1_02.jpg" alt="Página 2" class="page" />
+    <img src="paginas/cap1_03.jpg" alt="Página 3" class="page" />
+    <!-- Para adicionar mais páginas, basta copiar e colar a linha abaixo e trocar o arquivo -->
+    <!-- <img src="paginas/cap1_04.jpg" alt="Página 4" class="page" /> -->
   </div>
-
-  <div class="chapters">
-    <h2>Capítulos</h2>
-    <div class="chapter"><a href="capitulo1.html">Capítulo 1</a></div>
-  </div>
-
-  <p class="sinopse">
-    Após anos congelado em uma estalactite, Hamiah, o último anjo de sua espécie, desperta em um mundo devastado. O reino que um dia conheceu agora está sob o domínio de uma rainha ambiciosa, Olivia, que busca poder e riquezas a qualquer custo, enquanto humanos são escravizados sob a tirania de Enaya, a cruel líder do exército demoníaco. Determinado a restaurar o equilíbrio, Hamiah se une a um grupo de rebeldes que luta pela liberdade. Ao longo de sua jornada, ele descobre que os inimigos nem sempre são claros e que aliados inesperados podem surgir em meio ao caos. Com o destino do reino em jogo, Hamiah deve enfrentar desafios que testarão sua coragem e seus ideais.
-  </p>
 
   <a href="index.html" class="back-link">← Voltar para a lista de mangás</a>
+  <a href="manga1.html" class="back-link">← Voltar para a página do mangá</a>
 
- <!-- COMENTÁRIOS -->
-<div class="container" style="margin-top: 60px;">
-  <div class="aviso" style="background: #ff0000; color: #fff; padding: 10px; border-radius: 5px; margin-bottom: 20px; text-align: center; font-weight: bold;">
-    🚫 Não pode spoiler. Sujeito a ban!
-  </div>
-  <p style="text-align: center;">Leia e participe das discussões respeitando todos os leitores!</p>
-  <div id="disqus_thread"></div>
-</div>
-
-<script>
-  var disqus_config = function () {
-    this.page.url = window.location.href;  // Usa a URL atual da página
-    this.page.identifier = window.location.pathname;  // Usa o caminho da URL como identificador único
-    // Suas preferências do painel (como traduções, reações e temas) são automaticamente aplicadas via sua conta Disqus
-  };
-
-  (function () {
-    var d = document, s = d.createElement('script');
-    s.src = 'https://lacosprofanosscan.disqus.com/embed.js'; // sua subdomínio no Disqus
-    s.setAttribute('data-timestamp', +new Date());
-    (d.head || d.body).appendChild(s);
-  })();
-</script>
-
-<noscript>
-  Por favor, habilite o JavaScript para visualizar os
-  <a href="https://disqus.com/?ref_noscript">comentários via Disqus.</a>
-</noscript>
+</body>
+</html>
