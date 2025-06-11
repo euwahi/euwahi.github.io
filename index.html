@@ -4,6 +4,10 @@
 <div class="card">
   <h3>Meus Mangás</h3>
 
+  <!-- INSTRUÇÃO:
+       Para adicionar mais mangás, copie o bloco <a> abaixo (com class "manga-item")
+       e cole logo abaixo dele, alterando o href, a imagem (src), o título e a descrição. -->
+
   <a href="manga1.html" target="_blank">
     <div class="manga-item">
       <img src="https://i.imgur.com/nvmchiJ.png" alt="Capa do Mangá">
@@ -11,6 +15,17 @@
       <p>A jornada de um herói que desafia o destino em um mundo dominado por demônios.</p>
     </div>
   </a>
+
+  <!-- EXEMPLO DE COMO ADICIONAR OUTRO MANGÁ:
+  <a href="manga2.html" target="_blank">
+    <div class="manga-item">
+      <img src="LINK_DA_IMAGEM" alt="Capa do Mangá">
+      <h4>TÍTULO DO MANGÁ</h4>
+      <p>Descrição curta do novo mangá.</p>
+    </div>
+  </a>
+  -->
+
 </div>
 
 <!-- SEÇÃO: DOE PARA LAÇOS PROFANOS -->
@@ -58,6 +73,7 @@
     border-radius: 8px;
     transition: transform 0.3s;
     cursor: pointer;
+    margin-bottom: 15px;
   }
 
   .manga-item:hover {
@@ -67,7 +83,7 @@
   .manga-item img {
     width: 100%;
     height: auto;
-    max-width: 200px; /* Mantém a imagem proporcionalmente até esse tamanho */
+    max-width: 200px;
     border-radius: 5px;
     margin: 0 auto 10px auto;
     display: block;
