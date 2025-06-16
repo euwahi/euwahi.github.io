@@ -6,7 +6,7 @@
   <title>Meus Mangás - Laços Profanos</title>
 
   <!-- Script do Google AdSense (apenas 1x por página) -->
-   <meta name="google-adsense-account" content="ca-pub-2715085153658985">
+  <meta name="google-adsense-account" content="ca-pub-2715085153658985">
 
   <style>
     body {
@@ -27,6 +27,20 @@
 
     .card h3 {
       margin-bottom: 15px;
+    }
+
+    .search-box {
+      margin-bottom: 20px;
+    }
+
+    .search-box input {
+      width: 100%;
+      padding: 8px;
+      border-radius: 5px;
+      border: none;
+      outline: none;
+      background-color: #2a2a2a;
+      color: white;
     }
 
     .manga-item {
@@ -107,23 +121,22 @@
          Para adicionar mais mangás, copie o bloco <a> abaixo (com class "manga-item")
          e cole logo abaixo dele, alterando o href, a imagem (src), o título e a descrição. -->
 
-    <a href="manga1.html" target="_blank">
-      <div class="manga-item">
-        <img src="https://i.imgur.com/nvmchiJ.png" alt="Capa do Mangá">
-        <h4>Laços Profanos I: O último anjo</h4>
-        <p>A jornada de um herói que desafia o destino em um mundo dominado por demônios.</p>
-      </div>
-    </a>
+    <!-- ÁREA DE PESQUISA - INÍCIO -->
+    <div class="search-box">
+      <input type="text" id="searchInput" placeholder="🔍 Pesquisar mangá..." onkeyup="searchManga()" />
+    </div>
+    <!-- ÁREA DE PESQUISA - FIM -->
 
-    <!-- EXEMPLO DE COMO ADICIONAR OUTRO MANGÁ:
-    <a href="manga2.html" target="_blank">
-      <div class="manga-item">
-        <img src="LINK_DA_IMAGEM" alt="Capa do Mangá">
-        <h4>TÍTULO DO MANGÁ</h4>
-        <p>Descrição curta do novo mangá.</p>
-      </div>
-    </a>
-    -->
+    <!-- Lista de mangás -->
+    <div id="mangaList">
+      <a href="manga1.html" target="_blank">
+        <div class="manga-item">
+          <img src="https://i.imgur.com/nvmchiJ.png" alt="Capa do Mangá">
+          <h4>Laços Profanos I: O último anjo</h4>
+          <p>A jornada de um herói que desafia o destino em um mundo dominado por demônios.</p>
+        </div>
+      </a>
+    </div>
 
   </div>
 
@@ -144,6 +157,30 @@
       DOE PARA LAÇOS PROFANOS
     </a>
   </div>
+
+  <script>
+    // Função para remover acentos (diacríticos) das strings
+    function removeAcentos(str) {
+      return str.normalize("NFD").replace(/[\u0300-\u036f]/g, "");
+    }
+
+    // Função de pesquisa de mangás - IGNORA maiúsculas/minúsculas e acentos
+    function searchManga() {
+      const input = removeAcentos(document.getElementById('searchInput').value.toLowerCase());
+      const mangas = document.getElementById('mangaList').getElementsByClassName('manga-item');
+
+      for (let i = 0; i < mangas.length; i++) {
+        const title = removeAcentos(mangas[i].getElementsByTagName('h4')[0].innerText.toLowerCase());
+        const description = removeAcentos(mangas[i].getElementsByTagName('p')[0].innerText.toLowerCase());
+
+        if (title.includes(input) || description.includes(input)) {
+          mangas[i].parentElement.style.display = '';
+        } else {
+          mangas[i].parentElement.style.display = 'none';
+        }
+      }
+    }
+  </script>
 
 </body>
 </html>
