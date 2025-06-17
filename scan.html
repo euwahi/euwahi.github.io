@@ -18,6 +18,12 @@
       padding: 0;
     }
 
+    body.lacos-aniversario {
+      background-color: #121212;
+      background-image: radial-gradient(#a3005b 2px, transparent 2px);
+      background-size: 20px 20px;
+    }
+
     .card {
       max-width: 300px;
       margin: 20px auto;
@@ -127,25 +133,55 @@
       color: #ffffff;
       text-decoration: underline;
     }
+
+    .lacos-banner {
+      display: none;
+      position: fixed;
+      bottom: 10px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: #a3005b;
+      color: white;
+      padding: 10px 25px;
+      border-radius: 8px;
+      border: 2px solid white;
+      z-index: 9999;
+      font-weight: bold;
+      box-shadow: 0 0 10px #a3005b;
+    }
+
+    body.lacos-aniversario .lacos-banner {
+      display: block;
+    }
+
+    .confete {
+      position: fixed;
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      top: -20px;
+      animation: quedaConfete 3s linear infinite;
+      z-index: 999;
+    }
+
+    @keyframes quedaConfete {
+      0% { transform: translateY(0) rotate(0deg); }
+      100% { transform: translateY(100vh) rotate(360deg); }
+    }
   </style>
 </head>
 <body>
 
-  <!-- BOTÃO DISCRETO PARA O SITE PRINCIPAL -->
   <a class="botao-site-principal" href="inde.html">➡ Vá para o nosso site principal!</a>
 
-  <!-- SEÇÃO: MEUS MANGÁS -->
   <div class="card">
     <h3>Meus Mangás</h3>
 
-    <!-- ÁREA DE PESQUISA -->
     <div class="search-box">
       <input type="text" id="searchInput" placeholder="🔍 Pesquisar mangá..." onkeyup="searchManga()" />
     </div>
 
-    <!-- Lista de mangás -->
     <div id="mangaList">
-      <!-- MANGÁ EXEMPLO -->
       <a href="manga1.html" target="_blank">
         <div class="manga-item">
           <img src="https://i.imgur.com/nvmchiJ.png" alt="Capa do Mangá">
@@ -153,20 +189,13 @@
           <p>A jornada de um herói que desafia o destino em um mundo dominado por demônios.</p>
         </div>
       </a>
-
-      <!-- 👉 ADICIONE MAIS MANGÁS AQUI! 
-        Copie o bloco acima (a partir de <a href=... até </a>) e edite as informações.
-      -->
-
     </div>
   </div>
 
-  <!-- SEÇÃO: DOADORES -->
   <div class="card">
     <img class="profile-icon" src="https://i.imgur.com/mgxXSto.png" alt="Logo Laços Profanos">
 
     <h3>DOADORES DE LAÇOS PROFANOS</h3>
-
     <div class="doadores">
       <p>Top1 do ranking <span class="valor">R$ 04,00</span></p>
       <p>Jozé real oficial <span class="valor">R$ 02,00</span></p>
@@ -174,9 +203,12 @@
       <p>Anônimo amigo <span class="valor">R$ 01,00</span></p>
     </div>
 
-    <a class="botao-doar" href="https://tipa.ai/lacosprofanos" target="_blank">
-      DOE PARA LAÇOS PROFANOS
-    </a>
+    <a class="botao-doar" href="https://tipa.ai/lacosprofanos" target="_blank">DOE PARA LAÇOS PROFANOS</a>
+  </div>
+
+  <!-- Faixa de Aniversário -->
+  <div class="lacos-banner">
+    🎉 Aniversário de Laços Profanos! 29 de Outubro 🎉
   </div>
 
   <script>
@@ -199,6 +231,37 @@
         }
       }
     }
+
+    // === EASTER EGG DE ANIVERSÁRIO ===
+    document.addEventListener("DOMContentLoaded", function () {
+      const hoje = new Date();
+      const dia = hoje.getDate();
+      const mes = hoje.getMonth(); // Outubro = 9
+      const urlParams = new URLSearchParams(window.location.search);
+      const easterAtivado = urlParams.has('2910');
+
+      if ((dia === 29 && mes === 9) || easterAtivado) {
+        ativarEasterEgg();
+      }
+
+      function ativarEasterEgg() {
+        document.body.classList.add("lacos-aniversario");
+
+        const audio = new Audio("https://files.catbox.moe/l3n1tq.mp3");
+        audio.loop = true;
+        audio.volume = 0.3;
+        audio.play().catch(() => {});
+
+        for (let i = 0; i < 100; i++) {
+          const confete = document.createElement("div");
+          confete.className = "confete";
+          confete.style.left = Math.random() * window.innerWidth + "px";
+          confete.style.background = `hsl(${Math.random() * 360}, 100%, 50%)`;
+          confete.style.animationDelay = Math.random() * 3 + "s";
+          document.body.appendChild(confete);
+        }
+      }
+    });
   </script>
 
 </body>
