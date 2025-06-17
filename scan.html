@@ -112,9 +112,27 @@
     .botao-doar:hover {
       transform: scale(1.1);
     }
+
+    .botao-site-principal {
+      display: block;
+      text-align: center;
+      margin: 20px auto 10px auto;
+      font-size: 14px;
+      color: #bbbbbb;
+      text-decoration: none;
+      transition: color 0.3s;
+    }
+
+    .botao-site-principal:hover {
+      color: #ffffff;
+      text-decoration: underline;
+    }
   </style>
 </head>
 <body>
+
+  <!-- BOTÃO DISCRETO PARA O SITE PRINCIPAL -->
+  <a class="botao-site-principal" href="inde.html">➡ Vá para o nosso site principal!</a>
 
   <!-- SEÇÃO: MEUS MANGÁS -->
   <div class="card">
@@ -127,6 +145,7 @@
 
     <!-- Lista de mangás -->
     <div id="mangaList">
+      <!-- MANGÁ EXEMPLO -->
       <a href="manga1.html" target="_blank">
         <div class="manga-item">
           <img src="https://i.imgur.com/nvmchiJ.png" alt="Capa do Mangá">
@@ -134,6 +153,11 @@
           <p>A jornada de um herói que desafia o destino em um mundo dominado por demônios.</p>
         </div>
       </a>
+
+      <!-- 👉 ADICIONE MAIS MANGÁS AQUI! 
+        Copie o bloco acima (a partir de <a href=... até </a>) e edite as informações.
+      -->
+
     </div>
   </div>
 
