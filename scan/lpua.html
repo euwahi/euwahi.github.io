@@ -296,5 +296,111 @@ Determinado a restaurar o equilíbrio, Hamiah se une a um grupo de rebeldes que 
     Por favor, habilite o JavaScript para visualizar os
     <a href="https://disqus.com/?ref_noscript">comentários via Disqus.</a>
   </noscript>
+  <!-- ============================ -->
+<!-- INÍCIO: POP-UP DE APOIO TIPA -->
+<!-- ============================ -->
+
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Pop-up de Apoio</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Arial', sans-serif;
+      background-color: #121212;
+      color: white;
+    }
+
+    #popup-overlay {
+      display: none;
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      background-color: rgba(0, 0, 0, 0.7);
+      justify-content: center;
+      align-items: center;
+      z-index: 999;
+    }
+
+    #popup {
+      background-color: #1c1c1c;
+      border: 2px solid #ff00a6;
+      border-radius: 14px;
+      padding: 24px 20px;
+      width: 90%;
+      max-width: 320px;
+      text-align: center;
+      position: relative;
+      box-shadow: 0 0 20px rgba(255, 0, 166, 0.2);
+    }
+
+    #popup p {
+      font-size: 16px;
+      line-height: 1.4;
+      margin-bottom: 20px;
+    }
+
+    #support-button {
+      background-color: #ff007a;
+      color: white;
+      padding: 12px 18px;
+      border: none;
+      border-radius: 8px;
+      text-decoration: none;
+      font-weight: bold;
+      font-size: 14px;
+      display: inline-block;
+      margin-top: 10px;
+      transition: background-color 0.3s ease;
+    }
+
+    #support-button:hover {
+      background-color: #e0006b;
+    }
+
+    #close-button {
+      position: absolute;
+      top: 8px;
+      right: 12px;
+      background: none;
+      border: none;
+      color: white;
+      font-size: 24px;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+
+<div id="popup-overlay">
+  <div id="popup">
+    <button id="close-button">&times;</button>
+    <p>Não queremos rodar aqueles anúncios chatos.<br><strong>Apoie no tipa.ai ❤️</strong></p>
+    <a id="support-button" href="https://tipa.ai" target="_blank">DOE PARA LAÇOS PROFANOS</a>
+  </div>
+</div>
+
+<script>
+  window.onload = function () {
+    if (Math.random() < 0.5) {
+      document.getElementById("popup-overlay").style.display = "flex";
+    }
+
+    document.getElementById("close-button").onclick = function () {
+      document.getElementById("popup-overlay").style.display = "none";
+    };
+  };
+</script>
+
+</body>
+</html>
+
+<!-- ============================ -->
+<!-- FIM: POP-UP DE APOIO TIPA -->
+<!-- ============================ -->
+  
 </body>
 </html>
