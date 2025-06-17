@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Laços Profanos - Redes Sociais</title>
   <style>
     body {
@@ -57,7 +57,7 @@
       background-color: #2c2c2c;
       padding: 10px 20px;
       display: flex;
-      justify-content: flex-end; /* Alinhado à direita */
+      justify-content: flex-end;
       gap: 20px;
     }
 
@@ -111,277 +111,65 @@
     .botao-doar:hover {
       transform: scale(1.1);
     }
-  </style>
-</head>
-<body>
 
-  <div class="menu-topo">
-    <a href="lacosprofanos.com.br">Redes sociais</a>
-    <a href="scan.html">Nossa Scan</a> <!-- Troquei "Sobre nós" por "Nossa Scan" -->
-  </div>
-
-  <img class="logo" src="https://i.imgur.com/mgxXSto.png" alt="Logo Laços Profanos">
-
-  <h1>Laços profanos</h1>
-  <h2>Redes sociais</h2>
-
-  <a class="botao" href="https://tipa.ai/lacosprofanos" target="_blank">TIPA.AI</a>
-  <a class="botao" href="scan.html" target="_blank">NOSSA SCAN</a>
-  <a class="botao" href="https://bit.ly/La%C3%A7osprofanoszap" target="_blank">WHATSAPP</a>
-  <a class="botao" href="https://t.me/lacosprofanos" target="_blank">TELEGRAM</a>
-  <a class="botao" href="https://is.gd/DAv0em" target="_blank">YOUTUBE</a>
-  <a class="botao" href="https://www.instagram.com/lacosprofanos" target="_blank">INSTAGRAM</a>
-  <a class="botao" href="https://x.com/LacosProfanos" target="_blank">X</a>
-  <a class="botao" href="https://lacosprofanos.my.canva.site/fanarts" target="_blank">MURAL DE ARTES FEITAS POR FÃS</a>
-
-  <div class="card">
-    <img class="profile-icon" src="https://i.imgur.com/mgxXSto.png" alt="Logo Laços Profanos">
-
-    <h3>DOADORES DE LAÇOS PROFANOS</h3>
-
-    <div class="doadores">
-      <p>Top1 do ranking <span class="valor">R$ 04,00</span></p>
-      <p>Jozé real oficial <span class="valor">R$ 02,00</span></p>
-      <p>ajnopse bob <span class="valor">R$ 01,00</span></p>
-      <p>Anônimo amigo <span class="valor">R$ 01,00</span></p>
-    </div>
-
-    <a class="botao-doar" href="https://tipa.ai/lacosprofanos" target="_blank">
-      DOE PARA LAÇOS PROFANOS
-    </a>
-  </div>
-
-</body>
-</html>
-
-<!-- Formulário -->
-<form action="https://formspree.io/f/xwpbbgyb" method="POST" id="contact-form">
-  <label>
-    Your email:
-    <input type="email" name="email" required>
-  </label>
-  <br><br>
-  <label>
-    Your message:
-    <textarea name="message" id="message" required></textarea>
-  </label>
-  <br><br>
-  <button type="submit">Send</button>
-</form>
-
-<!-- Easter Egg mensagem -->
-<div id="easter-egg-msg" style="display:none; position: fixed; top: 40%; left: 50%; transform: translate(-50%, -50%);
-  background: #000; color: #ff00ff; padding: 2rem 3rem; border-radius: 12px; font-size: 2rem; font-weight: bold;
-  text-shadow: 2px 2px 5px #00ffff; z-index: 10000; animation: blink 1.5s infinite alternate;">
-  🎉 O aniversário de Laços Profanos! Data tão legal! 🎉
-</div>
-
-<!-- Confetes -->
-<div id="confetti-wrapper"></div>
-
-<style>
-  /* Estilo anos 90 neon */
-  body.anos90 {
-    background: #ff00ff !important;
-    color: #00ffff !important;
-    font-family: 'Courier New', Courier, monospace !important;
-    text-shadow:
-      2px 2px #ff0000,
-      -2px -2px #0000ff !important;
-    transition: background 0.5s, color 0.5s;
-  }
-
-  body.anos90 h1, body.anos90 p {
-    animation: blink 1.2s infinite alternate;
-  }
-
-  @keyframes blink {
-    0% { opacity: 1; }
-    100% { opacity: 0.3; }
-  }
-
-  #confetti-wrapper {
-    pointer-events: none;
-    position: fixed;
-    top: 0; left: 0;
-    width: 100vw;
-    height: 100vh;
-    overflow: visible;
-    z-index: 9999;
-  }
-
-  .confetti {
-    position: absolute;
-    width: 10px;
-    height: 10px;
-    background-color: #ff0;
-    opacity: 0.9;
-    animation-name: confetti-fall, confetti-spin;
-    animation-duration: 4s, 2s;
-    animation-timing-function: linear, linear;
-    animation-iteration-count: infinite, infinite;
-  }
-
-  @keyframes confetti-fall {
-    0% { transform: translateY(-10px); opacity: 1; }
-    100% { transform: translateY(100vh); opacity: 0; }
-  }
-
-  @keyframes confetti-spin {
-    0% { transform: rotate(0deg); }
-    100% { transform: rotate(360deg); }
-  }
-</style>
-
-<script>
-  function createConfetti() {
-    const wrapper = document.getElementById('confetti-wrapper');
-    const colors = ['#ff0', '#f0f', '#0ff', '#0f0', '#f00', '#00f'];
-
-    for (let i = 0; i < 100; i++) {
-      const confetti = document.createElement('div');
-      confetti.classList.add('confetti');
-      confetti.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
-      confetti.style.left = Math.random() * window.innerWidth + 'px';
-      confetti.style.animationDelay = (Math.random() * 4) + 's';
-      confetti.style.top = (-Math.random() * 20) + 'px';
-      confetti.style.width = confetti.style.height = (5 + Math.random() * 10) + 'px';
-      confetti.style.animationDuration = (3 + Math.random() * 3) + 's, 2s';
-      wrapper.appendChild(confetti);
-    }
-  }
-
-  function ativarEasterEgg() {
-    document.body.classList.add('anos90');
-    document.getElementById('easter-egg-msg').style.display = 'block';
-    createConfetti();
-
-    // Remove o efeito depois de 10 segundos
-    setTimeout(() => {
-      document.body.classList.remove('anos90');
-      document.getElementById('easter-egg-msg').style.display = 'none';
-      document.getElementById('confetti-wrapper').innerHTML = '';
-    }, 10000);
-  }
-
-  const form = document.getElementById('contact-form');
-  const messageInput = document.getElementById('message');
-
-  form.addEventListener('submit', (e) => {
-    const msg = messageInput.value.trim().toLowerCase();
-    if (msg === '29/10' || msg === '29 de outubro') {
-      e.preventDefault();<!DOCTYPE html>
-<html lang="pt-BR">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Laços Profanos - Redes Sociais</title>
-  <style>
-    body {
-      background-color: #121212;
-      font-family: Arial, sans-serif;
-      color: white;
-      text-align: center;
-      margin: 0;
-      padding: 0;
+    /* FORMULÁRIO DE CONTATO */
+    .form-contato {
+      background-color: #1a1a1a;
+      max-width: 500px;
+      margin: 60px auto 40px;
+      padding: 25px;
+      border-radius: 12px;
+      border: 2px solid #444;
+      text-align: left;
     }
 
-    .logo {
-      width: 200px;
-      height: 200px;
-      object-fit: cover;
-      border-radius: 50%;
-      margin-top: 30px;
-    }
-
-    h1 {
-      margin: 20px 0 10px;
-      font-size: 28px;
-    }
-
-    h2 {
+    .form-contato h3 {
       font-size: 22px;
-      margin-bottom: 30px;
+      margin-bottom: 10px;
       color: #ffffff;
+      text-align: center;
     }
 
-    .botao {
-      display: block;
-      width: 80%;
-      max-width: 300px;
-      margin: 10px auto;
-      padding: 15px;
-      background-color: transparent;
-      border: 2px solid white;
+    .form-contato p.nota {
+      font-size: 14px;
+      margin-bottom: 20px;
+      color: #cccccc;
+      text-align: center;
+    }
+
+    .form-contato input,
+    .form-contato textarea {
+      width: 100%;
+      padding: 12px;
+      margin-bottom: 15px;
+      border-radius: 8px;
+      border: none;
+      background-color: #2c2c2c;
+      color: white;
+      font-size: 15px;
+    }
+
+    .form-contato input::placeholder,
+    .form-contato textarea::placeholder {
+      color: #bbbbbb;
+    }
+
+    .form-contato button {
+      width: 100%;
+      padding: 14px;
+      background-color: #a3005b;
+      border: none;
       color: white;
       font-weight: bold;
-      text-decoration: none;
+      font-size: 16px;
       border-radius: 8px;
+      cursor: pointer;
       transition: transform 0.3s, background-color 0.3s;
     }
 
-    .botao:hover {
+    .form-contato button:hover {
       transform: scale(1.05);
-      background-color: #333;
-    }
-
-    .menu-topo {
-      background-color: #2c2c2c;
-      padding: 10px 20px;
-      display: flex;
-      justify-content: flex-end; /* Alinhado à direita */
-      gap: 20px;
-    }
-
-    .menu-topo a {
-      color: white;
-      text-decoration: none;
-      font-weight: bold;
-    }
-
-    .menu-topo a:hover {
-      text-decoration: underline;
-    }
-
-    .card {
-      max-width: 300px;
-      margin: 40px auto;
-      padding: 20px;
-      border: 2px solid #a3005b;
-      border-radius: 10px;
-      background-color: #1a1a1a;
-    }
-
-    .profile-icon {
-      width: 100px;
-      height: 100px;
-      object-fit: cover;
-      border-radius: 50%;
-      margin-bottom: 10px;
-    }
-
-    .doadores {
-      text-align: left;
-      margin-bottom: 20px;
-    }
-
-    .valor {
-      color: #00ff00;
-    }
-
-    .botao-doar {
-      display: inline-block;
-      padding: 10px 20px;
-      background-color: #a3005b;
-      color: white;
-      text-decoration: none;
-      border-radius: 5px;
-      font-weight: bold;
-      transition: transform 0.3s;
-    }
-
-    .botao-doar:hover {
-      transform: scale(1.1);
+      background-color: #c0006f;
     }
   </style>
 </head>
@@ -389,7 +177,7 @@
 
   <div class="menu-topo">
     <a href="lacosprofanos.com.br">Redes sociais</a>
-    <a href="scan.html">Nossa Scan</a> <!-- Troquei "Sobre nós" por "Nossa Scan" -->
+    <a href="scan.html">Nossa Scan</a>
   </div>
 
   <img class="logo" src="https://i.imgur.com/mgxXSto.png" alt="Logo Laços Profanos">
@@ -408,706 +196,27 @@
 
   <div class="card">
     <img class="profile-icon" src="https://i.imgur.com/mgxXSto.png" alt="Logo Laços Profanos">
-
     <h3>DOADORES DE LAÇOS PROFANOS</h3>
-
     <div class="doadores">
       <p>Top1 do ranking <span class="valor">R$ 04,00</span></p>
       <p>Jozé real oficial <span class="valor">R$ 02,00</span></p>
       <p>ajnopse bob <span class="valor">R$ 01,00</span></p>
       <p>Anônimo amigo <span class="valor">R$ 01,00</span></p>
     </div>
+    <a class="botao-doar" href="https://tipa.ai/lacosprofanos" target="_blank">DOE PARA LAÇOS PROFANOS</a>
+  </div>
 
-    <a class="botao-doar" href="https://tipa.ai/lacosprofanos" target="_blank">
-      DOE PARA LAÇOS PROFANOS
-    </a>
+  <!-- FORMULÁRIO FUNCIONAL -->
+  <div class="form-contato">
+    <h3>Fale Conosco</h3>
+    <p class="nota">Tem alguma dúvida, sugestão ou elogio? Manda uma mensagem pra gente!</p>
+    <form action="https://formspree.io/f/xwpbbgyb" method="POST">
+      <input type="text" name="nome" placeholder="Seu nome" required>
+      <input type="email" name="_replyto" placeholder="Seu e-mail" required>
+      <textarea name="mensagem" rows="5" placeholder="Escreva sua mensagem aqui..." required></textarea>
+      <button type="submit">Enviar mensagem</button>
+    </form>
   </div>
 
 </body>
 </html>
-
-<!-- Formulário -->
-<form action="https://formspree.io/f/xwpbbgyb" method="POST" id="contact-form">
-  <label>
-    Your email:
-    <input type="email" name="email" required>
-  </label>
-  <br><br>
-  <label>
-    Your message:
-    <textarea name="message" id="message" required></textarea>
-  </label>
-  <br><br>
-  <button type="submit">Send</button>
-</form>
-
-<!-- Easter Egg mensagem -->
-<div id="easter-egg-msg" style="display:none; position: fixed; top: 40%; left: 50%; transform: translate(-50%, -50%);
-  background: #000; color: #ff00ff; padding: 2rem 3rem; border-radius: 12px; font-size: 2rem; font-weight: bold;
-  text-shadow: 2px 2px 5px #00ffff; z-index: 10000; animation: blink 1.5s infinite alternate;">
-  🎉 O aniversário de Laços Profanos! Data tão legal! 🎉
-</div>
-
-<!-- Confetes -->
-<div id="confetti-wrapper"></div>
-
-<style>
-  /* Estilo anos 90 neon */
-  body.anos90 {
-    background: #ff00ff !important;
-    color: #00ffff !important;
-    font-family: 'Courier New', Courier, monospace !important;
-    text-shadow:
-      2px 2px #ff0000,
-      -2px -2px #0000ff !important;
-    transition: background 0.5s, color 0.5s;
-  }
-
-  body.anos90 h1, body.anos90 p {
-    animation: blink 1.2s infinite alternate;
-  }
-
-  @keyframes blink {
-    0% { opacity: 1; }
-    100% { opacity: 0.3; }
-  }
-
-  #confetti-wrapper {
-    pointer-events: none;
-    position: fixed;
-    top: 0; left: 0;
-    width: 100vw;
-    height: 100vh;
-    overflow: visible;
-    z-index: 9999;
-  }
-
-  .confetti {
-    position: absolute;
-    width: 10px;
-    height: 10px;
-    background-color: #ff0;
-    opacity: 0.9;
-    animation-name: confetti-fall, confetti-spin;
-    animation-duration: 4s, 2s;
-    animation-timing-function: linear, linear;
-    animation-iteration-count: infinite, infinite;
-  }
-
-  @keyframes confetti-fall {
-    0% { transform: translateY(-10px); opacity: 1; }
-    100% { transform: translateY(100vh); opacity: 0; }
-  }
-
-  @keyframes confetti-spin {
-    0% { transform: rotate(0deg); }
-    100% { transform: rotate(360deg); }
-  }
-</style>
-
-<script>
-  function createConfetti() {
-    const wrapper = document.getElementById('confetti-wrapper');
-    const colors = ['#ff0', '#f0f', '#0ff', '#0f0', '#f00', '#00f'];
-
-    for (let i = 0; i < 100; i++) {
-      const confetti = document.createElement('div');
-      confetti.classList.add('confetti');
-      confetti.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
-      confetti.style.left = Math.random() * window.innerWidth + 'px';
-      confetti.style.animationDelay = (Math.random() * 4) + 's';
-      confetti.style.top = (-Math.random() * 20) + 'px';
-      confetti.style.width = confetti.style.height = (5 + Math.random() * 10) + 'px';
-      confetti.style.animationDuration = (3 + Math.random() * 3) + 's, 2s';
-      wrapper.appendChild(confetti);
-    }
-  }
-
-  function ativarEasterEgg() {
-    document.body.classList.add('anos90');
-    document.getElementById('easter-egg-msg').style.display = 'block';
-    createConfetti();
-
-    // Remove o efeito depois de 10 segundos
-    setTimeout(() => {
-      document.body.classList.remove('anos90');
-      document.getElementById('easter-egg-msg').style.display = 'none';
-      document.getElementById('confetti-wrapper').innerHTML = '';
-    }, 10000);
-  }
-
-  const form = document.getElementById('contact-form');
-  const messageInput = document.getElementById('message');
-
-  form.addEventListener('submit', (e) => {
-    const msg = messageInput.value.trim().toLowerCase();
-    if (msg === '29/10' || msg === '29 de outubro') {
-      e.preventDefault();
-      ativarEasterEgg();
-    }
-    // senão, envia normalmente
-  });
-  </script>
-                           <!DOCTYPE html>
-<html lang="pt-BR">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Laços Profanos - Redes Sociais</title>
-  <style>
-    body {
-      background-color: #121212;
-      font-family: Arial, sans-serif;
-      color: white;
-      text-align: center;
-      margin: 0;
-      padding: 0;
-    }
-
-    .logo {
-      width: 200px;
-      height: 200px;
-      object-fit: cover;
-      border-radius: 50%;
-      margin-top: 30px;
-    }
-
-    h1 {
-      margin: 20px 0 10px;
-      font-size: 28px;
-    }
-
-    h2 {
-      font-size: 22px;
-      margin-bottom: 30px;
-      color: #ffffff;
-    }
-
-    .botao {
-      display: block;
-      width: 80%;
-      max-width: 300px;
-      margin: 10px auto;
-      padding: 15px;
-      background-color: transparent;
-      border: 2px solid white;
-      color: white;
-      font-weight: bold;
-      text-decoration: none;
-      border-radius: 8px;
-      transition: transform 0.3s, background-color 0.3s;
-    }
-
-    .botao:hover {
-      transform: scale(1.05);
-      background-color: #333;
-    }
-
-    .menu-topo {
-      background-color: #2c2c2c;
-      padding: 10px 20px;
-      display: flex;
-      justify-content: flex-end; /* Alinhado à direita */
-      gap: 20px;
-    }
-
-    .menu-topo a {
-      color: white;
-      text-decoration: none;
-      font-weight: bold;
-    }
-
-    .menu-topo a:hover {
-      text-decoration: underline;
-    }
-
-    .card {
-      max-width: 300px;
-      margin: 40px auto;
-      padding: 20px;
-      border: 2px solid #a3005b;
-      border-radius: 10px;
-      background-color: #1a1a1a;
-    }
-
-    .profile-icon {
-      width: 100px;
-      height: 100px;
-      object-fit: cover;
-      border-radius: 50%;
-      margin-bottom: 10px;
-    }
-
-    .doadores {
-      text-align: left;
-      margin-bottom: 20px;
-    }
-
-    .valor {
-      color: #00ff00;
-    }
-
-    .botao-doar {
-      display: inline-block;
-      padding: 10px 20px;
-      background-color: #a3005b;
-      color: white;
-      text-decoration: none;
-      border-radius: 5px;
-      font-weight: bold;
-      transition: transform 0.3s;
-    }
-
-    .botao-doar:hover {
-      transform: scale(1.1);
-    }
-  </style>
-</head>
-<body>
-
-  <div class="menu-topo">
-    <a href="lacosprofanos.com.br">Redes sociais</a>
-    <a href="scan.html">Nossa Scan</a> <!-- Troquei "Sobre nós" por "Nossa Scan" -->
-  </div>
-
-  <img class="logo" src="https://i.imgur.com/mgxXSto.png" alt="Logo Laços Profanos">
-
-  <h1>Laços profanos</h1>
-  <h2>Redes sociais</h2>
-
-  <a class="botao" href="https://tipa.ai/lacosprofanos" target="_blank">TIPA.AI</a>
-  <a class="botao" href="scan.html" target="_blank">NOSSA SCAN</a>
-  <a class="botao" href="https://bit.ly/La%C3%A7osprofanoszap" target="_blank">WHATSAPP</a>
-  <a class="botao" href="https://t.me/lacosprofanos" target="_blank">TELEGRAM</a>
-  <a class="botao" href="https://is.gd/DAv0em" target="_blank">YOUTUBE</a>
-  <a class="botao" href="https://www.instagram.com/lacosprofanos" target="_blank">INSTAGRAM</a>
-  <a class="botao" href="https://x.com/LacosProfanos" target="_blank">X</a>
-  <a class="botao" href="https://lacosprofanos.my.canva.site/fanarts" target="_blank">MURAL DE ARTES FEITAS POR FÃS</a>
-
-  <div class="card">
-    <img class="profile-icon" src="https://i.imgur.com/mgxXSto.png" alt="Logo Laços Profanos">
-
-    <h3>DOADORES DE LAÇOS PROFANOS</h3>
-
-    <div class="doadores">
-      <p>Top1 do ranking <span class="valor">R$ 04,00</span></p>
-      <p>Jozé real oficial <span class="valor">R$ 02,00</span></p>
-      <p>ajnopse bob <span class="valor">R$ 01,00</span></p>
-      <p>Anônimo amigo <span class="valor">R$ 01,00</span></p>
-    </div>
-
-    <a class="botao-doar" href="https://tipa.ai/lacosprofanos" target="_blank">
-      DOE PARA LAÇOS PROFANOS
-    </a>
-  </div>
-
-</body>
-</html>
-
-<!-- Formulário -->
-<form action="https://formspree.io/f/xwpbbgyb" method="POST" id="contact-form">
-  <label>
-    Your email:
-    <input type="email" name="email" required>
-  </label>
-  <br><br>
-  <label>
-    Your message:
-    <textarea name="message" id="message" required></textarea>
-  </label>
-  <br><br>
-  <button type="submit">Send</button>
-</form>
-
-<!-- Easter Egg mensagem -->
-<div id="easter-egg-msg" style="display:none; position: fixed; top: 40%; left: 50%; transform: translate(-50%, -50%);
-  background: #000; color: #ff00ff; padding: 2rem 3rem; border-radius: 12px; font-size: 2rem; font-weight: bold;
-  text-shadow: 2px 2px 5px #00ffff; z-index: 10000; animation: blink 1.5s infinite alternate;">
-  🎉 O aniversário de Laços Profanos! Data tão legal! 🎉
-</div>
-
-<!-- Confetes -->
-<div id="confetti-wrapper"></div>
-
-<style>
-  /* Estilo anos 90 neon */
-  body.anos90 {
-    background: #ff00ff !important;
-    color: #00ffff !important;
-    font-family: 'Courier New', Courier, monospace !important;
-    text-shadow:
-      2px 2px #ff0000,
-      -2px -2px #0000ff !important;
-    transition: background 0.5s, color 0.5s;
-  }
-
-  body.anos90 h1, body.anos90 p {
-    animation: blink 1.2s infinite alternate;
-  }
-
-  @keyframes blink {
-    0% { opacity: 1; }
-    100% { opacity: 0.3; }
-  }
-
-  #confetti-wrapper {
-    pointer-events: none;
-    position: fixed;
-    top: 0; left: 0;
-    width: 100vw;
-    height: 100vh;
-    overflow: visible;
-    z-index: 9999;
-  }
-
-  .confetti {
-    position: absolute;
-    width: 10px;
-    height: 10px;
-    background-color: #ff0;
-    opacity: 0.9;
-    animation-name: confetti-fall, confetti-spin;
-    animation-duration: 4s, 2s;
-    animation-timing-function: linear, linear;
-    animation-iteration-count: infinite, infinite;
-  }
-
-  @keyframes confetti-fall {
-    0% { transform: translateY(-10px); opacity: 1; }
-    100% { transform: translateY(100vh); opacity: 0; }
-  }
-
-  @keyframes confetti-spin {
-    0% { transform: rotate(0deg); }
-    100% { transform: rotate(360deg); }
-  }
-</style>
-
-<script>
-  function createConfetti() {
-    const wrapper = document.getElementById('confetti-wrapper');
-    const colors = ['#ff0', '#f0f', '#0ff', '#0f0', '#f00', '#00f'];
-
-    for (let i = 0; i < 100; i++) {
-      const confetti = document.createElement('div');
-      confetti.classList.add('confetti');
-      confetti.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
-      confetti.style.left = Math.random() * window.innerWidth + 'px';
-      confetti.style.animationDelay = (Math.random() * 4) + 's';
-      confetti.style.top = (-Math.random() * 20) + 'px';
-      confetti.style.width = confetti.style.height = (5 + Math.random() * 10) + 'px';
-      confetti.style.animationDuration = (3 + Math.random() * 3) + 's, 2s';
-      wrapper.appendChild(confetti);
-    }
-  }
-
-  function ativarEasterEgg() {
-    document.body.classList.add('anos90');
-    document.getElementById('easter-egg-msg').style.display = 'block';
-    createConfetti();
-
-    // Remove o efeito depois de 10 segundos
-    setTimeout(() => {
-      document.body.classList.remove('anos90');
-      document.getElementById('easter-egg-msg').style.display = 'none';
-      document.getElementById('confetti-wrapper').innerHTML = '';
-    }, 10000);
-  }
-
-  const form = document.getElementById('contact-form');
-  const messageInput = document.getElementById('message');
-
-  form.addEventListener('submit', (e) => {
-    const msg = messageInput.value.trim().toLowerCase();
-    if (msg === '29/10' || msg === '29 de outubro') {
-      e.preventDefault();<!DOCTYPE html>
-<html lang="pt-BR">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Laços Profanos - Redes Sociais</title>
-  <style>
-    body {
-      background-color: #121212;
-      font-family: Arial, sans-serif;
-      color: white;
-      text-align: center;
-      margin: 0;
-      padding: 0;
-    }
-
-    .logo {
-      width: 200px;
-      height: 200px;
-      object-fit: cover;
-      border-radius: 50%;
-      margin-top: 30px;
-    }
-
-    h1 {
-      margin: 20px 0 10px;
-      font-size: 28px;
-    }
-
-    h2 {
-      font-size: 22px;
-      margin-bottom: 30px;
-      color: #ffffff;
-    }
-
-    .botao {
-      display: block;
-      width: 80%;
-      max-width: 300px;
-      margin: 10px auto;
-      padding: 15px;
-      background-color: transparent;
-      border: 2px solid white;
-      color: white;
-      font-weight: bold;
-      text-decoration: none;
-      border-radius: 8px;
-      transition: transform 0.3s, background-color 0.3s;
-    }
-
-    .botao:hover {
-      transform: scale(1.05);
-      background-color: #333;
-    }
-
-    .menu-topo {
-      background-color: #2c2c2c;
-      padding: 10px 20px;
-      display: flex;
-      justify-content: flex-end; /* Alinhado à direita */
-      gap: 20px;
-    }
-
-    .menu-topo a {
-      color: white;
-      text-decoration: none;
-      font-weight: bold;
-    }
-
-    .menu-topo a:hover {
-      text-decoration: underline;
-    }
-
-    .card {
-      max-width: 300px;
-      margin: 40px auto;
-      padding: 20px;
-      border: 2px solid #a3005b;
-      border-radius: 10px;
-      background-color: #1a1a1a;
-    }
-
-    .profile-icon {
-      width: 100px;
-      height: 100px;
-      object-fit: cover;
-      border-radius: 50%;
-      margin-bottom: 10px;
-    }
-
-    .doadores {
-      text-align: left;
-      margin-bottom: 20px;
-    }
-
-    .valor {
-      color: #00ff00;
-    }
-
-    .botao-doar {
-      display: inline-block;
-      padding: 10px 20px;
-      background-color: #a3005b;
-      color: white;
-      text-decoration: none;
-      border-radius: 5px;
-      font-weight: bold;
-      transition: transform 0.3s;
-    }
-
-    .botao-doar:hover {
-      transform: scale(1.1);
-    }
-  </style>
-</head>
-<body>
-
-  <div class="menu-topo">
-    <a href="lacosprofanos.com.br">Redes sociais</a>
-    <a href="scan.html">Nossa Scan</a> <!-- Troquei "Sobre nós" por "Nossa Scan" -->
-  </div>
-
-  <img class="logo" src="https://i.imgur.com/mgxXSto.png" alt="Logo Laços Profanos">
-
-  <h1>Laços profanos</h1>
-  <h2>Redes sociais</h2>
-
-  <a class="botao" href="https://tipa.ai/lacosprofanos" target="_blank">TIPA.AI</a>
-  <a class="botao" href="scan.html" target="_blank">NOSSA SCAN</a>
-  <a class="botao" href="https://bit.ly/La%C3%A7osprofanoszap" target="_blank">WHATSAPP</a>
-  <a class="botao" href="https://t.me/lacosprofanos" target="_blank">TELEGRAM</a>
-  <a class="botao" href="https://is.gd/DAv0em" target="_blank">YOUTUBE</a>
-  <a class="botao" href="https://www.instagram.com/lacosprofanos" target="_blank">INSTAGRAM</a>
-  <a class="botao" href="https://x.com/LacosProfanos" target="_blank">X</a>
-  <a class="botao" href="https://lacosprofanos.my.canva.site/fanarts" target="_blank">MURAL DE ARTES FEITAS POR FÃS</a>
-
-  <div class="card">
-    <img class="profile-icon" src="https://i.imgur.com/mgxXSto.png" alt="Logo Laços Profanos">
-
-    <h3>DOADORES DE LAÇOS PROFANOS</h3>
-
-    <div class="doadores">
-      <p>Top1 do ranking <span class="valor">R$ 04,00</span></p>
-      <p>Jozé real oficial <span class="valor">R$ 02,00</span></p>
-      <p>ajnopse bob <span class="valor">R$ 01,00</span></p>
-      <p>Anônimo amigo <span class="valor">R$ 01,00</span></p>
-    </div>
-
-    <a class="botao-doar" href="https://tipa.ai/lacosprofanos" target="_blank">
-      DOE PARA LAÇOS PROFANOS
-    </a>
-  </div>
-
-</body>
-</html>
-
-<!-- Formulário -->
-<form action="https://formspree.io/f/xwpbbgyb" method="POST" id="contact-form">
-  <label>
-    Your email:
-    <input type="email" name="email" required>
-  </label>
-  <br><br>
-  <label>
-    Your message:
-    <textarea name="message" id="message" required></textarea>
-  </label>
-  <br><br>
-  <button type="submit">Send</button>
-</form>
-
-<!-- Easter Egg mensagem -->
-<div id="easter-egg-msg" style="display:none; position: fixed; top: 40%; left: 50%; transform: translate(-50%, -50%);
-  background: #000; color: #ff00ff; padding: 2rem 3rem; border-radius: 12px; font-size: 2rem; font-weight: bold;
-  text-shadow: 2px 2px 5px #00ffff; z-index: 10000; animation: blink 1.5s infinite alternate;">
-  🎉 O aniversário de Laços Profanos! Data tão legal! 🎉
-</div>
-
-<!-- Confetes -->
-<div id="confetti-wrapper"></div>
-
-<style>
-  /* Estilo anos 90 neon */
-  body.anos90 {
-    background: #ff00ff !important;
-    color: #00ffff !important;
-    font-family: 'Courier New', Courier, monospace !important;
-    text-shadow:
-      2px 2px #ff0000,
-      -2px -2px #0000ff !important;
-    transition: background 0.5s, color 0.5s;
-  }
-
-  body.anos90 h1, body.anos90 p {
-    animation: blink 1.2s infinite alternate;
-  }
-
-  @keyframes blink {
-    0% { opacity: 1; }
-    100% { opacity: 0.3; }
-  }
-
-  #confetti-wrapper {
-    pointer-events: none;
-    position: fixed;
-    top: 0; left: 0;
-    width: 100vw;
-    height: 100vh;
-    overflow: visible;
-    z-index: 9999;
-  }
-
-  .confetti {
-    position: absolute;
-    width: 10px;
-    height: 10px;
-    background-color: #ff0;
-    opacity: 0.9;
-    animation-name: confetti-fall, confetti-spin;
-    animation-duration: 4s, 2s;
-    animation-timing-function: linear, linear;
-    animation-iteration-count: infinite, infinite;
-  }
-
-  @keyframes confetti-fall {
-    0% { transform: translateY(-10px); opacity: 1; }
-    100% { transform: translateY(100vh); opacity: 0; }
-  }
-
-  @keyframes confetti-spin {
-    0% { transform: rotate(0deg); }
-    100% { transform: rotate(360deg); }
-  }
-</style>
-
-<script>
-  function createConfetti() {
-    const wrapper = document.getElementById('confetti-wrapper');
-    const colors = ['#ff0', '#f0f', '#0ff', '#0f0', '#f00', '#00f'];
-
-    for (let i = 0; i < 100; i++) {
-      const confetti = document.createElement('div');
-      confetti.classList.add('confetti');
-      confetti.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
-      confetti.style.left = Math.random() * window.innerWidth + 'px';
-      confetti.style.animationDelay = (Math.random() * 4) + 's';
-      confetti.style.top = (-Math.random() * 20) + 'px';
-      confetti.style.width = confetti.style.height = (5 + Math.random() * 10) + 'px';
-      confetti.style.animationDuration = (3 + Math.random() * 3) + 's, 2s';
-      wrapper.appendChild(confetti);
-    }
-  }
-
-  function ativarEasterEgg() {
-    document.body.classList.add('anos90');
-    document.getElementById('easter-egg-msg').style.display = 'block';
-    createConfetti();
-
-    // Remove o efeito depois de 10 segundos
-    setTimeout(() => {
-      document.body.classList.remove('anos90');
-      document.getElementById('easter-egg-msg').style.display = 'none';
-      document.getElementById('confetti-wrapper').innerHTML = '';
-    }, 10000);
-  }
-
-  const form = document.getElementById('contact-form');
-  const messageInput = document.getElementById('message');
-
-  form.addEventListener('submit', (e) => {
-    const msg = messageInput.value.trim().toLowerCase();
-    if (msg === '29/10' || msg === '29 de outubro') {
-      e.preventDefault();
-      ativarEasterEgg();
-    }
-    // senão, envia normalmente
-  });
-  </script>
-                           
-      ativarEasterEgg();
-    }
-    // senão, envia normalmente
-  });
-  </script>
-                           
-      ativarEasterEgg();
-    }
-    // senão, envia normalmente
-  });
-  </script>
-                           
