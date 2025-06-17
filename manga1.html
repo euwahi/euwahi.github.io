@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 
-<!-- Script do Google AdSense (apenas 1x por página) -->
+<!-- Script do Google AdSense -->
 <meta name="google-adsense-account" content="ca-pub-2715085153658985">
 
 <head>
@@ -17,11 +17,20 @@
       background-color: #121212;
       color: #eee;
       font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 40px 20px;
+    }
+
+    .container-total {
       max-width: 700px;
-      margin: 40px auto;
-      padding: 20px;
-      border-radius: 8px;
-      box-shadow: 0 0 20px rgba(0, 0, 0, 0.9);
+      margin: 0 auto;
+    }
+
+    .manga-card {
+      background-color: #1a1a1a;
+      padding: 30px 20px;
+      border-radius: 12px;
+      box-shadow: 0 0 20px rgba(0, 0, 0, 0.8);
     }
 
     h1 {
@@ -136,7 +145,7 @@
     .back-link {
       display: block;
       text-align: center;
-      margin-top: 40px;
+      margin-top: 30px;
       color: #888;
       text-decoration: none;
       font-size: 0.9rem;
@@ -153,39 +162,59 @@
     a:hover {
       transform: scale(1.1);
     }
+
+    .aviso {
+      background: #ff0000;
+      color: #fff;
+      padding: 10px;
+      border-radius: 5px;
+      margin-bottom: 20px;
+      text-align: center;
+      font-weight: bold;
+    }
+
+    .comentarios {
+      margin-top: 60px;
+    }
   </style>
 </head>
 
 <body>
 
-  <h1>Laços Profanos I: O Último Anjo</h1>
+  <div class="container-total">
 
-  <img src="https://i.imgur.com/nvmchiJ.png" alt="Capa Mangá 1" class="cover" />
+    <div class="manga-card">
+      <h1>Laços Profanos I: O Último Anjo</h1>
 
-  <div class="buttons">
-    <button onclick="window.location.href='capitulo1.html'">📖 Primeiro Capítulo</button>
-    <button onclick="window.location.href='capitulo1.html'">📚 Último Capítulo</button>
-    <button class="trailer-button" onclick="window.open('https://youtu.be/-ctjMwKKlQU')">🎥 Ver Trailer</button>
-  </div>
+      <img src="https://i.imgur.com/nvmchiJ.png" alt="Capa Mangá 1" class="cover" />
 
-  <div class="chapters">
-    <h2>Capítulos</h2>
-    <div class="chapter"><a href="capitulo1.html">Capítulo 1</a></div>
-  </div>
+      <div class="buttons">
+        <button onclick="window.location.href='capitulo1.html'">📖 Primeiro Capítulo</button>
+        <button onclick="window.location.href='capitulo1.html'">📚 Último Capítulo</button>
+        <button class="trailer-button" onclick="window.open('https://youtu.be/-ctjMwKKlQU')">🎥 Ver Trailer</button>
+      </div>
 
-  <p class="sinopse">
-    Após anos congelado em uma estalactite, Hamiah, o último anjo de sua espécie, desperta em um mundo devastado. O reino que um dia conheceu agora está sob o domínio de uma rainha ambiciosa, Olivia, que busca poder e riquezas a qualquer custo, enquanto humanos são escravizados sob a tirania de Enaya, a cruel líder do exército demoníaco. Determinado a restaurar o equilíbrio, Hamiah se une a um grupo de rebeldes que luta pela liberdade. Ao longo de sua jornada, ele descobre que os inimigos nem sempre são claros e que aliados inesperados podem surgir em meio ao caos. Com o destino do reino em jogo, Hamiah deve enfrentar desafios que testarão sua coragem e seus ideais.
-  </p>
+      <div class="chapters">
+        <h2>Capítulos</h2>
+        <div class="chapter"><a href="capitulo1.html">Capítulo 1</a></div>
+      </div>
 
-  <a href="scan.html" class="back-link">← Voltar para a lista de mangás</a>
+      <p class="sinopse">
+        Após anos congelado em uma estalactite, Hamiah, o último anjo de sua espécie, desperta em um mundo devastado. O reino que um dia conheceu agora está sob o domínio de uma rainha ambiciosa, Olivia, que busca poder e riquezas a qualquer custo, enquanto humanos são escravizados sob a tirania de Enaya, a cruel líder do exército demoníaco. Determinado a restaurar o equilíbrio, Hamiah se une a um grupo de rebeldes que luta pela liberdade. Ao longo de sua jornada, ele descobre que os inimigos nem sempre são claros e que aliados inesperados podem surgir em meio ao caos. Com o destino do reino em jogo, Hamiah deve enfrentar desafios que testarão sua coragem e seus ideais.
+      </p>
 
-  <!-- COMENTÁRIOS -->
-  <div class="container" style="margin-top: 60px;">
-    <div class="aviso" style="background: #ff0000; color: #fff; padding: 10px; border-radius: 5px; margin-bottom: 20px; text-align: center; font-weight: bold;">
-      🚫 Não pode spoiler. Sujeito a ban!
+      <a href="scan.html" class="back-link">← Voltar para a lista de mangás</a>
     </div>
-    <p style="text-align: center;">Leia e participe das discussões respeitando todos os leitores!</p>
-    <div id="disqus_thread"></div>
+
+    <!-- COMENTÁRIOS -->
+    <div class="comentarios">
+      <div class="aviso">
+        🚫 Não pode spoiler. Sujeito a ban!
+      </div>
+      <p style="text-align: center;">Leia e participe das discussões respeitando todos os leitores!</p>
+      <div id="disqus_thread"></div>
+    </div>
+
   </div>
 
   <script>
@@ -208,4 +237,5 @@
   </noscript>
 
 </body>
+
 </html>
