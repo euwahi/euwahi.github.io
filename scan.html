@@ -4,16 +4,18 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Meus Mangás - Laços Profanos</title>
-   <link rel="icon" href="https://i.imgur.com/mgxXSto.png" type="image/png">
-
-  <!-- Script do Google AdSense (apenas 1x por página) -->
+  <link rel="icon" href="https://i.imgur.com/mgxXSto.png" type="image/png">
   <meta name="google-adsense-account" content="ca-pub-2715085153658985">
 
   <style>
     body {
       background-color: #121212;
+      background-image: radial-gradient(#2c2c2c 1px, transparent 1px);
+      background-size: 24px 24px;
       font-family: Arial, sans-serif;
       color: white;
+      margin: 0;
+      padding: 0;
     }
 
     .card {
@@ -118,15 +120,10 @@
   <div class="card">
     <h3>Meus Mangás</h3>
 
-    <!-- INSTRUÇÃO:
-         Para adicionar mais mangás, copie o bloco <a> abaixo (com class "manga-item")
-         e cole logo abaixo dele, alterando o href, a imagem (src), o título e a descrição. -->
-
-    <!-- ÁREA DE PESQUISA - INÍCIO -->
+    <!-- ÁREA DE PESQUISA -->
     <div class="search-box">
       <input type="text" id="searchInput" placeholder="🔍 Pesquisar mangá..." onkeyup="searchManga()" />
     </div>
-    <!-- ÁREA DE PESQUISA - FIM -->
 
     <!-- Lista de mangás -->
     <div id="mangaList">
@@ -138,10 +135,9 @@
         </div>
       </a>
     </div>
-
   </div>
 
-  <!-- SEÇÃO: DOE PARA LAÇOS PROFANOS -->
+  <!-- SEÇÃO: DOADORES -->
   <div class="card">
     <img class="profile-icon" src="https://i.imgur.com/mgxXSto.png" alt="Logo Laços Profanos">
 
@@ -160,12 +156,10 @@
   </div>
 
   <script>
-    // Função para remover acentos (diacríticos) das strings
     function removeAcentos(str) {
       return str.normalize("NFD").replace(/[\u0300-\u036f]/g, "");
     }
 
-    // Função de pesquisa de mangás - IGNORA maiúsculas/minúsculas e acentos
     function searchManga() {
       const input = removeAcentos(document.getElementById('searchInput').value.toLowerCase());
       const mangas = document.getElementById('mangaList').getElementsByClassName('manga-item');
@@ -185,4 +179,3 @@
 
 </body>
 </html>
-
