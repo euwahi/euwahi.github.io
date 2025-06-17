@@ -253,19 +253,19 @@
   <!-- 🎉 EASTER EGG SCRIPTS -->
   <script>
     function ativarEasterEgg() {
-      // Faixa
+      // Faixa de aniversário
       const faixa = document.createElement('div');
       faixa.className = 'faixa-aniversario';
-      faixa.innerText = '🎉 Feliz aniversário de Laços Profanos! Obrigado por ler! 🎉';
+      faixa.innerText = '🎂 Laços Profanos está em festa! Comemorando mais um ano de histórias incríveis 🎂';
       document.body.appendChild(faixa);
 
-      // Música
+      // Música de comemoração
       const audio = new Audio('https://files.catbox.moe/l3n1tq.mp3');
       audio.loop = true;
       audio.volume = 0.4;
       audio.play().catch(() => console.log('Auto-play bloqueado'));
 
-      // Confetes
+      // Confetes coloridos
       for (let i = 0; i < 50; i++) {
         const confete = document.createElement('div');
         confete.className = 'confete';
