@@ -3,73 +3,44 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Laços Profanos - Principal</title>
-  <link rel="icon" href="https://i.imgur.com/mgxXSto.png" type="image/png">
+  <title>Laços Profanos</title>
+  <link rel="icon" href="https://i.imgur.com/mgxXSto.png">
 
   <style>
-    /* =========================
-       FUNDO PADRÃO DO SITE
-       ========================= */
+    /* ===== FUNDO PADRÃO ===== */
     body {
       background-color: #121212;
       background-image: radial-gradient(#2c2c2c 1px, transparent 1px);
       background-size: 24px 24px;
       color: white;
-      font-family: Arial, sans-serif;
       margin: 0;
-      padding: 0;
-      text-align: center;
-      overflow-x: hidden;
+      font-family: sans-serif;
     }
 
-    /* =========================
-       FUNDO DO EASTER EGG
-       ========================= */
+    /* ===== FUNDO EASTER EGG ===== */
     body.lacos-aniversario {
       background-color: #121212;
       background-image: radial-gradient(#a3005b 2px, transparent 2px);
       background-size: 20px 20px;
     }
 
-    /* =========================
-       ESTILOS GERAIS
-       ========================= */
-    .menu-topo {
-      background-color: #2c2c2c;
-      padding: 10px 20px;
-      display: flex;
-      justify-content: flex-end;
-      gap: 20px;
-    }
-
-    .menu-topo a {
-      color: white;
-      text-decoration: none;
-      font-weight: bold;
-    }
-
-    .menu-topo a:hover {
-      text-decoration: underline;
-    }
-
+    /* ===== LOGO COM CHAPÉU ===== */
     .logo-container {
       position: relative;
-      display: inline-block;
+      text-align: center;
+      margin-top: 60px;
     }
 
     .logo {
       width: 200px;
-      height: 200px;
-      object-fit: cover;
       border-radius: 50%;
-      margin-top: 30px;
     }
 
     .party-hat {
       display: none;
       position: absolute;
-      width: 80px;
-      top: -40px;
+      width: 90px;
+      top: -70px;
       left: 50%;
       transform: translateX(-50%) rotate(-15deg);
       z-index: 10;
@@ -79,40 +50,33 @@
       display: block;
     }
 
-    h1 {
-      margin: 20px 0 10px;
-      font-size: 28px;
+    /* ===== TEXTOS ===== */
+    h1, h2 {
+      text-align: center;
     }
 
-    h2 {
-      font-size: 22px;
-      margin-bottom: 30px;
-      color: #ffffff;
-    }
-
+    /* ===== BOTÕES ===== */
     .botao {
       display: block;
-      width: 80%;
+      width: 90%;
       max-width: 300px;
       margin: 10px auto;
       padding: 15px;
-      background-color: transparent;
       border: 2px solid white;
+      background: transparent;
       color: white;
-      font-weight: bold;
       text-decoration: none;
       border-radius: 8px;
-      transition: transform 0.3s, background-color 0.3s;
+      text-align: center;
+      transition: 0.3s;
     }
 
     .botao:hover {
+      background: #333;
       transform: scale(1.05);
-      background-color: #333;
     }
 
-    /* =========================
-       CARD DE DOAÇÃO
-       ========================= */
+    /* ===== CARD DE DOAÇÕES ===== */
     .card {
       max-width: 300px;
       margin: 40px auto;
@@ -120,6 +84,7 @@
       border: 2px solid #a3005b;
       border-radius: 10px;
       background-color: #1a1a1a;
+      text-align: center;
     }
 
     .profile-icon {
@@ -154,81 +119,25 @@
       transform: scale(1.1);
     }
 
-    /* =========================
-       FORMULÁRIO
-       ========================= */
-    .form-contato {
-      background-color: #1a1a1a;
-      max-width: 500px;
-      margin: 60px auto 40px;
-      padding: 25px;
-      border-radius: 12px;
-      border: 2px solid #444;
-      box-sizing: border-box;
-      text-align: left;
-    }
-
-    .form-contato h3 {
-      font-size: 22px;
-      margin-bottom: 10px;
-      color: #ffffff;
-      text-align: center;
-    }
-
-    .form-contato p.nota {
-      font-size: 14px;
-      margin-bottom: 20px;
-      color: #cccccc;
-      text-align: center;
-    }
-
-    .form-contato input,
-    .form-contato textarea {
-      width: 100%;
-      padding: 12px;
-      margin-bottom: 15px;
-      border-radius: 8px;
-      border: none;
-      background-color: #2c2c2c;
-      color: white;
-      font-size: 15px;
-      box-sizing: border-box;
-    }
-
-    .form-contato button {
-      width: 100%;
-      padding: 14px;
-      background-color: #a3005b;
-      border: none;
-      color: white;
-      font-weight: bold;
-      font-size: 16px;
-      border-radius: 8px;
-      cursor: pointer;
-      transition: transform 0.3s, background-color 0.3s;
-      box-sizing: border-box;
-    }
-
-    .form-contato button:hover {
-      transform: scale(1.05);
-      background-color: #c0006f;
-    }
-
-    /* =========================
-       ELEMENTOS DO EASTER EGG
-       ========================= */
+    /* ===== EFEITOS DO EASTER EGG ===== */
     .lacos-banner {
+      display: none;
       position: fixed;
-      top: 20px;
+      top: 10px;
       left: 50%;
       transform: translateX(-50%);
       background: #a3005b;
       color: white;
-      font-size: 20px;
       padding: 10px 25px;
       border-radius: 8px;
       border: 2px solid white;
       z-index: 9999;
+      font-weight: bold;
+      box-shadow: 0 0 10px #a3005b;
+    }
+
+    body.lacos-aniversario .lacos-banner {
+      display: block;
     }
 
     .confete {
@@ -238,38 +147,33 @@
       border-radius: 50%;
       top: -20px;
       animation: quedaConfete 3s linear infinite;
+      z-index: 999;
     }
 
     @keyframes quedaConfete {
-      0% {
-        transform: translateY(0) rotate(0deg);
-      }
-      100% {
-        transform: translateY(100vh) rotate(360deg);
-      }
+      0% { transform: translateY(0) rotate(0deg); }
+      100% { transform: translateY(100vh) rotate(360deg); }
     }
   </style>
 </head>
+
 <body>
 
-  <!-- ======= MENU DO TOPO ======= -->
-  <div class="menu-topo">
-    <a href="lacosprofanos.com.br">Redes sociais</a>
-    <a href="scan.html">Nossa Scan</a>
+  <!-- ===== MENSAGEM DO EASTER EGG ===== -->
+  <div class="lacos-banner">
+    🎉 Aniversário de Laços Profanos! 29 de Outubro 🎉
   </div>
 
-  <!-- ======= LOGO COM CHAPÉU ======= -->
+  <!-- ===== LOGO COM CHAPÉU ===== -->
   <div class="logo-container">
-    <img class="logo" src="https://i.imgur.com/mgxXSto.png" alt="Logo Laços Profanos">
-    <img class="party-hat" src="https://gallery.yopriceville.com/var/albums/Free-Clipart-Pictures/Happy-Birthday-PNG/Party_Hat_PNG_Clipart_Image.png?m=1629805743
-" alt="Chapéu de Aniversário">
+    <img class="logo" src="https://i.imgur.com/mgxXSto.png" alt="Logo">
+    <img class="party-hat" src="https://gallery.yopriceville.com/var/albums/Free-Clipart-Pictures/Happy-Birthday-PNG/Party_Hat_PNG_Clipart_Image.png?m=1629805743" alt="Chapéu de Aniversário">
   </div>
 
-  <!-- ======= TÍTULO ======= -->
-  <h1>Laços profanos</h1>
+  <h1>Laços Profanos</h1>
   <h2>Redes sociais</h2>
 
-  <!-- ======= BOTÕES ======= -->
+  <!-- ===== BOTÕES DE REDES ===== -->
   <a class="botao" href="https://tipa.ai/lacosprofanos" target="_blank">TIPA.AI</a>
   <a class="botao" href="scan.html" target="_blank">NOSSA SCAN</a>
   <a class="botao" href="https://bit.ly/La%C3%A7osprofanoszap" target="_blank">WHATSAPP</a>
@@ -277,77 +181,56 @@
   <a class="botao" href="https://is.gd/DAv0em" target="_blank">YOUTUBE</a>
   <a class="botao" href="https://www.instagram.com/lacosprofanos" target="_blank">INSTAGRAM</a>
   <a class="botao" href="https://x.com/LacosProfanos" target="_blank">X</a>
-  <a class="botao" href="https://lacosprofanos.my.canva.site/fanarts" target="_blank">MURAL DE ARTES FEITAS POR FÃS</a>
+  <a class="botao" href="https://lacosprofanos.my.canva.site/fanarts" target="_blank">MURAL DE FANARTS</a>
 
-  <!-- ======= CARD DE DOAÇÃO ======= -->
+  <!-- ===== CARD DE DOAÇÃO ===== -->
   <div class="card">
     <img class="profile-icon" src="https://i.imgur.com/mgxXSto.png" alt="Logo Laços Profanos">
-
     <h3>DOADORES DE LAÇOS PROFANOS</h3>
-
     <div class="doadores">
       <p>Top1 do ranking <span class="valor">R$ 04,00</span></p>
       <p>Jozé real oficial <span class="valor">R$ 02,00</span></p>
       <p>ajnopse bob <span class="valor">R$ 01,00</span></p>
       <p>Anônimo amigo <span class="valor">R$ 01,00</span></p>
     </div>
-
     <a class="botao-doar" href="https://tipa.ai/lacosprofanos" target="_blank">
       DOE PARA LAÇOS PROFANOS
     </a>
   </div>
 
-  <!-- ======= FORMULÁRIO DE CONTATO ======= -->
-  <div class="form-contato">
-    <h3>Fale Conosco</h3>
-    <p class="nota">Tem alguma dúvida, sugestão ou elogio? Manda uma mensagem pra gente!</p>
+  <!-- ===== SCRIPT DO EASTER EGG ===== -->
+  <script>
+    document.addEventListener("DOMContentLoaded", function() {
+      const hoje = new Date();
+      const dia = hoje.getDate();
+      const mes = hoje.getMonth(); // Outubro = 9
 
-    <form action="https://formspree.io/f/xwpbbgyb" method="POST">
-      <input type="text" name="nome" placeholder="Seu nome" required>
-      <input type="email" name="email" placeholder="Seu e-mail" required>
-      <textarea name="mensagem" placeholder="Escreva sua mensagem..." rows="5" required></textarea>
-      <button type="submit">Enviar mensagem</button>
-    </form>
-  </div>
+      const urlParams = new URLSearchParams(window.location.search);
+      const easterAtivado = urlParams.has('2910');
 
-<!-- ======= SCRIPT DO EASTER EGG ======= -->
-<script>
-  document.addEventListener("DOMContentLoaded", function() {
-    const hoje = new Date();
-    const dia = hoje.getDate();
-    const mes = hoje.getMonth(); // Outubro é 9
-
-    const urlParams = new URLSearchParams(window.location.search);
-    const easterAtivado = urlParams.has('2910');
-
-    if ((dia === 29 && mes === 9) || easterAtivado) {
-      ativarEasterEgg();
-    }
-
-    function ativarEasterEgg() {
-      document.body.classList.add("lacos-aniversario");
-
-      const banner = document.createElement("div");
-      banner.className = "lacos-banner";
-      banner.textContent = "🎉 Aniversário de Laços Profanos! 29 de Outubro 🎉";
-      document.body.appendChild(banner);
-
-      const audio = new Audio("https://files.catbox.moe/l3n1tq.mp3");
-      audio.loop = true;
-      audio.volume = 0.3;
-      audio.play().catch(() => {});
-
-      for (let i = 0; i < 100; i++) {
-        const confete = document.createElement("div");
-        confete.className = "confete";
-        confete.style.left = Math.random() * window.innerWidth + "px";
-        confete.style.background = `hsl(${Math.random() * 360}, 100%, 50%)`;
-        confete.style.animationDelay = Math.random() * 3 + "s";
-        document.body.appendChild(confete);
+      if ((dia === 29 && mes === 9) || easterAtivado) {
+        ativarEasterEgg();
       }
-    }
-  });
-</script>
+
+      function ativarEasterEgg() {
+        document.body.classList.add("lacos-aniversario");
+
+        const audio = new Audio("https://files.catbox.moe/l3n1tq.mp3");
+        audio.loop = true;
+        audio.volume = 0.3;
+        audio.play().catch(() => {});
+
+        for (let i = 0; i < 100; i++) {
+          const confete = document.createElement("div");
+          confete.className = "confete";
+          confete.style.left = Math.random() * window.innerWidth + "px";
+          confete.style.background = `hsl(${Math.random() * 360}, 100%, 50%)`;
+          confete.style.animationDelay = Math.random() * 3 + "s";
+          document.body.appendChild(confete);
+        }
+      }
+    });
+  </script>
 
 </body>
 </html>
