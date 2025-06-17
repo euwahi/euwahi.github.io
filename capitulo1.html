@@ -150,6 +150,49 @@
     })();
   </script>
 
+  <!-- Easter Egg: coração no aniversário (29/10) ou se tiver ?2910 na URL -->
+  <script>
+    (function () {
+      const params = new URLSearchParams(window.location.search);
+      const hoje = new Date();
+      const dia = String(hoje.getDate()).padStart(2, '0');
+      const mes = String(hoje.getMonth() + 1).padStart(2, '0');
+      const dataHoje = dia + mes;
+
+      const isAniversario = dataHoje === '2910' || params.has('2910');
+
+      if (isAniversario) {
+        const egg = document.createElement('div');
+        egg.innerHTML = `
+          <div id="egg-heart" style="
+            position: fixed;
+            bottom: 20px;
+            left: 20px;
+            z-index: 9999;
+            animation: pulse 2s infinite;
+            cursor: pointer;
+            user-select: none;
+          ">
+            <img src="https://i.imgur.com/3w1QNYo.png" alt="♥" style="width: 60px; height: 60px;" title="Feliz Aniversário, Laços Profanos!">
+          </div>
+          <style>
+            @keyframes pulse {
+              0% { transform: scale(1); opacity: 0.8; }
+              50% { transform: scale(1.15); opacity: 1; }
+              100% { transform: scale(1); opacity: 0.8; }
+            }
+            #egg-heart:hover {
+              animation: none;
+              transform: scale(1.2);
+              transition: transform 0.3s ease;
+            }
+          </style>
+        `;
+        document.body.appendChild(egg);
+      }
+    })();
+  </script>
+
   <noscript>
     Por favor, habilite o JavaScript para visualizar os
     <a href="https://disqus.com/?ref_noscript">comentários via Disqus.</a>
