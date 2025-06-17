@@ -6,6 +6,47 @@
   <title>Laços Profanos - Redes Sociais</title>
    <link rel="icon" href="https://i.imgur.com/mgxXSto.png" type="image/png">
   <style>
+    <!-- Easter Egg CSS: coloque este estilo dentro da tag <head> do seu HTML -->
+<style>
+  /* CSS do Easter Egg - Aniversário Laços Profanos */
+  body.lacos-aniversario {
+    background-color: #121212;
+    background-image: radial-gradient(#a3005b 1px, transparent 1px);
+    background-size: 20px 20px;
+    color: white;
+    overflow-x: hidden;
+  }
+
+  .lacos-banner {
+    position: fixed;
+    top: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: #a3005b;
+    color: white;
+    font-size: 20px;
+    padding: 10px 25px;
+    border-radius: 8px;
+    border: 2px solid white;
+    z-index: 9999;
+  }
+
+  .confete {
+    position: fixed;
+    width: 10px;
+    height: 10px;
+    background: red;
+    top: -20px;
+    border-radius: 50%;
+    animation: quedaConfete 3s linear infinite;
+  }
+
+  @keyframes quedaConfete {
+    0% { transform: translateY(0) rotate(0deg); }
+    100% { transform: translateY(100vh) rotate(360deg); }
+  }
+</style>
+
     body {
       background-color: #121212;
       font-family: Arial, sans-serif;
@@ -223,6 +264,44 @@
       <button type="submit">Enviar mensagem</button>
     </form>
   </div>
+  <!-- Easter Egg JS: coloque este script no final do <body>, antes de fechar a tag </body> -->
+<script>
+  document.addEventListener("DOMContentLoaded", function() {
+    const hoje = new Date();
+    const dia = hoje.getDate();
+    const mes = hoje.getMonth();
+
+    const urlParams = new URLSearchParams(window.location.search);
+    const easterAtivado = urlParams.has('easteregg');
+
+    if ((dia === 29 && mes === 9) || easterAtivado) {
+      ativarEasterEgg();
+    }
+
+    function ativarEasterEgg() {
+      document.body.classList.add("lacos-aniversario");
+
+      const banner = document.createElement("div");
+      banner.className = "lacos-banner";
+      banner.innerHTML = "🎉 Aniversário de Laços Profanos! 29 de Outubro 🎉";
+      document.body.appendChild(banner);
+
+      const audio = new Audio("https://files.catbox.moe/l3n1tq.mp3");
+      audio.loop = true;
+      audio.volume = 0.3;
+      audio.play();
+
+      for (let i = 0; i < 100; i++) {
+        const confete = document.createElement("div");
+        confete.className = "confete";
+        confete.style.left = Math.random() * window.innerWidth + "px";
+        confete.style.background = `hsl(${Math.random() * 360}, 100%, 50%)`;
+        confete.style.animationDelay = Math.random() * 3 + "s";
+        document.body.appendChild(confete);
+      }
+    }
+  });
+</script>
 
 </body>
 </html>
