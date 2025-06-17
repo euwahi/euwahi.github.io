@@ -97,7 +97,6 @@
       transform: scale(1.1);
     }
 
-    /* Estilo do egg */
     @keyframes brilho {
       0% { transform: scale(1); opacity: 0.8; }
       50% { transform: scale(1.05); opacity: 1; }
@@ -131,6 +130,7 @@
       box-shadow: 0 0 10px #a3005b;
       z-index: 9998;
       max-width: 240px;
+      font-weight: normal;
     }
   </style>
 </head>
@@ -142,15 +142,11 @@
     <img src="paginas/cap1_01.jpg" alt="Página 1" class="page" />
     <img src="paginas/cap1_02.jpg" alt="Página 2" class="page" />
     <img src="paginas/cap1_03.jpg" alt="Página 3" class="page" />
-    <!-- <img src="paginas/cap1_04.jpg" alt="Página 4" class="page" /> -->
   </div>
 
-  <!-- Botão destacado logo acima do botão de voltar -->
   <a href="javascript:void(0)" class="link-discreto" onclick="mostrarAviso()">→ Próximo capítulo</a>
-
   <a href="manga1.html" class="link-discreto">← Voltar para as informações do mangá</a>
 
-  <!-- Botão flutuante "Voltar ao topo" -->
   <button class="botao-topo" title="Voltar ao topo" onclick="window.scrollTo({top: 0, behavior: 'smooth'})">↑</button>
 
   <!-- COMENTÁRIOS -->
@@ -195,7 +191,7 @@
         `;
         const msg = document.createElement('div');
         msg.id = 'egg-msg';
-        msg.innerText = '🎉 Hoje é aniversário de Laços Profanos! Obrigado por fazer parte dessa jornada.';
+        msg.innerHTML = '🎉 Hoje é aniversário da marca <strong>Laços Profanos</strong>! Obrigado por fazer parte dessa jornada.';
         document.body.appendChild(egg);
         document.body.appendChild(msg);
       }
