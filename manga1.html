@@ -176,16 +176,51 @@
     .comentarios {
       margin-top: 60px;
     }
+
+    /* 🎉 EASTER EGG 29/10 */
+    .confete {
+      position: fixed;
+      width: 10px;
+      height: 10px;
+      background-color: #ff66cc;
+      border-radius: 50%;
+      animation: cair 3s linear infinite;
+      z-index: 9999;
+    }
+
+    @keyframes cair {
+      0% {
+        transform: translateY(-20px) rotate(0deg);
+        opacity: 1;
+      }
+
+      100% {
+        transform: translateY(100vh) rotate(720deg);
+        opacity: 0;
+      }
+    }
+
+    .faixa-aniversario {
+      background-color: #ff66cc;
+      color: #121212;
+      text-align: center;
+      padding: 10px;
+      font-weight: bold;
+      border-radius: 0 0 12px 12px;
+      box-shadow: 0 0 10px #ff66cc;
+      z-index: 9999;
+      position: fixed;
+      top: 0;
+      width: 100%;
+    }
   </style>
 </head>
 
 <body>
-
   <div class="container-total">
 
     <div class="manga-card">
       <h1>Laços Profanos I: O Último Anjo</h1>
-
       <img src="https://i.imgur.com/nvmchiJ.png" alt="Capa Mangá 1" class="cover" />
 
       <div class="buttons">
@@ -200,13 +235,12 @@
       </div>
 
       <p class="sinopse">
-        Após anos congelado em uma estalactite, Hamiah, o último anjo de sua espécie, desperta em um mundo devastado. O reino que um dia conheceu agora está sob o domínio de uma rainha ambiciosa, Olivia, que busca poder e riquezas a qualquer custo, enquanto humanos são escravizados sob a tirania de Enaya, a cruel líder do exército demoníaco. Determinado a restaurar o equilíbrio, Hamiah se une a um grupo de rebeldes que luta pela liberdade. Ao longo de sua jornada, ele descobre que os inimigos nem sempre são claros e que aliados inesperados podem surgir em meio ao caos. Com o destino do reino em jogo, Hamiah deve enfrentar desafios que testarão sua coragem e seus ideais.
+        Após anos congelado em uma estalactite, Hamiah, o último anjo de sua espécie...
       </p>
 
       <a href="scan.html" class="back-link">← Voltar para a lista de mangás</a>
     </div>
 
-    <!-- COMENTÁRIOS -->
     <div class="comentarios">
       <div class="aviso">
         🚫 Não pode spoiler. Sujeito a ban!
@@ -214,9 +248,46 @@
       <p style="text-align: center;">Leia e participe das discussões respeitando todos os leitores!</p>
       <div id="disqus_thread"></div>
     </div>
-
   </div>
 
+  <!-- 🎉 EASTER EGG SCRIPTS -->
+  <script>
+    function ativarEasterEgg() {
+      // Faixa
+      const faixa = document.createElement('div');
+      faixa.className = 'faixa-aniversario';
+      faixa.innerText = '🎉 Feliz aniversário de Laços Profanos! Obrigado por ler! 🎉';
+      document.body.appendChild(faixa);
+
+      // Música
+      const audio = new Audio('https://files.catbox.moe/l3n1tq.mp3');
+      audio.loop = true;
+      audio.volume = 0.4;
+      audio.play().catch(() => console.log('Auto-play bloqueado'));
+
+      // Confetes
+      for (let i = 0; i < 50; i++) {
+        const confete = document.createElement('div');
+        confete.className = 'confete';
+        confete.style.left = Math.random() * 100 + 'vw';
+        confete.style.backgroundColor = `hsl(${Math.random() * 360}, 100%, 70%)`;
+        confete.style.animationDuration = `${Math.random() * 3 + 2}s`;
+        document.body.appendChild(confete);
+        setTimeout(() => confete.remove(), 5000);
+      }
+    }
+
+    const url = new URL(window.location.href);
+    const dataHoje = new Date();
+    const ativadoViaURL = url.search.includes('2910');
+    const eh2910 = dataHoje.getDate() === 29 && (dataHoje.getMonth() + 1) === 10;
+
+    if (ativadoViaURL || eh2910) {
+      window.addEventListener('load', ativarEasterEgg);
+    }
+  </script>
+
+  <!-- DISQUS -->
   <script>
     var disqus_config = function () {
       this.page.url = window.location.href;
@@ -235,7 +306,5 @@
     Por favor, habilite o JavaScript para visualizar os
     <a href="https://disqus.com/?ref_noscript">comentários via Disqus.</a>
   </noscript>
-
 </body>
-
 </html>
