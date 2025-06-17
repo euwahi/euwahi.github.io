@@ -7,7 +7,6 @@
   <link rel="icon" href="https://i.imgur.com/mgxXSto.png">
 
   <style>
-    /* ===== FUNDO PADRÃO ===== */
     body {
       background-color: #121212;
       background-image: radial-gradient(#2c2c2c 1px, transparent 1px);
@@ -17,14 +16,12 @@
       font-family: sans-serif;
     }
 
-    /* ===== FUNDO EASTER EGG ===== */
     body.lacos-aniversario {
       background-color: #121212;
       background-image: radial-gradient(#a3005b 2px, transparent 2px);
       background-size: 20px 20px;
     }
 
-    /* ===== LOGO COM CHAPÉU ===== */
     .logo-container {
       position: relative;
       text-align: center;
@@ -40,7 +37,7 @@
       display: none;
       position: absolute;
       width: 90px;
-      top: -70px;
+      top: -90px; /* mais acima para não tampar a logo */
       left: 50%;
       transform: translateX(-50%) rotate(-15deg);
       z-index: 10;
@@ -50,12 +47,10 @@
       display: block;
     }
 
-    /* ===== TEXTOS ===== */
     h1, h2 {
       text-align: center;
     }
 
-    /* ===== BOTÕES ===== */
     .botao {
       display: block;
       width: 90%;
@@ -76,7 +71,6 @@
       transform: scale(1.05);
     }
 
-    /* ===== CARD DE DOAÇÕES ===== */
     .card {
       max-width: 300px;
       margin: 40px auto;
@@ -119,11 +113,10 @@
       transform: scale(1.1);
     }
 
-    /* ===== EFEITOS DO EASTER EGG ===== */
     .lacos-banner {
       display: none;
       position: fixed;
-      top: 10px;
+      bottom: 10px; /* movido para baixo */
       left: 50%;
       transform: translateX(-50%);
       background: #a3005b;
