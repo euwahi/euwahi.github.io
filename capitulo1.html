@@ -1,9 +1,8 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
- 
-  <!-- Script do Google AdSense (apenas 1x por página) -->
-   <meta name="google-adsense-account" content="ca-pub-2715085153658985">
+  <!-- Script do Google AdSense -->
+  <meta name="google-adsense-account" content="ca-pub-2715085153658985">
 
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -17,16 +16,19 @@
       margin: 20px auto;
       padding: 10px;
     }
+
     h1 {
       text-align: center;
       color: #4a90e2;
       margin-bottom: 20px;
     }
+
     .webtoon-container {
       display: flex;
       flex-direction: column;
       gap: 15px;
     }
+
     .page {
       width: 100%;
       border-radius: 12px;
@@ -34,10 +36,30 @@
       cursor: zoom-in;
       transition: transform 0.3s ease;
     }
+
     .page:hover {
       transform: scale(1.05);
     }
-    /* Botão voltar */
+
+    /* Botões extras */
+    .botao-extra {
+      display: block;
+      text-align: center;
+      margin: 20px auto;
+      padding: 12px 20px;
+      background-color: #4a90e2;
+      color: white;
+      border: none;
+      border-radius: 6px;
+      font-weight: bold;
+      cursor: pointer;
+      transition: transform 0.3s;
+    }
+
+    .botao-extra:hover {
+      transform: scale(1.05);
+    }
+
     .back-link {
       display: block;
       text-align: center;
@@ -47,6 +69,7 @@
       font-size: 0.9rem;
       user-select: none;
     }
+
     .back-link:hover {
       color: #4a90e2;
       text-decoration: underline;
@@ -66,12 +89,18 @@
     <!-- <img src="paginas/cap1_04.jpg" alt="Página 4" class="page" /> -->
   </div>
 
+  <!-- BOTÃO: Próximo Capítulo -->
+  <button class="botao-extra" onclick="proximoCapitulo()">Próximo Capítulo</button>
+  <!-- Instrução: Quando o próximo capítulo estiver disponível, substitua a função por:
+  <a class="botao-extra" href='capitulo2.html'>Próximo Capítulo</a>
+  -->
+
+  <!-- BOTÃO: Voltar ao Topo -->
+  <button class="botao-extra" onclick="window.scrollTo({top: 0, behavior: 'smooth'})">Voltar ao Topo</button>
+
   <a href="manga1.html" class="back-link">← Voltar para as informações do mangá</a>
 
-</body>
-</html>
-
-<!-- COMENTÁRIOS -->
+  <!-- COMENTÁRIOS -->
   <div class="container" style="margin-top: 60px;">
     <div class="aviso" style="background: #ff0000; color: #fff; padding: 10px; border-radius: 5px; margin-bottom: 20px; text-align: center; font-weight: bold;">
       🚫 Não pode spoiler. Sujeito a ban!
@@ -81,14 +110,18 @@
   </div>
 
   <script>
+    function proximoCapitulo() {
+      alert("😅 Ainda não temos outros capítulos disponíveis. Tenha calma!");
+    }
+
     var disqus_config = function () {
-      this.page.url = window.location.href;  // Usa a URL atual da página
-      this.page.identifier = window.location.pathname;  // Usa o caminho da URL como identificador único
+      this.page.url = window.location.href;
+      this.page.identifier = window.location.pathname;
     };
 
     (function () {
       var d = document, s = d.createElement('script');
-      s.src = 'https://lacosprofanosscan.disqus.com/embed.js'; // seu subdomínio no Disqus
+      s.src = 'https://lacosprofanosscan.disqus.com/embed.js';
       s.setAttribute('data-timestamp', +new Date());
       (d.head || d.body).appendChild(s);
     })();
