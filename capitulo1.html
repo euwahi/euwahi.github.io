@@ -1,9 +1,7 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-  <!-- Script do Google AdSense (apenas 1x por página) -->
   <meta name="google-adsense-account" content="ca-pub-2715085153658985">
-
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Laços Profanos - Capítulo 1</title>
@@ -59,21 +57,6 @@
       text-decoration: underline;
     }
 
-    .link-secundario {
-      display: block;
-      text-align: center;
-      margin-bottom: 10px;
-      color: #555;
-      font-size: 0.75rem;
-      text-decoration: none;
-      user-select: none;
-    }
-
-    .link-secundario:hover {
-      color: #a3005b;
-      text-decoration: underline;
-    }
-
     .botao-topo {
       position: fixed;
       right: 20px;
@@ -97,40 +80,26 @@
       transform: scale(1.1);
     }
 
-    @keyframes brilho {
-      0% { transform: scale(1); opacity: 0.8; }
-      50% { transform: scale(1.05); opacity: 1; }
-      100% { transform: scale(1); opacity: 0.8; }
-    }
-
-    #egg-aniversario {
+    /* Mensagem de Aniversário */
+    #egg-msg {
       position: fixed;
       bottom: 20px;
       left: 20px;
-      z-index: 9999;
-      animation: brilho 2.5s infinite;
-      user-select: none;
-    }
-
-    #egg-aniversario img {
-      width: 60px;
-      height: auto;
-      filter: drop-shadow(0 0 6px #a3005b);
-    }
-
-    #egg-msg {
-      position: fixed;
-      bottom: 90px;
-      left: 20px;
-      background: rgba(0, 0, 0, 0.75);
+      background: rgba(0, 0, 0, 0.85);
       color: #fff;
-      padding: 10px 16px;
-      border-radius: 8px;
+      padding: 12px 16px;
+      border-radius: 10px;
       font-size: 0.85rem;
-      box-shadow: 0 0 10px #a3005b;
-      z-index: 9998;
-      max-width: 240px;
-      font-weight: normal;
+      box-shadow: 0 0 12px #a3005b;
+      z-index: 9999;
+      max-width: 260px;
+      animation: brilho 2.5s infinite;
+    }
+
+    @keyframes brilho {
+      0% { transform: scale(1); opacity: 0.9; }
+      50% { transform: scale(1.03); opacity: 1; }
+      100% { transform: scale(1); opacity: 0.9; }
     }
   </style>
 </head>
@@ -175,24 +144,18 @@
       (d.head || d.body).appendChild(s);
     })();
 
-    // Egg ativado em 29/10 ou com ?2910
+    // Mostrar mensagem de aniversário apenas em 29/10 ou se a URL conter ?2910
     (function () {
-      const urlTem2910 = window.location.search.includes('2910');
       const hoje = new Date();
       const dia = String(hoje.getDate()).padStart(2, '0');
       const mes = String(hoje.getMonth() + 1).padStart(2, '0');
       const dataHoje = dia + mes;
+      const urlTem2910 = window.location.search.includes('2910');
 
       if (dataHoje === '2910' || urlTem2910) {
-        const egg = document.createElement('div');
-        egg.id = 'egg-aniversario';
-        egg.innerHTML = `
-          <img src="https://i.imgur.com/o94xZt3.png" alt="Aniversário Laços Profanos" title="Laços Profanos comemora hoje seu aniversário! 🎉">
-        `;
         const msg = document.createElement('div');
         msg.id = 'egg-msg';
-        msg.innerHTML = '🎉 Hoje é aniversário da marca <strong>Laços Profanos</strong>! Obrigado por fazer parte dessa jornada.';
-        document.body.appendChild(egg);
+        msg.innerText = '🎉 Hoje é aniversário da marca Laços Profanos! Obrigado por fazer parte dessa jornada.';
         document.body.appendChild(msg);
       }
     })();
