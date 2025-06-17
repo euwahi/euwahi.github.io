@@ -96,6 +96,42 @@
       background-color: rgba(163, 0, 91, 0.9);
       transform: scale(1.1);
     }
+
+    /* Estilo do egg */
+    @keyframes brilho {
+      0% { transform: scale(1); opacity: 0.8; }
+      50% { transform: scale(1.05); opacity: 1; }
+      100% { transform: scale(1); opacity: 0.8; }
+    }
+
+    #egg-aniversario {
+      position: fixed;
+      bottom: 20px;
+      left: 20px;
+      z-index: 9999;
+      animation: brilho 2.5s infinite;
+      user-select: none;
+    }
+
+    #egg-aniversario img {
+      width: 60px;
+      height: auto;
+      filter: drop-shadow(0 0 6px #a3005b);
+    }
+
+    #egg-msg {
+      position: fixed;
+      bottom: 90px;
+      left: 20px;
+      background: rgba(0, 0, 0, 0.75);
+      color: #fff;
+      padding: 10px 16px;
+      border-radius: 8px;
+      font-size: 0.85rem;
+      box-shadow: 0 0 10px #a3005b;
+      z-index: 9998;
+      max-width: 240px;
+    }
   </style>
 </head>
 <body>
@@ -111,12 +147,6 @@
 
   <!-- Botão destacado logo acima do botão de voltar -->
   <a href="javascript:void(0)" class="link-discreto" onclick="mostrarAviso()">→ Próximo capítulo</a>
-
-  <!-- 
-    ANOTAÇÃO IMPORTANTE:
-    Quando houver um capítulo novo, substitua o botão acima por:
-    <a href="capitulo2.html" class="link-discreto">→ Próximo capítulo</a>
-  -->
 
   <a href="manga1.html" class="link-discreto">← Voltar para as informações do mangá</a>
 
@@ -148,47 +178,26 @@
       s.setAttribute('data-timestamp', +new Date());
       (d.head || d.body).appendChild(s);
     })();
-  </script>
 
-  <!-- Easter Egg: coração no aniversário (29/10) ou se tiver ?2910 na URL -->
-  <script>
+    // Egg ativado em 29/10 ou com ?2910
     (function () {
-      const params = new URLSearchParams(window.location.search);
+      const urlTem2910 = window.location.search.includes('2910');
       const hoje = new Date();
       const dia = String(hoje.getDate()).padStart(2, '0');
       const mes = String(hoje.getMonth() + 1).padStart(2, '0');
       const dataHoje = dia + mes;
 
-      const isAniversario = dataHoje === '2910' || params.has('2910');
-
-      if (isAniversario) {
+      if (dataHoje === '2910' || urlTem2910) {
         const egg = document.createElement('div');
+        egg.id = 'egg-aniversario';
         egg.innerHTML = `
-          <div id="egg-heart" style="
-            position: fixed;
-            bottom: 20px;
-            left: 20px;
-            z-index: 9999;
-            animation: pulse 2s infinite;
-            cursor: pointer;
-            user-select: none;
-          ">
-            <img src="https://i.imgur.com/3w1QNYo.png" alt="♥" style="width: 60px; height: 60px;" title="Feliz Aniversário, Laços Profanos!">
-          </div>
-          <style>
-            @keyframes pulse {
-              0% { transform: scale(1); opacity: 0.8; }
-              50% { transform: scale(1.15); opacity: 1; }
-              100% { transform: scale(1); opacity: 0.8; }
-            }
-            #egg-heart:hover {
-              animation: none;
-              transform: scale(1.2);
-              transition: transform 0.3s ease;
-            }
-          </style>
+          <img src="https://i.imgur.com/o94xZt3.png" alt="Aniversário Laços Profanos" title="Laços Profanos comemora hoje seu aniversário! 🎉">
         `;
+        const msg = document.createElement('div');
+        msg.id = 'egg-msg';
+        msg.innerText = '🎉 Hoje é aniversário da marca Laços Profanos! Obrigado por fazer parte dessa jornada.';
         document.body.appendChild(egg);
+        document.body.appendChild(msg);
       }
     })();
   </script>
