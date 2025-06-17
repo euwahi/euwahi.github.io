@@ -1,14 +1,20 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
-
-<!-- Script do Google AdSense -->
-<meta name="google-adsense-account" content="ca-pub-2715085153658985">
-
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <link rel="shortcut icon" href="https://i.imgur.com/mgxXSto.png" type="image/png" />
   <title>Lp:Ua - Laços Profanos Scan</title>
+  <!-- Script da Ezoic -->
+  <script async src="//www.ezojs.com/ezoic/sa.min.js"></script>
+  <script>
+      window.ezstandalone = window.ezstandalone || {};
+      ezstandalone.cmd = ezstandalone.cmd || [];
+  </script>
+
+  <!-- Scripts de Consentimento (opcional, se usar) -->
+  <script src="https://cmp.gatekeeperconsent.com/min.js" data-cfasync="false"></script>
+  <script src="https://the.gatekeeperconsent.com/cmp.min.js" data-cfasync="false"></script>
 
   <style>
     body {
@@ -300,5 +306,60 @@
     Por favor, habilite o JavaScript para visualizar os
     <a href="https://disqus.com/?ref_noscript">comentários via Disqus.</a>
   </noscript>
+  <!-- Botão discreto para ativar a tradução -->
+<button id="translateToggle" style="
+  position: fixed;
+  bottom: 10px;
+  right: 10px;
+  z-index: 9999;
+  background-color: #eee;
+  border: 1px solid #ccc;
+  padding: 4px 8px;
+  border-radius: 6px;
+  font-size: 12px;
+  cursor: pointer;
+  opacity: 0.6;
+">🌍 Traduzir</button>
+
+<!-- Div obrigatória para Google Translate -->
+<div id="google_translate_element" style="display:none;"></div>
+
+<script type="text/javascript">
+  function googleTranslateElementInit() {
+    new google.translate.TranslateElement({
+      pageLanguage: 'pt',
+      includedLanguages: 'en,es,fr,de,it,ja,ru,zh-CN',
+      autoDisplay: false
+    }, 'google_translate_element');
+  }
+
+  // Carrega o script do Google Translate
+  (function () {
+    var gt = document.createElement('script');
+    gt.type = 'text/javascript';
+    gt.async = true;
+    gt.src = '//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit';
+    document.body.appendChild(gt);
+  })();
+
+  // Função para ativar manualmente
+  document.getElementById('translateToggle').addEventListener('click', () => {
+    const frame = document.querySelector('iframe.goog-te-banner-frame');
+    if (!frame) {
+      const combo = document.querySelector('.goog-te-combo');
+      if (combo) {
+        const userLang = navigator.language || navigator.userLanguage;
+        const langCode = userLang.split('-')[0]; // "en", "es", etc.
+        combo.value = langCode;
+        combo.dispatchEvent(new Event('change'));
+      } else {
+        alert('A tradução ainda está carregando...');
+      }
+    } else {
+      alert('A tradução já está ativada.');
+    }
+  });
+</script>
+
 </body>
 </html>
