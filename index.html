@@ -1,9 +1,10 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Laços Profanos - Redes Sociais</title>
+   <link rel="icon" href="https://i.imgur.com/mgxXSto.png" type="image/png">
   <style>
     body {
       background-color: #121212;
@@ -112,7 +113,7 @@
       transform: scale(1.1);
     }
 
-    /* FORMULÁRIO DE CONTATO */
+    /* Formulário */
     .form-contato {
       background-color: #1a1a1a;
       max-width: 500px;
@@ -120,7 +121,9 @@
       padding: 25px;
       border-radius: 12px;
       border: 2px solid #444;
+      box-sizing: border-box;
       text-align: left;
+      overflow: hidden;
     }
 
     .form-contato h3 {
@@ -147,11 +150,7 @@
       background-color: #2c2c2c;
       color: white;
       font-size: 15px;
-    }
-
-    .form-contato input::placeholder,
-    .form-contato textarea::placeholder {
-      color: #bbbbbb;
+      box-sizing: border-box;
     }
 
     .form-contato button {
@@ -165,6 +164,7 @@
       border-radius: 8px;
       cursor: pointer;
       transition: transform 0.3s, background-color 0.3s;
+      box-sizing: border-box;
     }
 
     .form-contato button:hover {
@@ -196,24 +196,30 @@
 
   <div class="card">
     <img class="profile-icon" src="https://i.imgur.com/mgxXSto.png" alt="Logo Laços Profanos">
+
     <h3>DOADORES DE LAÇOS PROFANOS</h3>
+
     <div class="doadores">
       <p>Top1 do ranking <span class="valor">R$ 04,00</span></p>
       <p>Jozé real oficial <span class="valor">R$ 02,00</span></p>
       <p>ajnopse bob <span class="valor">R$ 01,00</span></p>
       <p>Anônimo amigo <span class="valor">R$ 01,00</span></p>
     </div>
-    <a class="botao-doar" href="https://tipa.ai/lacosprofanos" target="_blank">DOE PARA LAÇOS PROFANOS</a>
+
+    <a class="botao-doar" href="https://tipa.ai/lacosprofanos" target="_blank">
+      DOE PARA LAÇOS PROFANOS
+    </a>
   </div>
 
-  <!-- FORMULÁRIO FUNCIONAL -->
+  <!-- Formulário de contato -->
   <div class="form-contato">
     <h3>Fale Conosco</h3>
     <p class="nota">Tem alguma dúvida, sugestão ou elogio? Manda uma mensagem pra gente!</p>
+
     <form action="https://formspree.io/f/xwpbbgyb" method="POST">
       <input type="text" name="nome" placeholder="Seu nome" required>
-      <input type="email" name="_replyto" placeholder="Seu e-mail" required>
-      <textarea name="mensagem" rows="5" placeholder="Escreva sua mensagem aqui..." required></textarea>
+      <input type="email" name="email" placeholder="Seu e-mail" required>
+      <textarea name="mensagem" placeholder="Escreva sua mensagem..." rows="5" required></textarea>
       <button type="submit">Enviar mensagem</button>
     </form>
   </div>
