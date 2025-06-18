@@ -147,6 +147,135 @@
       0% { transform: translateY(0) rotate(0deg); }
       100% { transform: translateY(100vh) rotate(360deg); }
     }
+
+    /* ===== ESTILO DO FORMULÁRIO "FALE CONOSCO" ===== */
+    .fale-conosco {
+      max-width: 300px;
+      margin: 40px auto;
+      padding: 20px;
+      border: 2px solid #a3005b;
+      border-radius: 10px;
+      background-color: #1a1a1a;
+      text-align: center;
+    }
+
+    .fale-conosco h3 {
+      margin-top: 0;
+      color: #a3005b;
+    }
+
+    .fale-conosco form {
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+    }
+
+    .fale-conosco input,
+    .fale-conosco textarea,
+    .fale-conosco select {
+      padding: 10px;
+      border-radius: 5px;
+      border: 1px solid #333;
+      background-color: #2a2a2a;
+      color: white;
+    }
+
+    .fale-conosco textarea {
+      min-height: 100px;
+      resize: vertical;
+    }
+
+    .fale-conosco button {
+      background-color: #a3005b;
+      color: white;
+      border: none;
+      padding: 12px;
+      border-radius: 5px;
+      cursor: pointer;
+      font-weight: bold;
+      transition: background-color 0.3s;
+    }
+
+    .fale-conosco button:hover {
+      background-color: #850048;
+    }
+
+    /* ===== ESTILO DO POPUP ===== */
+    #popup-overlay {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0, 0, 0, 0.75);
+      justify-content: center;
+      align-items: center;
+      z-index: 9999;
+    }
+
+    #popup {
+      background: linear-gradient(135deg, #1c1c1c 0%, #2a2a2a 100%);
+      border: 2px solid #a3005b;
+      border-radius: 16px;
+      padding: 28px 24px;
+      width: 90%;
+      max-width: 340px;
+      text-align: center;
+      box-shadow: 0 4px 30px rgba(163, 0, 91, 0.5);
+      position: relative;
+      animation: fadeIn 0.3s ease-in-out;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: scale(0.95); }
+      to { opacity: 1; transform: scale(1); }
+    }
+
+    #popup p {
+      color: white;
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      font-size: 16px;
+      line-height: 1.5;
+      margin-bottom: 24px;
+    }
+
+    #support-button {
+      background: linear-gradient(90deg, #a3005b, #c5116d);
+      color: white;
+      padding: 14px 20px;
+      border: none;
+      border-radius: 10px;
+      text-decoration: none;
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      font-weight: 600;
+      font-size: 15px;
+      display: inline-block;
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    #support-button:hover {
+      background: linear-gradient(90deg, #850048, #a3005b);
+      transform: translateY(-2px);
+      box-shadow: 0 4px 12px rgba(163, 0, 91, 0.4);
+    }
+
+    #close-button {
+      position: absolute;
+      top: 12px;
+      right: 16px;
+      background: none;
+      border: none;
+      color: white;
+      font-size: 26px;
+      font-family: 'Inter', sans-serif;
+      cursor: pointer;
+      transition: color 0.2s ease;
+    }
+
+    #close-button:hover {
+      color: #a3005b;
+    }
   </style>
 </head>
 
@@ -190,6 +319,26 @@
     </a>
   </div>
 
+<!-- ===== FORMULÁRIO "FALE CONOSCO" ===== -->
+<div class="fale-conosco">
+  <h3>FALE CONOSCO</h3>
+  <p>Envie um elogio, sugestão ou mensagem!</p>
+  <form action="https://formspree.io/f/xwpbbgyb" method="POST">
+    <input type="text" name="nome" placeholder="Seu nome" required>
+    <input type="email" name="_replyto" placeholder="Seu e-mail" required>
+    <select name="tipo" required>
+      <option value="" disabled selected>Selecione o tipo</option>
+      <option value="elogio">Elogio</option>
+      <option value="sugestao">Sugestão</option>
+      <option value="critica">Crítica</option>
+      <option value="mensagem">Mensagem</option> <!-- NOVA OPÇÃO ADICIONADA AQUI -->
+      <option value="outro">Outro</option>
+    </select>
+    <textarea name="mensagem" placeholder="Sua mensagem..." required></textarea>
+    <button type="submit">ENVIAR MENSAGEM</button>
+  </form>
+</div>
+
   <!-- ===== SCRIPT DO EASTER EGG ===== -->
   <script>
     document.addEventListener("DOMContentLoaded", function() {
@@ -214,7 +363,7 @@
 
         for (let i = 0; i < 100; i++) {
           const confete = document.createElement("div");
-          confete.className = confete";
+          confete.className = "confete";
           confete.style.left = Math.random() * window.innerWidth + "px";
           confete.style.background = `hsl(${Math.random() * 360}, 100%, 50%)`;
           confete.style.animationDelay = Math.random() * 3 + "s";
@@ -222,122 +371,30 @@
         }
       }
     });
+  </script>
 
+  <!-- ===== POPUP DE DOAÇÃO ===== -->
+  <div id="popup-overlay">
+    <div id="popup">
+      <button id="close-button">×</button>
+      <p>Não queremos rodar aqueles anúncios chatos.<br>
+        <strong>Apoie no tipa.ai ❤️</strong></p>
+      <a id="support-button" href="https://tipa.ai/lacosprofanos" target="_blank">
+        DOE PARA LAÇOS PROFANOS
+      </a>
+    </div>
   </div>
-</div>
 
-<script>
-  window.onload = function () {
-    if (Math.random() < 0.5) {
-      document.getElementById("popup-overlay").style.display = "flex";
-    }
+  <script>
+    window.addEventListener('load', () => {
+      if (Math.random() < 0.5) {
+        document.getElementById("popup-overlay").style.display = "flex";
+      }
 
-    document.getElementById("close-button").onclick = function () {
-      document.getElementById("popup-overlay").style.display = "none";
-    };
-  };
-</script>
-<div id="popup-overlay">
-  <div id="popup">
-    <button id="close-button">×</button>
-    <p>Não queremos rodar aqueles anúncios chatos.<br>
-      <strong>Apoie no tipa.ai ❤️</strong></p>
-    <a id="support-button" href="https://tipa.ai/lacosprofanos" target="_blank">
-      DOE PARA LAÇOS PROFANOS
-    </a>
-  </div>
-</div>
-
-<style>
-  #popup-overlay {
-    display: none;
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0, 0, 0, 0.75);
-    justify-content: center;
-    align-items: center;
-    z-index: 9999;
-  }
-
-  #popup {
-    background: linear-gradient(135deg, #1c1c1c 0%, #2a2a2a 100%);
-    border: 2px solid #a3005b;
-    border-radius: 16px;
-    padding: 28px 24px;
-    width: 90%;
-    max-width: 340px;
-    text-align: center;
-    box-shadow: 0 4px 30px rgba(163, 0, 91, 0.5);
-    position: relative;
-    animation: fadeIn 0.3s ease-in-out;
-  }
-
-  @keyframes fadeIn {
-    from { opacity: 0; transform: scale(0.95); }
-    to { opacity: 1; transform: scale(1); }
-  }
-
-  #popup p {
-    color: white;
-    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
-    font-size: 16px;
-    line-height: 1.5;
-    margin-bottom: 24px;
-  }
-
-  #support-button {
-    background: linear-gradient(90deg, #a3005b, #c5116d);
-    color: white;
-    padding: 14px 20px;
-    border: none;
-    border-radius: 10px;
-    text-decoration: none;
-    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
-    font-weight: 600;
-    font-size: 15px;
-    display: inline-block;
-    transition: transform 0.2s ease, box-shadow 0.2s ease;
-  }
-
-  #support-button:hover {
-    background: linear-gradient(90deg, #850048, #a3005b);
-    transform: translateY(-2px);
-    box-shadow: 0 4px 12px rgba(163, 0, 91, 0.4);
-  }
-
-  #close-button {
-    position: absolute;
-    top: 12px;
-    right: 16px;
-    background: none;
-    border: none;
-    color: white;
-    font-size: 26px;
-    font-family: 'Inter', sans-serif;
-    cursor: pointer;
-    transition: color 0.2s ease;
-  }
-
-  #close-button:hover {
-    color: #a3005b;
-  }
-</style>
-
-<script>
-  window.addEventListener('load', () => {
-    if (Math.random() < 0.5) {
-      document.getElementById("popup-overlay").style.display = "flex";
-    }
-
-    document.getElementById("close-button").addEventListener('click', () => {
-      document.getElementById("popup-overlay").style.display = "none";
+      document.getElementById("close-button").addEventListener('click', () => {
+        document.getElementById("popup-overlay").style.display = "none";
+      });
     });
-  });
-</script>
-  
+  </script>
 </body>
 </html>
-
