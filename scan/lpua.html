@@ -293,13 +293,12 @@
     Por favor, habilite o JavaScript para visualizar os 
     <a href="https://disqus.com/?ref_noscript">comentários via Disqus.</a>
   </noscript>
-  <!-- POP-UP DE APOIO TIPA -->
-<div id="popup-overlay">
+  <div id="popup-overlay">
   <div id="popup">
-    <button id="close-button">&times;</button>
+    <button id="close-button">×</button>
     <p>Não queremos rodar aqueles anúncios chatos.<br>
       <strong>Apoie no tipa.ai ❤️</strong></p>
-    <a id="support-button" href="https://tipa.ai" target="_blank">
+    <a id="support-button" href="https://tipa.ai/lacosprofanos" target="_blank">
       DOE PARA LAÇOS PROFANOS
     </a>
   </div>
@@ -313,56 +312,73 @@
     left: 0;
     width: 100%;
     height: 100%;
-    background-color: rgba(0, 0, 0, 0.7);
+    background-color: rgba(0, 0, 0, 0.75);
     justify-content: center;
     align-items: center;
     z-index: 9999;
   }
 
   #popup {
-    background-color: #1c1c1c;
+    background: linear-gradient(135deg, #1c1c1c 0%, #2a2a2a 100%);
     border: 2px solid #a3005b;
-    border-radius: 14px;
-    padding: 24px 20px;
+    border-radius: 16px;
+    padding: 28px 24px;
     width: 90%;
-    max-width: 320px;
+    max-width: 340px;
     text-align: center;
-    box-shadow: 0 0 20px rgba(163, 0, 91, 0.6);
+    box-shadow: 0 4px 30px rgba(163, 0, 91, 0.5);
     position: relative;
+    animation: fadeIn 0.3s ease-in-out;
+  }
+
+  @keyframes fadeIn {
+    from { opacity: 0; transform: scale(0.95); }
+    to { opacity: 1; transform: scale(1); }
   }
 
   #popup p {
+    color: white;
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
     font-size: 16px;
-    line-height: 1.4;
-    margin-bottom: 20px;
+    line-height: 1.5;
+    margin-bottom: 24px;
   }
 
   #support-button {
-    background-color: #a3005b;
+    background: linear-gradient(90deg, #a3005b, #c5116d);
     color: white;
-    padding: 12px 18px;
+    padding: 14px 20px;
     border: none;
-    border-radius: 8px;
+    border-radius: 10px;
     text-decoration: none;
-    font-weight: bold;
-    font-size: 14px;
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    font-weight: 600;
+    font-size: 15px;
     display: inline-block;
-    transition: background-color 0.3s ease;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
   }
 
   #support-button:hover {
-    background-color: #850048;
+    background: linear-gradient(90deg, #850048, #a3005b);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(163, 0, 91, 0.4);
   }
 
   #close-button {
     position: absolute;
-    top: 8px;
-    right: 12px;
+    top: 12px;
+    right: 16px;
     background: none;
     border: none;
     color: white;
-    font-size: 24px;
+    font-size: 26px;
+    font-family: 'Inter', sans-serif;
     cursor: pointer;
+    transition: color 0.2s ease;
+  }
+
+  #close-button:hover {
+    color: #a3005b;
   }
 </style>
 
@@ -377,7 +393,6 @@
     });
   });
 </script>
-<!-- FIM POP-UP -->
-
+  
 </body>
 </html>
