@@ -5,13 +5,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <link rel="shortcut icon" href="https://i.imgur.com/mgxXSto.png" type="image/png" />
   <title>Lp:Ua - Laços Profanos Scan</title>
-  <script async src="//www.ezojs.com/ezoic/sa.min.js"></script>
-  <script>
-      window.ezstandalone = window.ezstandalone || {};
-      ezstandalone.cmd = ezstandalone.cmd || [];
-  </script>
-  <script src="https://cmp.gatekeeperconsent.com/min.js" data-cfasync="false"></script>
-  <script src="https://the.gatekeeperconsent.com/cmp.min.js" data-cfasync="false"></script>
 
   <style>
     body {
@@ -33,6 +26,7 @@
       background-color: #1a1a1a;
       padding: 30px 20px;
       border-radius: 12px;
+      border: 2px solid #a3005b;
       box-shadow: 0 0 20px rgba(0, 0, 0, 0.8);
     }
 
@@ -46,7 +40,8 @@
     .cover {
       display: block;
       margin: 0 auto 20px;
-      max-width: 300px;
+      max-width: 100%;
+      height: auto;
       border-radius: 12px;
       box-shadow: 0 0 15px #a3005b;
       transition: transform 0.3s ease;
@@ -167,13 +162,31 @@
       color: #fff;
       padding: 10px;
       border-radius: 5px;
-      margin-bottom: 20px;
+      margin-bottom: 10px;
       text-align: center;
       font-weight: bold;
     }
 
     .comentarios {
-      margin-top: 60px;
+      margin-top: 40px;
+      background-color: #1e1e1e;
+      padding: 15px;
+      border-radius: 8px;
+      box-shadow: inset 0 0 8px rgba(163, 0, 91, 0.4);
+    }
+
+    .faixa-aniversario {
+      background-color: #ff66cc;
+      color: #121212;
+      text-align: center;
+      padding: 10px;
+      font-weight: bold;
+      border-radius: 0 0 12px 12px;
+      box-shadow: 0 0 10px #ff66cc;
+      z-index: 9999;
+      position: fixed;
+      top: 0;
+      width: 100%;
     }
 
     .confete {
@@ -197,26 +210,11 @@
         opacity: 0;
       }
     }
-
-    .faixa-aniversario {
-      background-color: #ff66cc;
-      color: #121212;
-      text-align: center;
-      padding: 10px;
-      font-weight: bold;
-      border-radius: 0 0 12px 12px;
-      box-shadow: 0 0 10px #ff66cc;
-      z-index: 9999;
-      position: fixed;
-      top: 0;
-      width: 100%;
-    }
   </style>
 </head>
 
 <body>
   <div class="container-total">
-
     <div class="manga-card">
       <h1>Laços Profanos I: O Último Anjo</h1>
       <img src="https://i.imgur.com/nvmchiJ.png" alt="Capa Mangá 1" class="cover" />
@@ -233,28 +231,26 @@
       </div>
 
       <p class="sinopse">
-        Após anos congelado em uma estalactite, Hamiah, o último anjo de sua espécie, desperta em um mundo devastado. O reino que um dia conheceu agora está sob o domínio de uma rainha ambiciosa, Olivia, que busca poder e riquezas a qualquer custo, enquanto humanos são escravizados sob a tirania de Enaya, a cruel líder do exército demoníaco.
-  <br>
-Determinado a restaurar o equilíbrio, Hamiah se une a um grupo de rebeldes que luta pela liberdade. Ao longo de sua jornada, ele descobre que os inimigos nem sempre são claros e que aliados inesperados podem surgir em meio ao caos. Com o destino do reino em jogo, Hamiah deve enfrentar desafios que testarão sua coragem e seus ideais.
-        </p>
+        Após anos congelado em uma estalactite, Hamiah, o último anjo de sua espécie, desperta em um mundo devastado. O reino que um dia conheceu agora está sob o domínio de uma rainha ambiciosa, Olivia, que busca poder e riquezas a qualquer custo, enquanto humanos são escravizados sob a tirania de Enaya, a cruel líder do exército demoníaco.<br><br>
+        Determinado a restaurar o equilíbrio, Hamiah se une a um grupo de rebeldes que luta pela liberdade. Ao longo de sua jornada, ele descobre que os inimigos nem sempre são claros e que aliados inesperados podem surgir em meio ao caos. Com o destino do reino em jogo, Hamiah deve enfrentar desafios que testarão sua coragem e seus ideais.
+      </p>
+
+      <div class="comentarios">
+        <div class="aviso">🚫 Não pode spoiler. Sujeito a ban!</div>
+        <p style="text-align: center;">Leia e participe das discussões respeitando todos os leitores!</p>
+        <div id="disqus_thread"></div>
+      </div>
 
       <a href="/scan/lpua.html" class="back-link">← Voltar para a lista de mangás</a>
     </div>
-
-    <div class="comentarios">
-      <div class="aviso">
-        🚫 Não pode spoiler. Sujeito a ban!
-      </div>
-      <p style="text-align: center;">Leia e participe das discussões respeitando todos os leitores!</p>
-      <div id="disqus_thread"></div>
-    </div>
   </div>
 
+  <!-- Easter Egg -->
   <script>
     function ativarEasterEgg() {
       const faixa = document.createElement('div');
       faixa.className = 'faixa-aniversario';
-      faixa.innerText = '🎂 Hoje é o aniversário de Laços profanos! 🎂';
+      faixa.innerText = '🎂 Hoje é o aniversário de Laços Profanos! 🎂';
       document.body.appendChild(faixa);
 
       for (let i = 0; i < 50; i++) {
@@ -278,6 +274,7 @@ Determinado a restaurar o equilíbrio, Hamiah se une a um grupo de rebeldes que 
     }
   </script>
 
+  <!-- Disqus -->
   <script>
     var disqus_config = function () {
       this.page.url = window.location.href;
@@ -293,114 +290,8 @@ Determinado a restaurar o equilíbrio, Hamiah se une a um grupo de rebeldes que 
   </script>
 
   <noscript>
-    Por favor, habilite o JavaScript para visualizar os
+    Por favor, habilite o JavaScript para visualizar os 
     <a href="https://disqus.com/?ref_noscript">comentários via Disqus.</a>
   </noscript>
-  <!-- ============================ -->
-<!-- INÍCIO: POP-UP DE APOIO TIPA -->
-<!-- ============================ -->
-
-<!DOCTYPE html>
-<html lang="pt-BR">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Pop-up de Apoio</title>
-  <style>
-    body {
-      margin: 0;
-      font-family: 'Arial', sans-serif;
-      background-color: #121212;
-      color: white;
-    }
-
-    #popup-overlay {
-      display: none;
-      position: fixed;
-      top: 0; left: 0;
-      width: 100%; height: 100%;
-      background-color: rgba(0, 0, 0, 0.7);
-      justify-content: center;
-      align-items: center;
-      z-index: 999;
-    }
-
-    #popup {
-      background-color: #1c1c1c;
-      border: 2px solid #ff00a6;
-      border-radius: 14px;
-      padding: 24px 20px;
-      width: 90%;
-      max-width: 320px;
-      text-align: center;
-      position: relative;
-      box-shadow: 0 0 20px rgba(255, 0, 166, 0.2);
-    }
-
-    #popup p {
-      font-size: 16px;
-      line-height: 1.4;
-      margin-bottom: 20px;
-    }
-
-    #support-button {
-      background-color: #ff007a;
-      color: white;
-      padding: 12px 18px;
-      border: none;
-      border-radius: 8px;
-      text-decoration: none;
-      font-weight: bold;
-      font-size: 14px;
-      display: inline-block;
-      margin-top: 10px;
-      transition: background-color 0.3s ease;
-    }
-
-    #support-button:hover {
-      background-color: #e0006b;
-    }
-
-    #close-button {
-      position: absolute;
-      top: 8px;
-      right: 12px;
-      background: none;
-      border: none;
-      color: white;
-      font-size: 24px;
-      cursor: pointer;
-    }
-  </style>
-</head>
-<body>
-
-<div id="popup-overlay">
-  <div id="popup">
-    <button id="close-button">&times;</button>
-    <p>Não queremos rodar aqueles anúncios chatos.<br><strong>Apoie no tipa.ai ❤️</strong></p>
-    <a id="support-button" href="https://tipa.ai" target="_blank">DOE PARA LAÇOS PROFANOS</a>
-  </div>
-</div>
-
-<script>
-  window.onload = function () {
-    if (Math.random() < 0.5) {
-      document.getElementById("popup-overlay").style.display = "flex";
-    }
-
-    document.getElementById("close-button").onclick = function () {
-      document.getElementById("popup-overlay").style.display = "none";
-    };
-  };
-</script>
-
-</body>
-</html>
-
-<!-- ============================ -->
-<!-- FIM: POP-UP DE APOIO TIPA -->
-<!-- ============================ -->
-  
 </body>
 </html>
