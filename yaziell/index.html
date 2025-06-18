@@ -3,164 +3,188 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Laços Profanos</title>
+  <title>Laços Profanos | Links</title>
   <link rel="icon" href="https://i.imgur.com/mgxXSto.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 
   <style>
-    body {
-      background-color: #121212;
-      background-image: radial-gradient(#2c2c2c 1px, transparent 1px);
-      background-size: 24px 24px;
-      color: white;
+    :root {
+      --roxo-profundo: #2a1a3a;
+      --roxo-escuro: #3b2a4a;
+      --roxo-medio: #5d4a6a;
+      --rosa-suave: #d8a1c4;
+      --rosa-claro: #e8c1d8;
+      --bege: #f0e6d2;
+      --branco: #ffffff;
+    }
+
+    * {
+      box-sizing: border-box;
       margin: 0;
-      font-family: sans-serif;
+      padding: 0;
+    }
+
+    body {
+      background-color: var(--roxo-profundo);
+      background-image: radial-gradient(circle at center, var(--rosa-suave) 1px, transparent 1px);
+      background-size: 20px 20px;
+      background-attachment: fixed;
+      color: var(--branco);
+      font-family: 'Inter', sans-serif;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 20px;
     }
 
     .logo-container {
       text-align: center;
-      margin-top: 60px;
+      margin: 30px 0 20px;
     }
 
     .logo {
-      width: 200px;
+      width: 140px;
+      height: 140px;
       border-radius: 50%;
+      object-fit: cover;
+      border: 3px solid var(--rosa-suave);
+      box-shadow: 0 4px 20px rgba(216, 161, 196, 0.3);
+      transition: transform 0.3s ease;
     }
 
-    h1, h2 {
+    .logo:hover {
+      transform: scale(1.03);
+    }
+
+    .titulo {
       text-align: center;
+      margin-bottom: 25px;
+    }
+
+    h1 {
+      font-size: 1.8rem;
+      font-weight: 700;
+      color: var(--bege);
+      margin-bottom: 5px;
+    }
+
+    h2 {
+      font-size: 1rem;
+      font-weight: 400;
+      color: var(--rosa-suave);
+      opacity: 0.9;
+    }
+
+    .links-container {
+      width: 100%;
+      max-width: 400px;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      margin-bottom: 30px;
     }
 
     .botao {
-      display: block;
-      width: 90%;
-      max-width: 300px;
-      margin: 10px auto;
-      padding: 15px;
-      border: 2px solid white;
-      background: transparent;
-      color: white;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 100%;
+      padding: 14px 20px;
+      background-color: rgba(59, 42, 74, 0.7);
+      backdrop-filter: blur(5px);
+      color: var(--branco);
       text-decoration: none;
-      border-radius: 8px;
-      text-align: center;
-      transition: 0.3s;
-      cursor: pointer;
+      border-radius: 10px;
+      font-weight: 500;
+      transition: all 0.3s ease;
+      border: 1px solid var(--rosa-suave);
     }
 
     .botao:hover {
-      background: #333;
-      transform: scale(1.05);
+      background-color: var(--roxo-medio);
+      transform: translateY(-2px);
+      box-shadow: 0 4px 12px rgba(216, 161, 196, 0.2);
     }
 
-    .card {
-      max-width: 300px;
-      margin: 40px auto;
-      padding: 20px;
-      border: 2px solid #a3005b;
-      border-radius: 10px;
-      background-color: #1a1a1a;
-      text-align: center;
+    .botao-destaque {
+      background: linear-gradient(90deg, var(--rosa-suave), var(--rosa-claro));
+      color: var(--roxo-profundo);
+      font-weight: 600;
+      margin-top: 20px;
+      border: none;
     }
 
-    .profile-icon {
-      width: 100px;
-      height: 100px;
-      object-fit: cover;
-      border-radius: 50%;
-      margin-bottom: 10px;
+    .botao-destaque:hover {
+      box-shadow: 0 4px 12px rgba(216, 161, 196, 0.3);
     }
 
-    .valor {
-      color: #00ff00;
-    }
-
-    .botao-doar {
-      display: inline-block;
-      padding: 10px 20px;
-      background-color: #a3005b;
-      color: white;
-      text-decoration: none;
-      border-radius: 5px;
-      font-weight: bold;
-      transition: transform 0.3s;
-    }
-
-    .botao-doar:hover {
-      transform: scale(1.1);
-    }
-
-    /* Popup */
+    /* ==== POPUP ==== */
     #popup-overlay {
       position: fixed;
       top: 0;
       left: 0;
       width: 100%;
       height: 100%;
-      background-color: rgba(0, 0, 0, 0.75);
+      background-color: rgba(0, 0, 0, 0.7);
+      display: none;
       justify-content: center;
       align-items: center;
-      z-index: 9999;
-      display: none;
+      z-index: 1000;
+      backdrop-filter: blur(3px);
     }
 
     #popup {
-      background: linear-gradient(135deg, #1c1c1c 0%, #2a2a2a 100%);
-      border: 2px solid #a3005b;
-      border-radius: 16px;
-      padding: 28px 24px;
+      background-color: var(--roxo-escuro);
+      border: 1px solid var(--rosa-suave);
+      border-radius: 14px;
+      padding: 22px;
       width: 90%;
       max-width: 340px;
       text-align: center;
-      box-shadow: 0 4px 30px rgba(163, 0, 91, 0.5);
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
       position: relative;
-      animation: fadeIn 0.3s ease-in-out;
-    }
-
-    @keyframes fadeIn {
-      from { opacity: 0; transform: scale(0.95); }
-      to { opacity: 1; transform: scale(1); }
     }
 
     #popup p {
-      color: white;
-      font-family: 'Inter', sans-serif;
-      font-size: 16px;
+      color: var(--branco);
+      font-size: 15px;
       line-height: 1.5;
-      margin-bottom: 24px;
+      margin-bottom: 20px;
     }
 
     #support-button {
-      background: linear-gradient(90deg, #a3005b, #c5116d);
-      color: white;
-      padding: 14px 20px;
+      background: linear-gradient(90deg, var(--rosa-suave), var(--rosa-claro));
+      color: var(--roxo-profundo);
+      padding: 12px 24px;
       border: none;
-      border-radius: 10px;
-      text-decoration: none;
+      border-radius: 8px;
       font-weight: 600;
-      font-size: 15px;
-      display: inline-block;
-      transition: transform 0.2s ease, box-shadow 0.2s ease;
+      cursor: pointer;
+      transition: all 0.3s ease;
     }
 
     #support-button:hover {
-      background: linear-gradient(90deg, #850048, #a3005b);
       transform: translateY(-2px);
-      box-shadow: 0 4px 12px rgba(163, 0, 91, 0.4);
+      box-shadow: 0 4px 12px rgba(216, 161, 196, 0.3);
     }
 
     #close-button {
       position: absolute;
       top: 12px;
-      right: 16px;
+      right: 14px;
       background: none;
       border: none;
-      color: white;
-      font-size: 26px;
+      color: var(--branco);
+      font-size: 22px;
       cursor: pointer;
       transition: color 0.2s ease;
     }
 
     #close-button:hover {
-      color: #a3005b;
+      color: var(--rosa-suave);
     }
   </style>
 </head>
@@ -169,56 +193,51 @@
 
   <!-- ===== LOGO ===== -->
   <div class="logo-container">
-    <img class="logo" src="https://i.imgur.com/rQ7D0tK.png" alt="foto de perfil">
+    <img class="logo" src="https://i.imgur.com/rQ7D0tK.png" alt="Laços Profanos">
   </div>
 
-  <h1>Laços Profanos</h1>
-  <h2>Redes sociais</h2>
+  <div class="titulo">
+    <h1>YAZIELL</h1>
+    <h2>Laços Profanos</h2>
+  </div>
 
   <!-- ===== BOTÕES DE REDES SOCIAIS ===== -->
-  <a class="botao" href="https://livepix.gg/yaziell" target="_blank">LIVEPIX.GG</a>
-  <a class="botao" href="#" onclick="alert('TENHA CALMA, A SCAN AINDA NÃO ESTÁ PRONTA PARA SER ACESSADA')">MINHA SCAN</a>
-  <a class="botao" href="https://www.youtube.com/@yaziell" target="_blank">YOUTUBE</a>
-  <a class="botao" href="https://www.instagram.com/oyaziell" target="_blank">INSTAGRAM</a>
-  <a class="botao" href="https://bit.ly/La%C3%A7osprofanoszap" target="_blank">WHATSAPP DE LAÇOS PROFANOS</a>
-  <a class="botao" href="https://t.me/lacosprofanos" target="_blank">TELEGRAM DE LAÇOS PROFANOS</a>
-  <a class="botao" href="https://x.com/LacosProfanos" target="_blank">X</a>
-  <a class="botao" href="https://lacosprofanos.my.canva.site/fanarts" target="_blank">MURAL DE FANARTS</a>
-
-  <!-- ===== CARD DE DOAÇÃO ===== -->
-  <div class="card">
-    <img class="profile-icon" src="https://i.imgur.com/rQ7D0tK.png" alt="Logo Laços Profanos">
-    <h3>ENVIE UMA MENSAGEM PRO YAZIELL</h3>
-    <a class="botao-doar" href="https://livepix.gg/yaziell" target="_blank">
-      ENVIE UMA MENSAGEM PRO YAZIELL
-    </a>
+  <div class="links-container">
+    <a class="botao" href="https://livepix.gg/yaziell" target="_blank">LIVEPIX.GG</a>
+    <a class="botao" href="#" onclick="alert('TENHA CALMA, A SCAN AINDA NÃO ESTÁ PRONTA PARA SER ACESSADA')">MINHA SCAN</a>
+    <a class="botao" href="https://www.youtube.com/@yaziell" target="_blank">YOUTUBE</a>
+    <a class="botao" href="https://www.instagram.com/oyaziell" target="_blank">INSTAGRAM</a>
+    <a class="botao" href="https://bit.ly/La%C3%A7osprofanoszap" target="_blank">WHATSAPP (LAÇOS PROFANOS)</a>
+    <a class="botao" href="https://t.me/lacosprofanos" target="_blank">TELEGRAM (LAÇOS PROFANOS)</a>
+    <a class="botao" href="https://x.com/LacosProfanos" target="_blank">X (TWITTER)</a>
+    <a class="botao" href="https://lacosprofanos.my.canva.site/fanarts" target="_blank">MURAL DE FANARTS</a>
   </div>
 
   <!-- ===== POPUP DE DOAÇÃO ===== -->
   <div id="popup-overlay">
     <div id="popup">
       <button id="close-button">×</button>
-      <p>Não queremos rodar aqueles anúncios chatos.<br>
+      <p>Não queremos anúncios chatos.<br>
         <strong>Apoie no tipa.ai ❤</strong></p>
       <a id="support-button" href="https://tipa.ai/lacosprofanos" target="_blank">
-        DOE PARA LAÇOS PROFANOS
+        APOIAR LAÇOS PROFANOS
       </a>
     </div>
   </div>
 
-<script>
-  window.addEventListener('load', () => {
-    // Exibir o popup aleatoriamente em 50% dos acessos
-    if (Math.random() < 0.5) {
-      document.getElementById("popup-overlay").style.display = "flex";
-    }
+  <script>
+    // Mostrar popup aleatoriamente após 3 segundos
+    setTimeout(() => {
+      if (Math.random() < 0.3) { // 30% de chance de aparecer
+        document.getElementById("popup-overlay").style.display = "flex";
+      }
+    }, 3000);
 
-    // Fechar o popup
+    // Fechar popup
     document.getElementById("close-button").addEventListener('click', () => {
       document.getElementById("popup-overlay").style.display = "none";
     });
-  });
-</script>
+  </script>
 
 </body>
 </html>
