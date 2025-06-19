@@ -1,1 +1,239 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Wiki - Laços Profanos</title>
+  <link rel="icon" href="https://i.imgur.com/mgxXSto.png" type="image/png">
 
+  <style>
+    body {
+      background-color: #121212;
+      background-image: radial-gradient(#2c2c2c 1px, transparent 1px);
+      background-size: 24px 24px;
+      font-family: Arial, sans-serif;
+      color: white;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+    }
+
+    body.lacos-aniversario {
+      background-color: #121212;
+      background-image: radial-gradient(#a3005b 2px, transparent 2px);
+      background-size: 20px 20px;
+    }
+
+    .container {
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 20px;
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+    }
+
+    .wiki-header {
+      margin-bottom: 40px;
+      padding-bottom: 20px;
+      border-bottom: 2px solid #a3005b;
+      width: 100%;
+    }
+
+    .wiki-header h1 {
+      color: #ff66cc;
+      margin: 10px 0;
+    }
+
+    .project-card {
+      background-color: #1a1a1a;
+      border-radius: 10px;
+      overflow: hidden;
+      border: 2px solid #a3005b;
+      max-width: 400px;
+      margin: 0 auto;
+      box-shadow: 0 5px 15px rgba(163, 0, 91, 0.3);
+      transition: transform 0.3s;
+    }
+
+    .project-card:hover {
+      transform: scale(1.03);
+    }
+
+    .project-card img {
+      width: 100%;
+      height: 250px;
+      object-fit: cover;
+      border-bottom: 2px solid #a3005b;
+    }
+
+    .project-info {
+      padding: 20px;
+    }
+
+    .project-info h2 {
+      color: #ff66cc;
+      margin-top: 0;
+      margin-bottom: 15px;
+    }
+
+    .project-info p {
+      color: #cccccc;
+      font-size: 15px;
+      margin-bottom: 20px;
+      line-height: 1.5;
+    }
+
+    .btn-wiki {
+      display: inline-block;
+      padding: 10px 25px;
+      background-color: #a3005b;
+      color: white;
+      text-decoration: none;
+      border-radius: 5px;
+      font-size: 16px;
+      transition: all 0.3s;
+      border: 1px solid transparent;
+    }
+
+    .btn-wiki:hover {
+      background-color: #121212;
+      border-color: #a3005b;
+    }
+
+    .botao-site-principal {
+      display: block;
+      text-align: center;
+      margin: 20px auto 40px auto;
+      font-size: 14px;
+      color: #bbbbbb;
+      text-decoration: none;
+      transition: color 0.3s;
+    }
+
+    .botao-site-principal:hover {
+      color: #ffffff;
+      text-decoration: underline;
+    }
+
+    .footer-logo {
+      margin-top: 50px;
+      padding-top: 20px;
+      border-top: 1px solid #2a2a2a;
+      width: 100%;
+    }
+
+    .footer-logo img {
+      width: 120px;
+      opacity: 0.8;
+      transition: opacity 0.3s;
+    }
+
+    .footer-logo img:hover {
+      opacity: 1;
+    }
+
+    .lacos-banner {
+      display: none;
+      position: fixed;
+      bottom: 10px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: #a3005b;
+      color: white;
+      padding: 10px 25px;
+      border-radius: 8px;
+      border: 2px solid white;
+      z-index: 9999;
+      font-weight: bold;
+      box-shadow: 0 0 10px #a3005b;
+    }
+
+    body.lacos-aniversario .lacos-banner {
+      display: block;
+    }
+
+    .confete {
+      position: fixed;
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      top: -20px;
+      animation: quedaConfete 3s linear infinite;
+      z-index: 999;
+    }
+
+    @keyframes quedaConfete {
+      0% { transform: translateY(0) rotate(0deg); }
+      100% { transform: translateY(100vh) rotate(360deg); }
+    }
+  </style>
+</head>
+<body>
+
+  <a class="botao-site-principal" href="https://www.lacosprofanos.com.br">➡ Vá para o nosso site principal!</a>
+
+  <div class="container">
+    <header class="wiki-header">
+      <h1>Laços Profanos Wiki</h1>
+      <p>Explore o universo de Laços Profanos em detalhes</p>
+    </header>
+
+    <div class="project-card">
+      <img src="https://i.imgur.com/nvmchiJ.png" alt="Laços Profanos I: O Último Anjo">
+      <div class="project-info">
+        <h2>Laços Profanos I: O Último Anjo</h2>
+        <p>Hamiah, o último anjo de sua espécie, enfrenta um mundo dominado pelos demônios, onde a humanidade vive sob o jugo cruel de um de seus líderes. Em uma jornada marcada por sacrifício e redenção, ele precisará desafiar o destino e redefinir os laços que unem os seres — mesmo quando a esperança parece perdida.</p>
+        <a href="wiki/lpua/home.html" class="btn-wiki">Acessar Wiki Completa</a>
+      </div>
+    </div>
+
+    <div class="footer-logo">
+      <img src="https://i.imgur.com/WlSKsgw.png" alt="Logo Laços Profanos">
+    </div>
+  </div>
+
+  <!-- Faixa de Aniversário -->
+  <div class="lacos-banner">
+    🎉 Aniversário de Laços Profanos! 29 de Outubro 🎉
+  </div>
+
+  <script>
+    // === EASTER EGG DE ANIVERSÁRIO ===
+    document.addEventListener("DOMContentLoaded", function () {
+      const hoje =v new Date();
+      const dia = hoje.getDate();
+      const mes = hoje.getMonth(); // Outubro = 9
+      const urlParams = new URLSearchParams(window.location.search);
+      const easterAtivado = urlParams.has('2910');
+
+      if ((dia === 29 && mes === 9) || easterAtivado) {
+        ativarEasterEgg();
+      }
+
+      function ativarEasterEgg() {
+        document.body.classList.add("lacos-aniversario");
+
+        const audio = new Audio("https://files.catbox.moe/l3n1tq.mp3");
+        audio.loop = true;
+        audio.volume = 0.3;
+        audio.play().catch(() => {});
+
+        for (let i = 0; i < 100; i++) {
+          const confete = document.createElement("div");
+          confete.className = "confete";
+          confete.style.left = Math.random() * window.innerWidth + "px";
+          confete.style.background = `hsl(${Math.random() * 360}, 100%, 50%)`;
+          confete.style.animationDelay = Math.random() * 3 + "s";
+          document.body.appendChild(confete);
+        }
+      }
+    });
+  </script>
+
+</body>
+</html>
