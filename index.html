@@ -3,165 +3,184 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Laços Profanos - Arraiá com Orgulho</title>
+  <title>Laços Profanos</title>
   <link rel="icon" href="https://i.imgur.com/mgxXSto.png">
   
   <style>
-    /* BASE */
     body {
-      margin: 0;
-      font-family: 'Comic Sans MS', cursive, sans-serif;
+      background-color: #121212;
+      background-image: radial-gradient(#2c2c2c 1px, transparent 1px);
+      background-size: 24px 24px;
       color: white;
-      overflow-x: hidden;
+      margin: 0;
+      font-family: sans-serif;
+    }
+
+    body.lacos-aniversario {
+      background-color: #121212;
+      background-image: radial-gradient(#a3005b 2px, transparent 2px);
+      background-size: 20px 20px;
+    }
+
+    body.lgbt-theme {
+      background-color: #121212;
+      background-image: radial-gradient(#ff0080 1px, transparent 1px), 
+                        radial-gradient(#00ccff 1px, transparent 1px), 
+                        radial-gradient(#ffed00 1px, transparent 1px);
+      background-size: 30px 30px;
+      background-position: 0 0, 10px 10px, 20px 20px;
+    }
+
+    body.festa-junina-theme {
       background-color: #1a0d00;
-      background-image: 
-        radial-gradient(circle at 20% 30%, rgba(255, 107, 0, 0.2) 1px, transparent 1px),
-        radial-gradient(circle at 80% 70%, rgba(255, 0, 128, 0.2) 1px, transparent 1px);
-      background-size: 40px 40px;
-      animation: bgPulse 10s infinite alternate;
+      background-image: radial-gradient(#ff6b00 1px, transparent 1px), 
+                        radial-gradient(#ffcc00 1px, transparent 1px);
+      background-size: 30px 30px;
+      background-position: 0 0, 15px 15px;
     }
 
-    @keyframes bgPulse {
-      0% { background-position: 0 0, 0 0; }
-      100% { background-position: 20px 20px, 20px 20px; }
-    }
-
-    /* LOGO */
     .logo-container {
       position: relative;
       text-align: center;
-      margin-top: 60px;
-      z-index: 10;
+      margin-top: 100px; /* Aumentado para acomodar a bandeira */
     }
 
     .logo {
       width: 200px;
       border-radius: 50%;
-      border: 4px solid transparent;
-      box-shadow: 0 0 15px rgba(255, 255, 255, 0.5);
-      transition: all 0.5s ease;
     }
 
-    .logo:hover {
-      transform: rotate(10deg) scale(1.05);
-      border-color: #ff6b00 #ffcc00 #00ccff #ff0080;
-    }
-
-    .double-hat {
+    /* Bandeira LGBT em CSS */
+    .lgbt-flag-css {
+      display: none;
       position: absolute;
-      width: 140px;
-      top: -60px;
+      width: 200px;
+      height: 120px;
+      top: -100px;
       left: 50%;
       transform: translateX(-50%);
-      z-index: 11;
-      filter: drop-shadow(0 0 5px rgba(255, 255, 255, 0.7));
+      z-index: 10;
+      border-radius: 8px;
+      overflow: hidden;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.3);
     }
 
-    /* TÍTULOS */
+    .lgbt-flag-css .stripe {
+      height: 20px;
+      width: 100%;
+    }
+
+    .stripe-red { background-color: #FF0018; }
+    .stripe-orange { background-color: #FFA52C; }
+    .stripe-yellow { background-color: #FFFF41; }
+    .stripe-green { background-color: #008018; }
+    .stripe-blue { background-color: #0000F9; }
+    .stripe-purple { background-color: #86007D; }
+
+    .party-hat {
+      display: none;
+      position: absolute;
+      width: 90px;
+      top: -90px;
+      left: 50%;
+      transform: translateX(-50%) rotate(-15deg);
+      z-index: 10;
+    }
+
+    .lgbt-flag {
+      display: none;
+      position: absolute;
+      width: 120px;
+      top: -40px;
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 10;
+    }
+
+    .junina-hat {
+      display: none;
+      position: absolute;
+      width: 100px;
+      top: -50px;
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 10;
+    }
+
+    body.lacos-aniversario .party-hat {
+      display: block;
+    }
+
+    body.lgbt-theme .lgbt-flag-css {
+      display: block;
+    }
+
+    body.lgbt-theme .lgbt-flag {
+      display: none; /* Esconde a versão em imagem */
+    }
+
+    body.festa-junina-theme .junina-hat {
+      display: block;
+    }
+
     h1, h2 {
       text-align: center;
-      text-shadow: 
-        2px 2px 0 #ff6b00, 
-        4px 4px 0 #ff0080,
-        6px 6px 0 #00ccff;
-      margin: 20px 0;
-      letter-spacing: 2px;
     }
 
-    h1 {
-      font-size: 2.5rem;
-      color: #ffcc00;
-    }
-
-    h2 {
-      font-size: 1.8rem;
-      color: #ffffff;
-    }
-
-    /* BOTÕES */
     .botao {
       display: block;
       width: 90%;
       max-width: 300px;
-      margin: 15px auto;
+      margin: 10px auto;
       padding: 15px;
-      background: linear-gradient(45deg, rgba(255, 107, 0, 0.7), rgba(255, 0, 128, 0.7));
+      border: 2px solid white;
+      background: transparent;
       color: white;
       text-decoration: none;
-      border-radius: 50px;
+      border-radius: 8px;
       text-align: center;
-      transition: all 0.3s ease;
-      font-weight: bold;
-      border: 2px dashed #ffcc00;
-      position: relative;
-      overflow: hidden;
-      z-index: 5;
+      transition: 0.3s;
     }
 
-    .botao::before {
-      content: '';
-      position: absolute;
-      top: -50%;
-      left: -50%;
-      width: 200%;
-      height: 200%;
-      background: linear-gradient(
-        to bottom right, 
-        rgba(255, 204, 0, 0.3), 
-        rgba(0, 204, 255, 0.3), 
-        rgba(255, 0, 128, 0.3)
-      );
-      transform: rotate(45deg);
-      z-index: -1;
-      transition: all 0.5s ease;
+    body.lgbt-theme .botao {
+      border-color: #ff0080;
+      background: rgba(255, 0, 128, 0.1);
+    }
+
+    body.festa-junina-theme .botao {
+      border-color: #ff6b00;
+      background: rgba(255, 107, 0, 0.1);
     }
 
     .botao:hover {
-      transform: translateY(-5px) rotate(-2deg);
-      box-shadow: 
-        0 5px 15px rgba(255, 107, 0, 0.6),
-        0 5px 15px rgba(255, 0, 128, 0.6);
-      border-color: #00ccff;
+      background: #333;
+      transform: scale(1.05);
     }
 
-    .botao:hover::before {
-      transform: rotate(90deg);
+    body.lgbt-theme .botao:hover {
+      background: rgba(255, 0, 128, 0.3);
     }
 
-    /* CARD */
+    body.festa-junina-theme .botao:hover {
+      background: rgba(255, 107, 0, 0.3);
+    }
+
     .card {
       max-width: 300px;
       margin: 40px auto;
       padding: 20px;
-      background: rgba(26, 13, 0, 0.7);
-      border-radius: 20px;
+      border: 2px solid #a3005b;
+      border-radius: 10px;
+      background-color: #1a1a1a;
       text-align: center;
-      position: relative;
-      border: 2px solid #ff6b00;
-      box-shadow: 
-        0 0 10px rgba(255, 107, 0, 0.5),
-        0 0 20px rgba(255, 0, 128, 0.5);
-      backdrop-filter: blur(5px);
-      z-index: 5;
     }
 
-    .card::after {
-      content: '';
-      position: absolute;
-      top: -5px;
-      left: -5px;
-      right: -5px;
-      bottom: -5px;
-      border: 2px dashed #00ccff;
-      border-radius: 25px;
-      z-index: -1;
-      animation: borderPulse 3s infinite linear;
+    body.lgbt-theme .card {
+      border-color: #ff0080;
     }
 
-    @keyframes borderPulse {
-      0% { opacity: 0.3; }
-      50% { opacity: 0.7; }
-      100% { opacity: 0.3; }
+    body.festa-junina-theme .card {
+      border-color: #ff6b00;
     }
 
     .profile-icon {
@@ -170,16 +189,6 @@
       object-fit: cover;
       border-radius: 50%;
       margin-bottom: 10px;
-      border: 3px solid;
-      border-image: linear-gradient(45deg, #ff6b00, #ff0080, #00ccff) 1;
-      animation: profileBorder 4s infinite linear;
-    }
-
-    @keyframes profileBorder {
-      0% { border-image-source: linear-gradient(45deg, #ff6b00, #ff0080, #00ccff); }
-      33% { border-image-source: linear-gradient(45deg, #ff0080, #00ccff, #ff6b00); }
-      66% { border-image-source: linear-gradient(45deg, #00ccff, #ff6b00, #ff0080); }
-      100% { border-image-source: linear-gradient(45deg, #ff6b00, #ff0080, #00ccff); }
     }
 
     .doadores {
@@ -188,100 +197,70 @@
     }
 
     .valor {
-      color: #ffcc00;
-      font-weight: bold;
+      color: #00ff00;
     }
 
     .botao-doar {
       display: inline-block;
-      padding: 12px 25px;
-      background: linear-gradient(45deg, #ff6b00, #ff0080);
+      padding: 10px 20px;
+      background-color: #a3005b;
       color: white;
       text-decoration: none;
-      border-radius: 50px;
+      border-radius: 5px;
       font-weight: bold;
-      transition: all 0.3s ease;
-      border: none;
-      box-shadow: 0 4px 0 #a30000;
-      position: relative;
-      overflow: hidden;
+      transition: transform 0.3s;
+    }
+
+    body.lgbt-theme .botao-doar {
+      background: linear-gradient(to right, #ff0080, #ff8c00, #ffed00, #00cc00, #00ccff, #a3005b);
+      background-size: 600% 100%;
+      animation: rainbow 3s linear infinite;
+    }
+
+    body.festa-junina-theme .botao-doar {
+      background-color: #ff6b00;
+    }
+
+    @keyframes rainbow {
+      0% { background-position: 0% 50%; }
+      100% { background-position: 100% 50%; }
     }
 
     .botao-doar:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 6px 0 #a30000, 0 5px 15px rgba(255, 107, 0, 0.6);
-      background: linear-gradient(45deg, #ff8c00, #ff00a3);
+      transform: scale(1.1);
     }
 
-    .botao-doar:active {
-      transform: translateY(2px);
-      box-shadow: 0 2px 0 #a30000;
-    }
-
-    /* BANNER */
-    .comemoracao-banner {
+    .lacos-banner {
+      display: none;
       position: fixed;
       bottom: 10px;
       left: 50%;
       transform: translateX(-50%);
-      background: linear-gradient(45deg, #ff6b00, #ff0080, #00ccff);
+      background: #a3005b;
       color: white;
-      padding: 12px 30px;
-      border-radius: 50px;
+      padding: 10px 25px;
+      border-radius: 8px;
       border: 2px solid white;
       z-index: 9999;
       font-weight: bold;
-      box-shadow: 0 0 15px rgba(255, 255, 255, 0.7);
-      animation: bannerFloat 3s ease-in-out infinite;
-      font-size: 1.1rem;
-      text-align: center;
-      max-width: 90%;
+      box-shadow: 0 0 10px #a3005b;
     }
 
-    @keyframes bannerFloat {
-      0%, 100% { transform: translateX(-50%) translateY(0); }
-      50% { transform: translateX(-50%) translateY(-10px); }
+    body.lgbt-theme .lacos-banner {
+      display: block;
+      background: linear-gradient(to right, #ff0080, #ff8c00, #ffed00, #00cc00, #00ccff, #a3005b);
+      animation: rainbow 3s linear infinite;
+      background-size: 600% 100%;
     }
 
-    /* ELEMENTOS DECORATIVOS */
-    .bandeirola {
-      position: fixed;
-      top: 0;
-      width: 40px;
-      height: 60px;
-      clip-path: polygon(0 0, 100% 0, 50% 100%);
-      z-index: -1;
-      animation: sway 3s ease-in-out infinite;
-      opacity: 0.8;
+    body.festa-junina-theme .lacos-banner {
+      display: block;
+      background: #ff6b00;
+      box-shadow: 0 0 10px #ff6b00;
     }
 
-    @keyframes sway {
-      0%, 100% { transform: rotate(-5deg); }
-      50% { transform: rotate(5deg); }
-    }
-
-    .milho {
-      position: fixed;
-      width: 30px;
-      height: 50px;
-      background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><path fill="%23FFCC00" d="M50 10L60 40L90 50L60 60L50 90L40 60L10 50L40 40Z"/></svg>') center/contain no-repeat;
-      z-index: -1;
-      animation: float 6s ease-in-out infinite;
-      opacity: 0.7;
-    }
-
-    .coracao {
-      position: fixed;
-      width: 20px;
-      height: 20px;
-      background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><path fill="%23FF0080" d="M50 30Q30 10 10 30Q-10 50 30 90L50 70L70 90Q110 50 90 30Q70 10 50 30Z"/></svg>') center/contain no-repeat;
-      z-index: -1;
-      animation: float 4s ease-in-out infinite;
-    }
-
-    @keyframes float {
-      0%, 100% { transform: translateY(0) rotate(0deg); }
-      50% { transform: translateY(-20px) rotate(10deg); }
+    body.lacos-aniversario .lacos-banner {
+      display: block;
     }
 
     .confete {
@@ -294,49 +273,65 @@
       z-index: 999;
     }
 
-    @keyframes quedaConfete {
-      0% { transform: translateY(0) rotate(0deg); opacity: 1; }
-      100% { transform: translateY(100vh) rotate(360deg); opacity: 0; }
+    .lgbt-confete {
+      animation: quedaConfete 3s linear infinite, rainbowColor 3s linear infinite;
     }
 
-    /* FORMULÁRIO */
+    .junina-confete {
+      background-color: #ff6b00;
+      animation: quedaConfete 3s linear infinite, pulseJunina 1s ease-in-out infinite;
+    }
+
+    @keyframes rainbowColor {
+      0% { background-color: #ff0080; }
+      20% { background-color: #ff8c00; }
+      40% { background-color: #ffed00; }
+      60% { background-color: #00cc00; }
+      80% { background-color: #00ccff; }
+      100% { background-color: #a3005b; }
+    }
+
+    @keyframes pulseJunina {
+      0% { transform: scale(1); }
+      50% { transform: scale(1.2); }
+      100% { transform: scale(1); }
+    }
+
+    @keyframes quedaConfete {
+      0% { transform: translateY(0) rotate(0deg); }
+      100% { transform: translateY(100vh) rotate(360deg); }
+    }
+
+    /* ===== ESTILO DO FORMULÁRIO "FALE CONOSCO" ===== */
     .fale-conosco {
       max-width: 300px;
       margin: 40px auto;
       padding: 20px;
-      background: rgba(26, 13, 0, 0.7);
-      border-radius: 20px;
+      border: 2px solid #a3005b;
+      border-radius: 10px;
+      background-color: #1a1a1a;
       text-align: center;
-      border: 2px solid #00ccff;
-      box-shadow: 0 0 15px rgba(0, 204, 255, 0.5);
-      backdrop-filter: blur(5px);
-      position: relative;
-      z-index: 5;
     }
 
-    .fale-conosco::before {
-      content: '';
-      position: absolute;
-      top: -5px;
-      left: -5px;
-      right: -5px;
-      bottom: -5px;
-      border: 2px dashed #ffcc00;
-      border-radius: 25px;
-      z-index: -1;
-      animation: borderPulse 3s infinite linear reverse;
+    body.lgbt-theme .fale-conosco {
+      border-color: #ff0080;
+    }
+
+    body.festa-junina-theme .fale-conosco {
+      border-color: #ff6b00;
     }
 
     .fale-conosco h3 {
       margin-top: 0;
-      color: #ffcc00;
-      text-shadow: 1px 1px 0 #ff6b00;
-      font-size: 1.5rem;
+      color: #a3005b;
     }
 
-    .fale-conosco p {
-      color: white;
-      margin-bottom: 20px;
+    body.lgbt-theme .fale-conosco h3 {
+      color: #ff0080;
+    }
+
+    body.festa-junina-theme .fale-conosco h3 {
+      color: #ff6b00;
     }
 
     .fale-conosco form {
@@ -348,21 +343,11 @@
     .fale-conosco input,
     .fale-conosco textarea,
     .fale-conosco select {
-      padding: 12px;
-      border-radius: 10px;
-      border: 1px solid #ff6b00;
-      background: rgba(255, 255, 255, 0.1);
+      padding: 10px;
+      border-radius: 5px;
+      border: 1px solid #333;
+      background-color: #2a2a2a;
       color: white;
-      font-family: 'Comic Sans MS', cursive, sans-serif;
-      transition: all 0.3s ease;
-    }
-
-    .fale-conosco input:focus,
-    .fale-conosco textarea:focus,
-    .fale-conosco select:focus {
-      outline: none;
-      border-color: #00ccff;
-      box-shadow: 0 0 10px rgba(0, 204, 255, 0.5);
     }
 
     .fale-conosco textarea {
@@ -371,30 +356,37 @@
     }
 
     .fale-conosco button {
-      background: linear-gradient(45deg, #ff0080, #00ccff);
+      background-color: #a3005b;
       color: white;
       border: none;
       padding: 12px;
-      border-radius: 50px;
+      border-radius: 5px;
       cursor: pointer;
       font-weight: bold;
-      transition: all 0.3s ease;
-      font-family: 'Comic Sans MS', cursive, sans-serif;
-      box-shadow: 0 4px 0 #a3005b;
+      transition: background-color 0.3s;
+    }
+
+    body.lgbt-theme .fale-conosco button {
+      background: linear-gradient(to right, #ff0080, #00ccff);
+    }
+
+    body.festa-junina-theme .fale-conosco button {
+      background-color: #ff6b00;
     }
 
     .fale-conosco button:hover {
-      background: linear-gradient(45deg, #ff00a3, #00e6ff);
-      transform: translateY(-2px);
-      box-shadow: 0 6px 0 #a3005b;
+      background-color: #850048;
     }
 
-    .fale-conosco button:active {
-      transform: translateY(2px);
-      box-shadow: 0 2px 0 #a3005b;
+    body.lgbt-theme .fale-conosco button:hover {
+      background: linear-gradient(to right, #cc0066, #00a3cc);
     }
 
-    /* POPUP */
+    body.festa-junina-theme .fale-conosco button:hover {
+      background-color: #cc5500;
+    }
+
+    /* ===== ESTILO DO POPUP ===== */
     #popup-overlay {
       display: none;
       position: fixed;
@@ -409,19 +401,26 @@
     }
 
     #popup {
-      background: linear-gradient(135deg, rgba(26, 13, 0, 0.9), rgba(40, 20, 0, 0.9));
-      border: 3px solid #ffcc00;
-      border-radius: 25px;
-      padding: 30px;
+      background: linear-gradient(135deg, #1c1c1c 0%, #2a2a2a 100%);
+      border: 2px solid #a3005b;
+      border-radius: 16px;
+      padding: 28px 24px;
       width: 90%;
       max-width: 340px;
       text-align: center;
-      box-shadow: 
-        0 0 20px rgba(255, 204, 0, 0.5),
-        0 0 40px rgba(255, 0, 128, 0.5);
+      box-shadow: 0 4px 30px rgba(163, 0, 91, 0.5);
       position: relative;
       animation: fadeIn 0.3s ease-in-out;
-      backdrop-filter: blur(5px);
+    }
+
+    body.lgbt-theme #popup {
+      border: 2px solid #ff0080;
+      box-shadow: 0 4px 30px rgba(255, 0, 128, 0.5);
+    }
+
+    body.festa-junina-theme #popup {
+      border: 2px solid #ff6b00;
+      box-shadow: 0 4px 30px rgba(255, 107, 0, 0.5);
     }
 
     @keyframes fadeIn {
@@ -431,110 +430,107 @@
 
     #popup p {
       color: white;
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
       font-size: 16px;
       line-height: 1.5;
       margin-bottom: 24px;
     }
 
     #support-button {
-      background: linear-gradient(45deg, #ff6b00, #ff0080);
+      background: linear-gradient(90deg, #a3005b, #c5116d);
       color: white;
-      padding: 14px 30px;
+      padding: 14px 20px;
       border: none;
-      border-radius: 50px;
+      border-radius: 10px;
       text-decoration: none;
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
       font-weight: 600;
       font-size: 15px;
       display: inline-block;
-      transition: all 0.3s ease;
-      box-shadow: 0 4px 0 #a30000;
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    body.lgbt-theme #support-button {
+      background: linear-gradient(90deg, #ff0080, #ff8c00);
+    }
+
+    body.festa-junina-theme #support-button {
+      background: linear-gradient(90deg, #ff6b00, #ffcc00);
     }
 
     #support-button:hover {
-      background: linear-gradient(45deg, #ff8c00, #ff00a3);
+      background: linear-gradient(90deg, #850048, #a3005b);
       transform: translateY(-2px);
-      box-shadow: 0 6px 0 #a30000;
+      box-shadow: 0 4px 12px rgba(163, 0, 91, 0.4);
     }
 
-    #support-button:active {
-      transform: translateY(2px);
-      box-shadow: 0 2px 0 #a30000;
+    body.lgbt-theme #support-button:hover {
+      background: linear-gradient(90deg, #cc0066, #cc7000);
+      box-shadow: 0 4px 12px rgba(255, 0, 128, 0.4);
+    }
+
+    body.festa-junina-theme #support-button:hover {
+      background: linear-gradient(90deg, #cc5500, #cca300);
+      box-shadow: 0 4px 12px rgba(255, 107, 0, 0.4);
     }
 
     #close-button {
       position: absolute;
-      top: 15px;
-      right: 20px;
+      top: 12px;
+      right: 16px;
       background: none;
       border: none;
       color: white;
-      font-size: 30px;
+      font-size: 26px;
+      font-family: 'Inter', sans-serif;
       cursor: pointer;
-      transition: all 0.3s ease;
+      transition: color 0.2s ease;
     }
 
     #close-button:hover {
-      color: #ffcc00;
-      transform: rotate(90deg);
+      color: #a3005b;
     }
 
-    /* RESPONSIVO */
-    @media (max-width: 600px) {
-      h1 {
-        font-size: 2rem;
-      }
-      
-      h2 {
-        font-size: 1.5rem;
-      }
-      
-      .comemoracao-banner {
-        font-size: 0.9rem;
-        padding: 10px 20px;
-      }
+    body.lgbt-theme #close-button:hover {
+      color: #ff0080;
+    }
+
+    body.festa-junina-theme #close-button:hover {
+      color: #ff6b00;
     }
   </style>
 </head>
 
 <body>
-  <!-- BANDEIROLAS -->
-  <div class="bandeirola" style="left: 5%; animation-delay: 0s; background: linear-gradient(to bottom, #ff6b00, #ffcc00);"></div>
-  <div class="bandeirola" style="left: 15%; animation-delay: 0.2s; background: linear-gradient(to bottom, #ff0080, #ff8cff);"></div>
-  <div class="bandeirola" style="left: 25%; animation-delay: 0.4s; background: linear-gradient(to bottom, #00ccff, #aaffff);"></div>
-  <div class="bandeirola" style="left: 35%; animation-delay: 0.6s; background: linear-gradient(to bottom, #ffcc00, #ffffaa);"></div>
-  <div class="bandeirola" style="left: 45%; animation-delay: 0.8s; background: linear-gradient(to bottom, #ff6b00, #ffcc00);"></div>
-  <div class="bandeirola" style="left: 55%; animation-delay: 1s; background: linear-gradient(to bottom, #ff0080, #ff8cff);"></div>
-  <div class="bandeirola" style="left: 65%; animation-delay: 1.2s; background: linear-gradient(to bottom, #00ccff, #aaffff);"></div>
-  <div class="bandeirola" style="left: 75%; animation-delay: 1.4s; background: linear-gradient(to bottom, #ffcc00, #ffffaa);"></div>
-  <div class="bandeirola" style="left: 85%; animation-delay: 1.6s; background: linear-gradient(to bottom, #ff6b00, #ffcc00);"></div>
-
-  <!-- ELEMENTOS DECORATIVOS FLUTUANTES -->
-  <div class="milho" style="left: 10%; top: 20%; animation-delay: 0.5s;"></div>
-  <div class="milho" style="left: 25%; top: 40%; animation-delay: 2s;"></div>
-  <div class="milho" style="left: 80%; top: 30%; animation-delay: 1s;"></div>
-  
-  <div class="coracao" style="left: 15%; top: 60%; animation-delay: 1.5s;"></div>
-  <div class="coracao" style="left: 70%; top: 50%; animation-delay: 0.8s;"></div>
-  <div class="coracao" style="left: 45%; top: 70%; animation-delay: 2.5s;"></div>
-
-  <!-- BANNER DE COMEMORAÇÃO -->
-  <div class="comemoracao-banner">
-    🏳️‍🌈Arraiá com orgulho! Mês do São João e orgulho LGBT+ 🎉
+  <!-- ===== MENSAGEM DO EASTER EGG ===== -->
+  <div class="lacos-banner">
+    🎉 Aniversário de Laços Profanos! 29 de Outubro 🎉
   </div>
 
-  <!-- LOGO -->
+  <!-- ===== LOGO COM DECORAÇÕES TEMÁTICAS ===== -->
   <div class="logo-container">
-    <img class="logo" src="https://i.imgur.com/mgxXSto.png" alt="Logo Laços Profanos">
-    <!-- Substituí por um chapéu de festa junina simples com cores do arco-íris -->
-    <img class="double-hat" src="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><path fill='%23FF6B00' d='M10 40L50 10L90 40L80 90L20 90Z'/><path fill='%23FF0080' d='M10 40L50 20L90 40' stroke='white' stroke-width='2'/><path fill='%2300CCFF' d='M20 45L50 25L80 45' stroke='white' stroke-width='2'/><path fill='%23FFCC00' d='M30 50L50 30L70 50' stroke='white' stroke-width='2'/></svg>" alt="Chapéu de Festa Junina com Cores LGBT">
+    <!-- Bandeira LGBT em CSS -->
+    <div class="lgbt-flag-css">
+      <div class="stripe stripe-red"></div>
+      <div class="stripe stripe-orange"></div>
+      <div class="stripe stripe-yellow"></div>
+      <div class="stripe stripe-green"></div>
+      <div class="stripe stripe-blue"></div>
+      <div class="stripe stripe-purple"></div>
+    </div>
+    
+    <img class="logo" src="https://i.imgur.com/mgxXSto.png" alt="Logo">
+    <img class="party-hat" src="https://gallery.yopriceville.com/var/albums/Free-Clipart-Pictures/Happy-Birthday-PNG/Party_Hat_PNG_Clipart_Image.png?m=1629805743" alt="Chapéu de Aniversário">
+    <img class="lgbt-flag" src="https://cdn.pixabay.com/photo/2018/06/18/23/03/rainbow-flag-3483773_960_720.png" alt="Bandeira LGBT">
+    <img class="junina-hat" src="https://cdn.pixabay.com/photo/2017/06/21/00/22/hat-2427900_960_720.png" alt="Chapéu de Festa Junina">
   </div>
 
   <h1>Laços Profanos</h1>
   <h2>Redes sociais</h2>
 
-  <!-- BOTÕES -->
+  <!-- ===== BOTÕES DE REDES ===== -->
   <a class="botao" href="https://tipa.ai/lacosprofanos" target="_blank">TIPA.AI</a>
-  <a class="botao" href="#" id="scan-button">NOSSA SCAN</a>
+  <a class="botao" href="/scan" target="_blank">NOSSA SCAN</a>
   <a class="botao" href="https://bit.ly/La%C3%A7osprofanoszap" target="_blank">WHATSAPP</a>
   <a class="botao" href="https://t.me/lacosprofanos" target="_blank">TELEGRAM</a>
   <a class="botao" href="https://is.gd/DAv0em" target="_blank">YOUTUBE</a>
@@ -542,7 +538,7 @@
   <a class="botao" href="https://x.com/LacosProfanos" target="_blank">X</a>
   <a class="botao" href="https://lacosprofanos.my.canva.site/fanarts" target="_blank">MURAL DE FANARTS</a>
 
-  <!-- CARD DE DOAÇÃO -->
+  <!-- ===== CARD DE DOAÇÃO ===== -->
   <div class="card">
     <img class="profile-icon" src="https://i.imgur.com/mgxXSto.png" alt="Logo Laços Profanos">
     <h3>DOADORES DE LAÇOS PROFANOS</h3>
@@ -557,7 +553,7 @@
     </a>
   </div>
 
-  <!-- FORMULÁRIO -->
+  <!-- ===== FORMULÁRIO "FALE CONOSCO" ===== -->
   <div class="fale-conosco">
     <h3>FALE CONOSCO</h3>
     <p>Envie um elogio, sugestão ou mensagem!</p>
@@ -577,52 +573,89 @@
     </form>
   </div>
 
-  <!-- SCRIPTS -->
+  <!-- ===== SCRIPT DOS EASTER EGGS ===== -->
   <script>
     document.addEventListener("DOMContentLoaded", function() {
-      // Configurar botão SCAN
-      document.getElementById('scan-button').addEventListener('click', function(e) {
-        e.preventDefault();
-        alert('Opa! Parece que você ainda não pode acessar esse link.');
-      });
+      const hoje = new Date();
+      const dia = hoje.getDate();
+      const mes = hoje.getMonth(); // Janeiro = 0, Dezembro = 11
+      
+      // Verificar se é junho (mês 5)
+      if (mes === 5) {
+        // Verificar se é entre 1-22 ou 24-30 de junho (LGBT)
+        // ou se é dia 23 de junho (Festa Junina)
+        if ((dia >= 1 && dia <= 22) || (dia >= 24 && dia <= 30)) {
+          ativarEasterEggLGBT();
+        } else if (dia === 23) {
+          ativarEasterEggFestaJunina();
+        }
+      }
+      
+      // Verificar aniversário (29 de outubro - mês 9)
+      const urlParams = new URLSearchParams(window.location.search);
+      const easterAtivado = urlParams.has('2910');
 
-      // Criar confetes mistos
-      for (let i = 0; i < 150; i++) {
-        const confete = document.createElement("div");
-        confete.className = "confete";
-        confete.style.left = Math.random() * window.innerWidth + "px";
-        confete.style.animationDelay = Math.random() * 5 + "s";
-        confete.style.animationDuration = (3 + Math.random() * 4) + "s";
-        
-        // Alternar entre cores juninas e LGBT+
-        if (i % 4 === 0) confete.style.backgroundColor = "#ff6b00"; // Laranja
-        else if (i % 4 === 1) confete.style.backgroundColor = "#ffcc00"; // Amarelo
-        else if (i % 4 === 2) confete.style.backgroundColor = "#ff0080"; // Rosa
-        else confete.style.backgroundColor = "#00ccff"; // Azul
-        
-        document.body.appendChild(confete);
+      if ((dia === 29 && mes === 9) || easterAtivado) {
+        ativarEasterEggAniversario();
       }
 
-      // Tocar música temática (instrumental de forró com batida eletrônica)
-      const audio = new Audio("https://assets.mixkit.co/music/preview/mixkit-happy-bossa-nova-271.mp3");
-      audio.loop = true;
-      audio.volume = 0.3;
-      audio.play().catch(() => {});
-    });
+      function ativarEasterEggAniversario() {
+        document.body.classList.add("lacos-aniversario");
 
-    // Popup de doação
-    window.addEventListener('load', () => {
-      if (Math.random() < 0.5) {
-        document.getElementById("popup-overlay").style.display = "flex";
+        const audio = new Audio("https://files.catbox.moe/l3n1tq.mp3");
+        audio.loop = true;
+        audio.volume = 0.3;
+        audio.play().catch(() => {});
+
+        for (let i = 0; i < 100; i++) {
+          const confete = document.createElement("div");
+          confete.className = "confete";
+          confete.style.left = Math.random() * window.innerWidth + "px";
+          confete.style.background = `hsl(${Math.random() * 360}, 100%, 50%)`;
+          confete.style.animationDelay = Math.random() * 3 + "s";
+          document.body.appendChild(confete);
+        }
       }
+      
+      function ativarEasterEggLGBT() {
+        document.body.classList.add("lgbt-theme");
+        document.querySelector(".lacos-banner").textContent = "🏳️‍🌈 Mês do Orgulho LGBT+! 1-30 de Junho 🏳️‍🌈";
 
-      document.getElementById("close-button").addEventListener('click', () => {
-        document.getElementById("popup-overlay").style.display = "none";
-      });
+        for (let i = 0; i < 100; i++) {
+          const confete = document.createElement("div");
+          confete.className = "confete lgbt-confete";
+          confete.style.left = Math.random() * window.innerWidth + "px";
+          confete.style.animationDelay = Math.random() * 3 + "s";
+          document.body.appendChild(confete);
+        }
+      }
+      
+      function ativarEasterEggFestaJunina() {
+        document.body.classList.add("festa-junina-theme");
+        document.querySelector(".lacos-banner").textContent = "🎉 Arraiá do Laços Profanos! 23 de Junho 🎉";
+        
+        // Tocar música de festa junina
+        const audio = new Audio("https://files.catbox.moe/5z5z5z.mp3");
+        audio.loop = true;
+        audio.volume = 0.3;
+        audio.play().catch(() => {});
+
+        for (let i = 0; i < 100; i++) {
+          const confete = document.createElement("div");
+          confete.className = "confete junina-confete";
+          confete.style.left = Math.random() * window.innerWidth + "px";
+          confete.style.animationDelay = Math.random() * 3 + "s";
+          // Alternar entre cores de festa junina
+          if (i % 3 === 0) confete.style.backgroundColor = "#ff6b00";
+          else if (i % 3 === 1) confete.style.backgroundColor = "#ffcc00";
+          else confete.style.backgroundColor = "#ff0000";
+          document.body.appendChild(confete);
+        }
+      }
     });
   </script>
 
-  <!-- POPUP -->
+  <!-- ===== POPUP DE DOAÇÃO ===== -->
   <div id="popup-overlay">
     <div id="popup">
       <button id="close-button">×</button>
@@ -633,5 +666,17 @@
       </a>
     </div>
   </div>
+
+  <script>
+    window.addEventListener('load', () => {
+      if (Math.random() < 0.5) {
+        document.getElementById("popup-overlay").style.display = "flex";
+      }
+
+      document.getElementById("close-button").addEventListener('click', () => {
+        document.getElementById("popup-overlay").style.display = "none";
+      });
+    });
+  </script>
 </body>
 </html>
