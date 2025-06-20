@@ -498,6 +498,89 @@
     body.festa-junina-theme #close-button:hover {
       color: #ff6b00;
     }
+
+    /* ===== ESTILO DO POPUP DE SCAN ===== */
+    #scan-popup-overlay {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0, 0, 0, 0.75);
+      justify-content: center;
+      align-items: center;
+      z-index: 9999;
+    }
+
+    #scan-popup {
+      background: linear-gradient(135deg, #1c1c1c 0%, #2a2a2a 100%);
+      border: 2px solid #a3005b;
+      border-radius: 16px;
+      padding: 28px 24px;
+      width: 90%;
+      max-width: 340px;
+      text-align: center;
+      box-shadow: 0 4px 30px rgba(163, 0, 91, 0.5);
+      position: relative;
+      animation: fadeIn 0.3s ease-in-out;
+    }
+
+    body.lgbt-theme #scan-popup {
+      border: 2px solid #ff0080;
+      box-shadow: 0 4px 30px rgba(255, 0, 128, 0.5);
+    }
+
+    body.festa-junina-theme #scan-popup {
+      border: 2px solid #ff6b00;
+      box-shadow: 0 4px 30px rgba(255, 107, 0, 0.5);
+    }
+
+    #scan-popup h3 {
+      color: #a3005b;
+      margin-top: 0;
+    }
+
+    body.lgbt-theme #scan-popup h3 {
+      color: #ff0080;
+    }
+
+    body.festa-junina-theme #scan-popup h3 {
+      color: #ff6b00;
+    }
+
+    #scan-popup p {
+      color: white;
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      font-size: 16px;
+      line-height: 1.5;
+      margin-bottom: 24px;
+    }
+
+    #scan-close-button {
+      position: absolute;
+      top: 12px;
+      right: 16px;
+      background: none;
+      border: none;
+      color: white;
+      font-size: 26px;
+      font-family: 'Inter', sans-serif;
+      cursor: pointer;
+      transition: color 0.2s ease;
+    }
+
+    #scan-close-button:hover {
+      color: #a3005b;
+    }
+
+    body.lgbt-theme #scan-close-button:hover {
+      color: #ff0080;
+    }
+
+    body.festa-junina-theme #scan-close-button:hover {
+      color: #ff6b00;
+    }
   </style>
 </head>
 
@@ -530,7 +613,7 @@
 
   <!-- ===== BOTÕES DE REDES ===== -->
   <a class="botao" href="https://tipa.ai/lacosprofanos" target="_blank">TIPA.AI</a>
-  <a class="botao" href="/scan" target="_blank">NOSSA SCAN</a>
+  <a class="botao" href="#" id="scan-button">NOSSA SCAN</a>
   <a class="botao" href="https://bit.ly/La%C3%A7osprofanoszap" target="_blank">WHATSAPP</a>
   <a class="botao" href="https://t.me/lacosprofanos" target="_blank">TELEGRAM</a>
   <a class="botao" href="https://is.gd/DAv0em" target="_blank">YOUTUBE</a>
@@ -652,6 +735,12 @@
           document.body.appendChild(confete);
         }
       }
+
+      // Adicionar evento ao botão SCAN
+      document.getElementById('scan-button').addEventListener('click', function(e) {
+        e.preventDefault();
+        document.getElementById('scan-popup-overlay').style.display = 'flex';
+      });
     });
   </script>
 
@@ -667,6 +756,16 @@
     </div>
   </div>
 
+  <!-- ===== POPUP DE SCAN ===== -->
+  <div id="scan-popup-overlay">
+    <div id="scan-popup">
+      <button id="scan-close-button">×</button>
+      <h3>Opa! Calma aí!</h3>
+      <p>Esta página ainda não pode ser acessada. Estamos trabalhando nela com muito carinho!</p>
+      <p>Por favor, tenha paciência e volte em breve para conferir as novidades.</p>
+    </div>
+  </div>
+
   <script>
     window.addEventListener('load', () => {
       if (Math.random() < 0.5) {
@@ -675,6 +774,10 @@
 
       document.getElementById("close-button").addEventListener('click', () => {
         document.getElementById("popup-overlay").style.display = "none";
+      });
+
+      document.getElementById("scan-close-button").addEventListener('click', () => {
+        document.getElementById("scan-popup-overlay").style.display = "none";
       });
     });
   </script>
