@@ -1,8 +1,9 @@
 import { createClient } from '@supabase/supabase-js';
 
+// Correção: Use exatamente os mesmos nomes que você configurou no Vercel
 const supabase = createClient(
-  process.env.SUPABASE_URL,
-  process.env.SUPABASE_KEY
+  process.env.urlsuperabase,  // ← minúsculo
+  process.env.servicerolesubarabase  // ← minúsculo
 );
 
 export default async function handler(req, res) {
@@ -32,10 +33,11 @@ export default async function handler(req, res) {
     auto_return: 'approved'
   };
 
+  // Correção: Nome da variável em minúsculo
   const mpResponse = await fetch('https://api.mercadopago.com/checkout/preferences', {
     method: 'POST',
     headers: {
-      Authorization: `Bearer ${process.env.MERCADO_PAGO_TOKEN}`,
+      Authorization: `Bearer ${process.env.acesstokenmercadopago}`,  // ← minúsculo
       'Content-Type': 'application/json'
     },
     body: JSON.stringify(preference)
@@ -44,13 +46,36 @@ export default async function handler(req, res) {
   const mpData = await mpResponse.json();
 
   if (!mpData.id) {
-    return res.status(500).json({ message: 'Erro ao criar preferência' });
+    return res.status(500).json({ 
+      message: 'Erro ao criar preferência',
+      debug: { // Adicionei um debug extra
+        supabaseUrl: !!process.env.urlsuperabase,
+        supabaseKey: !!process.env.servicerolesubarabase,
+        mpToken: !!process.env.acesstokenmercadopago,
+        mpResponse: mpData
+      }
+    });
   }
 
-  // 💾 Salva no Supabase
-  await supabase
+  // 💾 Salva no Supabase (com tratamento de erro melhorado)
+  const { error } = await supabase
     .from('doacoes')
-    .insert([{ nome, valor, mensagem, status: 'pendente' }]);
+    .insert([{ 
+      nome, 
+      valor, 
+      mensagem, 
+      status: 'pendente',
+      mp_id: mpData.id // Adicionei para rastreamento
+    }]);
+
+  if (error) {
+    console.error('Erro Supabase:', error);
+    return res.status(500).json({ 
+      message: 'Pagamento criado, mas falha ao salvar dados',
+      preferenceId: mpData.id,
+      supabaseError: error.message
+    });
+  }
 
   return res.status(200).json({
     preferenceId: mpData.id,
