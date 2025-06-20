@@ -1,63 +1,90 @@
-const supabaseUrl = 'https://yulyrrrodeiijxdgvkqc.supabase.co';
-const supabaseKey = 'eyJhbGciOi...MKF0';
-const supabase = supabase.createClient(supabaseUrl, supabaseKey);
-
+// Configuração do Mercado Pago com chave pública
 const mp = new MercadoPago('APP_USR-499b47b3-fc50-4ec0-b451-7a3da3255400', {
   locale: 'pt-BR'
 });
 
+// Função para carregar o ranking de doadores
 async function carregarRanking() {
-  const { data: doacoes, error } = await supabase
-    .from('doacoes')
-    .select('nome, valor')
-    .order('valor', { ascending: false })
-    .limit(10);
+  try {
+    const res = await fetch('/api/getRanking');
+    
+    if (!res.ok) {
+      throw new Error('Erro ao carregar ranking');
+    }
+    
+    const doacoes = await res.json();
+    const rankingDiv = document.getElementById('rankingDoadores');
+    
+    if (!doacoes || doacoes.length === 0) {
+      rankingDiv.innerHTML = '<p>Nenhuma doação ainda. Seja o primeiro!</p>';
+      return;
+    }
 
-  const rankingDiv = document.getElementById('rankingDoadores');
-  if (error) {
-    rankingDiv.innerHTML = '<p>Erro ao carregar ranking</p>';
-    return;
+    rankingDiv.innerHTML = doacoes.map((d, i) => `
+      <div class="doador-item">
+        <span>${i + 1}. ${d.nome || 'Anônimo'}</span>
+        <span class="valor">R$ ${d.valor.toFixed(2)}</span>
+      </div>
+    `).join('');
+  } catch (error) {
+    console.error('Erro:', error);
+    document.getElementById('rankingDoadores').innerHTML = 
+      '<p>Erro ao carregar ranking. Recarregue a página.</p>';
   }
-
-  if (!doacoes.length) {
-    rankingDiv.innerHTML = '<p>Nenhuma doação ainda. Seja o primeiro!</p>';
-    return;
-  }
-
-  rankingDiv.innerHTML = doacoes.map((d, i) => `
-    <div class="doador-item">
-      <span>${i + 1}. ${d.nome || 'Anônimo'}</span>
-      <span class="valor">R$ ${d.valor.toFixed(2)}</span>
-    </div>
-  `).join('');
 }
 
+// Manipulador do formulário de doação
 document.getElementById("formDoacao").addEventListener("submit", async (e) => {
   e.preventDefault();
-  const nome = document.getElementById("nome").value || "Anônimo";
-  const valor = parseFloat(document.getElementById("valor").value);
-  const mensagem = document.getElementById("mensagem").value || "";
+  
+  const botao = e.target.querySelector('button[type="submit"]');
+  botao.disabled = true;
+  botao.textContent = 'Processando...';
+  
+  try {
+    const nome = document.getElementById("nome").value || "Anônimo";
+    const valor = parseFloat(document.getElementById("valor").value);
+    const mensagem = document.getElementById("mensagem").value || "";
 
-  const res = await fetch('/api/createPreference', {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({ nome, valor, mensagem })
-  });
-
-  const data = await res.json();
-
-  mp.bricks().create("wallet", "wallet_container", {
-    initialization: {
-      preferenceId: data.preferenceId
-    },
-    customization: {
-      texts: {
-        action: "pay",
-        valueProp: "security_details"
-      }
+    if (!valor || valor < 1) {
+      throw new Error('Valor inválido');
     }
-  });
+
+    const res = await fetch('/api/createPreference', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ nome, valor, mensagem })
+    });
+
+    if (!res.ok) {
+      throw new Error('Erro ao criar pagamento');
+    }
+
+    const data = await res.json();
+    
+    // Renderiza o botão de pagamento do Mercado Pago
+    mp.bricks().create("wallet", "wallet_container", {
+      initialization: {
+        preferenceId: data.preferenceId
+      },
+      customization: {
+        visual: {
+          style: {
+            theme: 'dark'
+          }
+        }
+      }
+    });
+  } catch (error) {
+    console.error('Erro:', error);
+    alert('Erro ao processar doação: ' + error.message);
+    botao.disabled = false;
+    botao.textContent = 'DOAR AGORA';
+  }
 });
 
-carregarRanking();
-setInterval(carregarRanking, 30000);
+// Carrega o ranking inicial e atualiza a cada 30 segundos
+document.addEventListener('DOMContentLoaded', () => {
+  carregarRanking();
+  setInterval(carregarRanking, 30000);
+});
