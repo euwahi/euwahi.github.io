@@ -1,68 +1,68 @@
-// Configuração do Mercado Pago com chave pública
-const mp = new MercadoPago('APP_USR-499b47b3-fc50-4ec0-b451-7a3da3255400', {
-  locale: 'pt-BR'
-});
+console.log('Script carregado!'); // Debug inicial
 
-// Função para carregar o ranking de doadores
-async function carregarRanking() {
-  try {
-    const res = await fetch('/api/getRanking');
-    
-    if (!res.ok) {
-      throw new Error('Erro ao carregar ranking');
-    }
-    
-    const doacoes = await res.json();
-    const rankingDiv = document.getElementById('rankingDoadores');
-    
-    if (!doacoes || doacoes.length === 0) {
-      rankingDiv.innerHTML = '<p>Nenhuma doação ainda. Seja o primeiro!</p>';
-      return;
-    }
-
-    rankingDiv.innerHTML = doacoes.map((d, i) => `
-      <div class="doador-item">
-        <span>${i + 1}. ${d.nome || 'Anônimo'}</span>
-        <span class="valor">R$ ${d.valor.toFixed(2)}</span>
-      </div>
-    `).join('');
-  } catch (error) {
-    console.error('Erro:', error);
-    document.getElementById('rankingDoadores').innerHTML = 
-      '<p>Erro ao carregar ranking. Recarregue a página.</p>';
-  }
+// Debug Mercado Pago
+try {
+  const mp = new MercadoPago('APP_USR-499b47b3-fc50-4ec0-b451-7a3da3255400', {
+    locale: 'pt-BR'
+  });
+  console.log('Mercado Pago inicializado:', mp);
+} catch (error) {
+  console.error('Erro ao carregar Mercado Pago:', error);
 }
 
-// Manipulador do formulário de doação
+// Função para debug de erros
+function mostrarErro(mensagem) {
+  const erroDiv = document.createElement('div');
+  erroDiv.style.color = 'red';
+  erroDiv.style.padding = '10px';
+  erroDiv.textContent = `ERRO: ${mensagem}`;
+  document.body.prepend(erroDiv);
+}
+
+// Formulário com debug aprimorado
 document.getElementById("formDoacao").addEventListener("submit", async (e) => {
   e.preventDefault();
+  console.log('Formulário enviado!'); // Debug
   
   const botao = e.target.querySelector('button[type="submit"]');
   botao.disabled = true;
   botao.textContent = 'Processando...';
-  
-  try {
-    const nome = document.getElementById("nome").value || "Anônimo";
-    const valor = parseFloat(document.getElementById("valor").value);
-    const mensagem = document.getElementById("mensagem").value || "";
 
-    if (!valor || valor < 1) {
-      throw new Error('Valor inválido');
+  try {
+    const dados = {
+      nome: document.getElementById("nome").value || "Anônimo",
+      valor: parseFloat(document.getElementById("valor").value),
+      mensagem: document.getElementById("mensagem").value || ""
+    };
+
+    console.log('Dados do formulário:', dados); // Debug
+
+    if (!dados.valor || dados.valor < 1) {
+      throw new Error('Valor mínimo: R$ 1,00');
     }
 
+    // Debug da API
+    console.log('Enviando para /api/createPreference...');
     const res = await fetch('/api/createPreference', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ nome, valor, mensagem })
+      body: JSON.stringify(dados)
     });
 
     if (!res.ok) {
-      throw new Error('Erro ao criar pagamento');
+      const erroApi = await res.text();
+      throw new Error(`API respondeu com ${res.status}: ${erroApi}`);
     }
 
     const data = await res.json();
-    
-    // Renderiza o botão de pagamento do Mercado Pago
+    console.log('Resposta da API:', data); // Debug
+
+    if (!data.preferenceId) {
+      throw new Error('PreferenceId não recebido');
+    }
+
+    // Debug Mercado Pago Brick
+    console.log('Inicializando Wallet Brick...');
     mp.bricks().create("wallet", "wallet_container", {
       initialization: {
         preferenceId: data.preferenceId
@@ -70,21 +70,51 @@ document.getElementById("formDoacao").addEventListener("submit", async (e) => {
       customization: {
         visual: {
           style: {
-            theme: 'dark'
+            theme: 'dark',
+            customVariables: {
+              formBackgroundColor: '#1e1e1e',
+              baseColor: '#a3005b'
+            }
           }
         }
       }
+    }).then(() => {
+      console.log('Wallet Brick carregado!');
     });
+
   } catch (error) {
-    console.error('Erro:', error);
-    alert('Erro ao processar doação: ' + error.message);
+    console.error('Erro no processo:', error);
+    mostrarErro(error.message);
     botao.disabled = false;
     botao.textContent = 'DOAR AGORA';
   }
 });
 
-// Carrega o ranking inicial e atualiza a cada 30 segundos
+// Ranking (mantido igual)
+async function carregarRanking() {
+  try {
+    const res = await fetch('/api/getRanking');
+    if (!res.ok) throw new Error('Erro ao carregar ranking');
+    const doacoes = await res.json();
+    
+    const rankingDiv = document.getElementById('rankingDoadores');
+    rankingDiv.innerHTML = doacoes.length ? 
+      doacoes.map((d, i) => `
+        <div class="doador-item">
+          <span>${i + 1}. ${d.nome || 'Anônimo'}</span>
+          <span class="valor">R$ ${d.valor.toFixed(2)}</span>
+        </div>
+      `).join('') : '<p>Nenhuma doação ainda. Seja o primeiro!</p>';
+  } catch (error) {
+    console.error('Erro no ranking:', error);
+    document.getElementById('rankingDoadores').innerHTML = 
+      '<p>Erro ao carregar ranking</p>';
+  }
+}
+
+// Inicialização
 document.addEventListener('DOMContentLoaded', () => {
+  console.log('DOM carregado!');
   carregarRanking();
   setInterval(carregarRanking, 30000);
 });
