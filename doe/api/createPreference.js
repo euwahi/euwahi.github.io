@@ -1,3 +1,4 @@
+vercel alias <deployment> <domain>
 import { createClient } from '@supabase/supabase-js';
 
 // Correção: Use exatamente os mesmos nomes que você configurou no Vercel
