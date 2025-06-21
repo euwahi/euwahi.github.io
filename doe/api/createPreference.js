@@ -59,7 +59,7 @@ export default async function handler(req, res) {
 
   // 💾 Salva no Supabase (com tratamento de erro melhorado)
   const { error } = await supabase
-    .from('doacoes')
+    .from('lacos-profanos-doadores')
     .insert([{ 
       nome, 
       valor, 
