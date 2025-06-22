@@ -9,7 +9,7 @@
   <style>
     body {
       background-color: #121212;
-      background-image: radial-gradient(#2c2c2c 1px, transparent 1px);
+      background-image: radial-gradient(#2a2a2a 1px, transparent 1px);
       background-size: 24px 24px;
       color: white;
       margin: 0;
@@ -22,60 +22,16 @@
       background-size: 20px 20px;
     }
 
-    body.lgbt-theme {
-      background-color: #121212;
-      background-image: radial-gradient(#ff0080 1px, transparent 1px), 
-                        radial-gradient(#00ccff 1px, transparent 1px), 
-                        radial-gradient(#ffed00 1px, transparent 1px);
-      background-size: 30px 30px;
-      background-position: 0 0, 10px 10px, 20px 20px;
-    }
-
-    body.festa-junina-theme {
-      background-color: #1a0d00;
-      background-image: radial-gradient(#ff6b00 1px, transparent 1px), 
-                        radial-gradient(#ffcc00 1px, transparent 1px);
-      background-size: 30px 30px;
-      background-position: 0 0, 15px 15px;
-    }
-
     .logo-container {
       position: relative;
       text-align: center;
-      margin-top: 100px; /* Aumentado para acomodar a bandeira */
+      margin-top: 100px;
     }
 
     .logo {
       width: 200px;
       border-radius: 50%;
     }
-
-    /* Bandeira LGBT em CSS */
-    .lgbt-flag-css {
-      display: none;
-      position: absolute;
-      width: 200px;
-      height: 120px;
-      top: -100px;
-      left: 50%;
-      transform: translateX(-50%);
-      z-index: 10;
-      border-radius: 8px;
-      overflow: hidden;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.3);
-    }
-
-    .lgbt-flag-css .stripe {
-      height: 20px;
-      width: 100%;
-    }
-
-    .stripe-red { background-color: #FF0018; }
-    .stripe-orange { background-color: #FFA52C; }
-    .stripe-yellow { background-color: #FFFF41; }
-    .stripe-green { background-color: #008018; }
-    .stripe-blue { background-color: #0000F9; }
-    .stripe-purple { background-color: #86007D; }
 
     .party-hat {
       display: none;
@@ -87,39 +43,7 @@
       z-index: 10;
     }
 
-    .lgbt-flag {
-      display: none;
-      position: absolute;
-      width: 120px;
-      top: -40px;
-      left: 50%;
-      transform: translateX(-50%);
-      z-index: 10;
-    }
-
-    .junina-hat {
-      display: none;
-      position: absolute;
-      width: 100px;
-      top: -50px;
-      left: 50%;
-      transform: translateX(-50%);
-      z-index: 10;
-    }
-
     body.lacos-aniversario .party-hat {
-      display: block;
-    }
-
-    body.lgbt-theme .lgbt-flag-css {
-      display: block;
-    }
-
-    body.lgbt-theme .lgbt-flag {
-      display: none; /* Esconde a versão em imagem */
-    }
-
-    body.festa-junina-theme .junina-hat {
       display: block;
     }
 
@@ -133,36 +57,17 @@
       max-width: 300px;
       margin: 10px auto;
       padding: 15px;
-      border: 2px solid white;
+      border: 2px solid #a3005b;
       background: transparent;
       color: white;
       text-decoration: none;
       border-radius: 8px;
       text-align: center;
-      transition: 0.3s;
-    }
-
-    body.lgbt-theme .botao {
-      border-color: #ff0080;
-      background: rgba(255, 0, 128, 0.1);
-    }
-
-    body.festa-junina-theme .botao {
-      border-color: #ff6b00;
-      background: rgba(255, 107, 0, 0.1);
+      transition: all 0.3s ease;
     }
 
     .botao:hover {
-      background: #333;
       transform: scale(1.05);
-    }
-
-    body.lgbt-theme .botao:hover {
-      background: rgba(255, 0, 128, 0.3);
-    }
-
-    body.festa-junina-theme .botao:hover {
-      background: rgba(255, 107, 0, 0.3);
     }
 
     .card {
@@ -173,14 +78,6 @@
       border-radius: 10px;
       background-color: #1a1a1a;
       text-align: center;
-    }
-
-    body.lgbt-theme .card {
-      border-color: #ff0080;
-    }
-
-    body.festa-junina-theme .card {
-      border-color: #ff6b00;
     }
 
     .profile-icon {
@@ -211,21 +108,6 @@
       transition: transform 0.3s;
     }
 
-    body.lgbt-theme .botao-doar {
-      background: linear-gradient(to right, #ff0080, #ff8c00, #ffed00, #00cc00, #00ccff, #a3005b);
-      background-size: 600% 100%;
-      animation: rainbow 3s linear infinite;
-    }
-
-    body.festa-junina-theme .botao-doar {
-      background-color: #ff6b00;
-    }
-
-    @keyframes rainbow {
-      0% { background-position: 0% 50%; }
-      100% { background-position: 100% 50%; }
-    }
-
     .botao-doar:hover {
       transform: scale(1.1);
     }
@@ -246,19 +128,6 @@
       box-shadow: 0 0 10px #a3005b;
     }
 
-    body.lgbt-theme .lacos-banner {
-      display: block;
-      background: linear-gradient(to right, #ff0080, #ff8c00, #ffed00, #00cc00, #00ccff, #a3005b);
-      animation: rainbow 3s linear infinite;
-      background-size: 600% 100%;
-    }
-
-    body.festa-junina-theme .lacos-banner {
-      display: block;
-      background: #ff6b00;
-      box-shadow: 0 0 10px #ff6b00;
-    }
-
     body.lacos-aniversario .lacos-banner {
       display: block;
     }
@@ -271,30 +140,6 @@
       top: -20px;
       animation: quedaConfete 3s linear infinite;
       z-index: 999;
-    }
-
-    .lgbt-confete {
-      animation: quedaConfete 3s linear infinite, rainbowColor 3s linear infinite;
-    }
-
-    .junina-confete {
-      background-color: #ff6b00;
-      animation: quedaConfete 3s linear infinite, pulseJunina 1s ease-in-out infinite;
-    }
-
-    @keyframes rainbowColor {
-      0% { background-color: #ff0080; }
-      20% { background-color: #ff8c00; }
-      40% { background-color: #ffed00; }
-      60% { background-color: #00cc00; }
-      80% { background-color: #00ccff; }
-      100% { background-color: #a3005b; }
-    }
-
-    @keyframes pulseJunina {
-      0% { transform: scale(1); }
-      50% { transform: scale(1.2); }
-      100% { transform: scale(1); }
     }
 
     @keyframes quedaConfete {
@@ -313,25 +158,9 @@
       text-align: center;
     }
 
-    body.lgbt-theme .fale-conosco {
-      border-color: #ff0080;
-    }
-
-    body.festa-junina-theme .fale-conosco {
-      border-color: #ff6b00;
-    }
-
     .fale-conosco h3 {
       margin-top: 0;
       color: #a3005b;
-    }
-
-    body.lgbt-theme .fale-conosco h3 {
-      color: #ff0080;
-    }
-
-    body.festa-junina-theme .fale-conosco h3 {
-      color: #ff6b00;
     }
 
     .fale-conosco form {
@@ -366,24 +195,8 @@
       transition: background-color 0.3s;
     }
 
-    body.lgbt-theme .fale-conosco button {
-      background: linear-gradient(to right, #ff0080, #00ccff);
-    }
-
-    body.festa-junina-theme .fale-conosco button {
-      background-color: #ff6b00;
-    }
-
     .fale-conosco button:hover {
       background-color: #850048;
-    }
-
-    body.lgbt-theme .fale-conosco button:hover {
-      background: linear-gradient(to right, #cc0066, #00a3cc);
-    }
-
-    body.festa-junina-theme .fale-conosco button:hover {
-      background-color: #cc5500;
     }
 
     /* ===== ESTILO DO POPUP ===== */
@@ -413,16 +226,6 @@
       animation: fadeIn 0.3s ease-in-out;
     }
 
-    body.lgbt-theme #popup {
-      border: 2px solid #ff0080;
-      box-shadow: 0 4px 30px rgba(255, 0, 128, 0.5);
-    }
-
-    body.festa-junina-theme #popup {
-      border: 2px solid #ff6b00;
-      box-shadow: 0 4px 30px rgba(255, 107, 0, 0.5);
-    }
-
     @keyframes fadeIn {
       from { opacity: 0; transform: scale(0.95); }
       to { opacity: 1; transform: scale(1); }
@@ -450,28 +253,10 @@
       transition: transform 0.2s ease, box-shadow 0.2s ease;
     }
 
-    body.lgbt-theme #support-button {
-      background: linear-gradient(90deg, #ff0080, #ff8c00);
-    }
-
-    body.festa-junina-theme #support-button {
-      background: linear-gradient(90deg, #ff6b00, #ffcc00);
-    }
-
     #support-button:hover {
       background: linear-gradient(90deg, #850048, #a3005b);
       transform: translateY(-2px);
       box-shadow: 0 4px 12px rgba(163, 0, 91, 0.4);
-    }
-
-    body.lgbt-theme #support-button:hover {
-      background: linear-gradient(90deg, #cc0066, #cc7000);
-      box-shadow: 0 4px 12px rgba(255, 0, 128, 0.4);
-    }
-
-    body.festa-junina-theme #support-button:hover {
-      background: linear-gradient(90deg, #cc5500, #cca300);
-      box-shadow: 0 4px 12px rgba(255, 107, 0, 0.4);
     }
 
     #close-button {
@@ -489,14 +274,6 @@
 
     #close-button:hover {
       color: #a3005b;
-    }
-
-    body.lgbt-theme #close-button:hover {
-      color: #ff0080;
-    }
-
-    body.festa-junina-theme #close-button:hover {
-      color: #ff6b00;
     }
 
     /* ===== ESTILO DO POPUP DE SCAN ===== */
@@ -526,27 +303,9 @@
       animation: fadeIn 0.3s ease-in-out;
     }
 
-    body.lgbt-theme #scan-popup {
-      border: 2px solid #ff0080;
-      box-shadow: 0 4px 30px rgba(255, 0, 128, 0.5);
-    }
-
-    body.festa-junina-theme #scan-popup {
-      border: 2px solid #ff6b00;
-      box-shadow: 0 4px 30px rgba(255, 107, 0, 0.5);
-    }
-
     #scan-popup h3 {
       color: #a3005b;
       margin-top: 0;
-    }
-
-    body.lgbt-theme #scan-popup h3 {
-      color: #ff0080;
-    }
-
-    body.festa-junina-theme #scan-popup h3 {
-      color: #ff6b00;
     }
 
     #scan-popup p {
@@ -574,52 +333,52 @@
       color: #a3005b;
     }
 
-    body.lgbt-theme #scan-close-button:hover {
-      color: #ff0080;
+    /* Botões de redes sociais */
+    .social-button {
+      display: block;
+      width: 90%;
+      max-width: 300px;
+      margin: 10px auto;
+      padding: 15px;
+      border: 2px solid #a3005b;
+      background: transparent;
+      color: white;
+      text-decoration: none;
+      border-radius: 8px;
+      text-align: center;
+      transition: all 0.3s ease;
     }
 
-    body.festa-junina-theme #scan-close-button:hover {
-      color: #ff6b00;
+    .social-button:hover {
+      transform: scale(1.05);
     }
   </style>
 </head>
 
 <body>
-  <!-- ===== MENSAGEM DO EASTER EGG ===== -->
+  <!-- ===== MENSAGEM DO ANIVERSÁRIO ===== -->
   <div class="lacos-banner">
     🎉 Aniversário de Laços Profanos! 29 de Outubro 🎉
   </div>
 
   <!-- ===== LOGO COM DECORAÇÕES TEMÁTICAS ===== -->
   <div class="logo-container">
-    <!-- Bandeira LGBT em CSS -->
-    <div class="lgbt-flag-css">
-      <div class="stripe stripe-red"></div>
-      <div class="stripe stripe-orange"></div>
-      <div class="stripe stripe-yellow"></div>
-      <div class="stripe stripe-green"></div>
-      <div class="stripe stripe-blue"></div>
-      <div class="stripe stripe-purple"></div>
-    </div>
-    
     <img class="logo" src="https://i.imgur.com/mgxXSto.png" alt="Logo">
     <img class="party-hat" src="https://gallery.yopriceville.com/var/albums/Free-Clipart-Pictures/Happy-Birthday-PNG/Party_Hat_PNG_Clipart_Image.png?m=1629805743" alt="Chapéu de Aniversário">
-    <img class="lgbt-flag" src="https://cdn.pixabay.com/photo/2018/06/18/23/03/rainbow-flag-3483773_960_720.png" alt="Bandeira LGBT">
-    <img class="junina-hat" src="https://cdn.pixabay.com/photo/2017/06/21/00/22/hat-2427900_960_720.png" alt="Chapéu de Festa Junina">
   </div>
 
   <h1>Laços Profanos</h1>
   <h2>Redes sociais</h2>
 
   <!-- ===== BOTÕES DE REDES ===== -->
-  <a class="botao" href="https://tipa.ai/lacosprofanos" target="_blank">TIPA.AI</a>
-  <a class="botao" href="#" id="scan-button">NOSSA SCAN</a>
-  <a class="botao" href="https://bit.ly/La%C3%A7osprofanoszap" target="_blank">WHATSAPP</a>
-  <a class="botao" href="https://t.me/lacosprofanos" target="_blank">TELEGRAM</a>
-  <a class="botao" href="https://is.gd/DAv0em" target="_blank">YOUTUBE</a>
-  <a class="botao" href="https://www.instagram.com/lacosprofanos" target="_blank">INSTAGRAM</a>
-  <a class="botao" href="https://x.com/LacosProfanos" target="_blank">X</a>
-  <a class="botao" href="https://lacosprofanos.my.canva.site/fanarts" target="_blank">MURAL DE FANARTS</a>
+  <a class="social-button" href="https://tipa.ai/lacosprofanos" target="_blank">TIPA.AI</a>
+  <a class="social-button" href="#" id="scan-button">NOSSA SCAN</a>
+  <a class="social-button" href="https://bit.ly/La%C3%A7osprofanoszap" target="_blank">WHATSAPP</a>
+  <a class="social-button" href="https://t.me/lacosprofanos" target="_blank">TELEGRAM</a>
+  <a class="social-button" href="https://is.gd/DAv0em" target="_blank">YOUTUBE</a>
+  <a class="social-button" href="https://www.instagram.com/lacosprofanos" target="_blank">INSTAGRAM</a>
+  <a class="social-button" href="https://x.com/LacosProfanos" target="_blank">X</a>
+  <a class="social-button" href="https://lacosprofanos.my.canva.site/fanarts" target="_blank">MURAL DE FANARTS</a>
 
   <!-- ===== CARD DE DOAÇÃO ===== -->
   <div class="card">
@@ -657,23 +416,12 @@
     </form>
   </div>
 
-  <!-- ===== SCRIPT DOS EASTER EGGS ===== -->
+  <!-- ===== SCRIPT DO ANIVERSÁRIO ===== -->
   <script>
     document.addEventListener("DOMContentLoaded", function() {
       const hoje = new Date();
       const dia = hoje.getDate();
       const mes = hoje.getMonth(); // Janeiro = 0, Dezembro = 11
-      
-      // Verificar se é junho (mês 5)
-      if (mes === 5) {
-        // Verificar se é entre 1-22 ou 24-30 de junho (LGBT)
-        // ou se é dia 23 de junho (Festa Junina)
-        if ((dia >= 1 && dia <= 22) || (dia >= 24 && dia <= 30)) {
-          ativarEasterEggLGBT();
-        } else if (dia === 23) {
-          ativarEasterEggFestaJunina();
-        }
-      }
       
       // Verificar aniversário (29 de outubro - mês 9)
       const urlParams = new URLSearchParams(window.location.search);
@@ -697,42 +445,6 @@
           confete.style.left = Math.random() * window.innerWidth + "px";
           confete.style.background = `hsl(${Math.random() * 360}, 100%, 50%)`;
           confete.style.animationDelay = Math.random() * 3 + "s";
-          document.body.appendChild(confete);
-        }
-      }
-      
-      function ativarEasterEggLGBT() {
-        document.body.classList.add("lgbt-theme");
-        document.querySelector(".lacos-banner").textContent = "Mês do Orgulho LGBT+!!!";
-
-        for (let i = 0; i < 100; i++) {
-          const confete = document.createElement("div");
-          confete.className = "confete lgbt-confete";
-          confete.style.left = Math.random() * window.innerWidth + "px";
-          confete.style.animationDelay = Math.random() * 3 + "s";
-          document.body.appendChild(confete);
-        }
-      }
-      
-      function ativarEasterEggFestaJunina() {
-        document.body.classList.add("festa-junina-theme");
-        document.querySelector(".lacos-banner").textContent = "🎉 Arraiá do Laços Profanos! 23 de Junho 🎉";
-        
-        // Tocar música de festa junina
-        const audio = new Audio("https://files.catbox.moe/5z5z5z.mp3");
-        audio.loop = true;
-        audio.volume = 0.3;
-        audio.play().catch(() => {});
-
-        for (let i = 0; i < 100; i++) {
-          const confete = document.createElement("div");
-          confete.className = "confete junina-confete";
-          confete.style.left = Math.random() * window.innerWidth + "px";
-          confete.style.animationDelay = Math.random() * 3 + "s";
-          // Alternar entre cores de festa junina
-          if (i % 3 === 0) confete.style.backgroundColor = "#ff6b00";
-          else if (i % 3 === 1) confete.style.backgroundColor = "#ffcc00";
-          else confete.style.backgroundColor = "#ff0000";
           document.body.appendChild(confete);
         }
       }
