@@ -1,23 +1,23 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Yaziell - Links</title>
-  <link rel="icon" href="https://i.imgur.com/mgxXSto.png">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="icon" href="https://i.imgur.com/mgxXSto.png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet"/>
 
   <style>
     :root {
-      --roxo-profundo: #2a1a3a;
-      --roxo-escuro: #3b2a4a;
-      --roxo-medio: #5d4a6a;
-      --rosa-suave: #d8a1c4;
-      --rosa-claro: #e8c1d8;
-      --bege: #f0e6d2;
-      --branco: #ffffff;
+      --preto-fundo: #0e0c10;
+      --roxo-base: #1a1322;
+      --botao-cor: #4a2c4f;
+      --botao-hover: #6a3d6c;
+      --cinza-borda: rgba(255, 255, 255, 0.07);
+      --cinza-leve: #d6d6d6;
+      --cinza-claro: #eeeeee;
     }
 
     * {
@@ -27,36 +27,36 @@
     }
 
     body {
-      background-color: var(--roxo-profundo);
-      background-image: radial-gradient(circle at center, var(--rosa-suave) 1px, transparent 1px);
+      background-color: var(--preto-fundo);
+      background-image: radial-gradient(circle, rgba(255,255,255,0.03) 1px, transparent 1px);
       background-size: 20px 20px;
       background-attachment: fixed;
-      color: var(--branco);
       font-family: 'Inter', sans-serif;
-      min-height: 100vh;
+      color: var(--cinza-claro);
       display: flex;
       flex-direction: column;
       align-items: center;
       padding: 20px;
+      min-height: 100vh;
     }
 
     .logo-container {
+      margin: 30px 0 15px;
       text-align: center;
-      margin: 30px 0 20px;
     }
 
     .logo {
-      width: 140px;
-      height: 140px;
+      width: 130px;
+      height: 130px;
       border-radius: 50%;
       object-fit: cover;
-      border: 3px solid var(--rosa-suave);
-      box-shadow: 0 4px 20px rgba(216, 161, 196, 0.3);
+      border: 2px solid var(--botao-hover);
+      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.4);
       transition: transform 0.3s ease;
     }
 
     .logo:hover {
-      transform: scale(1.03);
+      transform: scale(1.05);
     }
 
     .titulo {
@@ -67,58 +67,53 @@
     h1 {
       font-size: 1.8rem;
       font-weight: 700;
-      color: var(--bege);
-      margin-bottom: 5px;
+      color: var(--cinza-claro);
     }
 
     h2 {
       font-size: 1rem;
       font-weight: 400;
-      color: var(--rosa-suave);
-      opacity: 0.9;
+      color: var(--cinza-leve);
+      opacity: 0.8;
     }
 
     .links-container {
       width: 100%;
-      max-width: 400px;
+      max-width: 420px;
       display: flex;
       flex-direction: column;
       gap: 12px;
-      margin-bottom: 30px;
+      margin-bottom: 40px;
     }
 
     .botao {
+      background-color: var(--botao-cor);
+      border: 1px solid var(--cinza-borda);
+      color: var(--cinza-claro);
+      text-decoration: none;
+      font-weight: 500;
+      border-radius: 10px;
+      padding: 14px 20px;
+      transition: all 0.3s ease;
       display: flex;
       align-items: center;
       justify-content: center;
-      width: 100%;
-      padding: 14px 20px;
-      background-color: rgba(59, 42, 74, 0.7);
-      backdrop-filter: blur(5px);
-      color: var(--branco);
-      text-decoration: none;
-      border-radius: 10px;
-      font-weight: 500;
-      transition: all 0.3s ease;
-      border: 1px solid var(--rosa-suave);
     }
 
     .botao:hover {
-      background-color: var(--roxo-medio);
+      background-color: var(--botao-hover);
       transform: translateY(-2px);
-      box-shadow: 0 4px 12px rgba(216, 161, 196, 0.2);
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
     }
 
     .botao-destaque {
-      background: linear-gradient(90deg, var(--rosa-suave), var(--rosa-claro));
-      color: var(--roxo-profundo);
+      background-color: var(--botao-hover);
+      border: 1px solid var(--cinza-borda);
       font-weight: 600;
-      margin-top: 20px;
-      border: none;
     }
 
     .botao-destaque:hover {
-      box-shadow: 0 4px 12px rgba(216, 161, 196, 0.3);
+      background-color: var(--botao-cor);
     }
 
     /* ==== POPUP ==== */
@@ -128,36 +123,36 @@
       left: 0;
       width: 100%;
       height: 100%;
-      background-color: rgba(0, 0, 0, 0.7);
+      background-color: rgba(5, 5, 5, 0.7);
       display: none;
       justify-content: center;
       align-items: center;
-      z-index: 1000;
-      backdrop-filter: blur(3px);
+      z-index: 999;
+      backdrop-filter: blur(5px);
     }
 
     #popup {
-      background-color: var(--roxo-escuro);
-      border: 1px solid var(--rosa-suave);
-      border-radius: 14px;
-      padding: 22px;
+      background-color: var(--roxo-base);
+      border: 1px solid var(--cinza-borda);
+      border-radius: 12px;
+      padding: 24px;
       width: 90%;
       max-width: 340px;
       text-align: center;
-      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.5);
       position: relative;
     }
 
     #popup p {
-      color: var(--branco);
+      color: var(--cinza-claro);
       font-size: 15px;
       line-height: 1.5;
       margin-bottom: 20px;
     }
 
     #support-button {
-      background: linear-gradient(90deg, var(--rosa-suave), var(--rosa-claro));
-      color: var(--roxo-profundo);
+      background-color: var(--botao-hover);
+      color: var(--cinza-claro);
       padding: 12px 24px;
       border: none;
       border-radius: 8px;
@@ -167,33 +162,30 @@
     }
 
     #support-button:hover {
+      background-color: var(--botao-cor);
       transform: translateY(-2px);
-      box-shadow: 0 4px 12px rgba(216, 161, 196, 0.3);
     }
 
     #close-button {
       position: absolute;
-      top: 12px;
+      top: 10px;
       right: 14px;
       background: none;
       border: none;
-      color: var(--branco);
+      color: var(--cinza-claro);
       font-size: 22px;
       cursor: pointer;
-      transition: color 0.2s ease;
     }
 
     #close-button:hover {
-      color: var(--rosa-suave);
+      color: var(--cinza-leve);
     }
   </style>
 </head>
 
 <body>
-
-  <!-- ===== LOGO ===== -->
   <div class="logo-container">
-    <img class="logo" src="https://i.imgur.com/j7Yfo0R.png" alt="Laços Profanos">
+    <img class="logo" src="https://i.imgur.com/rQ7D0tK.png" alt="Yaziell">
   </div>
 
   <div class="titulo">
@@ -201,7 +193,6 @@
     <h2>Laços Profanos</h2>
   </div>
 
-  <!-- ===== BOTÕES DE REDES SOCIAIS ===== -->
   <div class="links-container">
     <a class="botao" href="https://www.lacosprofanos.com.br/" target="_blank">SITE (LAÇOS PROFANOS)</a>
     <a class="botao" href="https://livepix.gg/yaziell" target="_blank">LIVEPIX.GG</a>
@@ -213,7 +204,7 @@
     <a class="botao" href="https://x.com/LacosProfanos" target="_blank">X (TWITTER)</a>
     <a class="botao" href="https://lacosprofanos.my.canva.site/fanarts" target="_blank">MURAL DE FANARTS</a>
   </div>
-  <!-- ===== POPUP DE DOAÇÃO ===== -->
+
   <div id="popup-overlay">
     <div id="popup">
       <button id="close-button">×</button>
@@ -228,7 +219,7 @@
   <script>
     // Mostrar popup aleatoriamente após 3 segundos
     setTimeout(() => {
-      if (Math.random() < 0.3) { // 30% de chance de aparecer
+      if (Math.random() < 0.3) {
         document.getElementById("popup-overlay").style.display = "flex";
       }
     }, 3000);
@@ -238,6 +229,5 @@
       document.getElementById("popup-overlay").style.display = "none";
     });
   </script>
-
 </body>
 </html>
