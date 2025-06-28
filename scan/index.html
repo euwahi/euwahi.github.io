@@ -103,26 +103,34 @@
       color: #00ff00;
     }
 
-    .botao-doar,
-    .botao-site-principal,
-    .botao-idiomas {
-      display: block;
-      margin: 10px auto;
+    .botao-doar {
+      display: inline-block;
       padding: 10px 20px;
       background-color: #a3005b;
       color: white;
       text-decoration: none;
       border-radius: 5px;
       font-weight: bold;
-      text-align: center;
-      transition: transform 0.3s, background-color 0.3s;
+      transition: transform 0.3s;
     }
 
-    .botao-doar:hover,
-    .botao-site-principal:hover,
-    .botao-idiomas:hover {
-      transform: scale(1.05);
-      background-color: #c70070;
+    .botao-doar:hover {
+      transform: scale(1.1);
+    }
+
+    .botao-site-principal {
+      display: block;
+      text-align: center;
+      margin: 20px auto 10px auto;
+      font-size: 14px;
+      color: #bbbbbb;
+      text-decoration: none;
+      transition: color 0.3s;
+    }
+
+    .botao-site-principal:hover {
+      color: #ffffff;
+      text-decoration: underline;
     }
 
     .lacos-banner {
@@ -159,51 +167,15 @@
       0% { transform: translateY(0) rotate(0deg); }
       100% { transform: translateY(100vh) rotate(360deg); }
     }
-
-    .idioma-aba {
-      display: none;
-      position: fixed;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      background-color: #1a1a1a;
-      padding: 20px;
-      border: 2px solid #a3005b;
-      border-radius: 10px;
-      z-index: 10000;
-      text-align: center;
-      box-shadow: 0 0 15px #a3005b;
-    }
-
-    .idioma-aba a {
-      display: block;
-      margin: 10px 0;
-      color: #ff66cc;
-      text-decoration: none;
-      font-weight: bold;
-    }
-
-    .idioma-aba a:hover {
-      text-decoration: underline;
-    }
-
-    .fechar-aba {
-      position: absolute;
-      top: 5px;
-      right: 10px;
-      cursor: pointer;
-      font-size: 20px;
-      color: white;
-    }
   </style>
 </head>
 <body>
 
-  <a class="botao-site-principal" href="https://www.lacosprofanos.com.br" target="_blank">➡ Vá para o nosso site principal!</a>
-  <button class="botao-idiomas" onclick="mostrarIdiomas()">Ver as HQs em outras línguas</button>
+  <a class="botao-site-principal" href="https://www.lacosprofanos.com.br">➡ Vá para o nosso site principal!</a>
 
   <div class="card">
     <h3>Meus Mangás</h3>
+
     <div class="search-box">
       <input type="text" id="searchInput" placeholder="🔍 Pesquisar mangá..." onkeyup="searchManga()" />
     </div>
@@ -221,24 +193,19 @@
 
   <div class="card">
     <img class="profile-icon" src="https://i.imgur.com/mgxXSto.png" alt="Logo Laços Profanos">
+
     <h3>DOADORES DE LAÇOS PROFANOS</h3>
     <div class="doadores">
-      <p>Tu sabe <span class="valor">R$ 10,00</span></p>
       <p>Top1 do ranking <span class="valor">R$ 04,00</span></p>
       <p>Jozé real oficial <span class="valor">R$ 02,00</span></p>
       <p>ajnopse bob <span class="valor">R$ 01,00</span></p>
       <p>Anônimo amigo <span class="valor">R$ 01,00</span></p>
     </div>
+
     <a class="botao-doar" href="https://tipa.ai/lacosprofanos" target="_blank">DOE PARA LAÇOS PROFANOS</a>
   </div>
 
-  <!-- Aba de idiomas -->
-  <div class="idioma-aba" id="idiomaAba">
-    <span class="fechar-aba" onclick="fecharIdiomas()">✖</span>
-    <h3>Escolha o idioma:</h3>
-    <a href="ingles.html" target="_blank">Inglês</a>
-  </div>
-
+  <!-- Faixa de Aniversário -->
   <div class="lacos-banner">
     🎉 Aniversário de Laços Profanos! 29 de Outubro 🎉
   </div>
@@ -264,18 +231,11 @@
       }
     }
 
-    function mostrarIdiomas() {
-      document.getElementById("idiomaAba").style.display = "block";
-    }
-
-    function fecharIdiomas() {
-      document.getElementById("idiomaAba").style.display = "none";
-    }
-
+    // === EASTER EGG DE ANIVERSÁRIO ===
     document.addEventListener("DOMContentLoaded", function () {
       const hoje = new Date();
       const dia = hoje.getDate();
-      const mes = hoje.getMonth();
+      const mes = hoje.getMonth(); // Outubro = 9
       const urlParams = new URLSearchParams(window.location.search);
       const easterAtivado = urlParams.has('2910');
 
@@ -285,10 +245,12 @@
 
       function ativarEasterEgg() {
         document.body.classList.add("lacos-aniversario");
+
         const audio = new Audio("https://files.catbox.moe/l3n1tq.mp3");
         audio.loop = true;
         audio.volume = 0.3;
         audio.play().catch(() => {});
+
         for (let i = 0; i < 100; i++) {
           const confete = document.createElement("div");
           confete.className = "confete";
@@ -300,5 +262,6 @@
       }
     });
   </script>
+
 </body>
 </html>
