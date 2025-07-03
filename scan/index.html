@@ -64,18 +64,21 @@
       transform: scale(1.05);
     }
 
-    .manga-item img {
+    .manga-item .manga-logo {
+      height: 50px; /* Diminuído de 70px para 50px */
+      max-width: 150px; /* Diminuído de 180px para 150px */
+      object-fit: contain;
+      margin: 0 auto 10px auto;
+      display: block;
+    }
+
+    .manga-item .capa {
       width: 100%;
       height: auto;
       max-width: 200px;
       border-radius: 5px;
       margin: 0 auto 10px auto;
       display: block;
-    }
-
-    .manga-item h4 {
-      margin: 5px 0;
-      color: #ff66cc;
     }
 
     .manga-item p {
@@ -183,8 +186,8 @@
     <div id="mangaList">
       <a href="lpua/index.html" target="_blank">
         <div class="manga-item">
-          <img src="https://i.imgur.com/nvmchiJ.png" alt="Capa do Mangá">
-          <h4>Laços Profanos I: O Último Anjo</h4>
+          <img class="manga-logo" src="https://i.imgur.com/G5TVxa8.png" alt="Logo Laços Profanos: O Último Anjo">
+          <img class="capa" src="https://i.imgur.com/nvmchiJ.png" alt="Capa do Mangá">
           <p>A jornada de um herói que desafia o destino em um mundo dominado por demônios.</p>
         </div>
       </a>
@@ -196,6 +199,7 @@
 
     <h3>DOADORES DE LAÇOS PROFANOS</h3>
     <div class="doadores">
+      <p>Tu sabe<span class="valor"> R$ 10,00</span></p>
       <p>Top1 do ranking <span class="valor">R$ 04,00</span></p>
       <p>Jozé real oficial <span class="valor">R$ 02,00</span></p>
       <p>ajnopse bob <span class="valor">R$ 01,00</span></p>
@@ -205,7 +209,6 @@
     <a class="botao-doar" href="https://tipa.ai/lacosprofanos" target="_blank">DOE PARA LAÇOS PROFANOS</a>
   </div>
 
-  <!-- Faixa de Aniversário -->
   <div class="lacos-banner">
     🎉 Aniversário de Laços Profanos! 29 de Outubro 🎉
   </div>
@@ -220,7 +223,7 @@
       const mangas = document.getElementById('mangaList').getElementsByClassName('manga-item');
 
       for (let i = 0; i < mangas.length; i++) {
-        const title = removeAcentos(mangas[i].getElementsByTagName('h4')[0].innerText.toLowerCase());
+        const title = removeAcentos(mangas[i].textContent.toLowerCase());
         const description = removeAcentos(mangas[i].getElementsByTagName('p')[0].innerText.toLowerCase());
 
         if (title.includes(input) || description.includes(input)) {
@@ -231,11 +234,10 @@
       }
     }
 
-    // === EASTER EGG DE ANIVERSÁRIO ===
     document.addEventListener("DOMContentLoaded", function () {
       const hoje = new Date();
       const dia = hoje.getDate();
-      const mes = hoje.getMonth(); // Outubro = 9
+      const mes = hoje.getMonth();
       const urlParams = new URLSearchParams(window.location.search);
       const easterAtivado = urlParams.has('2910');
 
