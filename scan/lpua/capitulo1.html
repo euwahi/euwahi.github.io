@@ -42,11 +42,12 @@
     .link-discreto {
       display: block;
       text-align: center;
-      margin-top: 15px;
+      margin: 15px 0;
       color: #888;
       text-decoration: none;
       font-size: 0.9rem;
       user-select: none;
+      transition: all 0.3s ease;
     }
 
     .link-discreto:hover {
@@ -129,6 +130,8 @@
 </head>
 <body>
 
+  <a href="https://scan.lacosprofanos.com.br/lpua/" class="link-discreto" style="margin-bottom: 5px;">← Voltar para as informações do mangá</a>
+
   <img src="https://i.imgur.com/VqlSX0u.png" alt="Titulo do Capítulo" class="logo-titulo">
 
   <div class="webtoon-container" id="webtoon-container">
@@ -138,7 +141,6 @@
   </div>
 
   <a href="javascript:void(0)" class="link-discreto" onclick="mostrarAviso()">→ Próximo capítulo</a>
-  <a href="https://scan.lacosprofanos.com.br/lpua/" class="link-discreto">← Voltar para as informações do mangá</a>
 
   <button class="botao-topo" title="Voltar ao topo" onclick="window.scrollTo({top: 0, behavior: 'smooth'})">↑</button>
 
