@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>laços profanos | Livro Interativo</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            line-height: 1.6;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #0f0e17;
+            color: #fffffe;
+        }
+        
+        header {
+            text-align: center;
+            margin-bottom: 30px;
+            padding: 20px;
+            background-color: #7f5af0;
+            color: #fffffe;
+            border-radius: 8px;
+        }
+        
+        .logo {
+            max-width: 100%;
+            height: auto;
+            margin-bottom: 10px;
+        }
+        
+        .tagline {
+            font-size: 1.2em;
+            font-style: italic;
+            color: #94a1b2;
+        }
+        
+        .interactive-section {
+            background-color: #16161a;
+            padding: 25px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.3);
+            margin-bottom: 30px;
+            border-left: 4px solid #7f5af0;
+        }
+        
+        .choice {
+            background-color: #2cb67d;
+            color: #fffffe;
+            padding: 10px 15px;
+            margin: 10px 0;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-weight: bold;
+        }
+        
+        .choice:hover {
+            background-color: #26a56f;
+            transform: translateX(5px);
+        }
+        
+        .outcome {
+            display: none;
+            padding: 15px;
+            margin-top: 10px;
+            background-color: #242629;
+            border-radius: 5px;
+            border-left: 4px solid #2cb67d;
+            animation: fadeIn 0.5s;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        
+        .play-button {
+            display: block;
+            width: 200px;
+            margin: 30px auto;
+            padding: 15px;
+            background-color: #7f5af0;
+            color: #fffffe;
+            text-align: center;
+            font-size: 1.2em;
+            text-decoration: none;
+            border-radius: 5px;
+            transition: all 0.3s;
+            font-weight: bold;
+        }
+        
+        .play-button:hover {
+            background-color: #6f4ad0;
+            transform: scale(1.05);
+        }
+        
+        .features {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            margin: 30px 0;
+        }
+        
+        .feature {
+            flex-basis: 30%;
+            min-width: 200px;
+            margin-bottom: 20px;
+            padding: 15px;
+            background-color: #16161a;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+            border-top: 3px solid #7f5af0;
+        }
+        
+        footer {
+            text-align: center;
+            margin-top: 40px;
+            padding: 20px;
+            color: #94a1b2;
+        }
+        
+        .plot-twist {
+            font-style: italic;
+            color: #ff8906;
+            border-left: 3px solid #ff8906;
+            padding-left: 15px;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <img src="https://i.imgur.com/HZCVuGA.png" alt="Fragmentos do tempo" class="logo">
+        <p class="tagline">O primeiro livro 100% interativo onde você reconstrói a realidade</p>
+    </header>
+    
+    <section>
+        <p>Em um universo onde o tempo foi violado, você se encontra diante de uma entidade enigmática. Sua missão? Recuperar os fragmentos dos heróis perdidos quando alguém mexeu na linha do tempo, desencadeando o colapso da realidade.</p>
+        
+        <p>Cada escolha que você faz não apenas molda sua jornada, mas determina quais fragmentos da Ordem você conseguirá recuperar... e quais versões dos heróis serão restauradas.</p>
+    </section>
+    
+    <div class="features">
+        <div class="feature">
+            <h3>Realidade em Colapso</h3>
+            <p>Viaje por linhas temporais alternativas onde os heróis que você conhece possuem histórias radicalmente diferentes.</p>
+        </div>
+        
+        <div class="feature">
+            <h3>O Paradoxo do Idarudapo</h3>
+            <p>Interaja com a entidade que personifica misteriosa, que paradoxalmente busca restaurar a Ordem.</p>
+        </div>
+        
+        <div class="feature">
+            <h3>Fragmentos de memoria</h3>
+            <p>Colecione e combine fragmentos para desbloquear finais alternativos e revelar segredos cósmicos.</p>
+        </div>
+    </div>
+    
+    <h2>Experimente escolhas que alteram a realidade:</h2>
+    
+    <div class="interactive-section">
+        <p>O Idarudapo se materializa diante de você - uma figura que ele usa a forma de uma esfera perfeita que brilha na cor roxa Ele levita três objetos:</p>
+        
+        <div class="choice" onclick="showOutcome('outcome1')">Pegar o relógio quebrado</div>
+        <div class="outcome" id="outcome1">
+            <p>O ponteiro do relógio gira loucamente e você é transportado para uma versão distorcida da cidade onde o tempo flui ao contrário. Aqui, o herói que você busca envelheceu antes de nascer.</p>
+        </div>
+        
+        <div class="choice" onclick="showOutcome('outcome2')">Tocar o espelho fracturado</div>
+        <div class="outcome" id="outcome2">
+            <p>Seu reflexo se multiplica em infinitas variações. Cada versão de você fez escolhas diferentes, e agora você pode sentir todas essas memórias ao mesmo tempo. Um fragmento do herói está preso entre esses reflexos.</p>
+        </div>
+        
+        <div class="choice" onclick="showOutcome('outcome3')">Aceitar a chave sem fechadura</div>
+        <div class="outcome" id="outcome3">
+            <p>A chave se dissolve em sua mão, abrindo um portal para o Vazio entre realidades. Aqui, as leis da física são meras sugestões, e o herói que você busca se tornou algo completamente diferente.</p>
+        </div>
+    </div>
+    
+    <div class="interactive-section">
+        <p>Você encontra o primeiro herói fragmentado - mas algo está errado. Ele não se lembra de seu próprio nome e suas memórias estão espalhadas por diferentes linhas do tempo:</p>
+        
+        <div class="choice" onclick="showOutcome('outcome4')">Usar o Fragmento da Lembrança</div>
+        <div class="outcome" id="outcome4">
+            <p>As memórias retornam como um dilúvio, mas trazem consigo lembranças de todas as versões alternativas. O herói agora lembra não apenas sua vida original, mas todas as vidas que poderia ter tido.</p>
+        </div>
+        
+        <div class="choice" onclick="showOutcome('outcome5')">Oferecer o Fragmento do Esquecimento</div>
+        <div class="outcome" id="outcome5">
+            <p>O herói esquece o trauma da fragmentação, mas também perde parte de sua história. Ele se torna uma lousa quase em branco, pronto para ser reescrito - mas por quem?</p>
+        </div>
+        
+        <div class="choice" onclick="showOutcome('outcome6')">Deixar que o Idarudapo decida</div>
+        <div class="outcome" id="outcome6">
+            <p>A entidade ri - um som como vidro quebrando - e funde o herói com um fragmento de si mesmo de outra realidade. O resultado é algo novo, nem totalmente o herói original, nem totalmente o alternativo.</p>
+        </div>
+    </div>
+    
+    <a href="#" class="play-button">Jogue Agora</a>
+    
+    <footer>
+        <p>© 2025 Laços profanos - Uma experiência interativa de reconstrução da realidade</p>
+    </footer>
+    
+    <script>
+        function showOutcome(id) {
+            // Esconde todos os outcomes primeiro
+            document.querySelectorAll('.outcome').forEach(outcome => {
+                outcome.style.display = 'none';
+            });
+            
+            // Mostra o outcome selecionado com animação
+            const selectedOutcome = document.getElementById(id);
+            selectedOutcome.style.display = 'block';
+            
+            // Rolagem suave para o outcome
+            selectedOutcome.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+        }
+    </script>
+</body>
+</html>
