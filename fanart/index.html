@@ -1,292 +1,225 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Galeria de Fanarts - Laços Profanos</title>
-  <link rel="icon" href="https://i.imgur.com/mgxXSto.png" type="image/png">
-  <style>
-    :root {
-      --primary: #a3005b;
-      --dark: #121212;
-      --gray: #2a2a2a;
-      --light: #e0e0e0;
-    }
-    
-    body {
-      background-color: var(--dark);
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      color: white;
-      margin: 0;
-      padding: 20px;
-      line-height: 1.6;
-    }
-    
-    .container {
-      max-width: 1200px;
-      margin: 0 auto;
-    }
-    
-    header {
-      text-align: center;
-      margin-bottom: 40px;
-    }
-    
-    h1 {
-      color: var(--primary);
-      font-size: 2.5rem;
-      margin-bottom: 10px;
-    }
-    
-    .filter-buttons {
-      display: flex;
-      justify-content: center;
-      gap: 15px;
-      margin-bottom: 30px;
-      flex-wrap: wrap;
-    }
-    
-    .filter-btn {
-      padding: 8px 20px;
-      background: transparent;
-      border: 2px solid var(--primary);
-      color: white;
-      border-radius: 30px;
-      cursor: pointer;
-      transition: all 0.3s ease;
-      font-weight: 600;
-    }
-    
-    .filter-btn.active, .filter-btn:hover {
-      background: var(--primary);
-      transform: translateY(-2px);
-    }
-    
-    .gallery {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-      gap: 25px;
-      margin-top: 20px;
-    }
-    
-    .art-card {
-      position: relative;
-      background: var(--gray);
-      border-radius: 12px;
-      overflow: hidden;
-      transition: transform 0.3s ease, box-shadow 0.3s ease;
-      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    }
-    
-    .art-card:hover {
-      transform: translateY(-5px);
-      box-shadow: 0 10px 20px rgba(163, 0, 91, 0.2);
-    }
-    
-    .art-image {
-      width: 100%;
-      height: 280px;
-      object-fit: cover;
-      border-bottom: 3px solid var(--primary);
-    }
-    
-    .art-info {
-      padding: 15px;
-    }
-    
-    .art-tags {
-      display: flex;
-      gap: 8px;
-      margin-bottom: 10px;
-      flex-wrap: wrap;
-    }
-    
-    .tag {
-      background: rgba(163, 0, 91, 0.2);
-      color: var(--primary);
-      padding: 4px 10px;
-      border-radius: 20px;
-      font-size: 0.8rem;
-      font-weight: 600;
-    }
-    
-    .artist {
-      display: flex;
-      align-items: center;
-      margin-top: 10px;
-    }
-    
-    .artist-avatar {
-      width: 30px;
-      height: 30px;
-      border-radius: 50%;
-      margin-right: 10px;
-      object-fit: cover;
-    }
-    
-    .artist-name {
-      font-weight: 600;
-    }
-    
-    @media (max-width: 768px) {
-      .gallery {
-        grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
-      }
-      
-      .art-image {
-        height: 240px;
-      }
-    }
-  </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Galeria de Fanarts - Laços Profanos</title>
+<link rel="icon" href="https://i.imgur.com/mgxXSto.png" type="image/png">
+<style>
+:root {
+  --primary: #a3005b;
+  --dark: #121212;
+  --gray: #2a2a2a;
+  --light: #e0e0e0;
+}
+
+body {
+  background-color: var(--dark);
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  color: white;
+  margin: 0;
+  padding: 20px;
+  line-height: 1.6;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+header {
+  text-align: center;
+  margin-bottom: 40px;
+}
+
+h1 {
+  color: var(--primary);
+  font-size: 2.5rem;
+  margin-bottom: 10px;
+}
+
+.filter-buttons {
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+  margin-bottom: 30px;
+  flex-wrap: wrap;
+}
+
+.filter-btn {
+  padding: 8px 20px;
+  background: transparent;
+  border: 2px solid var(--primary);
+  color: white;
+  border-radius: 30px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-weight: 600;
+}
+
+.filter-btn.active, .filter-btn:hover {
+  background: var(--primary);
+  transform: translateY(-2px);
+}
+
+.gallery {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 25px;
+  margin-top: 20px;
+}
+
+.art-card {
+  position: relative;
+  background: var(--gray);
+  border-radius: 12px;
+  overflow: hidden;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.art-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 20px rgba(163, 0, 91, 0.2);
+}
+
+.art-image {
+  width: 100%;
+  max-height: 400px;
+  object-fit: contain;
+  background-color: #000;
+  display: block;
+  border-bottom: 3px solid var(--primary);
+}
+
+.art-info {
+  padding: 15px;
+}
+
+.art-tags {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 10px;
+  flex-wrap: wrap;
+}
+
+.tag {
+  background: rgba(163, 0, 91, 0.2);
+  color: var(--primary);
+  padding: 4px 10px;
+  border-radius: 20px;
+  font-size: 0.8rem;
+  font-weight: 600;
+}
+
+.artist {
+  display: flex;
+  align-items: center;
+  margin-top: 10px;
+}
+
+.artist-avatar {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  margin-right: 10px;
+  object-fit: cover;
+}
+
+.artist-name {
+  font-weight: 600;
+}
+
+@media (max-width: 768px) {
+  .gallery {
+    grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+  }
+}
+</style>
 </head>
 <body>
-  <div class="container">
-    <header>
-      <h1>Galeria de Fanarts</h1>
-      <p>Confira as incríveis criações da nossa comunidade</p>
-    </header>
-    
-    <div class="filter-buttons">
-      <button class="filter-btn active" onclick="filterArts('all')">Todas</button>
-      <button class="filter-btn" onclick="filterArts('#yaziellart')">#yaziellart</button>
-      <button class="filter-btn" onclick="filterArts('#lacosprofanosart')">#lacosprofanosart</button>
-    </div>
-    
-    <div class="gallery" id="fanartsGallery">
-      <!-- As fanarts serão carregadas aqui pelo JavaScript -->
-    </div>
-  </div>
+<div class="container">
+<header>
+  <h1>Galeria de Fanarts</h1>
+  <p>Confira as incríveis criações da nossa comunidade</p>
+</header>
 
-  <script>
-    // Dados das fanarts fornecidas
-    const fanartsData = [
-      {
-        imageUrl: "https://i.imgur.com/CsKKB4w.png",
-        title: "Fanart de Yaziell",
-        author: "@elisa_l4na",
-        tags: ["#yaziellart", "digital"],
-        avatar: "https://i.imgur.com/CsKKB4w.png"
-      },
-      {
-        imageUrl: "https://i.imgur.com/AO8d3EP.jpeg",
-        title: "Fanart de Yaziell",
-        author: "@GsbyRibeiro",
-        tags: ["#yaziellart", "tradicional"],
-        avatar: "https://i.imgur.com/AO8d3EP.jpeg"
-      },
-      {
-        imageUrl: "https://i.imgur.com/gdMMBFY.png",
-        title: "Fanart de Yaziell",
-        author: "@GsbyRibeiro",
-        tags: ["#yaziellart", "digital"],
-        avatar: "https://i.imgur.com/gdMMBFY.png"
-      },
-      {
-        imageUrl: "https://i.imgur.com/q51MrLn.png",
-        title: "Fanart de Yaziell",
-        author: "@GsbyRibeiro",
-        tags: ["#yaziellart", "tradicional"],
-        avatar: "https://i.imgur.com/q51MrLn.png"
-      },
-      {
-        imageUrl: "https://i.imgur.com/OiTNKGu.png",
-        title: "Fanart de Yaziell",
-        author: "@GsbyRibeiro",
-        tags: ["#yaziellart", "digital"],
-        avatar: "https://i.imgur.com/OiTNKGu.png"
-      },
-      {
-        imageUrl: "https://i.imgur.com/OY9x2ej.png",
-        title: "Fanart de Yaziell",
-        author: "@GsbyRibeiro",
-        tags: ["#yaziellart", "tradicional"],
-        avatar: "https://i.imgur.com/OY9x2ej.png"
-      },
-      {
-        imageUrl: "https://i.imgur.com/UJ4r6C6.png",
-        title: "Fanart de Yaziell",
-        author: "@GsbyRibeiro",
-        tags: ["#yaziellart", "digital"],
-        avatar: "https://i.imgur.com/UJ4r6C6.png"
-      },
-      {
-        imageUrl: "https://i.imgur.com/Hw7a8sE.png",
-        title: "Fanart de Yaziell",
-        author: "@Guine.official",
-        tags: ["#yaziellart", "digital"],
-        avatar: "https://i.imgur.com/Hw7a8sE.png"
-      },
-      {
-        imageUrl: "https://i.imgur.com/gj54BXs.png",
-        title: "Fanart de Yaziell",
-        author: "@Guine.official",
-        tags: ["#yaziellart", "digital"],
-        avatar: "https://i.imgur.com/gj54BXs.png"
-      },
-      {
-        imageUrl: "https://i.imgur.com/hlHXZMv.jpeg",
-        title: "Fanart de Laços Profanos",
-        author: "@elisa_l4na",
-        tags: ["#lacosprofanosart", "digital"],
-        avatar: "https://i.imgur.com/hlHXZMv.jpeg"
-      }
-    ];
+<div class="filter-buttons">
+  <button class="filter-btn active" onclick="filterArts('all')">Todas</button>
+  <button class="filter-btn" onclick="filterArts('#yaziellart')">#yaziellart</button>
+  <button class="filter-btn" onclick="filterArts('#lacosprofanosart')">#lacosprofanosart</button>
+</div>
 
-    // Função para renderizar as fanarts
-    function renderFanarts() {
-      const gallery = document.getElementById('fanartsGallery');
-      gallery.innerHTML = '';
-      
-      fanartsData.forEach(fanart => {
-        const tagsHTML = fanart.tags.map(tag => 
-          `<span class="tag">${tag}</span>`
-        ).join('');
-        
-        gallery.innerHTML += `
-          <div class="art-card" data-tags="${fanart.tags[0]}">
-            <img src="${fanart.imageUrl}" alt="${fanart.title} por ${fanart.author}" class="art-image">
-            <div class="art-info">
-              <div class="art-tags">
-                ${tagsHTML}
-              </div>
-              <h3>${fanart.title}</h3>
-              <div class="artist">
-                <img src="${fanart.avatar}" alt="${fanart.author}" class="artist-avatar">
-                <span class="artist-name">${fanart.author}</span>
-              </div>
-            </div>
+<div class="gallery" id="fanartsGallery"></div>
+</div>
+
+<script>
+const fanartsData = [
+  { imageUrl: "https://i.imgur.com/CsKKB4w.png", author: "@elisa_l4na", tags: ["#yaziellart", "digital"], avatar: "https://i.imgur.com/CsKKB4w.png" },
+  { imageUrl: "https://i.imgur.com/AO8d3EP.jpeg", author: "@GsbyRibeiro", tags: ["#yaziellart", "tradicional"], avatar: "https://i.imgur.com/AO8d3EP.jpeg" },
+  { imageUrl: "https://i.imgur.com/gdMMBFY.png", author: "@GsbyRibeiro", tags: ["#yaziellart", "digital"], avatar: "https://i.imgur.com/gdMMBFY.png" },
+  { imageUrl: "https://i.imgur.com/q51MrLn.png", author: "@GsbyRibeiro", tags: ["#yaziellart", "tradicional"], avatar: "https://i.imgur.com/q51MrLn.png" },
+  { imageUrl: "https://i.imgur.com/OiTNKGu.png", author: "@GsbyRibeiro", tags: ["#yaziellart", "digital"], avatar: "https://i.imgur.com/OiTNKGu.png" },
+  { imageUrl: "https://i.imgur.com/OY9x2ej.png", author: "@GsbyRibeiro", tags: ["#yaziellart", "tradicional"], avatar: "https://i.imgur.com/OY9x2ej.png" },
+  { imageUrl: "https://i.imgur.com/UJ4r6C6.png", author: "@GsbyRibeiro", tags: ["#yaziellart", "digital"], avatar: "https://i.imgur.com/UJ4r6C6.png" },
+  { imageUrl: "https://i.imgur.com/Hw7a8sE.png", author: "@Guine.official", tags: ["#yaziellart", "digital"], avatar: "https://i.imgur.com/Hw7a8sE.png" },
+  { imageUrl: "https://i.imgur.com/gj54BXs.png", author: "@Guine.official", tags: ["#yaziellart", "digital"], avatar: "https://i.imgur.com/gj54BXs.png" },
+  { imageUrl: "https://i.imgur.com/hlHXZMv.jpeg", author: "@elisa_l4na", tags: ["#lacosprofanosart", "digital"], avatar: "https://i.imgur.com/hlHXZMv.jpeg" }
+];
+
+function renderFanarts() {
+  const gallery = document.getElementById('fanartsGallery');
+  gallery.innerHTML = '';
+
+  fanartsData.forEach((fanart, index) => {
+    const tagsHTML = fanart.tags.map(tag => `<span class="tag">${tag}</span>`).join('');
+
+    let plataforma = "YouTube";
+    if (index === 0) plataforma = "Instagram";
+    if (index === fanartsData.length - 1) plataforma = "Discord";
+
+    const titulo = `Fanart de ${fanart.author} — ${plataforma}`;
+
+    gallery.innerHTML += `
+      <div class="art-card" data-tags="${fanart.tags.join(' ')}">
+        <img src="${fanart.imageUrl}" alt="${titulo}" class="art-image">
+        <div class="art-info">
+          <div class="art-tags">
+            ${tagsHTML}
           </div>
-        `;
-      });
-    }
+          <h3>${titulo}</h3>
+          <div class="artist">
+            <img src="${fanart.avatar}" alt="${fanart.author}" class="artist-avatar">
+            <span class="artist-name">${fanart.author}</span>
+          </div>
+        </div>
+      </div>
+    `;
+  });
+}
 
-    // Função para filtrar as fanarts
-    function filterArts(tag) {
-      // Atualiza botões ativos
-      document.querySelectorAll('.filter-btn').forEach(btn => {
-        btn.classList.remove('active');
-        if (btn.textContent.toLowerCase().includes(tag) || 
-            (tag === 'all' && btn.textContent.toLowerCase() === 'todas')) {
-          btn.classList.add('active');
-        }
-      });
-      
-      // Filtra as artes
-      const arts = document.querySelectorAll('.art-card');
-      arts.forEach(art => {
-        if (tag === 'all' || art.dataset.tags.includes(tag)) {
-          art.style.display = 'block';
-        } else {
-          art.style.display = 'none';
-        }
-      });
+function filterArts(tag) {
+  document.querySelectorAll('.filter-btn').forEach(btn => {
+    btn.classList.remove('active');
+    if (btn.textContent.toLowerCase().includes(tag) || 
+        (tag === 'all' && btn.textContent.toLowerCase() === 'todas')) {
+      btn.classList.add('active');
     }
-    
-    // Inicializa a galeria
-    document.addEventListener('DOMContentLoaded', () => {
-      renderFanarts();
-      filterArts('all');
-    });
-  </script>
+  });
+
+  document.querySelectorAll('.art-card').forEach(art => {
+    if (tag === 'all' || art.dataset.tags.includes(tag)) {
+      art.style.display = 'block';
+    } else {
+      art.style.display = 'none';
+    }
+  });
+}
+
+document.addEventListener('DOMContentLoaded', () => {
+  renderFanarts();
+  filterArts('all');
+});
+</script>
 </body>
 </html>
