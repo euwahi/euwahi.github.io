@@ -115,71 +115,6 @@
     .botao-destaque:hover {
       background-color: var(--botao-cor);
     }
-
-    /* ==== POPUP ==== */
-    #popup-overlay {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background-color: rgba(5, 5, 5, 0.7);
-      display: none;
-      justify-content: center;
-      align-items: center;
-      z-index: 999;
-      backdrop-filter: blur(5px);
-    }
-
-    #popup {
-      background-color: var(--roxo-base);
-      border: 1px solid var(--cinza-borda);
-      border-radius: 12px;
-      padding: 24px;
-      width: 90%;
-      max-width: 340px;
-      text-align: center;
-      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.5);
-      position: relative;
-    }
-
-    #popup p {
-      color: var(--cinza-claro);
-      font-size: 15px;
-      line-height: 1.5;
-      margin-bottom: 20px;
-    }
-
-    #support-button {
-      background-color: var(--botao-hover);
-      color: var(--cinza-claro);
-      padding: 12px 24px;
-      border: none;
-      border-radius: 8px;
-      font-weight: 600;
-      cursor: pointer;
-      transition: all 0.3s ease;
-    }
-
-    #support-button:hover {
-      background-color: var(--botao-cor);
-      transform: translateY(-2px);
-    }
-
-    #close-button {
-      position: absolute;
-      top: 10px;
-      right: 14px;
-      background: none;
-      border: none;
-      color: var(--cinza-claro);
-      font-size: 22px;
-      cursor: pointer;
-    }
-
-    #close-button:hover {
-      color: var(--cinza-leve);
-    }
   </style>
 </head>
 
@@ -204,30 +139,5 @@
     <a class="botao" href="https://x.com/LacosProfanos" target="_blank">X (TWITTER)</a>
     <a class="botao" href="https://fanart.lacosprofanos.com.br" target="_blank">MURAL DE FANARTS</a>
   </div>
-
-  <div id="popup-overlay">
-    <div id="popup">
-      <button id="close-button">×</button>
-      <p>Não queremos anúncios chatos.<br>
-        <strong>Apoie no tipa.ai ❤</strong></p>
-      <a id="support-button" href="https://tipa.ai/lacosprofanos" target="_blank">
-        APOIAR LAÇOS PROFANOS
-      </a>
-    </div>
-  </div>
-
-  <script>
-    // Mostrar popup aleatoriamente após 3 segundos
-    setTimeout(() => {
-      if (Math.random() < 0.3) {
-        document.getElementById("popup-overlay").style.display = "flex";
-      }
-    }, 3000);
-
-    // Fechar popup
-    document.getElementById("close-button").addEventListener('click', () => {
-      document.getElementById("popup-overlay").style.display = "none";
-    });
-  </script>
 </body>
 </html>
