@@ -2,56 +2,87 @@
 <html lang="pt-BR">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" />
   <title>Lp:Ua - Capítulo 1</title>
   
   <link rel="icon" href="https://i.imgur.com/mgxXSto.png">
   <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+    
     body {
       background-color: #121212;
       color: #eee;
       font-family: Arial, sans-serif;
-      max-width: 600px;
+      width: 100%;
+      min-height: 100vh;
+      padding: 15px;
+      overflow-x: hidden;
+    }
+
+    .main-container {
+      max-width: 100%;
       margin: 0 auto;
-      padding: 20px 10px;
+      position: relative;
     }
 
     /* ESTILOS DOS BANNERS - CORRIGIDOS */
     .banner-container {
+      width: 100%;
+      margin: 15px 0;
+      overflow: hidden;
+      position: relative;
       display: flex;
       justify-content: center;
-      width: 100%;
-      margin: 20px 0;
-      overflow: hidden;
+      background: rgba(30,30,30,0.3);
+      border-radius: 6px;
+      padding: 5px;
     }
     
     .banner-wrapper {
       width: 100%;
       max-width: 320px;
+      height: 50px;
       margin: 0 auto;
-      text-align: center;
       overflow: hidden;
-      border-radius: 8px;
+      border-radius: 4px;
+    }
+
+    .banner-wrapper iframe {
+      width: 100% !important;
+      height: 50px !important;
+      max-width: 320px;
+      border: none;
+      overflow: hidden;
+      display: block;
+      margin: 0 auto;
     }
 
     .logo-titulo {
       display: block;
-      margin: 0 auto 10px auto;
-      max-width: 300px;
-      width: 80%;
+      width: 100%;
+      max-width: 280px;
       height: auto;
+      margin: 10px auto;
     }
 
     .webtoon-container {
+      width: 100%;
       display: flex;
       flex-direction: column;
+      gap: 5px;
     }
 
     .page {
       width: 100%;
+      max-width: 100%;
+      height: auto;
       display: block;
-      margin: 0;
-      padding: 0;
+      margin: 0 auto;
+      border-radius: 4px;
     }
 
     .link-discreto {
@@ -63,6 +94,7 @@
       font-size: 0.9rem;
       user-select: none;
       transition: all 0.3s ease;
+      padding: 0 10px;
     }
 
     .link-discreto:hover {
@@ -72,8 +104,8 @@
 
     .botao-topo {
       position: fixed;
-      right: 20px;
-      bottom: 20px;
+      right: 15px;
+      bottom: 15px;
       background-color: rgba(163, 0, 91, 0.6);
       color: white;
       border: none;
@@ -93,124 +125,124 @@
       transform: scale(1.1);
     }
 
-    .faixa-aniversario {
-      position: fixed;
-      bottom: 20px;
-      left: 20px;
-      background: rgba(0, 0, 0, 0.9);
+    /* Seção de comentários */
+    .comentarios-container {
+      width: 100%;
+      margin: 30px 0 15px 0;
+      padding: 15px 10px;
+    }
+
+    .aviso {
+      background: #ff0000;
       color: #fff;
-      padding: 12px 16px 12px 20px;
-      border-radius: 8px;
-      font-size: 0.85rem;
-      box-shadow: 0 0 12px #a3005b;
-      z-index: 9999;
-      max-width: 300px;
-      animation: brilho 2.5s infinite;
+      padding: 10px;
+      border-radius: 5px;
+      margin-bottom: 15px;
+      text-align: center;
+      font-weight: bold;
+      font-size: 0.9rem;
     }
 
-    .faixa-aniversario button {
-      position: absolute;
-      top: 4px;
-      right: 6px;
-      background: transparent;
-      border: none;
-      color: #fff;
-      font-size: 16px;
-      cursor: pointer;
-    }
-
-    .confete {
-      position: fixed;
-      top: -20px;
-      width: 10px;
-      height: 10px;
-      border-radius: 50%;
-      animation: cair linear forwards;
-      z-index: 9998;
-    }
-
-    @keyframes cair {
-      to {
-        transform: translateY(110vh) rotate(360deg);
-        opacity: 0;
+    /* Media Queries para ajustes finos */
+    @media (max-width: 480px) {
+      body {
+        padding: 10px;
+      }
+      
+      .banner-wrapper {
+        max-width: 300px;
       }
     }
 
-    @keyframes brilho {
-      0% { transform: scale(1); opacity: 0.9; }
-      50% { transform: scale(1.03); opacity: 1; }
-      100% { transform: scale(1); opacity: 0.9; }
-    }
-
-    /* Correção para iframes de anúncios */
-    iframe {
-      max-width: 100%;
-      border: none;
-      overflow: hidden;
-      display: block;
-      margin: 0 auto;
+    @media (max-width: 360px) {
+      .banner-wrapper {
+        max-width: 280px;
+      }
     }
   </style>
 </head>
 <body>
 
-  <div class="banner-container">
-    <div class="banner-wrapper">
-      <script type="text/javascript">
-        atOptions = {
-          'key': '734222ac687242bb91120e6110744653',
-          'format': 'iframe',
-          'height': 50,
-          'width': 320,
-          'params': {}
-        };
-      </script>
-      <script type="text/javascript" src="//www.highperformanceformat.com/734222ac687242bb91120e6110744653/invoke.js"></script>
-    </div>
-  </div>
+  <div class="main-container">
   
-  <a href="https://scan.lacosprofanos.com.br/lpua/" class="link-discreto" style="margin-bottom: 5px;">← Voltar para as informações do mangá</a>
-
-  <img src="https://i.imgur.com/VqlSX0u.png" alt="Titulo do Capítulo" class="logo-titulo">
-
-  <div class="webtoon-container" id="webtoon-container">
-    <img src="https://i.imgur.com/MR5cTca.png" alt="Página 1" class="page" />
-    <img src="https://i.imgur.com/uOPpxJo.png" alt="Página 2" class="page" />
-    <img src="https://i.imgur.com/xhsfuAx.png" alt="Página 3" class="page" />
-    <img src="https://i.imgur.com/EVAESQW.png" alt="Página 4" class="page" />
-    <img src="https://i.imgur.com/8OToHwn.png" alt="Página 5" class="page" />
-    <img src="https://i.imgur.com/d4d2aob.png" alt="Página 6" class="page" />
-    <img src="https://i.imgur.com/FCJody2.png" alt="Página 7" class="page" />
-    <img src="https://i.imgur.com/vO2pvBv.png" alt="Página 8" class="page" />
-    <img src="https://i.imgur.com/9toIUTi.png" alt="Página 9" class="page" />
-    <img src="https://i.imgur.com/GskmSaL.png" alt="Página 10" class="page" />
-  </div>
-
-  <a href="javascript:void(0)" class="link-discreto" onclick="mostrarAviso()">→ Próximo capítulo</a>
-
-  <div class="banner-container">
-    <div class="banner-wrapper">
-      <script type="text/javascript">
-        atOptions = {
-          'key': '734222ac687242bb91120e6110744653',
-          'format': 'iframe',
-          'height': 50,
-          'width': 320,
-          'params': {}
-        };
-      </script>
-      <script type="text/javascript" src="//www.highperformanceformat.com/734222ac687242bb91120e6110744653/invoke.js"></script>
+    <!-- Banner Top -->
+    <div class="banner-container">
+      <div class="banner-wrapper">
+        <script type="text/javascript">
+          atOptions = {
+            'key': '734222ac687242bb91120e6110744653',
+            'format': 'iframe',
+            'height': 50,
+            'width': 320,
+            'params': {}
+          };
+        </script>
+        <script type="text/javascript" src="//www.highperformanceformat.com/734222ac687242bb91120e6110744653/invoke.js"></script>
+      </div>
     </div>
-  </div>
+    
+    <a href="https://scan.lacosprofanos.com.br/lpua/" class="link-discreto">← Voltar para as informações do mangá</a>
 
-  <button class="botao-topo" title="Voltar ao topo" onclick="window.scrollTo({top: 0, behavior: 'smooth'})">↑</button>
+    <img src="https://i.imgur.com/VqlSX0u.png" alt="Titulo do Capítulo" class="logo-titulo">
 
-  <div class="container" style="margin-top: 60px;">
-    <div class="aviso" style="background: #ff0000; color: #fff; padding: 10px; border-radius: 5px; margin-bottom: 20px; text-align: center; font-weight: bold;">
-      🚫 Proibido spoilers. Sujeito a ban!
+    <!-- Conteúdo do Webtoon -->
+    <div class="webtoon-container">
+      <img src="https://i.imgur.com/MR5cTca.png" alt="Página 1" class="page" loading="lazy" />
+      <img src="https://i.imgur.com/uOPpxJo.png" alt="Página 2" class="page" loading="lazy" />
+      <img src="https://i.imgur.com/xhsfuAx.png" alt="Página 3" class="page" loading="lazy" />
+      <img src="https://i.imgur.com/EVAESQW.png" alt="Página 4" class="page" loading="lazy" />
+      <img src="https://i.imgur.com/8OToHwn.png" alt="Página 5" class="page" loading="lazy" />
+      <img src="https://i.imgur.com/d4d2aob.png" alt="Página 6" class="page" loading="lazy" />
+      <img src="https://i.imgur.com/FCJody2.png" alt="Página 7" class="page" loading="lazy" />
+      <img src="https://i.imgur.com/vO2pvBv.png" alt="Página 8" class="page" loading="lazy" />
+      <img src="https://i.imgur.com/9toIUTi.png" alt="Página 9" class="page" loading="lazy" />
+      <img src="https://i.imgur.com/GskmSaL.png" alt="Página 10" class="page" loading="lazy" />
     </div>
-    <p style="text-align: center;">Leia e participe das discussões respeitando todos os leitores!</p>
-    <div id="disqus_thread"></div>
+
+    <a href="javascript:void(0)" class="link-discreto" onclick="mostrarAviso()">→ Próximo capítulo</a>
+
+    <!-- Banner Middle -->
+    <div class="banner-container">
+      <div class="banner-wrapper">
+        <script type="text/javascript">
+          atOptions = {
+            'key': '734222ac687242bb91120e6110744653',
+            'format': 'iframe',
+            'height': 50,
+            'width': 320,
+            'params': {}
+          };
+        </script>
+        <script type="text/javascript" src="//www.highperformanceformat.com/734222ac687242bb91120e6110744653/invoke.js"></script>
+      </div>
+    </div>
+
+    <!-- Botão Topo -->
+    <button class="botao-topo" title="Voltar ao topo" onclick="window.scrollTo({top: 0, behavior: 'smooth'})">↑</button>
+
+    <!-- Seção de Comentários -->
+    <div class="comentarios-container">
+      <div class="aviso">🚫 Proibido spoilers. Sujeito a ban!</div>
+      <p style="text-align: center; color: #aaa; font-size: 0.9rem; margin-bottom: 15px;">Leia e participe das discussões respeitando todos os leitores!</p>
+      <div id="disqus_thread"></div>
+    </div>
+
+    <!-- Banner Bottom -->
+    <div class="banner-container">
+      <div class="banner-wrapper">
+        <script type="text/javascript">
+          atOptions = {
+            'key': '938f3c872e056240c969466612ab4be2',
+            'format': 'iframe',
+            'height': 50,
+            'width': 320,
+            'params': {}
+          };
+        </script>
+        <script type="text/javascript" src="//www.highperformanceformat.com/938f3c872e056240c969466612ab4be2/invoke.js"></script>
+      </div>
+    </div>
+    
   </div>
 
   <script>
@@ -218,68 +250,45 @@
       alert('😅 Ainda não temos outros capítulos disponíveis. Tenha calma!');
     }
 
+    // Disqus Comments
     var disqus_config = function () {
       this.page.url = window.location.href;
       this.page.identifier = window.location.pathname;
     };
 
-    (function () {
+    (function() {
       var d = document, s = d.createElement('script');
       s.src = 'https://lacosprofanosscan.disqus.com/embed.js';
       s.setAttribute('data-timestamp', +new Date());
       (d.head || d.body).appendChild(s);
     })();
 
-    // 🎉 EASTER EGG DE ANIVERSÁRIO
-    function ativarEasterEgg() {
-      const faixa = document.createElement('div');
-      faixa.className = 'faixa-aniversario';
-      faixa.innerHTML = `
-        🎉 Hoje é aniversário da marca Laços Profanos! Obrigado por fazer parte dessa jornada.
-        <button onclick="this.parentElement.remove()">✕</button>
-      `;
-      document.body.appendChild(faixa);
+    // Otimização: Carregar banners apenas quando visíveis
+    document.addEventListener('DOMContentLoaded', function() {
+      const banners = document.querySelectorAll('.banner-wrapper');
+      
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            const iframe = entry.target.querySelector('iframe');
+            if (iframe && !iframe.src) {
+              const script = entry.target.querySelector('script[src]');
+              if (script) {
+                iframe.src = script.src.replace('invoke.js', '');
+              }
+            }
+          }
+        });
+      }, { threshold: 0.1 });
 
-      for (let i = 0; i < 50; i++) {
-        const confete = document.createElement('div');
-        confete.className = 'confete';
-        confete.style.left = Math.random() * 100 + 'vw';
-        confete.style.backgroundColor = `hsl(${Math.random() * 360}, 100%, 70%)`;
-        confete.style.animationDuration = `${Math.random() * 3 + 2}s`;
-        document.body.appendChild(confete);
-        setTimeout(() => confete.remove(), 5000);
-      }
-    }
-
-    const url = new URL(window.location.href);
-    const dataHoje = new Date();
-    const ativadoViaURL = url.search.includes('2910');
-    const eh2910 = dataHoje.getDate() === 29 && (dataHoje.getMonth() + 1) === 10;
-
-    if (ativadoViaURL || eh2910) {
-      window.addEventListener('load', ativarEasterEgg);
-    }
+      banners.forEach(banner => observer.observe(banner));
+    });
   </script>
 
   <noscript>
     Por favor, habilite o JavaScript para visualizar os
     <a href="https://disqus.com/?ref_noscript">comentários via Disqus.</a>
   </noscript>
-
-  <div class="banner-container">
-    <div class="banner-wrapper">
-      <script type="text/javascript">
-        atOptions = {
-          'key': '938f3c872e056240c969466612ab4be2',
-          'format': 'iframe',
-          'height': 50,
-          'width': 320,
-          'params': {}
-        };
-      </script>
-      <script type="text/javascript" src="//www.highperformanceformat.com/938f3c872e056240c969466612ab4be2/invoke.js"></script>
-    </div>
-  </div>
   
 </body>
 </html>
