@@ -5,8 +5,11 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Meus Mangás - Laços Profanos</title>
   <link rel="icon" href="https://i.imgur.com/mgxXSto.png" type="image/png">
-
   <style>
+    * {
+      box-sizing: border-box;
+    }
+
     body {
       background-color: #121212;
       background-image: radial-gradient(#2c2c2c 1px, transparent 1px);
@@ -17,33 +20,24 @@
       padding: 0;
     }
 
-    /* ESTILOS DOS BANNERS */
+    body.lacos-aniversario {
+      background-image: radial-gradient(#a3005b 2px, transparent 2px);
+      background-size: 20px 20px;
+    }
+
     .banner-container {
       display: flex;
       flex-direction: column;
       align-items: center;
       width: 100%;
-      margin: 20px 0;
+      padding: 10px;
     }
-    
-    .banner-top {
-      width: 100%;
-      max-width: 728px;
-      margin: 0 auto;
-      text-align: center;
-    }
-    
+
+    .banner-top,
     .banner-bottom {
       width: 100%;
       max-width: 468px;
-      margin: 20px auto;
       text-align: center;
-    }
-
-    body.lacos-aniversario {
-      background-color: #121212;
-      background-image: radial-gradient(#a3005b 2px, transparent 2px);
-      background-size: 20px 20px;
     }
 
     .card {
@@ -87,7 +81,7 @@
       transform: scale(1.05);
     }
 
-    .manga-item .manga-logo {
+    .manga-logo {
       height: 50px;
       max-width: 150px;
       object-fit: contain;
@@ -95,7 +89,7 @@
       display: block;
     }
 
-    .manga-item .capa {
+    .capa {
       width: 100%;
       height: auto;
       max-width: 200px;
@@ -114,10 +108,7 @@
       height: 100px;
       object-fit: cover;
       border-radius: 50%;
-      margin-bottom: 10px;
-      display: block;
-      margin-left: auto;
-      margin-right: auto;
+      margin: 0 auto 10px auto;
     }
 
     .doadores {
@@ -193,6 +184,18 @@
       0% { transform: translateY(0) rotate(0deg); }
       100% { transform: translateY(100vh) rotate(360deg); }
     }
+
+    @media (max-width: 500px) {
+      .banner-top,
+      .banner-bottom {
+        max-width: 100%;
+      }
+
+      .card {
+        margin: 10px;
+        width: calc(100% - 20px);
+      }
+    }
   </style>
 </head>
 <body>
@@ -216,11 +219,9 @@
 
   <div class="card">
     <h3>Meus Mangás</h3>
-
     <div class="search-box">
       <input type="text" id="searchInput" placeholder="🔍 Pesquisar mangá..." onkeyup="searchManga()" />
     </div>
-
     <div id="mangaList">
       <a href="lpua/index.html" target="_blank">
         <div class="manga-item">
@@ -234,7 +235,6 @@
 
   <div class="card">
     <img class="profile-icon" src="https://i.imgur.com/mgxXSto.png" alt="Logo Laços Profanos">
-
     <h3>DOADORES DE LAÇOS PROFANOS</h3>
     <div class="doadores">
       <p>Tu sabe<span class="valor"> R$ 10,00</span></p>
@@ -243,13 +243,27 @@
       <p>ajnopse bob <span class="valor">R$ 01,00</span></p>
       <p>Anônimo amigo <span class="valor">R$ 01,00</span></p>
     </div>
-
     <a class="botao-doar" href="https://tipa.ai/lacosprofanos" target="_blank">DOE PARA LAÇOS PROFANOS</a>
   </div>
 
- 
   <div class="lacos-banner">
     🎉 Aniversário de Laços Profanos! 29 de Outubro 🎉
+  </div>
+
+  <!-- BANNER INFERIOR -->
+  <div class="banner-container">
+    <div class="banner-bottom">
+      <script type="text/javascript">
+        atOptions = {
+          'key': '734222ac687242bb91120e6110744653',
+          'format': 'iframe',
+          'height': 60,
+          'width': 468,
+          'params': {}
+        };
+      </script>
+      <script type="text/javascript" src="//www.highperformanceformat.com/734222ac687242bb91120e6110744653/invoke.js"></script>
+    </div>
   </div>
 
   <script>
@@ -265,11 +279,7 @@
         const title = removeAcentos(mangas[i].textContent.toLowerCase());
         const description = removeAcentos(mangas[i].getElementsByTagName('p')[0].innerText.toLowerCase());
 
-        if (title.includes(input) || description.includes(input)) {
-          mangas[i].parentElement.style.display = '';
-        } else {
-          mangas[i].parentElement.style.display = 'none';
-        }
+        mangas[i].parentElement.style.display = (title.includes(input) || description.includes(input)) ? '' : 'none';
       }
     }
 
@@ -303,21 +313,5 @@
       }
     });
   </script>
- <!-- BANNER INFERIOR -->
- <div class="banner-container">
-    <div class="banner-top">
-      <script type="text/javascript">
-        atOptions = {
-          'key': '734222ac687242bb91120e6110744653',
-          'format': 'iframe',
-          'height': 60,
-          'width': 468,
-          'params': {}
-        };
-      </script>
-      <script type="text/javascript" src="//www.highperformanceformat.com/734222ac687242bb91120e6110744653/invoke.js"></script>
-    </div>
-  </div>
-
 </body>
 </html>
