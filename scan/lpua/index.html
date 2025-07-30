@@ -20,29 +20,34 @@ body {
 .container-total {
   max-width: 700px;
   margin: 0 auto;
+  overflow: hidden; /* Impede que elementos filhos vazem */
 }
+
 /* ESTILOS DOS BANNERS */
-    .banner-container {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      width: 100%;
-      margin: 20px 0;
-    }
-    
-    .banner-top {
-      width: 100%;
-      max-width: 100%;
-      margin: 0 auto;
-      text-align: center;
-    }
-    
+.banner-container {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  margin: 20px 0;
+  overflow: hidden; /* Contém os anúncios */
+}
+
+.banner-wrapper {
+  width: 100%;
+  max-width: 320px; /* Largura máxima para mobile */
+  margin: 0 auto;
+  text-align: center;
+  overflow: hidden;
+  border-radius: 8px;
+}
+
 .manga-card {
   background-color: #1a1a1a;
   padding: 30px 20px;
   border-radius: 12px;
   border: 2px solid #a3005b;
   box-shadow: 0 0 20px rgba(0, 0, 0, 0.8);
+  overflow: hidden; /* Garante que nada vaze do card */
 }
 
 .logo-titulo {
@@ -229,18 +234,6 @@ button:hover {
   border-radius: 8px;
 }
 
-.ad-container-top {
-  margin-bottom: 30px;
-}
-
-.ad-container-middle {
-  margin: 30px 0;
-}
-
-.ad-container-bottom {
-  margin-top: 30px;
-}
-
 @keyframes cair {
   0% {
     transform: translateY(-20px) rotate(0deg);
@@ -254,10 +247,6 @@ button:hover {
 
 /* Responsividade para anúncios */
 @media (max-width: 600px) {
-  .banner-top {
-    max-width: 320px;
-  }
-  
   .buttons {
     flex-direction: column;
     align-items: center;
@@ -267,18 +256,30 @@ button:hover {
     width: 100%;
     max-width: 250px;
   }
+  
+  .banner-wrapper {
+    max-width: 100%;
+  }
+}
+
+/* Correção específica para iframes de anúncios */
+iframe {
+  max-width: 100%;
+  border: none;
+  overflow: hidden;
+  display: block;
+  margin: 0 auto;
 }
 </style>
 </head>
 
 <body>
 
-
 <div class="container-total">
 <div class="manga-card">
 
 <div class="banner-container">
-    <div class="banner-top">
+    <div class="banner-wrapper">
       <script type="text/javascript">
         atOptions = {
           'key': '734222ac687242bb91120e6110744653',
@@ -288,7 +289,7 @@ button:hover {
           'params': {}
         };
       </script>
-     <script type="text/javascript" src="//www.highperformanceformat.com/734222ac687242bb91120e6110744653/invoke.js"></script>
+      <script type="text/javascript" src="//www.highperformanceformat.com/734222ac687242bb91120e6110744653/invoke.js"></script>
     </div>
   </div>
 
@@ -315,7 +316,7 @@ Determinado a restaurar o equilíbrio, Hamiah se une a um grupo de rebeldes que 
 </p>
 
 <div class="banner-container">
-    <div class="banner-top">
+    <div class="banner-wrapper">
       <script type="text/javascript">
         atOptions = {
           'key': '734222ac687242bb91120e6110744653',
@@ -325,7 +326,7 @@ Determinado a restaurar o equilíbrio, Hamiah se une a um grupo de rebeldes que 
           'params': {}
         };
       </script>
-     <script type="text/javascript" src="//www.highperformanceformat.com/734222ac687242bb91120e6110744653/invoke.js"></script>
+      <script type="text/javascript" src="//www.highperformanceformat.com/734222ac687242bb91120e6110744653/invoke.js"></script>
     </div>
   </div>
 
@@ -335,7 +336,7 @@ Determinado a restaurar o equilíbrio, Hamiah se une a um grupo de rebeldes que 
 <div id="disqus_thread"></div>
 
 <div class="banner-container">
-    <div class="banner-top">
+    <div class="banner-wrapper">
       <script type="text/javascript">
         atOptions = {
           'key': '938f3c872e056240c969466612ab4be2',
