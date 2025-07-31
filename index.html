@@ -2,66 +2,80 @@
 <html lang="pt-BR">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
   <title>Laços Profanos</title>
   <link rel="icon" href="https://i.imgur.com/mgxXSto.png">
   
   <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+    
     body {
       background-color: #121212;
       background-image: radial-gradient(#2a2a2a 1px, transparent 1px);
       background-size: 24px 24px;
       color: white;
-      margin: 0;
       font-family: sans-serif;
+      width: 100%;
+      min-height: 100vh;
+      padding: 10px;
+      overflow-x: hidden;
     }
 
-    /* ESTILOS DOS BANNERS */
+    body.lacos-aniversario {
+      background-image: radial-gradient(#a3005b 2px, transparent 2px);
+    }
+
+    /* ESTILOS DOS BANNERS - CORRIGIDOS */
     .banner-container {
+      width: 100%;
+      margin: 15px 0;
+      overflow: hidden;
       display: flex;
-      flex-direction: column;
-      align-items: center;
-      width: 100%;
-      margin: 20px 0;
+      justify-content: center;
     }
     
-    .banner-top {
+    .banner-wrapper {
       width: 100%;
-      max-width: 728px;
+      max-width: 320px;
+      height: 50px;
       margin: 0 auto;
-      text-align: center;
+      overflow: hidden;
+      border-radius: 4px;
+      background: rgba(30,30,30,0.3);
     }
-    
-    .banner-bottom {
-      width: 100%;
-      max-width: 468px;
-      margin: 20px auto;
-      text-align: center;
+
+    .banner-wrapper iframe {
+      width: 100% !important;
+      height: 50px !important;
+      max-width: 320px;
+      border: none;
+      overflow: hidden;
+      display: block;
+      margin: 0 auto;
     }
 
     /* RESTANTE DO SEU CSS... */
-    body.lacos-aniversario {
-      background-color: #121212;
-      background-image: radial-gradient(#a3005b 2px, transparent 2px);
-      background-size: 20px 20px;
-    }
-
     .logo-container {
       position: relative;
       text-align: center;
-      margin-top: 100px;
+      margin: 30px 0;
     }
 
     .logo {
-      width: 200px;
+      width: 180px;
+      max-width: 60%;
       border-radius: 50%;
     }
 
     .party-hat {
       display: none;
       position: absolute;
-      width: 90px;
-      top: -90px;
+      width: 70px;
+      top: -60px;
       left: 50%;
       transform: translateX(-50%) rotate(-15deg);
       z-index: 10;
@@ -73,14 +87,16 @@
 
     h1, h2 {
       text-align: center;
+      margin: 10px 0;
+      padding: 0 10px;
     }
 
-    .botao {
+    .botao, .social-button {
       display: block;
-      width: 90%;
+      width: 100%;
       max-width: 300px;
       margin: 10px auto;
-      padding: 15px;
+      padding: 12px;
       border: 2px solid #a3005b;
       background: transparent;
       color: white;
@@ -90,14 +106,15 @@
       transition: all 0.3s ease;
     }
 
-    .botao:hover {
+    .botao:hover, .social-button:hover {
       transform: scale(1.05);
     }
 
-    .card {
+    .card, .fale-conosco {
+      width: 100%;
       max-width: 300px;
-      margin: 40px auto;
-      padding: 20px;
+      margin: 20px auto;
+      padding: 15px;
       border: 2px solid #a3005b;
       border-radius: 10px;
       background-color: #1a1a1a;
@@ -105,8 +122,8 @@
     }
 
     .profile-icon {
-      width: 100px;
-      height: 100px;
+      width: 80px;
+      height: 80px;
       object-fit: cover;
       border-radius: 50%;
       margin-bottom: 10px;
@@ -114,7 +131,8 @@
 
     .doadores {
       text-align: left;
-      margin-bottom: 20px;
+      margin-bottom: 15px;
+      font-size: 0.9rem;
     }
 
     .valor {
@@ -123,12 +141,13 @@
 
     .botao-doar {
       display: inline-block;
-      padding: 10px 20px;
+      padding: 8px 16px;
       background-color: #a3005b;
       color: white;
       text-decoration: none;
       border-radius: 5px;
       font-weight: bold;
+      font-size: 0.9rem;
       transition: transform 0.3s;
     }
 
@@ -144,12 +163,14 @@
       transform: translateX(-50%);
       background: #a3005b;
       color: white;
-      padding: 10px 25px;
+      padding: 8px 20px;
       border-radius: 8px;
       border: 2px solid white;
       z-index: 9999;
       font-weight: bold;
+      font-size: 0.8rem;
       box-shadow: 0 0 10px #a3005b;
+      max-width: 90%;
     }
 
     body.lacos-aniversario .lacos-banner {
@@ -158,8 +179,8 @@
 
     .confete {
       position: fixed;
-      width: 10px;
-      height: 10px;
+      width: 8px;
+      height: 8px;
       border-radius: 50%;
       top: -20px;
       animation: quedaConfete 3s linear infinite;
@@ -172,39 +193,25 @@
     }
 
     /* ===== ESTILO DO FORMULÁRIO "FALE CONOSCO" ===== */
-    .fale-conosco {
-      max-width: 300px;
-      margin: 40px auto;
-      padding: 20px;
-      border: 2px solid #a3005b;
-      border-radius: 10px;
-      background-color: #1a1a1a;
-      text-align: center;
-    }
-
-    .fale-conosco h3 {
-      margin-top: 0;
-      color: #a3005b;
-    }
-
     .fale-conosco form {
       display: flex;
       flex-direction: column;
-      gap: 15px;
+      gap: 10px;
     }
 
     .fale-conosco input,
     .fale-conosco textarea,
     .fale-conosco select {
-      padding: 10px;
+      padding: 8px;
       border-radius: 5px;
       border: 1px solid #333;
       background-color: #2a2a2a;
       color: white;
+      font-size: 0.9rem;
     }
 
     .fale-conosco textarea {
-      min-height: 100px;
+      min-height: 80px;
       resize: vertical;
     }
 
@@ -212,10 +219,11 @@
       background-color: #a3005b;
       color: white;
       border: none;
-      padding: 12px;
+      padding: 10px;
       border-radius: 5px;
       cursor: pointer;
       font-weight: bold;
+      font-size: 0.9rem;
       transition: background-color 0.3s;
     }
 
@@ -240,64 +248,54 @@
     #scan-popup {
       background: linear-gradient(135deg, #1c1c1c 0%, #2a2a2a 100%);
       border: 2px solid #a3005b;
-      border-radius: 16px;
-      padding: 28px 24px;
+      border-radius: 12px;
+      padding: 20px;
       width: 90%;
-      max-width: 340px;
+      max-width: 300px;
       text-align: center;
-      box-shadow: 0 4px 30px rgba(163, 0, 91, 0.5);
+      box-shadow: 0 4px 20px rgba(163, 0, 91, 0.5);
       position: relative;
-      animation: fadeIn 0.3s ease-in-out;
     }
 
     #scan-popup h3 {
       color: #a3005b;
       margin-top: 0;
+      font-size: 1.2rem;
     }
 
     #scan-popup p {
       color: white;
-      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
-      font-size: 16px;
-      line-height: 1.5;
-      margin-bottom: 24px;
+      font-size: 0.9rem;
+      line-height: 1.4;
+      margin-bottom: 15px;
     }
 
     #scan-close-button {
       position: absolute;
-      top: 12px;
-      right: 16px;
+      top: 8px;
+      right: 12px;
       background: none;
       border: none;
       color: white;
-      font-size: 26px;
-      font-family: 'Inter', sans-serif;
+      font-size: 22px;
       cursor: pointer;
-      transition: color 0.2s ease;
     }
 
-    #scan-close-button:hover {
-      color: #a3005b;
-    }
-
-    /* Botões de redes sociais */
-    .social-button {
-      display: block;
-      width: 90%;
-      max-width: 300px;
-      margin: 10px auto;
-      padding: 15px;
-      border: 2px solid #a3005b;
-      background: transparent;
-      color: white;
-      text-decoration: none;
-      border-radius: 8px;
-      text-align: center;
-      transition: all 0.3s ease;
-    }
-
-    .social-button:hover {
-      transform: scale(1.05);
+    /* Media Queries para ajustes finos */
+    @media (max-width: 360px) {
+      .logo {
+        width: 150px;
+      }
+      
+      .party-hat {
+        width: 60px;
+        top: -50px;
+      }
+      
+      .botao, .social-button {
+        padding: 10px;
+        font-size: 0.9rem;
+      }
     }
   </style>
 </head>
@@ -305,13 +303,13 @@
 <body>
   <!-- BANNER SUPERIOR -->
   <div class="banner-container">
-    <div class="banner-top">
+    <div class="banner-wrapper">
       <script type="text/javascript">
         atOptions = {
           'key': '8dc7df4045cbd86bc99306a8685f9b15',
           'format': 'iframe',
-          'height': 90,
-          'width': 728,
+          'height': 50,
+          'width': 320,
           'params': {}
         };
       </script>
@@ -326,8 +324,8 @@
 
   <!-- ===== LOGO COM DECORAÇÕES TEMÁTICAS ===== -->
   <div class="logo-container">
-    <img class="logo" src="https://i.imgur.com/mgxXSto.png" alt="Logo">
-    <img class="party-hat" src="https://gallery.yopriceville.com/var/albums/Free-Clipart-Pictures/Happy-Birthday-PNG/Party_Hat_PNG_Clipart_Image.png?m=1629805743" alt="Chapéu de Aniversário">
+    <img class="logo" src="https://i.imgur.com/mgxXSto.png" alt="Logo" loading="lazy">
+    <img class="party-hat" src="https://gallery.yopriceville.com/var/albums/Free-Clipart-Pictures/Happy-Birthday-PNG/Party_Hat_PNG_Clipart_Image.png?m=1629805743" alt="Chapéu de Aniversário" loading="lazy">
   </div>
 
   <h1>Laços Profanos</h1>
@@ -345,7 +343,7 @@
 
   <!-- ===== CARD DE DOAÇÃO ===== -->
   <div class="card">
-    <img class="profile-icon" src="https://i.imgur.com/mgxXSto.png" alt="Logo Laços Profanos">
+    <img class="profile-icon" src="https://i.imgur.com/mgxXSto.png" alt="Logo Laços Profanos" loading="lazy">
     <h3>DOADORES DE LAÇOS PROFANOS</h3>
     <div class="doadores">
       <p>Tu sabe <span class="valor">R$ 10,00</span></p>
@@ -381,17 +379,17 @@
 
   <!-- BANNER INFERIOR -->
   <div class="banner-container">
-    <div class="banner-bottom">
+    <div class="banner-wrapper">
       <script type="text/javascript">
         atOptions = {
           'key': '4b5be25d59a0adf82eb11d07dc01ef66',
           'format': 'iframe',
-          'height': 60,
-          'width': 468,
+          'height': 50,
+          'width': 320,
           'params': {}
         };
       </script>
-      <script type="text/javascript" src="//www.highperformanceformat.com/8dc7df4045cbd86bc99306a8685f9b15/invoke.js"></script>
+      <script type="text/javascript" src="//www.highperformanceformat.com/4b5be25d59a0adf82eb11d07dc01ef66/invoke.js"></script>
     </div>
   </div>
 
@@ -418,12 +416,12 @@
         audio.volume = 0.3;
         audio.play().catch(() => {});
 
-        for (let i = 0; i < 100; i++) {
+        for (let i = 0; i < 50; i++) {
           const confete = document.createElement("div");
           confete.className = "confete";
           confete.style.left = Math.random() * window.innerWidth + "px";
           confete.style.background = `hsl(${Math.random() * 360}, 100%, 50%)`;
-          confete.style.animationDelay = Math.random() * 3 + "s";
+          confete.style.animationDuration = (Math.random() * 3 + 2) + "s";
           document.body.appendChild(confete);
         }
       }
@@ -432,6 +430,11 @@
       document.getElementById('scan-button').addEventListener('click', function(e) {
         e.preventDefault();
         document.getElementById('scan-popup-overlay').style.display = 'flex';
+      });
+      
+      // Fechar popup
+      document.getElementById("scan-close-button").addEventListener('click', () => {
+        document.getElementById("scan-popup-overlay").style.display = "none";
       });
     });
   </script>
@@ -445,13 +448,5 @@
       <p>Por favor, tenha paciência e volte em breve para conferir as novidades.</p>
     </div>
   </div>
-
-  <script>
-    window.addEventListener('load', () => {
-      document.getElementById("scan-close-button").addEventListener('click', () => {
-        document.getElementById("scan-popup-overlay").style.display = "none";
-      });
-    });
-  </script>
 </body>
 </html>
