@@ -29,38 +29,6 @@
       position: relative;
     }
 
-    /* ESTILOS DOS BANNERS - CORRIGIDOS */
-    .banner-container {
-      width: 100%;
-      margin: 15px 0;
-      overflow: hidden;
-      position: relative;
-      display: flex;
-      justify-content: center;
-      background: rgba(30,30,30,0.3);
-      border-radius: 6px;
-      padding: 5px;
-    }
-    
-    .banner-wrapper {
-      width: 100%;
-      max-width: 320px;
-      height: 50px;
-      margin: 0 auto;
-      overflow: hidden;
-      border-radius: 4px;
-    }
-
-    .banner-wrapper iframe {
-      width: 100% !important;
-      height: 50px !important;
-      max-width: 320px;
-      border: none;
-      overflow: hidden;
-      display: block;
-      margin: 0 auto;
-    }
-
     .logo-titulo {
       display: block;
       width: 100%;
@@ -148,16 +116,6 @@
       body {
         padding: 10px;
       }
-      
-      .banner-wrapper {
-        max-width: 300px;
-      }
-    }
-
-    @media (max-width: 360px) {
-      .banner-wrapper {
-        max-width: 280px;
-      }
     }
   </style>
 </head>
@@ -165,22 +123,6 @@
 
   <div class="main-container">
   
-    <!-- Banner Top -->
-    <div class="banner-container">
-      <div class="banner-wrapper">
-        <script type="text/javascript">
-          atOptions = {
-            'key': '734222ac687242bb91120e6110744653',
-            'format': 'iframe',
-            'height': 50,
-            'width': 320,
-            'params': {}
-          };
-        </script>
-        <script type="text/javascript" src="//www.highperformanceformat.com/734222ac687242bb91120e6110744653/invoke.js"></script>
-      </div>
-    </div>
-    
     <a href="https://scan.lacosprofanos.com.br/lpua/" class="link-discreto">← Voltar para as informações do mangá</a>
 
     <img src="https://i.imgur.com/VqlSX0u.png" alt="Titulo do Capítulo" class="logo-titulo">
@@ -201,22 +143,6 @@
 
     <a href="javascript:void(0)" class="link-discreto" onclick="mostrarAviso()">→ Próximo capítulo</a>
 
-    <!-- Banner Middle -->
-    <div class="banner-container">
-      <div class="banner-wrapper">
-        <script type="text/javascript">
-          atOptions = {
-            'key': '734222ac687242bb91120e6110744653',
-            'format': 'iframe',
-            'height': 50,
-            'width': 320,
-            'params': {}
-          };
-        </script>
-        <script type="text/javascript" src="//www.highperformanceformat.com/734222ac687242bb91120e6110744653/invoke.js"></script>
-      </div>
-    </div>
-
     <!-- Botão Topo -->
     <button class="botao-topo" title="Voltar ao topo" onclick="window.scrollTo({top: 0, behavior: 'smooth'})">↑</button>
 
@@ -225,22 +151,6 @@
       <div class="aviso">🚫 Proibido spoilers. Sujeito a ban!</div>
       <p style="text-align: center; color: #aaa; font-size: 0.9rem; margin-bottom: 15px;">Leia e participe das discussões respeitando todos os leitores!</p>
       <div id="disqus_thread"></div>
-    </div>
-
-    <!-- Banner Bottom -->
-    <div class="banner-container">
-      <div class="banner-wrapper">
-        <script type="text/javascript">
-          atOptions = {
-            'key': '938f3c872e056240c969466612ab4be2',
-            'format': 'iframe',
-            'height': 50,
-            'width': 320,
-            'params': {}
-          };
-        </script>
-        <script type="text/javascript" src="//www.highperformanceformat.com/938f3c872e056240c969466612ab4be2/invoke.js"></script>
-      </div>
     </div>
     
   </div>
@@ -262,27 +172,6 @@
       s.setAttribute('data-timestamp', +new Date());
       (d.head || d.body).appendChild(s);
     })();
-
-    // Otimização: Carregar banners apenas quando visíveis
-    document.addEventListener('DOMContentLoaded', function() {
-      const banners = document.querySelectorAll('.banner-wrapper');
-      
-      const observer = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-          if (entry.isIntersecting) {
-            const iframe = entry.target.querySelector('iframe');
-            if (iframe && !iframe.src) {
-              const script = entry.target.querySelector('script[src]');
-              if (script) {
-                iframe.src = script.src.replace('invoke.js', '');
-              }
-            }
-          }
-        });
-      }, { threshold: 0.1 });
-
-      banners.forEach(banner => observer.observe(banner));
-    });
   </script>
 
   <noscript>
