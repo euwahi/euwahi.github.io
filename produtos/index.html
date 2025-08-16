@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<<!DOCTYPE html>
 <html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
@@ -110,6 +110,36 @@
             transform: scale(1.05) !important;
         }
 
+        /* Seção de avaliações */
+        .avaliacoes-section {
+            margin: 50px 0;
+            padding: 30px;
+            background-color: #1a1a1a;
+            border-radius: 10px;
+            border: 1px solid #2a2a2a;
+        }
+
+        .avaliacoes-title {
+            color: #f1c40f;
+            font-size: 1.8rem;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        .rating-container {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 30px;
+        }
+
+        /* Estilos para o GraphComment */
+        #graphcomment {
+            margin-top: 40px;
+            background-color: #2a2a2a;
+            padding: 20px;
+            border-radius: 8px;
+        }
+
         footer {
             background-color: #1a1a1a;
             color: white;
@@ -131,6 +161,10 @@
             
             .mp-checkout-container {
                 max-width: 100%;
+            }
+
+            .avaliacoes-section {
+                padding: 20px;
             }
         }
     </style>
@@ -177,10 +211,81 @@
                 </div>
             </div>
         </section>
+
+        <!-- Seção de avaliações e comentários -->
+        <section class="avaliacoes-section">
+            <h2 class="avaliacoes-title">Avaliações do Produto</h2>
+            
+            <!-- Rating Widget -->
+            <div class="rating-container">
+                <div class="rw-ui-container"></div>
+            </div>
+            
+            <!-- GraphComment Comentários -->
+            <div id="graphcomment"></div>
+        </section>
     </main>
 
     <footer>
         <p>&copy; 2025 Laços Profanos - Todos os direitos reservados</p>
     </footer>
+
+    <!-- Rating Widget Script -->
+    <script type="text/javascript">(function(d, t, e, m){
+        
+        // Async Rating-Widget initialization.
+        window.RW_Async_Init = function(){
+                    
+            RW.init({
+                huid: "499181",
+                uid: "0a46cac695251171c68ad805a96ca1f5",
+                options: { "style": "oxygen" } 
+            });
+            RW.render();
+        };
+            // Append Rating-Widget JavaScript library.
+        var rw, s = d.getElementsByTagName(e)[0], id = "rw-js",
+            l = d.location, ck = "Y" + t.getFullYear() + 
+            "M" + t.getMonth() + "D" + t.getDate(), p = l.protocol,
+            f = ((l.search.indexOf("DBG=") > -1) ? "" : ".min"),
+            a = ("https:" == p ? "secure." + m + "js/" : "js." + m);
+        if (d.getElementById(id)) return;              
+        rw = d.createElement(e);
+        rw.id = id; rw.async = true; rw.type = "text/javascript";
+        rw.src = p + "//" + a + "external" + f + ".js?ck=" + ck;
+        s.parentNode.insertBefore(rw, s);
+        }(document, new Date(), "script", "rating-widget.com/"));</script>
+
+    <!-- GraphComment Script -->
+    <script type="text/javascript">
+      /* - - - CONFIGURATION VARIABLES - - - */
+
+      var __semio__params = {
+        graphcommentId: "Lacosprofanos", // make sure the id is yours
+
+        behaviour: {
+          // HIGHLY RECOMMENDED
+          // uid: "...", // uniq identifer for the comments thread on your page (ex: your page id)
+        },
+
+        // configure your variables here
+      }
+
+      /* - - - DON'T EDIT BELOW THIS LINE - - - */
+
+      function __semio__onload() {
+        __semio__gc_graphlogin(__semio__params)
+      }
+
+      (function() {
+        var gc = document.createElement('script'); 
+        gc.type = 'text/javascript'; 
+        gc.async = true;
+        gc.onload = __semio__onload; 
+        gc.defer = true; 
+        gc.src = 'https://integration.graphcomment.com/gc_graphlogin.js?' + Date.now();
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(gc);
+      })();
+    </script>
 </body>
 </html>
