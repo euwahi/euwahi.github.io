@@ -108,8 +108,8 @@
             transform: scale(1.05) !important;
         }
 
-        /* SEÇÃO DE AVALIAÇÕES - NOVOS ESTILOS */
-        .avaliacoes-section {
+        /* SEÇÃO DE COMENTÁRIOS */
+        .comentarios-section {
             margin: 50px 0;
             padding: 30px;
             background-color: #1a1a1a;
@@ -117,36 +117,30 @@
             border: 1px solid #2a2a2a;
         }
 
-        .avaliacoes-title {
+        .comentarios-title {
             color: #f1c40f;
             font-size: 1.8rem;
             margin-bottom: 20px;
             text-align: center;
         }
 
-        /* CONTAINER DO RATING WIDGET */
-        .rating-container {
+        .aviso-comentarios {
+            background-color: #2a2a2a;
+            padding: 15px;
+            border-radius: 8px;
+            margin-bottom: 30px;
             text-align: center;
-            margin: 40px 0;
+            border-left: 4px solid #f1c40f;
         }
 
-        .rw-container {
-            display: inline-block;
-            transform: scale(1.5);
-        }
-
-        .rw-ui-container {
-            font-size: 24px !important;
-        }
-
-        .rw-words {
-            font-size: 16px !important;
-            color: white !important;
+        .aviso-comentarios i {
+            color: #f1c40f;
+            margin-right: 10px;
         }
 
         /* GRAPHCOMMENT STYLES */
         #graphcomment {
-            margin-top: 40px;
+            margin-top: 20px;
             background-color: #2a2a2a;
             padding: 20px;
             border-radius: 8px;
@@ -175,12 +169,8 @@
                 max-width: 100%;
             }
 
-            .avaliacoes-section {
+            .comentarios-section {
                 padding: 20px;
-            }
-
-            .rw-container {
-                transform: scale(1.2);
             }
         }
     </style>
@@ -227,15 +217,14 @@
             </div>
         </section>
 
-        <!-- SEÇÃO DE AVALIAÇÕES E COMENTÁRIOS -->
-        <section class="avaliacoes-section">
-            <h2 class="avaliacoes-title">Avaliações do Produto</h2>
+        <!-- SEÇÃO DE COMENTÁRIOS -->
+        <section class="comentarios-section">
+            <h2 class="comentarios-title">Comentários</h2>
             
-            <!-- RATING WIDGET - CONFIGURADO EM PORTUGUÊS -->
-            <div class="rating-container">
-                <div class="rw-container">
-                    <div class="rw-ui-container" data-locale="pt_BR"></div>
-                </div>
+            <!-- AVISO IMPORTANTE -->
+            <div class="aviso-comentarios">
+                <i class="fas fa-exclamation-circle"></i>
+                <strong>ATENÇÃO:</strong> Apenas comente se tiver comprado o produto. Comentários de não compradores serão excluídos.
             </div>
             
             <!-- GRAPHCOMMENT -->
@@ -247,41 +236,8 @@
         <p>&copy; 2025 Laços Profanos - Todos os direitos reservados</p>
     </footer>
 
-    <!-- RATING WIDGET SCRIPT -->
-    <script type="text/javascript">
-    (function(d, t, e, m){
-        window.RW_Async_Init = function(){        
-            RW.init({
-                huid: "499181",
-                uid: "0a46cac695251171c68ad805a96ca1f5",
-                options: {
-                    "style": "oxygen",
-                    "size": "large",
-                    "locale": "pt_BR",
-                    "text": {
-                        "rateThis": "Avalie este produto",
-                        "thanks": "Obrigado por avaliar!",
-                        "outOf": "de",
-                        "votes": "avaliações"
-                    }
-                } 
-            });
-            RW.render();
-        };
-        
-        var rw, s = d.getElementsByTagName(e)[0], id = "rw-js",
-            l = d.location, ck = "Y" + t.getFullYear() + 
-            "M" + t.getMonth() + "D" + t.getDate(), p = l.protocol,
-            f = ((l.search.indexOf("DBG=") > -1) ? "" : ".min"),
-            a = ("https:" == p ? "secure." + m + "js/" : "js." + m);
-        
-        if (d.getElementById(id)) return;              
-        rw = d.createElement(e);
-        rw.id = id; rw.async = true; rw.type = "text/javascript";
-        rw.src = p + "//" + a + "external" + f + ".js?ck=" + ck;
-        s.parentNode.insertBefore(rw, s);
-    }(document, new Date(), "script", "rating-widget.com/"));
-    </script>
+    <!-- Font Awesome para o ícone de aviso -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
 
     <!-- GRAPHCOMMENT SCRIPT -->
     <script type="text/javascript">
@@ -289,7 +245,8 @@
         graphcommentId: "Lacosprofanos", // SUBSTITUA PELO SEU ID REAL
 
         behaviour: {
-          uid: "lacos_profanos_ultimo_anjo" // ID único para esta página
+          uid: "lacos_profanos_ultimo_anjo", // ID único para esta página
+          // Configure moderação no painel do GraphComment
         },
 
         // Configure suas variáveis aqui
