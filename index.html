@@ -144,6 +144,8 @@
             max-width: 1200px;
             margin: 0 auto;
             padding: 20px;
+            gap: 30px;
+            flex-wrap: wrap;
         }
 
         .fale-conosco {
@@ -153,6 +155,22 @@
             border-radius: 10px;
             background-color: #1a1a1a;
             box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+        }
+
+        .discord-widget {
+            width: 100%;
+            max-width: 350px;
+            padding: 30px;
+            border-radius: 10px;
+            background-color: #1a1a1a;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+        }
+
+        .discord-widget h3 {
+            text-align: center;
+            color: #f1c40f;
+            margin-bottom: 20px;
+            font-size: 1.5rem;
         }
 
         .fale-conosco h3 {
@@ -348,6 +366,11 @@
                 <textarea name="mensagem" placeholder="Sua mensagem..." required rows="5"></textarea>
                 <button type="submit">ENVIAR MENSAGEM</button>
             </form>
+        </section>
+
+        <section class="discord-widget">
+            <h3>COMUNIDADE NO DISCORD</h3>
+            <iframe src="https://discord.com/widget?id=1361838720877072425&theme=dark" width="100%" height="500" allowtransparency="true" frameborder="0" sandbox="allow-popups allow-popups-to-escape-sandbox allow-same-origin allow-scripts"></iframe>
         </section>
     </div>
 
