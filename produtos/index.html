@@ -88,26 +88,24 @@
             margin-top: 10px;
         }
 
-        .comprar-btn {
-            display: inline-block;
-            padding: 15px 40px;
-            background-color: #a3005b;
-            color: white;
-            text-decoration: none;
-            border-radius: 8px;
-            font-weight: bold;
-            font-size: 1.2rem;
-            transition: all 0.3s;
-            text-align: center;
-            border: none;
-            cursor: pointer;
-            width: 100%;
+        /* Estilo para o container do botão do Mercado Pago */
+        .mp-checkout-container {
+            margin-top: 30px;
             max-width: 300px;
         }
 
-        .comprar-btn:hover {
-            background-color: #850048;
-            transform: scale(1.05);
+        /* Adaptação para o botão do Mercado Pago */
+        .mercadopago-button {
+            padding: 15px 40px !important;
+            font-size: 1.2rem !important;
+            border-radius: 8px !important;
+            width: 100% !important;
+            max-width: 300px !important;
+            transition: all 0.3s !important;
+        }
+
+        .mercadopago-button:hover {
+            transform: scale(1.05) !important;
         }
 
         footer {
@@ -129,7 +127,7 @@
                 min-width: 100%;
             }
             
-            .comprar-btn {
+            .mp-checkout-container {
                 max-width: 100%;
             }
         }
@@ -154,23 +152,27 @@
                 <div class="produto-preco">R$ 3,99</div>
                 
                 <div class="produto-descricao">
-                    <p>
-    As ideias iniciais que eu tinha para a primeira história de Laços Profanos: O Último Anjo eram bem diferentes do que vocês conhecem hoje e do que estamos produzindo na HQ.
-<br> <br>
-Este livro que estou liberando é o rascunho da ideia original na verdade, uma versão mais recente, mas ainda diferente da HQ atual.
-<br> <br>
-Será que existem muitas diferenças?
-Leia e descubra, para poder comparar com a versão em quadrinhos!
-<br> <br>
-Formato: PDF
-Páginas: 68
-<br> <br>
-Ao comprar, você receberá um link exclusivo para acessar e ler o ebook quando quiser.
-<br> <br>
-Curiosidade: Sabia que na ideia original o protagonista era o Elijah? Nesta versão que estou liberando, já é o Hamiah!</p>
+                    <p>Esta é a versão rascunho do livro "Laços Profanos: O Último Anjo". Uma obra emocionante que explora temas profundos através de uma narrativa cativante.</p>
                 </div>
                 
-                <a href="https://mpago.la/12mizT1" class="comprar-btn" target="_blank">COMPRE AGORA</a>
+                <div class="produto-caracteristicas">
+                    <h3>Características:</h3>
+                    <ul>
+                        <li>Formato: Digital (PDF)</li>
+                        <li>Tamanho do arquivo: 2.5MB</li>
+                        <li>Número de páginas: 150</li>
+                        <li>Idioma: Português</li>
+                        <li>Disponível para download imediato</li>
+                    </ul>
+                </div>
+                
+                <!-- Container para o botão do Mercado Pago -->
+                <div class="mp-checkout-container">
+                    <script src="https://www.mercadopago.com.br/integrations/v1/web-payment-checkout.js"
+                    data-preference-id="1436708261-5cd4cb70-d014-45bf-8b61-9748b62aa97d" 
+                    data-source="button">
+                    </script>
+                </div>
             </div>
         </section>
     </main>
