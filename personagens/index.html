@@ -48,11 +48,29 @@
         width: 280px;
         background-color: #1a1a1a;
         flex-direction: column;
-        padding: 80px 20px 20px;
+        padding: 60px 20px 20px;
         box-shadow: 5px 0 25px rgba(0,0,0,0.7);
         z-index: 1000;
         overflow-y: auto;
     }
+    
+    .close-menu {
+        position: absolute;
+        top: 15px;
+        right: 15px;
+        background: #a3005b;
+        color: white;
+        border: none;
+        border-radius: 50%;
+        width: 30px;
+        height: 30px;
+        cursor: pointer;
+        font-size: 1.2rem;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+    
     .mobile-menu h3 {
         color: #f1c40f;
         margin: 20px 0 15px;
@@ -61,6 +79,34 @@
         font-size: 1.3rem;
         text-align: center;
     }
+    
+    .filter-tags {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+        margin: 15px 0;
+        padding: 0 10px;
+    }
+    
+    .filter-tag {
+        background: #2c3e50;
+        color: white;
+        padding: 5px 10px;
+        border-radius: 15px;
+        font-size: 0.9rem;
+        display: flex;
+        align-items: center;
+    }
+    
+    .filter-tag .remove-filter {
+        background: none;
+        border: none;
+        color: #a3005b;
+        margin-left: 5px;
+        cursor: pointer;
+        font-weight: bold;
+    }
+    
     .mobile-menu a {
         color: white;
         text-decoration: none;
@@ -77,10 +123,28 @@
         background-color: #a3005b;
         transform: translateX(8px);
     }
-    #menu-toggle:checked ~ .mobile-menu { display: flex; }
-    #menu-toggle:checked ~ .hamburguer-menu span:nth-child(1) { transform: rotate(-45deg) translate(-6px, 7px); }
-    #menu-toggle:checked ~ .hamburguer-menu span:nth-child(2) { opacity: 0; }
-    #menu-toggle:checked ~ .hamburguer-menu span:nth-child(3) { transform: rotate(45deg) translate(-6px, -7px); }
+    
+    .mobile-menu a.active-filter {
+        background-color: #f1c40f;
+        color: #121212;
+        font-weight: bold;
+    }
+    
+    #menu-toggle:checked ~ .mobile-menu { 
+        display: flex; 
+    }
+    
+    #menu-toggle:checked ~ .hamburguer-menu span:nth-child(1) { 
+        transform: rotate(-45deg) translate(-6px, 7px); 
+    }
+    
+    #menu-toggle:checked ~ .hamburguer-menu span:nth-child(2) { 
+        opacity: 0; 
+    }
+    
+    #menu-toggle:checked ~ .hamburguer-menu span:nth-child(3) { 
+        transform: rotate(45deg) translate(-6px, -7px); 
+    }
 
     .container {
         max-width: 1400px;
@@ -182,8 +246,14 @@
 </label>
 
 <div class="mobile-menu">
+    <button class="close-menu" onclick="closeMenu()">×</button>
     <h3>Filtrar por História</h3>
-    <a href="#" data-filter="all">Todos os Personagens</a>
+    
+    <div class="filter-tags" id="filter-tags">
+        <!-- Tags de filtros ativos aparecerão aqui -->
+    </div>
+    
+    <a href="#" data-filter="all" class="active-filter">Todos os Personagens</a>
     <a href="#" data-filter="ultimo-anjo">O Último Anjo</a>
     <a href="#" data-filter="pacto-vinganca">Pacto de Vingança</a>
     <a href="#" data-filter="menino-profecias">O Menino da Profecia</a>
@@ -474,38 +544,4 @@
         </div>
         
         <div class="character-card" data-category="menino-profecias">
-            <a href="https://euwahi.github.io/personagens/sarah.html" class="character-link">
-                <div class="image-container">
-                    <img src="https://i.imgur.com/7zAcS65.png" alt="Sarah" class="character-image">
-                </div>
-                <div class="character-name">Sarah</div>
-            </a>
-        </div>
-        
-        <div class="character-card" data-category="menino-profecias">
-            <a href="https://euwahi.github.io/personagens/thomas.html" class="character-link">
-                <div class="image-container">
-                    <img src="https://i.imgur.com/mgxXSto.png" alt="Thomas" class="character-image">
-                </div>
-                <div class="character-name">Thomas</div>
-            </a>
-        </div>
-        
-        <div class="character-card" data-category="menino-profecias">
-            <a href="https://euwahi.github.io/personagens/yaziell.html" class="character-link">
-                <div class="image-container">
-                    <img src="https://i.imgur.com/mgxXSto.png" alt="Yaziell" class="character-image">
-                </div>
-                <div class="character-name">Yaziell</div>
-            </a>
-        </div>
-    </div>
-</div>
-
-<footer>
-    &copy; 2025 Laços Profanos - Todos os direitos reservados
-</footer>
-
-<script>
-    // Filtro de categorias suportando múltiplos
-    const menuLinks
+            <a href="https://euwahi.g
