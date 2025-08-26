@@ -1,1 +1,511 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Catálogo de Personagens - Laços Profanos</title>
+<link rel="icon" href="https://i.imgur.com/mgxXSto.png" type="image/png">
+<style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+        background-color: #121212;
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        color: #fff;
+        line-height: 1.6;
+        overflow-x: hidden;
+    }
 
+    /* Menu hambúrguer */
+    .hamburguer-menu {
+        display: flex;
+        flex-direction: column;
+        cursor: pointer;
+        padding: 10px;
+        position: fixed;
+        top: 20px;
+        left: 20px;
+        z-index: 1001;
+        background-color: #a3005b;
+        border-radius: 10px;
+        box-shadow: 0 4px 15px rgba(0,0,0,0.5);
+    }
+    .hamburguer-menu span {
+        width: 30px;
+        height: 3px;
+        background-color: white;
+        margin: 4px 0;
+        border-radius: 2px;
+        transition: 0.3s;
+    }
+    #menu-toggle { display: none; }
+
+    .mobile-menu {
+        display: none;
+        position: fixed;
+        top: 0;
+        left: 0;
+        height: 100%;
+        width: 280px;
+        background-color: #1a1a1a;
+        flex-direction: column;
+        padding: 80px 20px 20px;
+        box-shadow: 5px 0 25px rgba(0,0,0,0.7);
+        z-index: 1000;
+        overflow-y: auto;
+    }
+    .mobile-menu h3 {
+        color: #f1c40f;
+        margin: 20px 0 15px;
+        padding-bottom: 8px;
+        border-bottom: 2px solid #a3005b;
+        font-size: 1.3rem;
+        text-align: center;
+    }
+    .mobile-menu a {
+        color: white;
+        text-decoration: none;
+        padding: 12px 18px;
+        border-radius: 8px;
+        margin-bottom: 10px;
+        display: block;
+        font-size: 1rem;
+        text-align: center;
+        background-color: #2c3e50;
+        transition: all 0.3s;
+    }
+    .mobile-menu a:hover {
+        background-color: #a3005b;
+        transform: translateX(8px);
+    }
+    #menu-toggle:checked ~ .mobile-menu { display: flex; }
+    #menu-toggle:checked ~ .hamburguer-menu span:nth-child(1) { transform: rotate(-45deg) translate(-6px, 7px); }
+    #menu-toggle:checked ~ .hamburguer-menu span:nth-child(2) { opacity: 0; }
+    #menu-toggle:checked ~ .hamburguer-menu span:nth-child(3) { transform: rotate(45deg) translate(-6px, -7px); }
+
+    .container {
+        max-width: 1400px;
+        margin: 0 auto;
+        padding: 70px 20px 20px;
+    }
+
+    .catalog {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+        gap: 35px;
+    }
+
+    .character-card {
+        background-color: #1a1a1a;
+        border-radius: 15px;
+        overflow: hidden;
+        transition: transform 0.3s, box-shadow 0.3s;
+        box-shadow: 0 8px 20px rgba(0,0,0,0.4);
+        border: 2px solid #2a2a2a;
+        text-align: center;
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+    }
+    .character-card:hover {
+        transform: translateY(-10px) scale(1.03);
+        box-shadow: 0 15px 30px rgba(163,0,91,0.3);
+        border-color: #a3005b;
+    }
+
+    .character-link {
+        display: block;
+        text-decoration: none;
+        color: inherit;
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+    }
+
+    .image-container {
+        width: 100%;
+        height: 350px;
+        overflow: hidden;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background-color: #0f0f0f;
+        position: relative;
+    }
+
+    .character-image {
+        max-width: 100%;
+        max-height: 100%;
+        width: auto;
+        height: auto;
+        transition: transform 0.5s;
+        object-fit: contain;
+    }
+    
+    .character-card:hover .character-image {
+        transform: scale(1.05);
+    }
+
+    .character-name {
+        color: #f1c40f;
+        margin: 15px 0;
+        font-size: 1.4rem;
+        font-weight: bold;
+        padding: 0 10px;
+    }
+
+    footer {
+        text-align: center;
+        padding: 30px;
+        margin-top: 70px;
+        background-color: #1a1a1a;
+        border-top: 1px solid #2a2a2a;
+        border-radius: 10px;
+    }
+
+    @media(max-width:768px){
+        .catalog { grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); gap: 25px; }
+        .image-container { height: 300px; }
+    }
+    
+    @media(max-width:480px){
+        .image-container { height: 250px; }
+    }
+</style>
+</head>
+<body>
+
+<input type="checkbox" id="menu-toggle">
+<label for="menu-toggle" class="hamburguer-menu">
+    <span></span>
+    <span></span>
+    <span></span>
+</label>
+
+<div class="mobile-menu">
+    <h3>Filtrar por História</h3>
+    <a href="#" data-filter="all">Todos os Personagens</a>
+    <a href="#" data-filter="ultimo-anjo">O Último Anjo</a>
+    <a href="#" data-filter="pacto-vinganca">Pacto de Vingança</a>
+    <a href="#" data-filter="menino-profecias">O Menino da Profecia</a>
+</div>
+
+<div class="container">
+    <div class="catalog">
+        <!-- Laços Profanos: O Último Anjo -->
+        <div class="character-card" data-category="ultimo-anjo">
+            <a href="https://euwahi.github.io/personagens/hamiah.html" class="character-link">
+                <div class="image-container">
+                    <img src="https://i.imgur.com/7zAcS65.png" alt="Hamiah" class="character-image">
+                </div>
+                <div class="character-name">Hamiah</div>
+            </a>
+        </div>
+        
+        <div class="character-card" data-category="ultimo-anjo">
+            <a href="https://euwahi.github.io/personagens/enaya.html" class="character-link">
+                <div class="image-container">
+                    <img src="https://i.imgur.com/mgxXSto.png" alt="Enaya" class="character-image">
+                </div>
+                <div class="character-name">Enaya</div>
+            </a>
+        </div>
+        
+        <div class="character-card" data-category="ultimo-anjo">
+            <a href="https://euwahi.github.io/personagens/olivia.html" class="character-link">
+                <div class="image-container">
+                    <img src="https://i.imgur.com/7zAcS65.png" alt="Olivia" class="character-image">
+                </div>
+                <div class="character-name">Olivia</div>
+            </a>
+        </div>
+        
+        <div class="character-card" data-category="ultimo-anjo">
+            <a href="https://euwahi.github.io/personagens/damian-shadow.html" class="character-link">
+                <div class="image-container">
+                    <img src="https://i.imgur.com/mgxXSto.png" alt="Damian e Shadow" class="character-image">
+                </div>
+                <div class="character-name">Damian e Shadow</div>
+            </a>
+        </div>
+        
+        <div class="character-card" data-category="ultimo-anjo">
+            <a href="https://euwahi.github.io/personagens/akiko.html" class="character-link">
+                <div class="image-container">
+                    <img src="https://i.imgur.com/7zAcS65.png" alt="Akiko" class="character-image">
+                </div>
+                <div class="character-name">Akiko</div>
+            </a>
+        </div>
+        
+        <div class="character-card" data-category="ultimo-anjo">
+            <a href="https://euwahi.github.io/personagens/benjamin.html" class="character-link">
+                <div class="image-container">
+                    <img src="https://i.imgur.com/mgxXSto.png" alt="Benjamin" class="character-image">
+                </div>
+                <div class="character-name">Benjamin</div>
+            </a>
+        </div>
+        
+        <div class="character-card" data-category="ultimo-anjo">
+            <a href="https://euwahi.github.io/personagens/elijah.html" class="character-link">
+                <div class="image-container">
+                    <img src="https://i.imgur.com/mgxXSto.png" alt="Elijah" class="character-image">
+                </div>
+                <div class="character-name">Elijah</div>
+            </a>
+        </div>
+        
+        <div class="character-card" data-category="ultimo-anjo">
+            <a href="https://euwahi.github.io/personagens/hyun-jun.html" class="character-link">
+                <div class="image-container">
+                    <img src="https://i.imgur.com/7zAcS65.png" alt="Hyun-jun" class="character-image">
+                </div>
+                <div class="character-name">Hyun-jun</div>
+            </a>
+        </div>
+        
+        <div class="character-card" data-category="ultimo-anjo">
+            <a href="https://euwahi.github.io/personagens/isabel.html" class="character-link">
+                <div class="image-container">
+                    <img src="https://i.imgur.com/7zAcS65.png" alt="Isabel" class="character-image">
+                </div>
+                <div class="character-name">Isabel</div>
+            </a>
+        </div>
+        
+        <div class="character-card" data-category="ultimo-anjo">
+            <a href="https://euwahi.github.io/personagens/kaleb.html" class="character-link">
+                <div class="image-container">
+                    <img src="https://i.imgur.com/mgxXSto.png" alt="Kaleb" class="character-image">
+                </div>
+                <div class="character-name">Kaleb</div>
+            </a>
+        </div>
+        
+        <div class="character-card" data-category="ultimo-anjo">
+            <a href="https://euwahi.github.io/personagens/luna.html" class="character-link">
+                <div class="image-container">
+                    <img src="https://i.imgur.com/7zAcS65.png" alt="Luna" class="character-image">
+                </div>
+                <div class="character-name">Luna</div>
+            </a>
+        </div>
+        
+        <div class="character-card" data-category="ultimo-anjo">
+            <a href="https://euwahi.github.io/personagens/star.html" class="character-link">
+                <div class="image-container">
+                    <img src="https://i.imgur.com/7zAcS65.png" alt="Star" class="character-image">
+                </div>
+                <div class="character-name">Star</div>
+            </a>
+        </div>
+        
+        <div class="character-card" data-category="ultimo-anjo">
+            <a href="https://euwahi.github.io/personagens/wolf.html" class="character-link">
+                <div class="image-container">
+                    <img src="https://i.imgur.com/mgxXSto.png" alt="Wolf" class="character-image">
+                </div>
+                <div class="character-name">Wolf</div>
+            </a>
+        </div>
+        
+        <div class="character-card" data-category="ultimo-anjo">
+            <a href="https://euwahi.github.io/personagens/zara.html" class="character-link">
+                <div class="image-container">
+                    <img src="https://i.imgur.com/7zAcS65.png" alt="Zara" class="character-image">
+                </div>
+                <div class="character-name">Zara</div>
+            </a>
+        </div>
+
+        <!-- Laços Profanos: Pacto de Vingança -->
+        <div class="character-card" data-category="pacto-vinganca">
+            <a href="https://euwahi.github.io/personagens/luke.html" class="character-link">
+                <div class="image-container">
+                    <img src="https://i.imgur.com/mgxXSto.png" alt="Luke" class="character-image">
+                </div>
+                <div class="character-name">Luke</div>
+            </a>
+        </div>
+        
+        <div class="character-card" data-category="pacto-vinganca menino-profecias">
+            <a href="https://euwahi.github.io/personagens/desconhecido.html" class="character-link">
+                <div class="image-container">
+                    <img src="https://i.imgur.com/7zAcS65.png" alt="???" class="character-image">
+                </div>
+                <div class="character-name">???</div>
+            </a>
+        </div>
+        
+        <div class="character-card" data-category="pacto-vinganca">
+            <a href="https://euwahi.github.io/personagens/ethan.html" class="character-link">
+                <div class="image-container">
+                    <img src="https://i.imgur.com/mgxXSto.png" alt="Ethan" class="character-image">
+                </div>
+                <div class="character-name">Ethan</div>
+            </a>
+        </div>
+        
+        <div class="character-card" data-category="pacto-vinganca">
+            <a href="https://euwahi.github.io/personagens/cleide.html" class="character-link">
+                <div class="image-container">
+                    <img src="https://i.imgur.com/7zAcS65.png" alt="Cleide" class="character-image">
+                </div>
+                <div class="character-name">Cleide</div>
+            </a>
+        </div>
+        
+        <div class="character-card" data-category="pacto-vinganca">
+            <a href="https://euwahi.github.io/personagens/khadir.html" class="character-link">
+                <div class="image-container">
+                    <img src="https://i.imgur.com/mgxXSto.png" alt="Khadir" class="character-image">
+                </div>
+                <div class="character-name">Khadir</div>
+            </a>
+        </div>
+        
+        <div class="character-card" data-category="pacto-vinganca">
+            <a href="https://euwahi.github.io/personagens/alec.html" class="character-link">
+                <div class="image-container">
+                    <img src="https://i.imgur.com/mgxXSto.png" alt="Alec" class="character-image">
+                </div>
+                <div class="character-name">Alec</div>
+            </a>
+        </div>
+        
+        <div class="character-card" data-category="pacto-vinganca">
+            <a href="https://euwahi.github.io/personagens/natan.html" class="character-link">
+                <div class="image-container">
+                    <img src="https://i.imgur.com/7zAcS65.png" alt="Natan" class="character-image">
+                </div>
+                <div class="character-name">Natan</div>
+            </a>
+        </div>
+        
+        <div class="character-card" data-category="pacto-vinganca">
+            <a href="https://euwahi.github.io/personagens/micaiah.html" class="character-link">
+                <div class="image-container">
+                    <img src="https://i.imgur.com/7zAcS65.png" alt="Micaiah" class="character-image">
+                </div>
+                <div class="character-name">Micaiah</div>
+            </a>
+        </div>
+        
+        <div class="character-card" data-category="pacto-vinganca">
+            <a href="https://euwahi.github.io/personagens/havilah.html" class="character-link">
+                <div class="image-container">
+                    <img src="https://i.imgur.com/7zAcS65.png" alt="Havilah" class="character-image">
+                </div>
+                <div class="character-name">Havilah</div>
+            </a>
+        </div>
+        
+        <div class="character-card" data-category="pacto-vinganca">
+            <a href="https://euwahi.github.io/personagens/gabriel.html" class="character-link">
+                <div class="image-container">
+                    <img src="https://i.imgur.com/7zAcS65.png" alt="Gabriel" class="character-image">
+                </div>
+                <div class="character-name">Gabriel</div>
+            </a>
+        </div>
+        
+        <div class="character-card" data-category="pacto-vinganca">
+            <a href="https://euwahi.github.io/personagens/tadeu.html" class="character-link">
+                <div class="image-container">
+                    <img src="https://i.imgur.com/7zAcS65.png" alt="Tadeu" class="character-image">
+                </div>
+                <div class="character-name">Tadeu</div>
+            </a>
+        </div>
+        
+        <div class="character-card" data-category="pacto-vinganca">
+            <a href="https://euwahi.github.io/personagens/nogah.html" class="character-link">
+                <div class="image-container">
+                    <img src="https://i.imgur.com/7zAcS65.png" alt="Nogah" class="character-image">
+                </div>
+                <div class="character-name">Nogah</div>
+            </a>
+        </div>
+        
+        <div class="character-card" data-category="pacto-vinganca">
+            <a href="https://euwahi.github.io/personagens/ariel.html" class="character-link">
+                <div class="image-container">
+                    <img src="https://i.imgur.com/7zAcS65.png" alt="Ariel" class="character-image">
+                </div>
+                <div class="character-name">Ariel</div>
+            </a>
+        </div>
+
+        <!-- Laços Profanos: O Menino da Profecia -->
+        <div class="character-card" data-category="menino-profecias">
+            <a href="https://euwahi.github.io/personagens/wahi.html" class="character-link">
+                <div class="image-container">
+                    <img src="https://i.imgur.com/7zAcS65.png" alt="Wahi" class="character-image">
+                </div>
+                <div class="character-name">Wahi</div>
+            </a>
+        </div>
+        
+        <div class="character-card" data-category="menino-profecias">
+            <a href="https://euwahi.github.io/personagens/mel.html" class="character-link">
+                <div class="image-container">
+                    <img src="https://i.imgur.com/7zAcS65.png" alt="Mel" class="character-image">
+                </div>
+                <div class="character-name">Mel</div>
+            </a>
+        </div>
+        
+        <div class="character-card" data-category="menino-profecias">
+            <a href="https://euwahi.github.io/personagens/askot.html" class="character-link">
+                <div class="image-container">
+                    <img src="https://i.imgur.com/mgxXSto.png" alt="Askot" class="character-image">
+                </div>
+                <div class="character-name">Askot</div>
+            </a>
+        </div>
+        
+        <div class="character-card" data-category="menino-profecias">
+            <a href="https://euwahi.github.io/personagens/emilly.html" class="character-link">
+                <div class="image-container">
+                    <img src="https://i.imgur.com/7zAcS65.png" alt="Emilly" class="character-image">
+                </div>
+                <div class="character-name">Emilly</div>
+            </a>
+        </div>
+        
+        <div class="character-card" data-category="menino-profecias">
+            <a href="https://euwahi.github.io/personagens/sarah.html" class="character-link">
+                <div class="image-container">
+                    <img src="https://i.imgur.com/7zAcS65.png" alt="Sarah" class="character-image">
+                </div>
+                <div class="character-name">Sarah</div>
+            </a>
+        </div>
+        
+        <div class="character-card" data-category="menino-profecias">
+            <a href="https://euwahi.github.io/personagens/thomas.html" class="character-link">
+                <div class="image-container">
+                    <img src="https://i.imgur.com/mgxXSto.png" alt="Thomas" class="character-image">
+                </div>
+                <div class="character-name">Thomas</div>
+            </a>
+        </div>
+        
+        <div class="character-card" data-category="menino-profecias">
+            <a href="https://euwahi.github.io/personagens/yaziell.html" class="character-link">
+                <div class="image-container">
+                    <img src="https://i.imgur.com/mgxXSto.png" alt="Yaziell" class="character-image">
+                </div>
+                <div class="character-name">Yaziell</div>
+            </a>
+        </div>
+    </div>
+</div>
+
+<footer>
+    &copy; 2025 Laços Profanos - Todos os direitos reservados
+</footer>
+
+<script>
+    // Filtro de categorias suportando múltiplos
+    const menuLinks
