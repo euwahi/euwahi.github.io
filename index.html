@@ -45,6 +45,7 @@
             margin: 20px auto;
             padding: 0 20px;
             align-items: center;
+            position: relative;
         }
 
         .menu {
@@ -92,6 +93,62 @@
 
         .search-container button:hover {
             background-color: #850048;
+        }
+
+        /* Menu Hamburguer */
+        .hamburguer-menu {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+            padding: 5px;
+            z-index: 1001;
+        }
+
+        .hamburguer-menu span {
+            width: 25px;
+            height: 3px;
+            background-color: white;
+            margin: 3px 0;
+            transition: 0.3s;
+            border-radius: 2px;
+        }
+
+        #menu-toggle {
+            display: none;
+        }
+
+        .mobile-menu {
+            display: none;
+            position: absolute;
+            top: 100%;
+            left: 0;
+            right: 0;
+            background-color: #1a1a1a;
+            flex-direction: column;
+            padding: 15px;
+            border-radius: 8px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+            z-index: 1000;
+            margin: 10px 20px;
+        }
+
+        .mobile-menu a {
+            color: white;
+            text-decoration: none;
+            padding: 12px 15px;
+            border-radius: 6px;
+            transition: all 0.3s ease;
+            background-color: #2c3e50;
+            margin-bottom: 8px;
+            text-align: center;
+        }
+
+        .mobile-menu a:hover {
+            background-color: #a3005b;
+        }
+
+        #menu-toggle:checked ~ .mobile-menu {
+            display: flex;
         }
 
         .produtos {
@@ -330,17 +387,62 @@
             .produto {
                 max-width: 100%;
             }
+            
+            /* Estilos do menu hamburguer para mobile */
+            .hamburguer-menu {
+                display: flex;
+                position: absolute;
+                top: 10px;
+                right: 20px;
+            }
+            
+            .menu {
+                display: none;
+            }
+            
+            .menu-container {
+                flex-direction: row;
+                align-items: center;
+            }
+            
+            #menu-toggle:checked ~ .hamburguer-menu span:nth-child(1) {
+                transform: rotate(-45deg) translate(-5px, 6px);
+            }
+            
+            #menu-toggle:checked ~ .hamburguer-menu span:nth-child(2) {
+                opacity: 0;
+            }
+            
+            #menu-toggle:checked ~ .hamburguer-menu span:nth-child(3) {
+                transform: rotate(45deg) translate(-5px, -6px);
+            }
         }
     </style>
 </head>
 <body>
 
     <div class="menu-container">
+        <input type="checkbox" id="menu-toggle">
         <div class="menu">
             <a href="#">Início</a>
             <a href="#produtos">Produtos</a>
             <a href="#fale-conosco">Fale Conosco</a>
             <a href="#" id="social-button">Redes Sociais</a>
+        </div>
+        
+        <label for="menu-toggle" class="hamburguer-menu">
+            <span></span>
+            <span></span>
+            <span></span>
+        </label>
+        
+        <div class="mobile-menu">
+            <a href="#">Início</a>
+            <a href="#produtos">Produtos</a>
+            <a href="#fale-conosco">Fale Conosco</a>
+            <a href="#" id="social-button-mobile">Redes Sociais</a>
+            <a href="https://euwahi.github.io/personagens" target="_blank">Personagens</a>
+            <a href="https://euwahi.github.io/wpp" target="_blank">Wallpapper e Icons</a>
         </div>
         
         <div class="search-container">
@@ -432,6 +534,12 @@
             document.getElementById('social-popup-overlay').style.display = 'flex';
         });
 
+        document.getElementById('social-button-mobile').addEventListener('click', function(e) {
+            e.preventDefault();
+            document.getElementById('social-popup-overlay').style.display = 'flex';
+            document.getElementById('menu-toggle').checked = false;
+        });
+
         document.getElementById('social-close-button').addEventListener('click', function() {
             document.getElementById('social-popup-overlay').style.display = 'none';
         });
@@ -441,6 +549,16 @@
             if (e.target === this) {
                 this.style.display = 'none';
             }
+        });
+
+        // Fechar menu mobile ao clicar em um link
+        document.querySelectorAll('.mobile-menu a').forEach(link => {
+            link.addEventListener('click', function() {
+                // Não fechar o menu se for um link externo (com target="_blank")
+                if (!this.getAttribute('target') || this.getAttribute('target') !== '_blank') {
+                    document.getElementById('menu-toggle').checked = false;
+                }
+            });
         });
     </script>
 </body>
