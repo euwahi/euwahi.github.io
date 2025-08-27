@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cleide - Laços Profanos</title>
+    <title>Askot - Laços Profanos</title>
     <link rel="icon" href="https://i.imgur.com/mgxXSto.png" type="image/png">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
@@ -14,7 +14,7 @@
         }
         
         body {
-            background: linear-gradient(135deg, #0c0c0c 0%, #1a1a1a 50%, #0a1c2d 100%);
+            background: linear-gradient(135deg, #0c0c0c 0%, #1a1a1a 50%, #2d0a1c 100%);
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             color: #fff;
             line-height: 1.6;
@@ -35,14 +35,14 @@
             flex-direction: column;
             cursor: pointer;
             padding: 12px;
-            background-color: #005ba3;
+            background-color: #a3005b;
             border-radius: 10px;
             box-shadow: 0 4px 15px rgba(0,0,0,0.7);
             transition: all 0.3s;
         }
         
         .hamburguer-menu:hover {
-            background-color: #006ec4;
+            background-color: #c4006e;
             transform: scale(1.05);
         }
         
@@ -66,7 +66,7 @@
             left: 0;
             height: 100%;
             width: 280px;
-            background: linear-gradient(to bottom, #1a1a1a 0%, #0a1c2d 100%);
+            background: linear-gradient(to bottom, #1a1a1a 0%, #2d0a1c 100%);
             flex-direction: column;
             padding: 80px 20px 20px;
             box-shadow: 5px 0 25px rgba(0,0,0,0.9);
@@ -75,10 +75,10 @@
         }
         
         .mobile-menu h3 {
-            color: #40f1f1;
+            color: #f1c40f;
             margin: 20px 0 15px;
             padding-bottom: 8px;
-            border-bottom: 2px solid #005ba3;
+            border-bottom: 2px solid #a3005b;
             font-size: 1.3rem;
             text-align: center;
         }
@@ -94,7 +94,7 @@
             font-size: 1.1rem;
             background: rgba(44, 62, 80, 0.7);
             transition: all 0.3s;
-            border-left: 4px solid #005ba3;
+            border-left: 4px solid #a3005b;
         }
         
         .mobile-menu a i {
@@ -103,7 +103,7 @@
         }
         
         .mobile-menu a:hover {
-            background: #005ba3;
+            background: #a3005b;
             transform: translateX(8px);
         }
         
@@ -150,7 +150,7 @@
             left: 0;
             right: 0;
             height: 5px;
-            background: linear-gradient(to right, #005ba3, #40f1f1);
+            background: linear-gradient(to right, #a3005b, #f1c40f);
             z-index: 2;
         }
 
@@ -158,7 +158,7 @@
             width: 100%;
             max-width: 600px;
             margin: 20px 0;
-            border: 3px solid #005ba3;
+            border: 3px solid #a3005b;
             border-radius: 10px;
             overflow: hidden;
             box-shadow: 0 10px 25px rgba(0, 0, 0, 0.8);
@@ -184,7 +184,7 @@
         }
 
         .character-name {
-            color: #40f1f1;
+            color: #f1c40f;
             font-size: 3.2rem;
             margin: 15px 0 5px;
             text-shadow: 3px 3px 6px rgba(0,0,0,0.7);
@@ -194,7 +194,7 @@
         }
 
         .character-nickname {
-            color: #005ba3;
+            color: #a3005b;
             font-size: 1.8rem;
             margin-bottom: 20px;
             font-style: italic;
@@ -209,10 +209,10 @@
             margin: 25px 0;
             text-align: center;
             padding: 20px;
-            background: rgba(0, 91, 163, 0.1);
+            background: rgba(163, 0, 91, 0.1);
             border-radius: 15px;
-            border-left: 4px solid #40f1f1;
-            border-right: 4px solid #40f1f1;
+            border-left: 4px solid #f1c40f;
+            border-right: 4px solid #f1c40f;
         }
 
         /* Conteúdo principal */
@@ -231,20 +231,20 @@
 
         /* Galeria */
         .image-gallery {
-            background: linear-gradient(to bottom, #1a1a1a, #0a1c2d);
+            background: linear-gradient(to bottom, #1a1a1a, #2d0a1c);
             border-radius: 15px;
             padding: 25px;
             box-shadow: 0 8px 25px rgba(0,0,0,0.6);
-            border: 1px solid #005ba3;
+            border: 1px solid #a3005b;
         }
 
         .gallery-title {
-            color: #40f1f1;
+            color: #f1c40f;
             font-size: 1.8rem;
             margin-bottom: 20px;
             text-align: center;
             padding-bottom: 10px;
-            border-bottom: 2px solid #005ba3;
+            border-bottom: 2px solid #a3005b;
         }
 
         .gallery-controls {
@@ -271,16 +271,16 @@
         }
 
         .gallery-btn:hover {
-            background: linear-gradient(to bottom, #005ba3, #00477a);
+            background: linear-gradient(to bottom, #a3005b, #7a0047);
             transform: translateY(-3px);
-            box-shadow: 0 5px 15px rgba(0, 91, 163, 0.4);
+            box-shadow: 0 5px 15px rgba(163, 0, 91, 0.4);
         }
 
         .gallery-btn.active {
-            background: linear-gradient(to bottom, #40f1f1, #0dd4d4);
+            background: linear-gradient(to bottom, #f1c40f, #d4ac0d);
             color: #121212;
             font-weight: bold;
-            border-color: #40f1f1;
+            border-color: #f1c40f;
         }
 
         .gallery-btn i {
@@ -293,7 +293,7 @@
             align-items: center;
             justify-content: center;
             width: 100%;
-            background: linear-gradient(to right, #005ba3, #006ec4);
+            background: linear-gradient(to right, #a3005b, #c4006e);
             color: white;
             text-align: center;
             padding: 16px;
@@ -303,16 +303,16 @@
             transition: all 0.3s;
             margin-top: 20px;
             font-size: 1.1rem;
-            box-shadow: 0 5px 15px rgba(0, 91, 163, 0.3);
+            box-shadow: 0 5px 15px rgba(163, 0, 91, 0.3);
             border: none;
             cursor: pointer;
         }
 
         .download-btn:hover {
-            background: linear-gradient(to right, #40f1f1, #0dd4d4);
+            background: linear-gradient(to right, #f1c40f, #d4ac0d);
             color: #121212;
             transform: translateY(-3px);
-            box-shadow: 0 8px 20px rgba(64, 241, 241, 0.4);
+            box-shadow: 0 8px 20px rgba(241, 196, 15, 0.4);
         }
 
         .download-btn i {
@@ -321,11 +321,11 @@
 
         /* Informações do personagem */
         .character-info {
-            background: linear-gradient(to bottom, #1a1a1a, #0a1c2d);
+            background: linear-gradient(to bottom, #1a1a1a, #2d0a1c);
             border-radius: 15px;
             padding: 25px;
             box-shadow: 0 8px 25px rgba(0,0,0,0.6);
-            border: 1px solid #005ba3;
+            border: 1px solid #a3005b;
         }
 
         .info-section {
@@ -333,11 +333,11 @@
         }
 
         .info-title {
-            color: #40f1f1;
+            color: #f1c40f;
             font-size: 1.8rem;
             margin-bottom: 20px;
             padding-bottom: 10px;
-            border-bottom: 2px solid #005ba3;
+            border-bottom: 2px solid #a3005b;
             display: flex;
             align-items: center;
         }
@@ -363,7 +363,7 @@
         }
 
         .info-label {
-            color: #005ba3;
+            color: #a3005b;
             font-weight: bold;
             font-size: 1.1rem;
         }
@@ -395,19 +395,19 @@
 
         .related-character:hover {
             transform: translateY(-5px);
-            box-shadow: 0 8px 20px rgba(0, 91, 163, 0.4);
-            border-color: #005ba3;
+            box-shadow: 0 8px 20px rgba(163, 0, 91, 0.4);
+            border-color: #a3005b;
         }
 
         .related-character-name {
-            color: #40f1f1;
+            color: #f1c40f;
             margin-bottom: 8px;
             font-size: 1.3rem;
             font-weight: bold;
         }
 
         .related-character-relation {
-            color: #005ba3;
+            color: #a3005b;
             font-size: 1rem;
             font-weight: 500;
         }
@@ -417,14 +417,14 @@
             padding: 30px;
             margin-top: 70px;
             background: linear-gradient(to bottom, #1a1a1a, #0c0c0c);
-            border-top: 1px solid #005ba3;
+            border-top: 1px solid #a3005b;
             border-radius: 10px;
             box-shadow: 0 -5px 15px rgba(0, 0, 0, 0.3);
         }
 
         /* Efeitos de destaque */
         .highlight {
-            color: #40f1f1;
+            color: #f1c40f;
             font-weight: bold;
         }
 
@@ -438,7 +438,7 @@
             height: 40px;
             border: 4px solid rgba(255, 255, 255, 0.3);
             border-radius: 50%;
-            border-top-color: #40f1f1;
+            border-top-color: #f1c40f;
             animation: spin 0.8s ease-in-out infinite;
             opacity: 0;
             transition: opacity 0.3s;
@@ -529,17 +529,16 @@
     <section class="hero-section">
         <div class="character-image-container" id="image-container">
             <div class="image-loading"></div>
-            <img src="https://i.imgur.com/lEVGfIu.png" alt="Cleide - Arte de Divulgação" class="main-image" id="main-image">
+            <img src="https://i.imgur.com/lEVGfIu.png" alt="Askot - Arte de Divulgação" class="main-image" id="main-image">
         </div>
         
         <h1 class="character-name">CLEIDE</h1>
-        <div class="character-nickname">"Lua", "Moon"</div>
+        <div class="character-nickname">"Lua"</div>
         
         <p class="character-description">
-            Cleide é um metamorfo misterioso, sem gênero definido, que assume diversas formas. Sua forma favorita é a de uma <span class="highlight">lua com chifres</span>. 
-            O nome "Cleide" foi dado por Luke para evitar chamá-lo de "demônio" ou termos similares. 
-            É normalmente chamado pela forma que assume: <span class="highlight">Lua, Moon</span>, entre outros.
-        </p>
+            Cleide é um metamorfo enigmático, sem gênero definido, capaz de assumir diferentes formas. Sua aparência favorita é a de uma lua com chifres, imagem que reforça sua aura misteriosa. O nome “Cleide” foi dado por Luke, para evitar chamá-la por termos como “demônio” ou simplesmente “lua”.
+
+Costuma ser chamada pelo nome da forma que assume — “Lua”, “Moon”, entre outros. Apesar da natureza incomum, Cleide demonstra gentileza e gratidão, sempre tentando retribuir as boas ações que recebe. Uma de suas peculiaridades é a dificuldade em lembrar nomes, o que muitas vezes a torna ainda mais excêntrica.
     </section>
 
     <div class="main-content">
@@ -548,7 +547,7 @@
             <h2 class="gallery-title"><i class="fas fa-photo-video"></i> Galeria de Artes</h2>
             
             <div class="gallery-controls">
-                <button class="gallery-btn active" data-image="https://i.imgur.com/lEVGfIu.png" data-download="cleide_divulgacao.png">
+                <button class="gallery-btn active" data-image="https://i.imgur.com/lEVGfIu.png" data-download="askot_divulgacao.png">
                     <i class="fas fa-star"></i>Divulgação
                 </button>
             </div>
@@ -565,12 +564,27 @@
                 
                 <div class="info-content">
                     <div class="info-label">Gênero:</div>
-                    <div class="info-value">Sem gênero</div>
+                    <div class="info-value">Nenhum</div>
                 </div>
                 
                 <div class="info-content">
-                    <div class="info-label">Histórias:</div>
-                    <div class="info-value">Laços Profanos: Pacto de Vingança<br>Laços Profanos: O menino da profecia</div>
+                    <div class="info-label">Aniversário:</div>
+                    <div class="info-value">15 de dezembro</div>
+                </div>
+                
+                <div class="info-content">
+                    <div class="info-label">Espécie:</div>
+                    <div class="info-value">Metamorfo</div>
+                </div>
+                
+                <div class="info-content">
+                    <div class="info-label">Sexualidade:</div>
+                    <div class="info-value">Desconhecido</div>
+                </div>
+                
+                <div class="info-content">
+                    <div class="info-label">História:</div>
+                    <div class="info-value">Laços Profanos: Pacto de Vingança <br> Laços Profanos: O Menino da Profecia</div>
                 </div>
                 
                 <div class="info-content">
@@ -598,8 +612,8 @@
                         <div class="related-character-relation">Amigo</div>
                     </a>
                     
-                    <a href="https://lacosprofanos.com.br/personagens/askot.html" class="related-character">
-                        <div class="related-character-name">Askot</div>
+                    <a href="https://lacosprofanos.com.br/personagens/cleide.html" class="related-character">
+                        <div class="related-character-name">Cleide</div>
                         <div class="related-character-relation">Relação desconhecida</div>
                     </a>
                 </div>
@@ -622,7 +636,7 @@
     // Configuração inicial
     let currentImage = {
         url: "https://i.imgur.com/lEVGfIu.png",
-        filename: "cleide_divulgacao.png"
+        filename: "askot_divulgacao.png"
     };
     
     // Função para trocar a imagem
