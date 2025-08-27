@@ -637,4 +637,72 @@
     galleryButtons.forEach(button => {
         button.addEventListener('click', (event) => {
             const newImageSrc = button.getAttribute('data-image');
-  
+            const downloadFile = button.getAttribute('data-download');
+            changeImage(newImageSrc, downloadFile, button);
+        });
+    });
+    
+    // Configura o download da imagem
+    downloadBtn.addEventListener('click', () => {
+        // Cria um link temporário para download
+        const link = document.createElement('a');
+        link.href = currentImage.url;
+        link.download = currentImage.filename;
+        document.body.appendChild(link);
+        link.click();
+        document.body.removeChild(link);
+    });
+    
+    // Fecha o menu ao clicar em um link (em dispositivos móveis)
+    const menuLinks = document.querySelectorAll('.mobile-menu a');
+    const menuToggle = document.getElementById('menu-toggle');
+    
+    menuLinks.forEach(link => {
+        link.addEventListener('click', () => {
+            if (window.innerWidth <= 768) {
+                menuToggle.checked = false;
+                
+                // Scroll suave para âncoras
+                const targetId = link.getAttribute('href');
+                if (targetId.startsWith('#')) {
+                    const targetElement = document.querySelector(targetId);
+                    if (targetElement) {
+                        setTimeout(() => {
+                            targetElement.scrollIntoView({ behavior: 'smooth' });
+                        }, 300);
+                    }
+                }
+            }
+        });
+    });
+    
+    // Garante que a imagem seja carregada corretamente
+    window.addEventListener('load', function() {
+        // Força o redimensionamento correto da imagem
+        if (mainImage.complete) {
+            resizeImageContainer();
+        } else {
+            mainImage.addEventListener('load', resizeImageContainer);
+        }
+    });
+    
+    // Ajusta o container conforme a imagem
+    function resizeImageContainer() {
+        const container = document.querySelector('.character-image-container');
+        const ratio = mainImage.naturalHeight / mainImage.naturalWidth;
+        
+        if (ratio > 1.2) {
+            // Imagem portrait
+            container.style.maxWidth = '400px';
+        } else if (ratio < 0.8) {
+            // Imagem landscape
+            container.style.maxWidth = '700px';
+        } else {
+            // Imagem quadrada
+            container.style.maxWidth = '500px';
+        }
+    }
+</script>
+
+</body>
+</html>
