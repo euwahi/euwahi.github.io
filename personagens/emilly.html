@@ -1,1 +1,738 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Emilly Tewiah - Laços Profanos</title>
+    <link rel="icon" href="https://i.imgur.com/mgxXSto.png" type="image/png">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * { 
+            box-sizing: border-box; 
+            margin: 0; 
+            padding: 0; 
+        }
+        
+        body {
+            background: linear-gradient(135deg, #0c0c0c 0%, #1a1a1a 50%, #2d0a1c 100%);
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            color: #fff;
+            line-height: 1.6;
+            overflow-x: hidden;
+            min-height: 100vh;
+        }
 
+        /* Menu hambúrguer estilizado */
+        .menu-container {
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            z-index: 1001;
+        }
+
+        .hamburguer-menu {
+            display: flex;
+            flex-direction: column;
+            cursor: pointer;
+            padding: 12px;
+            background-color: #a3005b;
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.7);
+            transition: all 0.3s;
+        }
+        
+        .hamburguer-menu:hover {
+            background-color: #c4006e;
+            transform: scale(1.05);
+        }
+        
+        .hamburguer-menu span {
+            width: 30px;
+            height: 3px;
+            background-color: white;
+            margin: 4px 0;
+            border-radius: 2px;
+            transition: 0.3s;
+        }
+        
+        #menu-toggle { 
+            display: none; 
+        }
+
+        .mobile-menu {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            height: 100%;
+            width: 280px;
+            background: linear-gradient(to bottom, #1a1a1a 0%, #2d0a1c 100%);
+            flex-direction: column;
+            padding: 80px 20px 20px;
+            box-shadow: 5px 0 25px rgba(0,0,0,0.9);
+            z-index: 1000;
+            overflow-y: auto;
+        }
+        
+        .mobile-menu h3 {
+            color: #f1c40f;
+            margin: 20px 0 15px;
+            padding-bottom: 8px;
+            border-bottom: 2px solid #a3005b;
+            font-size: 1.3rem;
+            text-align: center;
+        }
+        
+        .mobile-menu a {
+            color: white;
+            text-decoration: none;
+            padding: 14px 18px;
+            border-radius: 8px;
+            margin-bottom: 12px;
+            display: flex;
+            align-items: center;
+            font-size: 1.1rem;
+            background: rgba(44, 62, 80, 0.7);
+            transition: all 0.3s;
+            border-left: 4px solid #a3005b;
+        }
+        
+        .mobile-menu a i {
+            margin-right: 12px;
+            font-size: 1.2rem;
+        }
+        
+        .mobile-menu a:hover {
+            background: #a3005b;
+            transform: translateX(8px);
+        }
+        
+        #menu-toggle:checked ~ .mobile-menu { 
+            display: flex; 
+        }
+        
+        #menu-toggle:checked ~ .menu-container .hamburguer-menu span:nth-child(1) { 
+            transform: rotate(-45deg) translate(-6px, 7px); 
+        }
+        
+        #menu-toggle:checked ~ .menu-container .hamburguer-menu span:nth-child(2) { 
+            opacity: 0; 
+        }
+        
+        #menu-toggle:checked ~ .menu-container .hamburguer-menu span:nth-child(3) { 
+            transform: rotate(45deg) translate(-6px, -7px); 
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 30px 20px 40px;
+        }
+
+        /* Header com imagem em destaque */
+        .hero-section {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-bottom: 40px;
+            position: relative;
+            padding: 20px;
+            border-radius: 20px;
+            background: rgba(26, 26, 26, 0.7);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.6);
+            overflow: hidden;
+        }
+
+        .hero-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 5px;
+            background: linear-gradient(to right, #a3005b, #f1c40f);
+            z-index: 2;
+        }
+
+        .character-image-container {
+            width: 100%;
+            max-width: 600px;
+            margin: 20px 0;
+            border: 3px solid #a3005b;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.8);
+            position: relative;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 400px;
+            background: #0c0c0c;
+        }
+
+        .main-image {
+            max-width: 100%;
+            max-height: 100%;
+            width: auto;
+            height: auto;
+            display: block;
+            transition: transform 0.3s;
+        }
+
+        .character-image-container:hover .main-image {
+            transform: scale(1.03);
+        }
+
+        .character-name {
+            color: #f1c40f;
+            font-size: 3.2rem;
+            margin: 15px 0 5px;
+            text-shadow: 3px 3px 6px rgba(0,0,0,0.7);
+            text-align: center;
+            font-weight: 800;
+            letter-spacing: 1px;
+        }
+
+        .character-nickname {
+            color: #a3005b;
+            font-size: 1.8rem;
+            margin-bottom: 20px;
+            font-style: italic;
+            text-shadow: 1px 1px 3px rgba(0,0,0,0.5);
+            text-align: center;
+        }
+
+        .character-description {
+            max-width: 800px;
+            font-size: 1.3rem;
+            line-height: 1.8;
+            margin: 25px 0;
+            text-align: center;
+            padding: 20px;
+            background: rgba(163, 0, 91, 0.1);
+            border-radius: 15px;
+            border-left: 4px solid #f1c40f;
+            border-right: 4px solid #f1c40f;
+        }
+
+        /* Conteúdo principal */
+        .main-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            margin-bottom: 50px;
+        }
+
+        @media (max-width: 900px) {
+            .main-content {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* Galeria */
+        .image-gallery {
+            background: linear-gradient(to bottom, #1a1a1a, #2d0a1c);
+            border-radius: 15px;
+            padding: 25px;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.6);
+            border: 1px solid #a3005b;
+        }
+
+        .gallery-title {
+            color: #f1c40f;
+            font-size: 1.8rem;
+            margin-bottom: 20px;
+            text-align: center;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #a3005b;
+        }
+
+        .gallery-controls {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 12px;
+            margin-bottom: 20px;
+        }
+
+        .gallery-btn {
+            background: linear-gradient(to bottom, #2c3e50, #1e2a36);
+            color: white;
+            border: none;
+            padding: 14px 10px;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-size: 1rem;
+            text-align: center;
+            border: 1px solid #3a506b;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .gallery-btn:hover {
+            background: linear-gradient(to bottom, #a3005b, #7a0047);
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(163, 0, 91, 0.4);
+        }
+
+        .gallery-btn.active {
+            background: linear-gradient(to bottom, #f1c40f, #d4ac0d);
+            color: #121212;
+            font-weight: bold;
+            border-color: #f1c40f;
+        }
+
+        .gallery-btn i {
+            margin-bottom: 5px;
+            font-size: 1.2rem;
+        }
+
+        .download-btn {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 100%;
+            background: linear-gradient(to right, #a3005b, #c4006e);
+            color: white;
+            text-align: center;
+            padding: 16px;
+            border-radius: 10px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: all 0.3s;
+            margin-top: 20px;
+            font-size: 1.1rem;
+            box-shadow: 0 5px 15px rgba(163, 0, 91, 0.3);
+            border: none;
+            cursor: pointer;
+        }
+
+        .download-btn:hover {
+            background: linear-gradient(to right, #f1c40f, #d4ac0d);
+            color: #121212;
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(241, 196, 15, 0.4);
+        }
+
+        .download-btn i {
+            margin-right: 10px;
+        }
+
+        /* Informações do personagem */
+        .character-info {
+            background: linear-gradient(to bottom, #1a1a1a, #2d0a1c);
+            border-radius: 15px;
+            padding: 25px;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.6);
+            border: 1px solid #a3005b;
+        }
+
+        .info-section {
+            margin-bottom: 30px;
+        }
+
+        .info-title {
+            color: #f1c40f;
+            font-size: 1.8rem;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #a3005b;
+            display: flex;
+            align-items: center;
+        }
+
+        .info-title i {
+            margin-right: 12px;
+        }
+
+        .info-content {
+            display: grid;
+            grid-template-columns: 140px 1fr;
+            gap: 15px;
+            margin-bottom: 15px;
+            padding: 12px;
+            background: rgba(44, 62, 80, 0.2);
+            border-radius: 8px;
+            transition: all 0.3s;
+        }
+
+        .info-content:hover {
+            background: rgba(44, 62, 80, 0.4);
+            transform: translateX(5px);
+        }
+
+        .info-label {
+            color: #a3005b;
+            font-weight: bold;
+            font-size: 1.1rem;
+        }
+
+        .info-value {
+            color: #fff;
+            font-size: 1.1rem;
+        }
+
+        .related-characters {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 20px;
+            margin-top: 20px;
+        }
+
+        .related-character {
+            background: linear-gradient(to bottom, #2c3e50, #1e2a36);
+            border-radius: 12px;
+            padding: 20px;
+            text-align: center;
+            transition: all 0.3s;
+            border: 1px solid #3a506b;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+            text-decoration: none;
+            display: block;
+            color: inherit;
+        }
+
+        .related-character:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 20px rgba(163, 0, 91, 0.4);
+            border-color: #a3005b;
+        }
+
+        .related-character-name {
+            color: #f1c40f;
+            margin-bottom: 8px;
+            font-size: 1.3rem;
+            font-weight: bold;
+        }
+
+        .related-character-relation {
+            color: #a3005b;
+            font-size: 1rem;
+            font-weight: 500;
+        }
+
+        footer {
+            text-align: center;
+            padding: 30px;
+            margin-top: 70px;
+            background: linear-gradient(to bottom, #1a1a1a, #0c0c0c);
+            border-top: 1px solid #a3005b;
+            border-radius: 10px;
+            box-shadow: 0 -5px 15px rgba(0, 0, 0, 0.3);
+        }
+
+        /* Efeitos de destaque */
+        .highlight {
+            color: #f1c40f;
+            font-weight: bold;
+        }
+
+        /* Loading indicator */
+        .image-loading {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 40px;
+            height: 40px;
+            border: 4px solid rgba(255, 255, 255, 0.3);
+            border-radius: 50%;
+            border-top-color: #f1c40f;
+            animation: spin 0.8s ease-in-out infinite;
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+
+        @keyframes spin {
+            to { transform: translate(-50%, -50%) rotate(360deg); }
+        }
+
+        .loading .image-loading {
+            opacity: 1;
+        }
+
+        .loading .main-image {
+            opacity: 0.3;
+        }
+
+        /* Responsividade */
+        @media (max-width: 768px) {
+            .character-name {
+                font-size: 2.5rem;
+            }
+            
+            .character-nickname {
+                font-size: 1.5rem;
+            }
+            
+            .character-description {
+                font-size: 1.1rem;
+                padding: 15px;
+            }
+            
+            .gallery-controls {
+                grid-template-columns: 1fr;
+            }
+            
+            .info-content {
+                grid-template-columns: 1fr;
+                gap: 5px;
+            }
+            
+            .character-image-container {
+                min-height: 300px;
+            }
+        }
+
+        /* Animações */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .hero-section, .image-gallery, .character-info {
+            animation: fadeIn 0.8s ease-out;
+        }
+    </style>
+</head>
+<body>
+
+<input type="checkbox" id="menu-toggle">
+
+<div class="menu-container">
+    <label for="menu-toggle" class="hamburguer-menu">
+        <span></span>
+        <span></span>
+        <span></span>
+    </label>
+</div>
+
+<div class="mobile-menu">
+    <h3>Navegação</h3>
+    <a href="https://lacosprofanos.com.br/personagens">
+        <i class="fas fa-arrow-left"></i>Voltar para Personagens
+    </a>
+    <a href="#gallery">
+        <i class="fas fa-images"></i>Galeria de Imagens
+    </a>
+    <a href="#info">
+        <i class="fas fa-info-circle"></i>Informações
+    </a>
+    <a href="#related">
+        <i class="fas fa-users"></i>Personagens Relacionados
+    </a>
+</div>
+
+<div class="container">
+    <!-- Seção principal com imagem em destaque -->
+    <section class="hero-section">
+        <div class="character-image-container" id="image-container">
+            <div class="image-loading"></div>
+            <img src="https://i.imgur.com/UcGvvv1.png" alt="Emilly Tewiah - Arte de Divulgação" class="main-image" id="main-image">
+        </div>
+        
+        <h1 class="character-name">EMILLY TEWIAH</h1>
+        <div class="character-nickname">"A Aventureira"</div>
+        
+        <p class="character-description">
+            Emilly Tewiah é uma moça corajosa e amigável que gosta de se aventurar. Sendo <span class="highlight">gentil, aventureira, corajosa, amorosa e cuidadosa</span>, 
+            ela sempre está pronta para ajudar seus amigos e enfrentar novos desafios.
+        </p>
+    </section>
+
+    <div class="main-content">
+        <!-- Galeria de imagens -->
+        <div class="image-gallery" id="gallery">
+            <h2 class="gallery-title"><i class="fas fa-photo-video"></i> Galeria de Artes</h2>
+            
+            <div class="gallery-controls">
+                <button class="gallery-btn active" data-image="https://i.imgur.com/UcGvvv1.png" data-download="emilly_divulgacao_adulta.png">
+                    <i class="fas fa-star"></i>Divulgação Adulta
+                </button>
+                <button class="gallery-btn" data-image="https://i.imgur.com/KTA2uEk.png" data-download="emilly_crianca.png">
+                    <i class="fas fa-child"></i>Versão Criança
+                </button>
+            </div>
+            
+            <button class="download-btn" id="download-btn">
+                <i class="fas fa-download"></i>Baixar Imagem Atual
+            </button>
+        </div>
+
+        <!-- Informações do personagem -->
+        <div class="character-info" id="info">
+            <div class="info-section">
+                <h2 class="info-title"><i class="fas fa-address-card"></i> Informações Básicas</h2>
+                
+                <div class="info-content">
+                    <div class="info-label">Gênero:</div>
+                    <div class="info-value">Feminino</div>
+                </div>
+                
+                <div class="info-content">
+                    <div class="info-label">História:</div>
+                    <div class="info-value">Laços Profanos: O menino da profecia</div>
+                </div>
+                
+                <div class="info-content">
+                    <div class="info-label">Papel:</div>
+                    <div class="info-value">Protagonista</div>
+                </div>
+                
+                <div class="info-content">
+                    <div class="info-label">Status:</div>
+                    <div class="info-value">Viva</div>
+                </div>
+            </div>
+
+            <div class="info-section" id="related">
+                <h2 class="info-title"><i class="fas fa-users"></i> Personagens Relacionados</h2>
+                
+                <div class="related-characters">
+                    <a href="https://lacosprofanos.com.br/personagens/yaziell.html" class="related-character">
+                        <div class="related-character-name">Yaziell</div>
+                        <div class="related-character-relation">Amigo</div>
+                    </a>
+                    
+                    <a href="https://lacosprofanos.com.br/personagens/wahi.html" class="related-character">
+                        <div class="related-character-name">Wahi</div>
+                        <div class="related-character-relation">Amiga</div>
+                    </a>
+                    
+                    <a href="https://lacosprofanos.com.br/personagens/askot.html" class="related-character">
+                        <div class="related-character-name">Askot</div>
+                        <div class="related-character-relation">Amigo</div>
+                    </a>
+                    
+                    <a href="https://lacosprofanos.com.br/personagens/thomas.html" class="related-character">
+                        <div class="related-character-name">Thomas</div>
+                        <div class="related-character-relation">Amigo</div>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<footer>
+    &copy; 2025 Laços Profanos - Todos os direitos reservados
+</footer>
+
+<script>
+    // Script para a galeria de imagens
+    const galleryButtons = document.querySelectorAll('.gallery-btn');
+    const mainImage = document.getElementById('main-image');
+    const downloadBtn = document.getElementById('download-btn');
+    const imageContainer = document.getElementById('image-container');
+    
+    // Configuração inicial
+    let currentImage = {
+        url: "https://i.imgur.com/UcGvvv1.png",
+        filename: "emilly_divulgacao_adulta.png"
+    };
+    
+    // Função para trocar a imagem
+    function changeImage(imageUrl, filename, button) {
+        // Mostra o indicador de carregamento
+        imageContainer.classList.add('loading');
+        
+        // Cria uma nova imagem para pré-carregamento
+        const newImage = new Image();
+        newImage.src = imageUrl;
+        
+        newImage.onload = function() {
+            // Atualiza a imagem principal
+            mainImage.src = imageUrl;
+            currentImage = {
+                url: imageUrl,
+                filename: filename
+            };
+            
+            // Atualiza o botão ativo
+            galleryButtons.forEach(btn => btn.classList.remove('active'));
+            button.classList.add('active');
+            
+            // Esconde o indicador de carregamento
+            imageContainer.classList.remove('loading');
+        };
+        
+        newImage.onerror = function() {
+            // Em caso de erro, mantém a imagem atual e remove o loading
+            imageContainer.classList.remove('loading');
+            console.error("Erro ao carregar a imagem:", imageUrl);
+        };
+    }
+    
+    // Adiciona eventos aos botões
+    galleryButtons.forEach(button => {
+        button.addEventListener('click', (event) => {
+            const newImageSrc = button.getAttribute('data-image');
+            const downloadFile = button.getAttribute('data-download');
+            changeImage(newImageSrc, downloadFile, button);
+        });
+    });
+    
+    // Configura o download da imagem
+    downloadBtn.addEventListener('click', () => {
+        // Cria um link temporário para download
+        const link = document.createElement('a');
+        link.href = currentImage.url;
+        link.download = currentImage.filename;
+        document.body.appendChild(link);
+        link.click();
+        document.body.removeChild(link);
+    });
+    
+    // Fecha o menu ao clicar em um link (em dispositivos móveis)
+    const menuLinks = document.querySelectorAll('.mobile-menu a');
+    const menuToggle = document.getElementById('menu-toggle');
+    
+    menuLinks.forEach(link => {
+        link.addEventListener('click', () => {
+            if (window.innerWidth <= 768) {
+                menuToggle.checked = false;
+                
+                // Scroll suave para âncoras
+                const targetId = link.getAttribute('href');
+                if (targetId.startsWith('#')) {
+                    const targetElement = document.querySelector(targetId);
+                    if (targetElement) {
+                        setTimeout(() => {
+                            targetElement.scrollIntoView({ behavior: 'smooth' });
+                        }, 300);
+                    }
+                }
+            }
+        });
+    });
+    
+    // Garante que a imagem seja carregada corretamente
+    window.addEventListener('load', function() {
+        // Força o redimensionamento correto da imagem
+        if (mainImage.complete) {
+            resizeImageContainer();
+        } else {
+            mainImage.addEventListener('load', resizeImageContainer);
+        }
+    });
+    
+    // Ajusta o container conforme a imagem
+    function resizeImageContainer() {
+        const ratio = mainImage.naturalHeight / mainImage.naturalWidth;
+        
+        if (ratio > 1.2) {
+            // Imagem portrait
+            imageContainer.style.maxWidth = '400px';
+        } else if (ratio < 0.8) {
+            // Imagem landscape
+            imageContainer.style.maxWidth = '700px';
+        } else {
+            // Imagem quadrada
+            imageContainer.style.maxWidth = '500px';
+        }
+    }
+</script>
+
+</body>
+</html>
