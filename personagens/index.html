@@ -5,6 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Catálogo de Personagens - Laços Profanos</title>
 <link rel="icon" href="https://i.imgur.com/mgxXSto.png" type="image/png">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 <style>
     * { box-sizing: border-box; margin: 0; padding: 0; }
     body {
@@ -247,6 +248,12 @@
 
 <div class="mobile-menu">
     <button class="close-menu" onclick="closeMenu()">×</button>
+    
+    <!-- Adicionado link para Home -->
+    <a href="https://lacosprofanos.com.br" style="background-color: #a3005b; margin-bottom: 20px;">
+        <i class="fas fa-home"></i> Home
+    </a>
+    
     <h3>Filtrar por História</h3>
     
     <div class="filter-tags" id="filter-tags">
@@ -544,4 +551,163 @@
         </div>
         
         <div class="character-card" data-category="menino-profecias">
-            <a href="https://euwahi.g
+            <a href="https://euwahi.github.io/personagens/sarah.html" class="character-link">
+                <div class="image-container">
+                    <img src="https://i.imgur.com/7zAcS65.png" alt="Sarah" class="character-image">
+                </div>
+                <div class="character-name">Sarah</div>
+            </a>
+        </div>
+        
+        <div class="character-card" data-category="menino-profecias">
+            <a href="https://euwahi.github.io/personagens/thomas.html" class="character-link">
+                <div class="image-container">
+                    <img src="https://i.imgur.com/mgxXSto.png" alt="Thomas" class="character-image">
+                </div>
+                <div class="character-name">Thomas</div>
+            </a>
+        </div>
+        
+        <div class="character-card" data-category="menino-profecias">
+            <a href="https://euwahi.github.io/personagens/yaziell.html" class="character-link">
+                <div class="image-container">
+                    <img src="https://i.imgur.com/mgxXSto.png" alt="Yaziell" class="character-image">
+                </div>
+                <div class="character-name">Yaziell</div>
+            </a>
+        </div>
+    </div>
+</div>
+
+<footer>
+    &copy; 2025 Laços Profanos - Todos os direitos reservados
+</footer>
+
+<script>
+    // Variável global para armazenar os filtros ativos
+    let activeFilters = ['all'];
+    
+    // Elementos do DOM
+    const menuLinks = document.querySelectorAll('.mobile-menu a[data-filter]');
+    const characterCards = document.querySelectorAll('.character-card');
+    const filterTagsContainer = document.getElementById('filter-tags');
+    const menuToggle = document.getElementById('menu-toggle');
+    
+    // Função para fechar o menu
+    function closeMenu() {
+        menuToggle.checked = false;
+    }
+    
+    // Função para aplicar os filtros
+    function applyFilters() {
+        characterCards.forEach(card => {
+            const categories = card.getAttribute('data-category').split(' ');
+            
+            // Verifica se o cartão corresponde a algum filtro ativo
+            const shouldShow = activeFilters.some(filter => 
+                filter === 'all' || categories.includes(filter)
+            );
+            
+            card.style.display = shouldShow ? 'block' : 'none';
+        });
+        
+        updateFilterTags();
+        updateActiveFilterButtons();
+    }
+    
+    // Função para atualizar as tags de filtro ativas
+    function updateFilterTags() {
+        // Limpa as tags atuais
+        filterTagsContainer.innerHTML = '';
+        
+        // Adiciona tags apenas para filtros específicos (não para "all")
+        activeFilters.filter(filter => filter !== 'all').forEach(filter => {
+            const filterText = getFilterText(filter);
+            const tag = document.createElement('div');
+            tag.className = 'filter-tag';
+            tag.innerHTML = `
+                ${filterText}
+                <button class="remove-filter" data-filter="${filter}">×</button>
+            `;
+            filterTagsContainer.appendChild(tag);
+        });
+        
+        // Adiciona event listeners aos botões de remover filtro
+        document.querySelectorAll('.remove-filter').forEach(button => {
+            button.addEventListener('click', (e) => {
+                e.stopPropagation();
+                const filterToRemove = button.getAttribute('data-filter');
+                removeFilter(filterToRemove);
+            });
+        });
+    }
+    
+    // Função para atualizar os botões de filtro ativos
+    function updateActiveFilterButtons() {
+        menuLinks.forEach(link => {
+            const filter = link.getAttribute('data-filter');
+            if (activeFilters.includes(filter)) {
+                link.classList.add('active-filter');
+            } else {
+                link.classList.remove('active-filter');
+            }
+        });
+    }
+    
+    // Função para obter o texto do filtro
+    function getFilterText(filter) {
+        const filterTexts = {
+            'all': 'Todos',
+            'ultimo-anjo': 'Último Anjo',
+            'pacto-vinganca': 'Pacto de Vingança',
+            'menino-profecias': 'Menino da Profecia'
+        };
+        return filterTexts[filter] || filter;
+    }
+    
+    // Função para adicionar um filtro
+    function addFilter(filter) {
+        if (filter === 'all') {
+            activeFilters = ['all'];
+        } else {
+            // Remove o filtro "all" se estiver adicionando um filtro específico
+            activeFilters = activeFilters.filter(f => f !== 'all');
+            if (!activeFilters.includes(filter)) {
+                activeFilters.push(filter);
+            }
+        }
+        applyFilters();
+    }
+    
+    // Função para remover um filtro
+    function removeFilter(filter) {
+        activeFilters = activeFilters.filter(f => f !== filter);
+        
+        // Se não houver mais filtros, volta para "all"
+        if (activeFilters.length === 0) {
+            activeFilters = ['all'];
+        }
+        
+        applyFilters();
+    }
+    
+    // Adiciona event listeners aos links de filtro
+    menuLinks.forEach(link => {
+        link.addEventListener('click', (e) => {
+            e.preventDefault();
+            const filter = link.getAttribute('data-filter');
+            addFilter(filter);
+            
+            // Fecha o menu em dispositivos móveis
+            if (window.innerWidth <= 768) {
+                closeMenu();
+            }
+        });
+    });
+    
+    // Aplica os filtros iniciais
+    applyFilters();
+</script>
+
+</body>
+</html>
