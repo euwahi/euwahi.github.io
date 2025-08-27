@@ -176,7 +176,7 @@
             width: auto;
             height: auto;
             display: block;
-            transition: transform 0.5s;
+            transition: transform 0.3s;
         }
 
         .character-image-container:hover .main-image {
@@ -388,6 +388,9 @@
             transition: all 0.3s;
             border: 1px solid #3a506b;
             box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+            text-decoration: none;
+            display: block;
+            color: inherit;
         }
 
         .related-character:hover {
@@ -423,6 +426,34 @@
         .highlight {
             color: #f1c40f;
             font-weight: bold;
+        }
+
+        /* Loading indicator */
+        .image-loading {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 40px;
+            height: 40px;
+            border: 4px solid rgba(255, 255, 255, 0.3);
+            border-radius: 50%;
+            border-top-color: #f1c40f;
+            animation: spin 0.8s ease-in-out infinite;
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+
+        @keyframes spin {
+            to { transform: translate(-50%, -50%) rotate(360deg); }
+        }
+
+        .loading .image-loading {
+            opacity: 1;
+        }
+
+        .loading .main-image {
+            opacity: 0.3;
         }
 
         /* Responsividade */
@@ -496,7 +527,8 @@
 <div class="container">
     <!-- Seção principal com imagem em destaque -->
     <section class="hero-section">
-        <div class="character-image-container">
+        <div class="character-image-container" id="image-container">
+            <div class="image-loading"></div>
             <img src="https://i.imgur.com/BxrcQB7.png" alt="Luke Klain - Arte de Divulgação" class="main-image" id="main-image">
         </div>
         
@@ -579,25 +611,25 @@
                 <h2 class="info-title"><i class="fas fa-users"></i> Personagens Relacionados</h2>
                 
                 <div class="related-characters">
-                    <div class="related-character">
+                    <a href="https://euwahi.github.io/personagens/maria.html" class="related-character">
                         <div class="related-character-name">Maria</div>
                         <div class="related-character-relation">Esposa</div>
-                    </div>
+                    </a>
                     
-                    <div class="related-character">
+                    <a href="https://euwahi.github.io/personagens/dahlia.html" class="related-character">
                         <div class="related-character-name">Dahlia</div>
                         <div class="related-character-relation">Filha</div>
-                    </div>
+                    </a>
                     
-                    <div class="related-character">
+                    <a href="https://euwahi.github.io/personagens/ethan.html" class="related-character">
                         <div class="related-character-name">Ethan</div>
                         <div class="related-character-relation">Melhor amigo</div>
-                    </div>
+                    </a>
                     
-                    <div class="related-character">
+                    <a href="https://euwahi.github.io/personagens/cleide.html" class="related-character">
                         <div class="related-character-name">Cleide</div>
                         <div class="related-character-relation">Melhor amigo</div>
-                    </div>
+                    </a>
                 </div>
             </div>
         </div>
@@ -613,6 +645,7 @@
     const galleryButtons = document.querySelectorAll('.gallery-btn');
     const mainImage = document.getElementById('main-image');
     const downloadBtn = document.getElementById('download-btn');
+    const imageContainer = document.getElementById('image-container');
     
     // Configuração inicial
     let currentImage = {
@@ -622,15 +655,34 @@
     
     // Função para trocar a imagem
     function changeImage(imageUrl, filename, button) {
-        mainImage.src = imageUrl;
-        currentImage = {
-            url: imageUrl,
-            filename: filename
+        // Mostra o indicador de carregamento
+        imageContainer.classList.add('loading');
+        
+        // Cria uma nova imagem para pré-carregamento
+        const newImage = new Image();
+        newImage.src = imageUrl;
+        
+        newImage.onload = function() {
+            // Atualiza a imagem principal
+            mainImage.src = imageUrl;
+            currentImage = {
+                url: imageUrl,
+                filename: filename
+            };
+            
+            // Atualiza o botão ativo
+            galleryButtons.forEach(btn => btn.classList.remove('active'));
+            button.classList.add('active');
+            
+            // Esconde o indicador de carregamento
+            imageContainer.classList.remove('loading');
         };
         
-        // Atualiza o botão ativo
-        galleryButtons.forEach(btn => btn.classList.remove('active'));
-        button.classList.add('active');
+        newImage.onerror = function() {
+            // Em caso de erro, mantém a imagem atual e remove o loading
+            imageContainer.classList.remove('loading');
+            console.error("Erro ao carregar a imagem:", imageUrl);
+        };
     }
     
     // Adiciona eventos aos botões
@@ -688,18 +740,17 @@
     
     // Ajusta o container conforme a imagem
     function resizeImageContainer() {
-        const container = document.querySelector('.character-image-container');
         const ratio = mainImage.naturalHeight / mainImage.naturalWidth;
         
         if (ratio > 1.2) {
             // Imagem portrait
-            container.style.maxWidth = '400px';
+            imageContainer.style.maxWidth = '400px';
         } else if (ratio < 0.8) {
             // Imagem landscape
-            container.style.maxWidth = '700px';
+            imageContainer.style.maxWidth = '700px';
         } else {
             // Imagem quadrada
-            container.style.maxWidth = '500px';
+            imageContainer.style.maxWidth = '500px';
         }
     }
 </script>
