@@ -48,27 +48,10 @@
             position: relative;
         }
 
-        .menu {
-            display: flex;
-            gap: 15px;
-        }
-
-        .menu a {
-            color: white;
-            text-decoration: none;
-            padding: 8px 15px;
-            border-radius: 8px;
-            transition: all 0.3s ease;
-            background-color: #2c3e50;
-        }
-
-        .menu a:hover {
-            background-color: #a3005b;
-            transform: scale(1.05);
-        }
-
         .search-container {
             display: flex;
+            margin-left: auto;
+            margin-right: 50px;
         }
 
         .search-container input {
@@ -95,9 +78,9 @@
             background-color: #850048;
         }
 
-        /* Menu Hamburguer */
+        /* Menu Hamburguer - Sempre visível */
         .hamburguer-menu {
-            display: none;
+            display: flex;
             flex-direction: column;
             cursor: pointer;
             padding: 5px;
@@ -121,15 +104,14 @@
             display: none;
             position: absolute;
             top: 100%;
-            left: 0;
-            right: 0;
+            right: 20px;
             background-color: #1a1a1a;
             flex-direction: column;
             padding: 15px;
             border-radius: 8px;
             box-shadow: 0 5px 15px rgba(0,0,0,0.3);
             z-index: 1000;
-            margin: 10px 20px;
+            min-width: 200px;
         }
 
         .mobile-menu a {
@@ -141,6 +123,7 @@
             background-color: #2c3e50;
             margin-bottom: 8px;
             text-align: center;
+            white-space: nowrap;
         }
 
         .mobile-menu a:hover {
@@ -149,6 +132,19 @@
 
         #menu-toggle:checked ~ .mobile-menu {
             display: flex;
+        }
+
+        /* Animações do menu hamburguer */
+        #menu-toggle:checked ~ .hamburguer-menu span:nth-child(1) {
+            transform: rotate(-45deg) translate(-5px, 6px);
+        }
+        
+        #menu-toggle:checked ~ .hamburguer-menu span:nth-child(2) {
+            opacity: 0;
+        }
+        
+        #menu-toggle:checked ~ .hamburguer-menu span:nth-child(3) {
+            transform: rotate(45deg) translate(-5px, -6px);
         }
 
         .produtos {
@@ -365,19 +361,14 @@
 
         @media (max-width: 768px) {
             .menu-container {
-                flex-direction: column;
-                gap: 15px;
-            }
-            
-            .menu {
-                width: 100%;
-                justify-content: center;
                 flex-wrap: wrap;
             }
             
             .search-container {
+                order: 3;
                 width: 100%;
-                max-width: 400px;
+                max-width: 100%;
+                margin: 15px 0 0 0;
             }
             
             .search-container input {
@@ -388,33 +379,10 @@
                 max-width: 100%;
             }
             
-            /* Estilos do menu hamburguer para mobile */
-            .hamburguer-menu {
-                display: flex;
-                position: absolute;
-                top: 10px;
-                right: 20px;
-            }
-            
-            .menu {
-                display: none;
-            }
-            
-            .menu-container {
-                flex-direction: row;
-                align-items: center;
-            }
-            
-            #menu-toggle:checked ~ .hamburguer-menu span:nth-child(1) {
-                transform: rotate(-45deg) translate(-5px, 6px);
-            }
-            
-            #menu-toggle:checked ~ .hamburguer-menu span:nth-child(2) {
-                opacity: 0;
-            }
-            
-            #menu-toggle:checked ~ .hamburguer-menu span:nth-child(3) {
-                transform: rotate(45deg) translate(-5px, -6px);
+            .mobile-menu {
+                right: 0;
+                left: 0;
+                margin: 10px;
             }
         }
     </style>
@@ -423,14 +391,6 @@
 
     <div class="menu-container">
         <input type="checkbox" id="menu-toggle">
-        <div class="menu">
-            <a href="#">Início</a>
-            <a href="#produtos">Produtos</a>
-            <a href="#fale-conosco">Fale Conosco</a>
-            <a href="https://lacosprofanos.com.br/personagens" target="_blank">Personagens</a>
-            <a href="https://lacosprofanos.com.br/wpp" target="_blank">Wallpapper e Icons</a>
-            <a href="#" id="social-button">Redes Sociais</a>
-        </div>
         
         <label for="menu-toggle" class="hamburguer-menu">
             <span></span>
@@ -531,11 +491,6 @@
         });
 
         // Controle do popup de redes sociais
-        document.getElementById('social-button').addEventListener('click', function(e) {
-            e.preventDefault();
-            document.getElementById('social-popup-overlay').style.display = 'flex';
-        });
-
         document.getElementById('social-button-mobile').addEventListener('click', function(e) {
             e.preventDefault();
             document.getElementById('social-popup-overlay').style.display = 'flex';
