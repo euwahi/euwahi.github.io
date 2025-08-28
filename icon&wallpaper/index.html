@@ -1,1 +1,512 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Icons e Wallpapers - Laços Profanos</title>
+    <link rel="icon" href="https://i.imgur.com/mgxXSto.png" type="image/png">
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+        
+        body {
+            background-color: #121212;
+            background-image: radial-gradient(#2a2a2a 1px, transparent 1px);
+            background-size: 24px 24px;
+            color: white;
+            font-family: sans-serif;
+            width: 100%;
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+
+        .banner-container {
+            width: 100%;
+            max-height: 720px;
+            overflow: hidden;
+            display: flex;
+            justify-content: center;
+            background-color: #1a1a1a;
+        }
+
+        .banner-img {
+            width: 1280px;
+            height: 720px;
+            object-fit: cover;
+        }
+
+        .menu-container {
+            display: flex;
+            justify-content: space-between;
+            max-width: 1200px;
+            margin: 20px auto;
+            padding: 0 20px;
+            align-items: center;
+            position: relative;
+        }
+
+        .menu {
+            display: none; /* Esconder menu padrão em todas as resoluções */
+            gap: 15px;
+        }
+
+        .menu a {
+            color: white;
+            text-decoration: none;
+            padding: 8px 15px;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+            background-color: #2c3e50;
+        }
+
+        .menu a:hover {
+            background-color: #a3005b;
+            transform: scale(1.05);
+        }
+
+        .search-container {
+            display: flex;
+            margin-left: auto;
+            margin-right: 50px; /* Espaço para o menu hamburguer */
+        }
+
+        .search-container input {
+            padding: 8px 15px;
+            border: none;
+            border-radius: 8px 0 0 8px;
+            background-color: #2a2a2a;
+            color: white;
+            outline: none;
+            width: 250px;
+        }
+
+        .search-container button {
+            padding: 8px 15px;
+            background-color: #a3005b;
+            color: white;
+            border: none;
+            border-radius: 0 8px 8px 0;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .search-container button:hover {
+            background-color: #850048;
+        }
+
+        /* Menu Hamburguer - Sempre visível */
+        .hamburguer-menu {
+            display: flex;
+            flex-direction: column;
+            cursor: pointer;
+            padding: 5px;
+            z-index: 1001;
+        }
+
+        .hamburguer-menu span {
+            width: 25px;
+            height: 3px;
+            background-color: white;
+            margin: 3px 0;
+            transition: 0.3s;
+            border-radius: 2px;
+        }
+
+        #menu-toggle {
+            display: none;
+        }
+
+        .mobile-menu {
+            display: none;
+            position: absolute;
+            top: 100%;
+            left: 0; /* Alterado de right: 0 para left: 0 */
+            background-color: #1a1a1a;
+            flex-direction: column;
+            padding: 15px;
+            border-radius: 8px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+            z-index: 1000;
+            min-width: 200px;
+        }
+
+        .mobile-menu a {
+            color: white;
+            text-decoration: none;
+            padding: 12px 15px;
+            border-radius: 6px;
+            transition: all 0.3s ease;
+            background-color: #2c3e50;
+            margin-bottom: 8px;
+            text-align: center;
+        }
+
+        .mobile-menu a:hover {
+            background-color: #a3005b;
+        }
+
+        #menu-toggle:checked ~ .mobile-menu {
+            display: flex;
+        }
+
+        /* Animação do menu hamburguer */
+        #menu-toggle:checked ~ .hamburguer-menu span:nth-child(1) {
+            transform: rotate(-45deg) translate(-5px, 6px);
+        }
+        
+        #menu-toggle:checked ~ .hamburguer-menu span:nth-child(2) {
+            opacity: 0;
+        }
+        
+        #menu-toggle:checked ~ .hamburguer-menu span:nth-child(3) {
+            transform: rotate(45deg) translate(-5px, -6px);
+        }
+
+        .catalogo {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            padding: 20px;
+            gap: 30px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .categoria {
+            width: 100%;
+            margin-bottom: 20px;
+        }
+
+        .categoria h2 {
+            color: #f1c40f;
+            text-align: center;
+            margin: 30px 0 20px;
+            font-size: 2rem;
+            border-bottom: 2px solid #a3005b;
+            padding-bottom: 10px;
+        }
+
+        .itens-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 30px;
+            width: 100%;
+        }
+
+        .item {
+            background: #1a1a1a;
+            border-radius: 10px;
+            padding: 20px;
+            text-align: center;
+            max-width: 400px;
+            transition: transform 0.3s, box-shadow 0.3s;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+        }
+
+        .item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 16px rgba(0,0,0,0.3);
+        }
+
+        .item img {
+            max-width: 100%;
+            border-radius: 4px;
+            margin-bottom: 15px;
+            max-height: 400px;
+            object-fit: contain;
+        }
+
+        .item h3 {
+            margin-bottom: 10px;
+            color: #f1c40f;
+        }
+
+        .download-btn {
+            background-color: #a3005b;
+            color: white;
+            border: none;
+            padding: 12px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: bold;
+            font-size: 1rem;
+            transition: background-color 0.3s;
+            text-decoration: none;
+            display: inline-block;
+            margin-top: 10px;
+        }
+
+        .download-btn:hover {
+            background-color: #850048;
+        }
+
+        /* Popup de Redes Sociais */
+        #social-popup-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.85);
+            justify-content: center;
+            align-items: center;
+            z-index: 9999;
+        }
+
+        #social-popup {
+            background: linear-gradient(135deg, #1c1c1c 0%, #2a2a2a 100%);
+            border-radius: 12px;
+            padding: 30px;
+            width: 90%;
+            max-width: 400px;
+            text-align: center;
+            box-shadow: 0 8px 32px rgba(163, 0, 91, 0.3);
+            position: relative;
+        }
+
+        #social-popup h3 {
+            color: #f1c40f;
+            margin-bottom: 25px;
+            font-size: 1.5rem;
+        }
+
+        .social-buttons {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 12px;
+        }
+
+        .social-button {
+            display: block;
+            padding: 12px;
+            background-color: #2c3e50;
+            color: white;
+            text-decoration: none;
+            border-radius: 8px;
+            text-align: center;
+            transition: all 0.3s ease;
+            font-weight: bold;
+        }
+
+        .social-button:hover {
+            background-color: #a3005b;
+            transform: scale(1.03);
+        }
+
+        #social-close-button {
+            position: absolute;
+            top: 15px;
+            right: 20px;
+            background: none;
+            border: none;
+            color: white;
+            font-size: 28px;
+            cursor: pointer;
+            transition: color 0.3s;
+        }
+
+        #social-close-button:hover {
+            color: #f1c40f;
+        }
+
+        footer {
+            background-color: #1a1a1a;
+            color: white;
+            text-align: center;
+            padding: 30px;
+            margin-top: 50px;
+            border-top: 1px solid #2a2a2a;
+        }
+
+        @media (max-width: 1280px) {
+            .banner-container {
+                max-height: calc(100vw * 0.5625);
+            }
+            
+            .banner-img {
+                width: 100%;
+                height: auto;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .search-container {
+                width: 100%;
+                max-width: 400px;
+                margin: 0 auto;
+                order: 3;
+                margin-top: 15px;
+            }
+            
+            .search-container input {
+                width: 100%;
+            }
+            
+            .item {
+                max-width: 100%;
+            }
+            
+            .menu-container {
+                flex-wrap: wrap;
+            }
+            
+            .hamburguer-menu {
+                order: 1;
+            }
+            
+            .search-container {
+                order: 2;
+                margin-right: 0;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="menu-container">
+        <input type="checkbox" id="menu-toggle">
+        
+        <div class="menu">
+            <a href="https://euwahi.github.io/lacosprofanos">Voltar à Loja</a>
+            <a href="#icons">Icons</a>
+            <a href="#wallpapers">Wallpapers</a>
+            <a href="#" id="social-button">Redes Sociais</a>
+        </div>
+        
+        <label for="menu-toggle" class="hamburguer-menu">
+            <span></span>
+            <span></span>
+            <span></span>
+        </label>
+        
+        <div class="mobile-menu">
+            <a href="https://euwahi.github.io/lacosprofanos">Voltar à Loja</a>
+            <a href="#icons">Icons</a>
+            <a href="#wallpapers">Wallpapers</a>
+            <a href="#" id="social-button-mobile">Redes Sociais</a>
+            <a href="https://euwahi.github.io/personagens" target="_blank">Personagens</a>
+        </div>
+        
+        <div class="search-container">
+            <input type="text" id="search-input" placeholder="Pesquisar itens...">
+            <button onclick="searchItems()">Buscar</button>
+        </div>
+    </div>
+
+    <div class="catalogo">
+        <section id="icons" class="categoria">
+            <h2>ICONS</h2>
+            <div class="itens-container">
+                <div class="item">
+                    <img src="https://i.imgur.com/WVrHpaB.jpeg" alt="Icon Laços Profanos">
+                    <h3>Icon do Kaleb</h3>
+                    <a href="https://i.imgur.com/WVrHpaB.jpeg" download="Icon_Laços_Profanos.jpeg" class="download-btn">DOWNLOAD</a>
+                </div>
+            </div>
+        </section>
+
+        <section id="wallpapers" class="categoria">
+            <h2>WALLPAPERS</h2>
+            <div class="itens-container">
+                <div class="item">
+                    <img src="https://i.imgur.com/RA2LetQ.png" alt="Wallpaper PC Laços Profanos">
+                    <h3>Capa Lp: O ultimo anelo - versão wallpaper</h3>
+                    <a href="https://i.imgur.com/RA2LetQ.png" download="Wallpaper_PC_Laços_Profanos.png" class="download-btn">DOWNLOAD</a>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- Popup de Redes Sociais -->
+    <div id="social-popup-overlay">
+        <div id="social-popup">
+            <button id="social-close-button">×</button>
+            <h3>Nossas Redes Sociais</h3>
+            <div class="social-buttons">
+                <a class="social-button" href="https://tipa.ai/lacosprofanos" target="_blank">TIPA.AI</a>
+                <a class="social-button" href="https://bit.ly/La%C3%A7osprofanoszap" target="_blank">WHATSAPP</a>
+                <a class="social-button" href="https://t.me/lacosprofanos" target="_blank">TELEGRAM</a>
+                <a class="social-button" href="https://is.gd/DAv0em" target="_blank">YOUTUBE</a>
+                <a class="social-button" href="https://www.instagram.com/lacosprofanos" target="_blank">INSTAGRAM</a>
+                <a class="social-button" href="https://x.com/LacosProfanos" target="_blank">X (Twitter)</a>
+                <a class="social-button" href="https://fanart.lacosprofanos.com.br" target="_blank">MURAL DE FANARTS</a>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <p>&copy; 2025 Laços Profanos - Todos os direitos reservados</p>
+    </footer>
+
+    <script>
+        // Função de pesquisa que ignora acentos, maiúsculas e caracteres especiais
+        function searchItems() {
+            const searchTerm = normalizeString(document.getElementById('search-input').value.toLowerCase());
+            const items = document.querySelectorAll('.item h3');
+            
+            items.forEach(item => {
+                const itemName = normalizeString(item.textContent.toLowerCase());
+                const itemCard = item.closest('.item');
+                
+                if (itemName.includes(searchTerm)) {
+                    itemCard.style.display = 'block';
+                } else {
+                    itemCard.style.display = 'none';
+                }
+            });
+        }
+
+        // Função para normalizar strings (remover acentos e caracteres especiais)
+        function normalizeString(str) {
+            return str.normalize('NFD').replace(/[\u0300-\u036f]/g, '')
+                .replace(/[^a-zA-Z0-9]/g, '');
+        }
+
+        // Adicionar evento de tecla para pesquisa ao pressionar Enter
+        document.getElementById('search-input').addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') {
+                searchItems();
+            }
+        });
+
+        // Controle do popup de redes sociais
+        document.getElementById('social-button').addEventListener('click', function(e) {
+            e.preventDefault();
+            document.getElementById('social-popup-overlay').style.display = 'flex';
+        });
+
+        document.getElementById('social-button-mobile').addEventListener('click', function(e) {
+            e.preventDefault();
+            document.getElementById('social-popup-overlay').style.display = 'flex';
+            document.getElementById('menu-toggle').checked = false;
+        });
+
+        document.getElementById('social-close-button').addEventListener('click', function() {
+            document.getElementById('social-popup-overlay').style.display = 'none';
+        });
+
+        // Fechar popup ao clicar fora
+        document.getElementById('social-popup-overlay').addEventListener('click', function(e) {
+            if (e.target === this) {
+                this.style.display = 'none';
+            }
+        });
+
+        // Fechar menu mobile ao clicar em um link
+        document.querySelectorAll('.mobile-menu a').forEach(link => {
+            link.addEventListener('click', function() {
+                // Não fechar o menu se for um link externo (com target="_blank")
+                if (!this.getAttribute('target') || this.getAttribute('target') !== '_blank') {
+                    document.getElementById('menu-toggle').checked = false;
+                }
+            });
+        });
+    </script>
+</body>
+</html>
 
