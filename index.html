@@ -85,6 +85,7 @@
             cursor: pointer;
             padding: 5px;
             z-index: 1001;
+            order: -1; /* Move o hamburguer para o início (esquerda) */
         }
 
         .hamburguer-menu span {
@@ -104,7 +105,7 @@
             display: none;
             position: absolute;
             top: 100%;
-            right: 20px;
+            left: 20px; /* Alterado de right para left */
             background-color: #1a1a1a;
             flex-direction: column;
             padding: 15px;
@@ -362,6 +363,11 @@
         @media (max-width: 768px) {
             .menu-container {
                 flex-wrap: wrap;
+                justify-content: flex-end; /* Alinha itens à direita */
+            }
+            
+            .hamburguer-menu {
+                margin-right: auto; /* Mantém o hamburguer à esquerda */
             }
             
             .search-container {
@@ -380,9 +386,17 @@
             }
             
             .mobile-menu {
-                right: 0;
-                left: 0;
-                margin: 10px;
+                left: 20px;
+                right: auto;
+                margin: 10px 0;
+                width: calc(100% - 40px);
+            }
+        }
+
+        @media (max-width: 480px) {
+            .mobile-menu {
+                left: 10px;
+                width: calc(100% - 20px);
             }
         }
     </style>
@@ -412,6 +426,8 @@
             <button onclick="searchProducts()">Buscar</button>
         </div>
     </div>
+
+    
 
     <section id="produtos" class="produtos">
         <div class="produto" onclick="window.location.href='https://lacosprofanos.com.br/produtos';">
