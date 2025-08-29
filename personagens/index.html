@@ -289,12 +289,18 @@
     <a href="#" data-filter="ultimo-anjo">O Último Anjo</a>
     <a href="#" data-filter="pacto-vinganca">Pacto de Vingança</a>
     <a href="#" data-filter="menino-profecias">O Menino da Profecia</a>
+    
+    <h3>Filtrar por Tipo</h3>
+    
+    <a href="#" data-filter="protagonistas">Protagonistas</a>
+    <a href="#" data-filter="viloes">Vilões</a>
+    <a href="#" data-filter="a-z">A a Z (Ordem Alfabética)</a>
 </div>
 
 <div class="container">
     <div class="catalog">
         <!-- Personagens importantes primeiro (Hamiah, Enaya, Luke, ???, Wahi, Askot, Emilly, Yaziell, Mel) -->
-        <div class="character-card" data-category="ultimo-anjo" data-name="Hamiah" data-important="true">
+        <div class="character-card" data-category="ultimo-anjo protagonistas" data-name="Hamiah" data-important="true">
             <a href="https://lacosprofanos.com.br/personagens/hamiah.html" class="character-link">
                 <div class="image-container">
                     <img src="https://i.imgur.com/gT967dA.png" alt="Hamiah" class="character-image">
@@ -303,7 +309,7 @@
             </a>
         </div>
         
-        <div class="character-card" data-category="ultimo-anjo" data-name="Enaya" data-important="true">
+        <div class="character-card" data-category="ultimo-anjo viloes" data-name="Enaya" data-important="true">
             <a href="https://lacosprofanos.com.br/personagens/enaya.html" class="character-link">
                 <div class="image-container">
                     <img src="https://i.imgur.com/9aKySfq.png" alt="Enaya" class="character-image">
@@ -312,7 +318,7 @@
             </a>
         </div>
         
-        <div class="character-card" data-category="pacto-vinganca" data-name="Luke" data-important="true">
+        <div class="character-card" data-category="pacto-vinganca protagonistas" data-name="Luke" data-important="true">
             <a href="https://lacosprofanos.com.br/personagens/luke.html" class="character-link">
                 <div class="image-container">
                     <img src="https://i.imgur.com/BxrcQB7.png" alt="Luke" class="character-image">
@@ -321,7 +327,7 @@
             </a>
         </div>
         
-        <div class="character-card" data-category="pacto-vinganca menino-profecias" data-name="???" data-important="true">
+        <div class="character-card" data-category="pacto-vinganca menino-profecias viloes" data-name="???" data-important="true">
             <a href="https://lacosprofanos.com.br/personagens/desconhecido.html" class="character-link">
                 <div class="image-container">
                     <img src="https://i.imgur.com/CX3go4c.png" alt="???" class="character-image">
@@ -330,7 +336,7 @@
             </a>
         </div>
         
-        <div class="character-card" data-category="menino-profecias" data-name="Wahi" data-important="true">
+        <div class="character-card" data-category="menino-profecias protagonistas" data-name="Wahi" data-important="true">
             <a href="https://lacosprofanos.com.br/personagens/wahi.html" class="character-link">
                 <div class="image-container">
                     <img src="https://i.imgur.com/myv4XE7.png" alt="Wahi" class="character-image">
@@ -339,7 +345,7 @@
             </a>
         </div>
         
-        <div class="character-card" data-category="menino-profecias" data-name="Askot" data-important="true">
+        <div class="character-card" data-category="menino-profecias protagonistas" data-name="Askot" data-important="true">
             <a href="https://lacosprofanos.com.br/personagens/askot.html" class="character-link">
                 <div class="image-container">
                     <img src="https://i.imgur.com/NVQTBnc.png" alt="Askot" class="character-image">
@@ -357,7 +363,7 @@
             </a>
         </div>
         
-        <div class="character-card" data-category="menino-profecias" data-name="Yaziell" data-important="true">
+        <div class="character-card" data-category="menino-profecias protagonistas" data-name="Yaziell" data-important="true">
             <a href="https://lacosprofanos.com.br/personagens/yaziell.html" class="character-link">
                 <div class="image-container">
                     <img src="https://i.imgur.com/AbcwKlM.png" alt="Yaziell" class="character-image">
@@ -366,7 +372,7 @@
             </a>
         </div>
         
-        <div class="character-card" data-category="menino-profecias" data-name="Mel" data-important="true">
+        <div class="character-card" data-category="menino-profecias viloes" data-name="Mel" data-important="true">
             <a href="https://lacosprofanos.com.br/personagens/mel.html" class="character-link">
                 <div class="image-container">
                     <img src="https://i.imgur.com/r3tfsEu.png" alt="Mel" class="character-image">
@@ -658,6 +664,12 @@
     // Personagens importantes que devem aparecer primeiro
     const importantCharacters = ['Hamiah', 'Enaya', 'Luke', '???', 'Wahi', 'Askot', 'Emilly', 'Yaziell', 'Mel'];
     
+    // Lista de protagonistas
+    const protagonistas = ['Hamiah', 'Luke', 'Wahi', 'Askot', 'Yaziell'];
+    
+    // Lista de vilões
+    const viloes = ['Enaya', '???', 'Mel'];
+    
     // Função para aplicar os filtros
     function applyFilters() {
         const searchTerm = searchInput.value.toLowerCase().trim();
@@ -667,9 +679,13 @@
             const name = card.getAttribute('data-name').toLowerCase();
             
             // Verifica se o cartão corresponde aos filtros ativos
-            const matchesFilter = activeFilters.some(filter => 
-                filter === 'all' || categories.includes(filter)
-            );
+            let matchesFilter = activeFilters.some(filter => {
+                if (filter === 'all') return true;
+                if (filter === 'protagonistas') return protagonistas.includes(card.getAttribute('data-name'));
+                if (filter === 'viloes') return viloes.includes(card.getAttribute('data-name'));
+                if (filter === 'a-z') return true; // Filtro A-Z sempre mostra todos
+                return categories.includes(filter);
+            });
             
             // Verifica se corresponde ao termo de pesquisa
             const matchesSearch = searchTerm === '' || name.includes(searchTerm);
@@ -696,6 +712,11 @@
             const bName = b.getAttribute('data-name');
             const aIsImportant = a.getAttribute('data-important') === 'true';
             const bIsImportant = b.getAttribute('data-important') === 'true';
+            
+            // Se o filtro A-Z está ativo, ordena alfabeticamente
+            if (activeFilters.includes('a-z')) {
+                return aName.localeCompare(bName);
+            }
             
             // Personagens importantes primeiro
             if (aIsImportant && !bIsImportant) return -1;
@@ -761,7 +782,10 @@
             'all': 'Todos',
             'ultimo-anjo': 'Último Anjo',
             'pacto-vinganca': 'Pacto de Vingança',
-            'menino-profecias': 'Menino da Profecia'
+            'menino-profecias': 'Menino da Profecia',
+            'protagonistas': 'Protagonistas',
+            'viloes': 'Vilões',
+            'a-z': 'A a Z'
         };
         return filterTexts[filter] || filter;
     }
@@ -770,9 +794,12 @@
     function addFilter(filter) {
         if (filter === 'all') {
             activeFilters = ['all'];
+        } else if (filter === 'a-z') {
+            // Remove todos os outros filtros quando selecionar A-Z
+            activeFilters = ['a-z'];
         } else {
-            // Remove o filtro "all" se estiver adicionando um filtro específico
-            activeFilters = activeFilters.filter(f => f !== 'all');
+            // Remove o filtro "all" e "a-z" se estiver adicionando um filtro específico
+            activeFilters = activeFilters.filter(f => f !== 'all' && f !== 'a-z');
             if (!activeFilters.includes(filter)) {
                 activeFilters.push(filter);
             }
