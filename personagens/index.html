@@ -130,6 +130,40 @@
         transform: rotate(45deg) translate(-6px, -7px); 
     }
 
+    /* Barra de pesquisa */
+    .search-container {
+        position: fixed;
+        top: 20px;
+        right: 20px;
+        z-index: 1000;
+        display: flex;
+        align-items: center;
+        background-color: #1a1a1a;
+        border-radius: 30px;
+        padding: 5px 15px;
+        box-shadow: 0 4px 15px rgba(0,0,0,0.5);
+        border: 2px solid #2a2a2a;
+    }
+    
+    .search-container input {
+        background: transparent;
+        border: none;
+        color: white;
+        padding: 10px;
+        width: 200px;
+        outline: none;
+        font-size: 1rem;
+    }
+    
+    .search-container i {
+        color: #f1c40f;
+        font-size: 1.2rem;
+    }
+    
+    .search-container:focus-within {
+        border-color: #a3005b;
+    }
+
     .container {
         max-width: 1400px;
         margin: 0 auto;
@@ -213,10 +247,14 @@
     @media(max-width:768px){
         .catalog { grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); gap: 25px; }
         .image-container { height: 300px; }
+        .search-container { top: 70px; right: 20px; }
+        .search-container input { width: 150px; }
     }
     
     @media(max-width:480px){
         .image-container { height: 250px; }
+        .search-container { top: 70px; right: 10px; }
+        .search-container input { width: 120px; }
     }
 </style>
 </head>
@@ -228,6 +266,12 @@
     <span></span>
     <span></span>
 </label>
+
+<!-- Barra de pesquisa adicionada -->
+<div class="search-container">
+    <i class="fas fa-search"></i>
+    <input type="text" id="search-input" placeholder="Pesquisar personagem...">
+</div>
 
 <div class="mobile-menu">    
     <!-- Adicionado link para Home -->
@@ -249,8 +293,8 @@
 
 <div class="container">
     <div class="catalog">
-        <!-- Laços Profanos: O Último Anjo -->
-        <div class="character-card" data-category="ultimo-anjo">
+        <!-- Personagens importantes primeiro (Hamiah, Enaya, Luke, ???, Wahi, Askot, Emilly, Yaziell, Mel) -->
+        <div class="character-card" data-category="ultimo-anjo" data-name="Hamiah" data-important="true">
             <a href="https://lacosprofanos.com.br/personagens/hamiah.html" class="character-link">
                 <div class="image-container">
                     <img src="https://i.imgur.com/gT967dA.png" alt="Hamiah" class="character-image">
@@ -259,7 +303,7 @@
             </a>
         </div>
         
-        <div class="character-card" data-category="ultimo-anjo">
+        <div class="character-card" data-category="ultimo-anjo" data-name="Enaya" data-important="true">
             <a href="https://lacosprofanos.com.br/personagens/enaya.html" class="character-link">
                 <div class="image-container">
                     <img src="https://i.imgur.com/9aKySfq.png" alt="Enaya" class="character-image">
@@ -268,116 +312,7 @@
             </a>
         </div>
         
-        <div class="character-card" data-category="ultimo-anjo">
-            <a href="https://lacosprofanos.com.br/personagens/olivia.html" class="character-link">
-                <div class="image-container">
-                    <img src="https://i.imgur.com/hI23MFL.png" alt="Olivia" class="character-image">
-                </div>
-                <div class="character-name">Olivia</div>
-            </a>
-        </div>
-        
-        <div class="character-card" data-category="ultimo-anjo">
-            <a href="https://lacosprofanos.com.br/personagens/damian-shadow.html" class="character-link">
-                <div class="image-container">
-                    <img src="https://i.imgur.com/JEer4tF.png" alt="Damian e Shadow" class="character-image">
-                </div>
-                <div class="character-name">Damian e Shadow</div>
-            </a>
-        </div>
-        
-        <div class="character-card" data-category="ultimo-anjo">
-            <a href="https://lacosprofanos.com.br/personagens/akiko.html" class="character-link">
-                <div class="image-container">
-                    <img src="https://i.imgur.com/7zAcS65.png" alt="Akiko" class="character-image">
-                </div>
-                <div class="character-name">Akiko</div>
-            </a>
-        </div>
-        
-        <div class="character-card" data-category="ultimo-anjo">
-            <a href="https://lacosprofanos.com.br/personagens/benjamin.html" class="character-link">
-                <div class="image-container">
-                    <img src="https://i.imgur.com/mgxXSto.png" alt="Benjamin" class="character-image">
-                </div>
-                <div class="character-name">Benjamin</div>
-            </a>
-        </div>
-        
-        <div class="character-card" data-category="ultimo-anjo">
-            <a href="https://lacosprofanos.com.br/personagens/elijah.html" class="character-link">
-                <div class="image-container">
-                    <img src="https://i.imgur.com/MzVAskH.jpeg" alt="Elijah" class="character-image">
-                </div>
-                <div class="character-name">Elijah</div>
-            </a>
-        </div>
-        
-        <div class="character-card" data-category="ultimo-anjo">
-            <a href="https://lacosprofanos.com.br/personagens/hyun-jun.html" class="character-link">
-                <div class="image-container">
-                    <img src="https://i.imgur.com/7zAcS65.png" alt="Hyun-jun" class="character-image">
-                </div>
-                <div class="character-name">Hyun-jun</div>
-            </a>
-        </div>
-        
-        <div class="character-card" data-category="ultimo-anjo">
-            <a href="https://lacosprofanos.com.br/personagens/isabel.html" class="character-link">
-                <div class="image-container">
-                    <img src="https://i.imgur.com/0J4DicE.jpeg" alt="Isabel" class="character-image">
-                </div>
-                <div class="character-name">Isabel</div>
-            </a>
-        </div>
-        
-        <div class="character-card" data-category="ultimo-anjo">
-            <a href="https://lacosprofanos.com.br/personagens/kaleb.html" class="character-link">
-                <div class="image-container">
-                    <img src="https://i.imgur.com/WVrHpaB.jpeg" alt="Kaleb" class="character-image">
-                </div>
-                <div class="character-name">Kaleb</div>
-            </a>
-        </div>
-        
-        <div class="character-card" data-category="ultimo-anjo">
-            <a href="https://lacosprofanos.com.br/personagens/luna.html" class="character-link">
-                <div class="image-container">
-                    <img src="https://i.imgur.com/sJaptXH.jpeg" alt="Luna" class="character-image">
-                </div>
-                <div class="character-name">Luna</div>
-            </a>
-        </div>
-        
-        <div class="character-card" data-category="ultimo-anjo">
-            <a href="https://lacosprofanos.com.br/personagens/star.html" class="character-link">
-                <div class="image-container">
-                    <img src="https://i.imgur.com/gi9edJC.png" alt="Star" class="character-image">
-                </div>
-                <div class="character-name">Star</div>
-            </a>
-        </div>
-        
-        <div class="character-card" data-category="ultimo-anjo">
-            <a href="https://lacosprofanos.com.br/personagens/wolf.html" class="character-link">
-                <div class="image-container">
-                    <img src="https://i.imgur.com/RdXONj0.jpeg" alt="Wolf" class="character-image">
-                </div>
-                <div class="character-name">Wolf</div>
-            </a>
-        </div>
-        
-        <div class="character-card" data-category="ultimo-anjo">
-            <a href="https://lacosprofanos.com.br/personagens/zara.html" class="character-link">
-                <div class="image-container">
-                    <img src="https://i.imgur.com/7zAcS65.png" alt="Zara" class="character-image">
-                </div>
-                <div class="character-name">Zara</div>
-            </a>
-        </div>
-
-        <!-- Laços Profanos: Pacto de Vingança -->
-        <div class="character-card" data-category="pacto-vinganca">
+        <div class="character-card" data-category="pacto-vinganca" data-name="Luke" data-important="true">
             <a href="https://lacosprofanos.com.br/personagens/luke.html" class="character-link">
                 <div class="image-container">
                     <img src="https://i.imgur.com/BxrcQB7.png" alt="Luke" class="character-image">
@@ -386,7 +321,7 @@
             </a>
         </div>
         
-        <div class="character-card" data-category="pacto-vinganca menino-profecias">
+        <div class="character-card" data-category="pacto-vinganca menino-profecias" data-name="???" data-important="true">
             <a href="https://lacosprofanos.com.br/personagens/desconhecido.html" class="character-link">
                 <div class="image-container">
                     <img src="https://i.imgur.com/CX3go4c.png" alt="???" class="character-image">
@@ -395,146 +330,7 @@
             </a>
         </div>
         
-        <div class="character-card" data-category="pacto-vinganca">
-            <a href="https://lacosprofanos.com.br/personagens/ethan.html" class="character-link">
-                <div class="image-container">
-                    <img src="https://i.imgur.com/uSb5Rrd.png" alt="Ethan" class="character-image">
-                </div>
-                <div class="character-name">Ethan</div>
-            </a>
-        </div>
-        
-        <!-- Cleide - Corrigido para aparecer em ambas as histórias -->
-        <div class="character-card" data-category="pacto-vinganca menino-profecias">
-            <a href="https://lacosprofanos.com.br/personagens/cleide.html" class="character-link">
-                <div class="image-container">
-                    <img src="https://i.imgur.com/lEVGfIu.png" alt="Cleide" class="character-image">
-                </div>
-                <div class="character-name">Cleide</div>
-            </a>
-        </div>
-        
-        <div class="character-card" data-category="pacto-vinganca">
-            <a href="https://lacosprofanos.com.br/personagens/khadir.html" class="character-link">
-                <div class="image-container">
-                    <img src="https://i.imgur.com/h8IpExj.png" alt="Khadir" class="character-image">
-                </div>
-                <div class="character-name">Khadir</div>
-            </a>
-        </div>
-        
-        <div class="character-card" data-category="pacto-vinganca">
-            <a href="https://lacosprofanos.com.br/personagens/aric.html" class="character-link">
-                <div class="image-container">
-                    <img src="https://i.imgur.com/LiZcqTp.png" alt="Alec" class="character-image">
-                </div>
-                <div class="character-name">Aric</div>
-            </a>
-        </div>
-        
-        <div class="character-card" data-category="pacto-vinganca">
-            <a href="https://lacosprofanos.com.br/personagens/natan.html" class="character-link">
-                <div class="image-container">
-                    <img src="https://i.imgur.com/7zAcS65.png" alt="Natan" class="character-image">
-                </div>
-                <div class="character-name">Natan</div>
-            </a>
-        </div>
-        
-        <div class="character-card" data-category="pacto-vinganca">
-            <a href="https://lacosprofanos.com.br/personagens/micaiah.html" class="character-link">
-                <div class="image-container">
-                    <img src="https://i.imgur.com/7zAcS65.png" alt="Micaiah" class="character-image">
-                </div>
-                <div class="character-name">Micaiah</div>
-            </a>
-        </div>
-        
-        <div class="character-card" data-category="pacto-vinganca">
-            <a href="https://lacosprofanos.com.br/personagens/havilah.html" class="character-link">
-                <div class="image-container">
-                    <img src="https://i.imgur.com/7zAcS65.png" alt="Havilah" class="character-image">
-                </div>
-                <div class="character-name">Havilah</div>
-            </a>
-        </div>
-        
-        <div class="character-card" data-category="pacto-vinganca">
-            <a href="https://lacosprofanos.com.br/personagens/gabriel.html" class="character-link">
-                <div class="image-container">
-                    <img src="https://i.imgur.com/7zAcS65.png" alt="Gabriel" class="character-image">
-                </div>
-                <div class="character-name">Gabriel</div>
-            </a>
-        </div>
-        
-        <div class="character-card" data-category="pacto-vinganca">
-            <a href="https://lacosprofanos.com.br/personagens/tadeu.html" class="character-link">
-                <div class="image-container">
-                    <img src="https://i.imgur.com/7zAcS65.png" alt="Tadeu" class="character-image">
-                </div>
-                <div class="character-name">Tadeu</div>
-            </a>
-        </div>
-        
-        <div class="character-card" data-category="pacto-vinganca">
-            <a href="https://lacosprofanos.com.br/personagens/nogah.html" class="character-link">
-                <div class="image-container">
-                    <img src="https://i.imgur.com/7zAcS65.png" alt="Nogah" class="character-image">
-                </div>
-                <div class="character-name">Nogah</div>
-            </a>
-        </div>
-        
-        <div class="character-card" data-category="pacto-vinganca">
-            <a href="https://lacosprofanos.com.br/personagens/ariel.html" class="character-link">
-                <div class="image-container">
-                    <img src="https://i.imgur.com/7zAcS65.png" alt="Ariel" class="character-image">
-                </div>
-                <div class="character-name">Ariel</div>
-            </a>
-        </div>
-
-        <!-- NOVOS PERSONAGENS: MARIA E DAHLIA -->
-        <div class="character-card" data-category="pacto-vinganca">
-            <a href="https://lacosprofanos.com.br/personagens/maria.html" class="character-link">
-                <div class="image-container">
-                    <img src="https://i.imgur.com/7zAcS65.png" alt="Maria" class="character-image">
-                </div>
-                <div class="character-name">Maria</div>
-            </a>
-        </div>
-        
-        <div class="character-card" data-category="pacto-vinganca">
-            <a href="https://lacosprofanos.com.br/personagens/dahlia.html" class="character-link">
-                <div class="image-container">
-                    <img src="https://i.imgur.com/mgxXSto.png" alt="Dahlia" class="character-image">
-                </div>
-                <div class="character-name">Dahlia</div>
-            </a>
-        </div>
-        
-        <!-- PERSONAGENS ADICIONAIS: VIKTOR E AZAAEL -->
-        <div class="character-card" data-category="pacto-vinganca">
-            <a href="https://lacosprofanos.com.br/personagens/viktor.html" class="character-link">
-                <div class="image-container">
-                    <img src="https://i.imgur.com/7zAcS65.png" alt="Viktor" class="character-image">
-                </div>
-                <div class="character-name">Viktor</div>
-            </a>
-        </div>
-        
-        <div class="character-card" data-category="pacto-vinganca">
-            <a href="https://lacosprofanos.com.br/personagens/azaael.html" class="character-link">
-                <div class="image-container">
-                    <img src="https://i.imgur.com/mgxXSto.png" alt="Azaael" class="character-image">
-                </div>
-                <div class="character-name">Azaael</div>
-            </a>
-        </div>
-
-        <!-- Laços Profanos: O Menino da Profecia -->
-        <div class="character-card" data-category="menino-profecias">
+        <div class="character-card" data-category="menino-profecias" data-name="Wahi" data-important="true">
             <a href="https://lacosprofanos.com.br/personagens/wahi.html" class="character-link">
                 <div class="image-container">
                     <img src="https://i.imgur.com/myv4XE7.png" alt="Wahi" class="character-image">
@@ -543,16 +339,7 @@
             </a>
         </div>
         
-        <div class="character-card" data-category="menino-profecias">
-            <a href="https://lacosprofanos.com.br/personagens/mel.html" class="character-link">
-                <div class="image-container">
-                    <img src="https://i.imgur.com/r3tfsEu.png" alt="Mel" class="character-image">
-                </div>
-                <div class="character-name">Mel</div>
-            </a>
-        </div>
-        
-        <div class="character-card" data-category="menino-profecias">
+        <div class="character-card" data-category="menino-profecias" data-name="Askot" data-important="true">
             <a href="https://lacosprofanos.com.br/personagens/askot.html" class="character-link">
                 <div class="image-container">
                     <img src="https://i.imgur.com/NVQTBnc.png" alt="Askot" class="character-image">
@@ -561,7 +348,7 @@
             </a>
         </div>
         
-        <div class="character-card" data-category="menino-profecias">
+        <div class="character-card" data-category="menino-profecias" data-name="Emilly" data-important="true">
             <a href="https://lacosprofanos.com.br/personagens/emilly.html" class="character-link">
                 <div class="image-container">
                     <img src="https://i.imgur.com/UcGvvv1.png" alt="Emilly" class="character-image">
@@ -570,7 +357,224 @@
             </a>
         </div>
         
-        <div class="character-card" data-category="menino-profecias">
+        <div class="character-card" data-category="menino-profecias" data-name="Yaziell" data-important="true">
+            <a href="https://lacosprofanos.com.br/personagens/yaziell.html" class="character-link">
+                <div class="image-container">
+                    <img src="https://i.imgur.com/AbcwKlM.png" alt="Yaziell" class="character-image">
+                </div>
+                <div class="character-name">Yaziell</div>
+            </a>
+        </div>
+        
+        <div class="character-card" data-category="menino-profecias" data-name="Mel" data-important="true">
+            <a href="https://lacosprofanos.com.br/personagens/mel.html" class="character-link">
+                <div class="image-container">
+                    <img src="https://i.imgur.com/r3tfsEu.png" alt="Mel" class="character-image">
+                </div>
+                <div class="character-name">Mel</div>
+            </a>
+        </div>
+        
+        <!-- Resto dos personagens em ordem alfabética -->
+        <div class="character-card" data-category="pacto-vinganca" data-name="Aric">
+            <a href="https://lacosprofanos.com.br/personagens/aric.html" class="character-link">
+                <div class="image-container">
+                    <img src="https://i.imgur.com/LiZcqTp.png" alt="Aric" class="character-image">
+                </div>
+                <div class="character-name">Aric</div>
+            </a>
+        </div>
+        
+        <div class="character-card" data-category="pacto-vinganca" data-name="Ariel">
+            <a href="https://lacosprofanos.com.br/personagens/ariel.html" class="character-link">
+                <div class="image-container">
+                    <img src="https://i.imgur.com/7zAcS65.png" alt="Ariel" class="character-image">
+                </div>
+                <div class="character-name">Ariel</div>
+            </a>
+        </div>
+        
+        <div class="character-card" data-category="pacto-vinganca" data-name="Azaael">
+            <a href="https://lacosprofanos.com.br/personagens/azaael.html" class="character-link">
+                <div class="image-container">
+                    <img src="https://i.imgur.com/mgxXSto.png" alt="Azaael" class="character-image">
+                </div>
+                <div class="character-name">Azaael</div>
+            </a>
+        </div>
+        
+        <div class="character-card" data-category="ultimo-anjo" data-name="Akiko">
+            <a href="https://lacosprofanos.com.br/personagens/akiko.html" class="character-link">
+                <div class="image-container">
+                    <img src="https://i.imgur.com/7zAcS65.png" alt="Akiko" class="character-image">
+                </div>
+                <div class="character-name">Akiko</div>
+            </a>
+        </div>
+        
+        <div class="character-card" data-category="ultimo-anjo" data-name="Benjamin">
+            <a href="https://lacosprofanos.com.br/personagens/benjamin.html" class="character-link">
+                <div class="image-container">
+                    <img src="https://i.imgur.com/mgxXSto.png" alt="Benjamin" class="character-image">
+                </div>
+                <div class="character-name">Benjamin</div>
+            </a>
+        </div>
+        
+        <div class="character-card" data-category="pacto-vinganca menino-profecias" data-name="Cleide">
+            <a href="https://lacosprofanos.com.br/personagens/cleide.html" class="character-link">
+                <div class="image-container">
+                    <img src="https://i.imgur.com/lEVGfIu.png" alt="Cleide" class="character-image">
+                </div>
+                <div class="character-name">Cleide</div>
+            </a>
+        </div>
+        
+        <div class="character-card" data-category="pacto-vinganca" data-name="Dahlia">
+            <a href="https://lacosprofanos.com.br/personagens/dahlia.html" class="character-link">
+                <div class="image-container">
+                    <img src="https://i.imgur.com/mgxXSto.png" alt="Dahlia" class="character-image">
+                </div>
+                <div class="character-name">Dahlia</div>
+            </a>
+        </div>
+        
+        <div class="character-card" data-category="ultimo-anjo" data-name="Damian e Shadow">
+            <a href="https://lacosprofanos.com.br/personagens/damian-shadow.html" class="character-link">
+                <div class="image-container">
+                    <img src="https://i.imgur.com/JEer4tF.png" alt="Damian e Shadow" class="character-image">
+                </div>
+                <div class="character-name">Damian e Shadow</div>
+            </a>
+        </div>
+        
+        <div class="character-card" data-category="ultimo-anjo" data-name="Elijah">
+            <a href="https://lacosprofanos.com.br/personagens/elijah.html" class="character-link">
+                <div class="image-container">
+                    <img src="https://i.imgur.com/MzVAskH.jpeg" alt="Elijah" class="character-image">
+                </div>
+                <div class="character-name">Elijah</div>
+            </a>
+        </div>
+        
+        <div class="character-card" data-category="pacto-vinganca" data-name="Ethan">
+            <a href="https://lacosprofanos.com.br/personagens/ethan.html" class="character-link">
+                <div class="image-container">
+                    <img src="https://i.imgur.com/uSb5Rrd.png" alt="Ethan" class="character-image">
+                </div>
+                <div class="character-name">Ethan</div>
+            </a>
+        </div>
+        
+        <div class="character-card" data-category="pacto-vinganca" data-name="Gabriel">
+            <a href="https://lacosprofanos.com.br/personagens/gabriel.html" class="character-link">
+                <div class="image-container">
+                    <img src="https://i.imgur.com/7zAcS65.png" alt="Gabriel" class="character-image">
+                </div>
+                <div class="character-name">Gabriel</div>
+            </a>
+        </div>
+        
+        <div class="character-card" data-category="pacto-vinganca" data-name="Havilah">
+            <a href="https://lacosprofanos.com.br/personagens/havilah.html" class="character-link">
+                <div class="image-container">
+                    <img src="https://i.imgur.com/7zAcS65.png" alt="Havilah" class="character-image">
+                </div>
+                <div class="character-name">Havilah</div>
+            </a>
+        </div>
+        
+        <div class="character-card" data-category="ultimo-anjo" data-name="Hyun-jun">
+            <a href="https://lacosprofanos.com.br/personagens/hyun-jun.html" class="character-link">
+                <div class="image-container">
+                    <img src="https://i.imgur.com/7zAcS65.png" alt="Hyun-jun" class="character-image">
+                </div>
+                <div class="character-name">Hyun-jun</div>
+            </a>
+        </div>
+        
+        <div class="character-card" data-category="ultimo-anjo" data-name="Isabel">
+            <a href="https://lacosprofanos.com.br/personagens/isabel.html" class="character-link">
+                <div class="image-container">
+                    <img src="https://i.imgur.com/0J4DicE.jpeg" alt="Isabel" class="character-image">
+                </div>
+                <div class="character-name">Isabel</div>
+            </a>
+        </div>
+        
+        <div class="character-card" data-category="ultimo-anjo" data-name="Kaleb">
+            <a href="https://lacosprofanos.com.br/personagens/kaleb.html" class="character-link">
+                <div class="image-container">
+                    <img src="https://i.imgur.com/WVrHpaB.jpeg" alt="Kaleb" class="character-image">
+                </div>
+                <div class="character-name">Kaleb</div>
+            </a>
+        </div>
+        
+        <div class="character-card" data-category="pacto-vinganca" data-name="Khadir">
+            <a href="https://lacosprofanos.com.br/personagens/khadir.html" class="character-link">
+                <div class="image-container">
+                    <img src="https://i.imgur.com/h8IpExj.png" alt="Khadir" class="character-image">
+                </div>
+                <div class="character-name">Khadir</div>
+            </a>
+        </div>
+        
+        <div class="character-card" data-category="ultimo-anjo" data-name="Luna">
+            <a href="https://lacosprofanos.com.br/personagens/luna.html" class="character-link">
+                <div class="image-container">
+                    <img src="https://i.imgur.com/sJaptXH.jpeg" alt="Luna" class="character-image">
+                </div>
+                <div class="character-name">Luna</div>
+            </a>
+        </div>
+        
+        <div class="character-card" data-category="pacto-vinganca" data-name="Maria">
+            <a href="https://lacosprofanos.com.br/personagens/maria.html" class="character-link">
+                <div class="image-container">
+                    <img src="https://i.imgur.com/7zAcS65.png" alt="Maria" class="character-image">
+                </div>
+                <div class="character-name">Maria</div>
+            </a>
+        </div>
+        
+        <div class="character-card" data-category="pacto-vinganca" data-name="Micaiah">
+            <a href="https://lacosprofanos.com.br/personagens/micaiah.html" class="character-link">
+                <div class="image-container">
+                    <img src="https://i.imgur.com/7zAcS65.png" alt="Micaiah" class="character-image">
+                </div>
+                <div class="character-name">Micaiah</div>
+            </a>
+        </div>
+        
+        <div class="character-card" data-category="pacto-vinganca" data-name="Natan">
+            <a href="https://lacosprofanos.com.br/personagens/natan.html" class="character-link">
+                <div class="image-container">
+                    <img src="https://i.imgur.com/7zAcS65.png" alt="Natan" class="character-image">
+                </div>
+                <div class="character-name">Natan</div>
+            </a>
+        </div>
+        
+        <div class="character-card" data-category="pacto-vinganca" data-name="Nogah">
+            <a href="https://lacosprofanos.com.br/personagens/nogah.html" class="character-link">
+                <div class="image-container">
+                    <img src="https://i.imgur.com/7zAcS65.png" alt="Nogah" class="character-image">
+                </div>
+                <div class="character-name">Nogah</div>
+            </a>
+        </div>
+        
+        <div class="character-card" data-category="ultimo-anjo" data-name="Olivia">
+            <a href="https://lacosprofanos.com.br/personagens/olivia.html" class="character-link">
+                <div class="image-container">
+                    <img src="https://i.imgur.com/hI23MFL.png" alt="Olivia" class="character-image">
+                </div>
+                <div class="character-name">Olivia</div>
+            </a>
+        </div>
+        
+        <div class="character-card" data-category="menino-profecias" data-name="Sarah">
             <a href="https://lacosprofanos.com.br/personagens/sarah.html" class="character-link">
                 <div class="image-container">
                     <img src="https://i.imgur.com/e5RtL8F.png" alt="Sarah" class="character-image">
@@ -579,7 +583,25 @@
             </a>
         </div>
         
-        <div class="character-card" data-category="menino-profecias">
+        <div class="character-card" data-category="ultimo-anjo" data-name="Star">
+            <a href="https://lacosprofanos.com.br/personagens/star.html" class="character-link">
+                <div class="image-container">
+                    <img src="https://i.imgur.com/gi9edJC.png" alt="Star" class="character-image">
+                </div>
+                <div class="character-name">Star</div>
+            </a>
+        </div>
+        
+        <div class="character-card" data-category="pacto-vinganca" data-name="Tadeu">
+            <a href="https://lacosprofanos.com.br/personagens/tadeu.html" class="character-link">
+                <div class="image-container">
+                    <img src="https://i.imgur.com/7zAcS65.png" alt="Tadeu" class="character-image">
+                </div>
+                <div class="character-name">Tadeu</div>
+            </a>
+        </div>
+        
+        <div class="character-card" data-category="menino-profecias" data-name="Thomas">
             <a href="https://lacosprofanos.com.br/personagens/thomas.html" class="character-link">
                 <div class="image-container">
                     <img src="https://i.imgur.com/tMe0m4Y.png" alt="Thomas" class="character-image">
@@ -588,12 +610,30 @@
             </a>
         </div>
         
-        <div class="character-card" data-category="menino-profecias">
-            <a href="https://lacosprofanos.com.br/personagens/yaziell.html" class="character-link">
+        <div class="character-card" data-category="pacto-vinganca" data-name="Viktor">
+            <a href="https://lacosprofanos.com.br/personagens/viktor.html" class="character-link">
                 <div class="image-container">
-                    <img src="https://i.imgur.com/AbcwKlM.png" alt="Yaziell" class="character-image">
+                    <img src="https://i.imgur.com/7zAcS65.png" alt="Viktor" class="character-image">
                 </div>
-                <div class="character-name">Yaziell</div>
+                <div class="character-name">Viktor</div>
+            </a>
+        </div>
+        
+        <div class="character-card" data-category="ultimo-anjo" data-name="Wolf">
+            <a href="https://lacosprofanos.com.br/personagens/wolf.html" class="character-link">
+                <div class="image-container">
+                    <img src="https://i.imgur.com/RdXONj0.jpeg" alt="Wolf" class="character-image">
+                </div>
+                <div class="character-name">Wolf</div>
+            </a>
+        </div>
+        
+        <div class="character-card" data-category="ultimo-anjo" data-name="Zara">
+            <a href="https://lacosprofanos.com.br/personagens/zara.html" class="character-link">
+                <div class="image-container">
+                    <img src="https://i.imgur.com/7zAcS65.png" alt="Zara" class="character-image">
+                </div>
+                <div class="character-name">Zara</div>
             </a>
         </div>
     </div>
@@ -612,22 +652,68 @@
     const characterCards = document.querySelectorAll('.character-card');
     const filterTagsContainer = document.getElementById('filter-tags');
     const menuToggle = document.getElementById('menu-toggle');
+    const searchInput = document.getElementById('search-input');
+    const catalogContainer = document.querySelector('.catalog');
+    
+    // Personagens importantes que devem aparecer primeiro
+    const importantCharacters = ['Hamiah', 'Enaya', 'Luke', '???', 'Wahi', 'Askot', 'Emilly', 'Yaziell', 'Mel'];
     
     // Função para aplicar os filtros
     function applyFilters() {
+        const searchTerm = searchInput.value.toLowerCase().trim();
+        
         characterCards.forEach(card => {
             const categories = card.getAttribute('data-category').split(' ');
+            const name = card.getAttribute('data-name').toLowerCase();
             
-            // Verifica se o cartão corresponde a algum filtro ativo
-            const shouldShow = activeFilters.some(filter => 
+            // Verifica se o cartão corresponde aos filtros ativos
+            const matchesFilter = activeFilters.some(filter => 
                 filter === 'all' || categories.includes(filter)
             );
             
-            card.style.display = shouldShow ? 'block' : 'none';
+            // Verifica se corresponde ao termo de pesquisa
+            const matchesSearch = searchTerm === '' || name.includes(searchTerm);
+            
+            card.style.display = (matchesFilter && matchesSearch) ? 'block' : 'none';
         });
         
         updateFilterTags();
         updateActiveFilterButtons();
+        sortCharacters(searchTerm);
+    }
+    
+    // Função para ordenar os personagens
+    function sortCharacters(searchTerm) {
+        // Se há um termo de pesquisa, não reordenamos para manter a relevância da pesquisa
+        if (searchTerm !== '') return;
+        
+        const cards = Array.from(characterCards);
+        const visibleCards = cards.filter(card => card.style.display !== 'none');
+        
+        // Ordena os cartões visíveis
+        visibleCards.sort((a, b) => {
+            const aName = a.getAttribute('data-name');
+            const bName = b.getAttribute('data-name');
+            const aIsImportant = a.getAttribute('data-important') === 'true';
+            const bIsImportant = b.getAttribute('data-important') === 'true';
+            
+            // Personagens importantes primeiro
+            if (aIsImportant && !bIsImportant) return -1;
+            if (!aIsImportant && bIsImportant) return 1;
+            
+            // Se ambos são importantes, mantém a ordem definida
+            if (aIsImportant && bIsImportant) {
+                return importantCharacters.indexOf(aName) - importantCharacters.indexOf(bName);
+            }
+            
+            // Ordem alfabética para os demais
+            return aName.localeCompare(bName);
+        });
+        
+        // Reorganiza os elementos no DOM
+        visibleCards.forEach(card => {
+            catalogContainer.appendChild(card);
+        });
     }
     
     // Função para atualizar as tags de filtro ativas
@@ -720,7 +806,10 @@
         });
     });
     
-    // Aplica os filtros iniciais
+    // Adiciona event listener para a pesquisa
+    searchInput.addEventListener('input', applyFilters);
+    
+    // Aplica os filtros iniciais e ordenação
     applyFilters();
 </script>
 
