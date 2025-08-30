@@ -456,16 +456,36 @@
             opacity: 0.3;
         }
 
-        /* Troféu de personagem mais gostado */
+        /* NOVO ESTILO DO TROFÉU - MELHORADO */
+        .popularity-badge {
+            position: relative;
+            display: inline-flex;
+            margin-bottom: 20px;
+            z-index: 10;
+        }
+
         .popularity-trophy {
-            position: absolute;
-            top: 20px;
-            right: 20px;
-            font-size: 2.5rem;
+            font-size: 2.8rem;
             color: #f1c40f;
             animation: bounce 2s infinite;
-            z-index: 10;
             text-shadow: 0 0 10px rgba(241, 196, 15, 0.7);
+            position: relative;
+            z-index: 2;
+        }
+
+        .popularity-text {
+            background: linear-gradient(45deg, #a3005b, #f1c40f);
+            color: white;
+            padding: 8px 15px;
+            border-radius: 20px;
+            font-weight: bold;
+            font-size: 0.9rem;
+            margin-left: -10px;
+            z-index: 1;
+            display: flex;
+            align-items: center;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+            white-space: nowrap;
         }
 
         @keyframes bounce {
@@ -503,9 +523,26 @@
             }
             
             .popularity-trophy {
-                font-size: 2rem;
-                top: 15px;
-                right: 15px;
+                font-size: 2.2rem;
+            }
+            
+            .popularity-text {
+                font-size: 0.8rem;
+                padding: 6px 12px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .popularity-badge {
+                flex-direction: column;
+                align-items: center;
+                margin-bottom: 15px;
+            }
+            
+            .popularity-text {
+                margin-left: 0;
+                margin-top: 5px;
+                font-size: 0.75rem;
             }
         }
 
@@ -551,8 +588,10 @@
 <div class="container">
     <!-- Seção principal com imagem em destaque -->
     <section class="hero-section">
-        <div class="popularity-trophy" title="Personagem mais gostado">
-            <i class="fas fa-trophy"></i>
+        <!-- TROFÉU MELHORADO - AGORA RESPONSIVO -->
+        <div class="popularity-badge" title="Personagem mais gostado">
+            <i class="fas fa-trophy popularity-trophy"></i>
+            <div class="popularity-text">Favorito dos Fãs</div>
         </div>
         
         <div class="character-image-container" id="image-container">
