@@ -1,1 +1,519 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Prioridades - Laços Profanos</title>
+    <link rel="icon" href="https://i.imgur.com/mgxXSto.png" type="image/png">
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+        
+        body {
+            background-color: #121212;
+            background-image: radial-gradient(#2a2a2a 1px, transparent 1px);
+            background-size: 24px 24px;
+            color: white;
+            font-family: sans-serif;
+            width: 100%;
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
 
+        .banner-container {
+            width: 100%;
+            max-height: 720px;
+            overflow: hidden;
+            display: flex;
+            justify-content: center;
+            background-color: #1a1a1a;
+        }
+
+        .banner-img {
+            width: 1280px;
+            height: 720px;
+            object-fit: cover;
+        }
+
+        .menu-container {
+            display: flex;
+            justify-content: space-between;
+            max-width: 1200px;
+            margin: 20px auto;
+            padding: 0 20px;
+            align-items: center;
+            position: relative;
+        }
+
+        .search-container {
+            display: flex;
+            margin-left: auto;
+            margin-right: 50px;
+        }
+
+        .search-container input {
+            padding: 8px 15px;
+            border: none;
+            border-radius: 8px 0 0 8px;
+            background-color: #2a2a2a;
+            color: white;
+            outline: none;
+            width: 250px;
+        }
+
+        .search-container button {
+            padding: 8px 15px;
+            background-color: #a3005b;
+            color: white;
+            border: none;
+            border-radius: 0 8px 8px 0;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .search-container button:hover {
+            background-color: #850048;
+        }
+
+        /* Menu Hamburguer - Sempre visível */
+        .hamburguer-menu {
+            display: flex;
+            flex-direction: column;
+            cursor: pointer;
+            padding: 5px;
+            z-index: 1001;
+            order: -1; /* Move o hamburguer para o início (esquerda) */
+        }
+
+        .hamburguer-menu span {
+            width: 25px;
+            height: 3px;
+            background-color: white;
+            margin: 3px 0;
+            transition: 0.3s;
+            border-radius: 2px;
+        }
+
+        #menu-toggle {
+            display: none;
+        }
+
+        .mobile-menu {
+            display: none;
+            position: absolute;
+            top: 100%;
+            left: 20px; /* Alterado de right para left */
+            background-color: #1a1a1a;
+            flex-direction: column;
+            padding: 15px;
+            border-radius: 8px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+            z-index: 1000;
+            min-width: 200px;
+        }
+
+        .mobile-menu a {
+            color: white;
+            text-decoration: none;
+            padding: 12px 15px;
+            border-radius: 6px;
+            transition: all 0.3s ease;
+            background-color: #2c3e50;
+            margin-bottom: 8px;
+            text-align: center;
+            white-space: nowrap;
+        }
+
+        .mobile-menu a:hover {
+            background-color: #a3005b;
+        }
+
+        #menu-toggle:checked ~ .mobile-menu {
+            display: flex;
+        }
+
+        /* Animações do menu hamburguer */
+        #menu-toggle:checked ~ .hamburguer-menu span:nth-child(1) {
+            transform: rotate(-45deg) translate(-5px, 6px);
+        }
+        
+        #menu-toggle:checked ~ .hamburguer-menu span:nth-child(2) {
+            opacity: 0;
+        }
+        
+        #menu-toggle:checked ~ .hamburguer-menu span:nth-child(3) {
+            transform: rotate(45deg) translate(-5px, -6px);
+        }
+
+        /* Estilos específicos para a página de prioridades */
+        .prioridades-container {
+            max-width: 1000px;
+            margin: 30px auto;
+            padding: 0 20px;
+        }
+
+        .prioridades-header {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .prioridades-header h1 {
+            color: #f1c40f;
+            font-size: 2.5rem;
+            margin-bottom: 15px;
+        }
+
+        .prioridades-header p {
+            color: #ccc;
+            font-size: 1.1rem;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        .categoria {
+            background-color: #1a1a1a;
+            border-radius: 10px;
+            padding: 25px;
+            margin-bottom: 30px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+        }
+
+        .categoria h2 {
+            color: #f1c40f;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #a3005b;
+        }
+
+        .item {
+            display: flex;
+            align-items: center;
+            padding: 15px;
+            margin-bottom: 15px;
+            background-color: #2a2a2a;
+            border-radius: 8px;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .item:hover {
+            transform: translateX(5px);
+            box-shadow: 0 5px 15px rgba(163, 0, 91, 0.2);
+        }
+
+        .status {
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            margin-right: 15px;
+            flex-shrink: 0;
+        }
+
+        .status.adiado {
+            background-color: #e74c3c;
+        }
+
+        .status.planejado {
+            background-color: #f39c12;
+        }
+
+        .status.pronto {
+            background-color: #2ecc71;
+        }
+
+        .status.producao {
+            background-color: #3498db;
+        }
+
+        .status.priorizado {
+            background-color: #9b59b6;
+        }
+
+        .item-info {
+            flex-grow: 1;
+        }
+
+        .item-info h3 {
+            margin-bottom: 5px;
+            color: white;
+        }
+
+        .item-info p {
+            color: #ccc;
+            font-size: 0.9rem;
+        }
+
+        .badge {
+            padding: 5px 10px;
+            border-radius: 15px;
+            font-size: 0.8rem;
+            font-weight: bold;
+            margin-left: 10px;
+        }
+
+        .badge.adiado {
+            background-color: #e74c3c;
+        }
+
+        .badge.planejado {
+            background-color: #f39c12;
+        }
+
+        .badge.pronto {
+            background-color: #2ecc71;
+        }
+
+        .badge.producao {
+            background-color: #3498db;
+        }
+
+        .badge.priorizado {
+            background-color: #9b59b6;
+        }
+
+        footer {
+            background-color: #1a1a1a;
+            color: white;
+            text-align: center;
+            padding: 30px;
+            margin-top: 50px;
+            border-top: 1px solid #2a2a2a;
+        }
+
+        @media (max-width: 768px) {
+            .menu-container {
+                flex-wrap: wrap;
+                justify-content: flex-end; /* Alinha itens à direita */
+            }
+            
+            .hamburguer-menu {
+                margin-right: auto; /* Mantém o hamburguer à esquerda */
+            }
+            
+            .search-container {
+                order: 3;
+                width: 100%;
+                max-width: 100%;
+                margin: 15px 0 0 0;
+            }
+            
+            .search-container input {
+                width: 100%;
+            }
+            
+            .mobile-menu {
+                left: 20px;
+                right: auto;
+                margin: 10px 0;
+                width: calc(100% - 40px);
+            }
+            
+            .prioridades-header h1 {
+                font-size: 2rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .mobile-menu {
+                left: 10px;
+                width: calc(100% - 20px);
+            }
+            
+            .item {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+            
+            .status {
+                margin-bottom: 10px;
+            }
+            
+            .badge {
+                margin: 10px 0 0 0;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="menu-container">
+        <input type="checkbox" id="menu-toggle">
+        
+        <label for="menu-toggle" class="hamburguer-menu">
+            <span></span>
+            <span></span>
+            <span></span>
+        </label>
+        
+        <div class="mobile-menu">
+            <a href="https://lacosprofanos.com.br" target="_blank">Site principal</a>
+            <a href="https://lacosprofanos.com.br/personagens" target="_blank">Personagens</a>
+            <a href="https://lacosprofanos.com.br/icon&wallpaper" target="_blank">Wallpapper e Icons</a>
+            <a href="https://lacosprofanos.com.br">Início</a>
+            <a href="https://lacosprofanos.com.br/#produtos">Produtos</a>
+            <a href="https://lacosprofanos.com.br/#fale-conosco">Fale Conosco</a>
+            <a href="#" id="social-button-mobile">Redes Sociais</a>
+        </div>
+        
+        <div class="search-container">
+            <input type="text" id="search-input" placeholder="Pesquisar prioridades...">
+            <button onclick="searchPriorities()">Buscar</button>
+        </div>
+    </div>
+
+    <div class="prioridades-container">
+        <div class="prioridades-header">
+            <h1>Lista de Prioridades</h1>
+            <p>Acompanhe o que está sendo desenvolvido para o universo de Laços Profanos</p>
+        </div>
+
+        <div class="categoria">
+            <h2>Conteúdo Principal</h2>
+            
+            <div class="item">
+                <div class="status adiado"></div>
+                <div class="item-info">
+                    <h3>Primeiro capítulo de Laços Profanos</h3>
+                    <p>Lançamento do capítulo inicial da história</p>
+                </div>
+                <span class="badge adiado">Adiado</span>
+            </div>
+            
+            <div class="item">
+                <div class="status planejado"></div>
+                <div class="item-info">
+                    <h3>Modelos 3D dos personagens</h3>
+                    <p>Criação de modelos 3D para todos os personagens principais</p>
+                </div>
+                <span class="badge planejado">Planejado</span>
+            </div>
+        </div>
+
+        <div class="categoria">
+            <h2>Wallpapers (Papeis de Parede)</h2>
+            
+            <div class="item">
+                <div class="status planejado"></div>
+                <div class="item-info">
+                    <h3>Wallpaper para computador</h3>
+                    <p>Wallpaper de Laços Profanos: O Último Anjo para desktop</p>
+                </div>
+                <span class="badge planejado">Planejado</span>
+            </div>
+            
+            <div class="item">
+                <div class="status planejado"></div>
+                <div class="item-info">
+                    <h3>Wallpaper para celular</h3>
+                    <p>Wallpaper de Laços Profanos: O Último Anjo para dispositivos móveis</p>
+                </div>
+                <span class="badge planejado">Planejado</span>
+            </div>
+        </div>
+
+        <div class="categoria">
+            <h2>Ícones (Fotos de Perfil)</h2>
+            
+            <div class="item">
+                <div class="status planejado"></div>
+                <div class="item-info">
+                    <h3>Ícone da Hamiah</h3>
+                    <p>Ícone para redes sociais da personagem Hamiah</p>
+                </div>
+                <span class="badge planejado">Planejado</span>
+            </div>
+            
+            <div class="item">
+                <div class="status planejado"></div>
+                <div class="item-info">
+                    <h3>Ícone da Enaya</h3>
+                    <p>Ícone para redes sociais da personagem Enaya</p>
+                </div>
+                <span class="badge planejado">Planejado</span>
+            </div>
+            
+            <div class="item">
+                <div class="status pronto"></div>
+                <div class="item-info">
+                    <h3>Ícone do Kaleb</h3>
+                    <p>Ícone para redes sociais do personagem Kaleb</p>
+                </div>
+                <span class="badge pronto">Pronto</span>
+                 <span class="badge priorizado">Priorizado</span>
+            </div>
+        </div>
+
+        <div class="categoria">
+            <h2>PNGs para Vídeos</h2>
+            
+            <div class="item">
+                <div class="status planejado"></div>
+                <div class="item-info">
+                    <h3>PNGs da Emilly</h3>
+                    <p>Criação de PNGs da personagem Emilly para uso em vídeos</p>
+                </div>
+                <span class="badge planejado">Planejado</span>
+            </div>
+            
+            <div class="item">
+                <div class="status producao"></div>
+                <div class="item-info">
+                    <h3>PNGs da Wahi</h3>
+                    <p>Criação de PNGs da personagem Wahi para uso em vídeos</p>
+                </div>
+                <span class="badge producao">Em produção</span>
+                <span class="badge priorizado">Priorizado</span>
+            </div>
+        
+        </div>
+    </div>
+
+    <footer>
+        <p>&copy; 2025 Laços Profanos - Todos os direitos reservados</p>
+    </footer>
+
+    <script>
+        // Função de pesquisa que ignora acentos, maiúsculas e caracteres especiais
+        function searchPriorities() {
+            const searchTerm = normalizeString(document.getElementById('search-input').value.toLowerCase());
+            const items = document.querySelectorAll('.item-info h3');
+            
+            items.forEach(item => {
+                const itemName = normalizeString(item.textContent.toLowerCase());
+                const itemCard = item.closest('.item');
+                
+                if (itemName.includes(searchTerm)) {
+                    itemCard.style.display = 'flex';
+                } else {
+                    itemCard.style.display = 'none';
+                }
+            });
+        }
+
+        // Função para normalizar strings (remover acentos e caracteres especiais)
+        function normalizeString(str) {
+            return str.normalize('NFD').replace(/[\u0300-\u036f]/g, '')
+                .replace(/[^a-zA-Z0-9]/g, '');
+        }
+
+        // Adicionar evento de tecla para pesquisa ao pressionar Enter
+        document.getElementById('search-input').addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') {
+                searchPriorities();
+            }
+        });
+
+        // Fechar menu mobile ao clicar em um link
+        document.querySelectorAll('.mobile-menu a').forEach(link => {
+            link.addEventListener('click', function() {
+                // Não fechar o menu se for um link externo (com target="_blank")
+                if (!this.getAttribute('target') || this.getAttribute('target') !== '_blank') {
+                    document.getElementById('menu-toggle').checked = false;
+                }
+            });
+        });
+    </script>
+</body>
+</html>
