@@ -242,7 +242,7 @@
 <br>Estrelas surgem quando a noite chega,
 <br>Risos surgem mesmo nas pequenas coisas,
 <br>Sorrisos se espalham sem pedir licença,
-<br>Amor está em gestos simples,
+<br> Amor está em gestos simples,
 <br>Recomeços sempre são possíveis,
 <br>Intuição me guia pelo caminho certo,
 <br>Olhos atentos captam beleza em todo lugar. 
@@ -304,38 +304,12 @@
             // Inicializar a grade vazia
             let gridArray = Array(gridSize).fill().map(() => Array(gridSize).fill(''));
             
-            // Escolher uma direção aleatória para a palavra
-            const directions = [
-                {x: 1, y: 0},   // Horizontal
-                {x: 0, y: 1},   // Vertical
-                {x: 1, y: 1},   // Diagonal
-                {x: -1, y: 1}   // Diagonal inversa
-            ];
+            // Posição fixa para a palavra "AMIGO": linha 7, coluna 8, na horizontal
+            const fixedPosition = {x: 8, y: 7};
             
-            const direction = directions[Math.floor(Math.random() * directions.length)];
-            
-            // Encontrar uma posição inicial válida
-            let startX, startY;
-            let validPosition = false;
-            
-            while (!validPosition) {
-                startX = Math.floor(Math.random() * gridSize);
-                startY = Math.floor(Math.random() * gridSize);
-                
-                // Verificar se a palavra cabe na grade a partir desta posição
-                const endX = startX + direction.x * (word.length - 1);
-                const endY = startY + direction.y * (word.length - 1);
-                
-                if (endX >= 0 && endX < gridSize && endY >= 0 && endY < gridSize) {
-                    validPosition = true;
-                }
-            }
-            
-            // Colocar a palavra na grade
+            // Colocar a palavra na posição fixa (horizontal)
             for (let i = 0; i < word.length; i++) {
-                const x = startX + direction.x * i;
-                const y = startY + direction.y * i;
-                gridArray[y][x] = word[i];
+                gridArray[fixedPosition.y][fixedPosition.x + i] = word[i];
             }
             
             // Preencher o resto da grade com letras aleatórias
@@ -447,6 +421,8 @@
         // Adicionar ruído ao canvas
         function addNoise() {
             const canvas = document.getElementById('gridNoise');
+            if (!canvas) return;
+            
             const ctx = canvas.getContext('2d');
             
             function resizeCanvas() {
@@ -484,7 +460,10 @@
         function checkUrlCode() {
             // Verificar se a URL contém ?2910
             if (window.location.search === '?2910') {
-                document.getElementById('popup').style.display = 'flex';
+                const popup = document.getElementById('popup');
+                if (popup) {
+                    popup.style.display = 'flex';
+                }
             }
         }
         
