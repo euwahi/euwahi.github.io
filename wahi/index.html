@@ -1,1 +1,391 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Linktree da Wahi</title>
+    <link rel="icon" href="https://i.imgur.com/mgxXSto.png" type="image/png">
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+        
+        body {
+            background-color: #121212;
+            background-image: radial-gradient(#2a2a2a 1px, transparent 1px);
+            background-size: 24px 24px;
+            color: white;
+            font-family: sans-serif;
+            width: 100%;
+            min-height: 100vh;
+            overflow-x: hidden;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
 
+        .menu-container {
+            display: flex;
+            justify-content: space-between;
+            width: 100%;
+            max-width: 1200px;
+            margin: 20px auto;
+            padding: 0 20px;
+            align-items: center;
+            position: relative;
+        }
+
+        /* Menu Hamburguer - Sempre visível */
+        .hamburguer-menu {
+            display: flex;
+            flex-direction: column;
+            cursor: pointer;
+            padding: 5px;
+            z-index: 1001;
+        }
+
+        .hamburguer-menu span {
+            width: 25px;
+            height: 3px;
+            background-color: white;
+            margin: 3px 0;
+            transition: 0.3s;
+            border-radius: 2px;
+        }
+
+        #menu-toggle {
+            display: none;
+        }
+
+        .mobile-menu {
+            display: none;
+            position: absolute;
+            top: 100%;
+            left: 20px;
+            background-color: #1a1a1a;
+            flex-direction: column;
+            padding: 15px;
+            border-radius: 8px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+            z-index: 1000;
+            min-width: 200px;
+        }
+
+        .mobile-menu a {
+            color: white;
+            text-decoration: none;
+            padding: 12px 15px;
+            border-radius: 6px;
+            transition: all 0.3s ease;
+            background-color: #2c3e50;
+            margin-bottom: 8px;
+            text-align: center;
+            white-space: nowrap;
+        }
+
+        .mobile-menu a:hover {
+            background-color: #a3005b;
+        }
+
+        #menu-toggle:checked ~ .mobile-menu {
+            display: flex;
+        }
+
+        /* Animações do menu hamburguer */
+        #menu-toggle:checked ~ .hamburguer-menu span:nth-child(1) {
+            transform: rotate(-45deg) translate(-5px, 6px);
+        }
+        
+        #menu-toggle:checked ~ .hamburguer-menu span:nth-child(2) {
+            opacity: 0;
+        }
+        
+        #menu-toggle:checked ~ .hamburguer-menu span:nth-child(3) {
+            transform: rotate(45deg) translate(-5px, -6px);
+        }
+
+        /* Conteúdo principal - Linktree */
+        .linktree-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            max-width: 600px;
+            width: 100%;
+            padding: 40px 20px;
+            margin: 40px 0;
+        }
+
+        .profile-image {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 4px solid #a3005b;
+            margin-bottom: 20px;
+        }
+
+        .title {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+            color: #f1c40f;
+        }
+
+        .description {
+            font-size: 1.2rem;
+            margin-bottom: 30px;
+            color: #ccc;
+            max-width: 80%;
+        }
+
+        .linktree-button {
+            display: block;
+            width: 100%;
+            max-width: 400px;
+            padding: 16px 30px;
+            margin: 12px 0;
+            background-color: #2c3e50;
+            color: white;
+            text-decoration: none;
+            border-radius: 10px;
+            font-weight: bold;
+            font-size: 1.2rem;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+        }
+
+        .linktree-button:hover {
+            background-color: #a3005b;
+            transform: translateY(-3px);
+            box-shadow: 0 6px 12px rgba(0,0,0,0.3);
+        }
+
+        .main-button {
+            background-color: #a3005b;
+            font-size: 1.4rem;
+            padding: 18px 30px;
+            margin-top: 30px;
+        }
+
+        .main-button:hover {
+            background-color: #850048;
+        }
+
+        /* Popup de Redes Sociais */
+        #social-popup-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.85);
+            justify-content: center;
+            align-items: center;
+            z-index: 9999;
+        }
+
+        #social-popup {
+            background: linear-gradient(135deg, #1c1c1c 0%, #2a2a2a 100%);
+            border-radius: 12px;
+            padding: 30px;
+            width: 90%;
+            max-width: 400px;
+            text-align: center;
+            box-shadow: 0 8px 32px rgba(163, 0, 91, 0.3);
+            position: relative;
+        }
+
+        #social-popup h3 {
+            color: #f1c40f;
+            margin-bottom: 25px;
+            font-size: 1.5rem;
+        }
+
+        .social-buttons {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 12px;
+        }
+
+        .social-button {
+            display: block;
+            padding: 12px;
+            background-color: #2c3e50;
+            color: white;
+            text-decoration: none;
+            border-radius: 8px;
+            text-align: center;
+            transition: all 0.3s ease;
+            font-weight: bold;
+        }
+
+        .social-button:hover {
+            background-color: #a3005b;
+            transform: scale(1.03);
+        }
+
+        #social-close-button {
+            position: absolute;
+            top: 15px;
+            right: 20px;
+            background: none;
+            border: none;
+            color: white;
+            font-size: 28px;
+            cursor: pointer;
+            transition: color 0.3s;
+        }
+
+        #social-close-button:hover {
+            color: #f1c40f;
+        }
+
+        footer {
+            background-color: #1a1a1a;
+            color: white;
+            text-align: center;
+            padding: 30px;
+            margin-top: 50px;
+            border-top: 1px solid #2a2a2a;
+            width: 100%;
+            max-width: 1200px;
+            border-radius: 10px;
+        }
+
+        @media (max-width: 768px) {
+            .title {
+                font-size: 2rem;
+            }
+            
+            .description {
+                font-size: 1rem;
+                max-width: 90%;
+            }
+            
+            .linktree-button {
+                font-size: 1.1rem;
+                padding: 14px 20px;
+            }
+            
+            .main-button {
+                font-size: 1.2rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .profile-image {
+                width: 120px;
+                height: 120px;
+            }
+            
+            .title {
+                font-size: 1.8rem;
+            }
+            
+            .mobile-menu {
+                left: 10px;
+                width: calc(100% - 20px);
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="menu-container">
+        <input type="checkbox" id="menu-toggle">
+        
+        <label for="menu-toggle" class="hamburguer-menu">
+            <span></span>
+            <span></span>
+            <span></span>
+        </label>
+        
+        <div class="mobile-menu">
+            <a href="https://lacosprofanos.com.br/personagens" target="_blank">Personagens</a>
+            <a href="https://lacosprofanos.com.br/icon&wallpaper" target="_blank">Wallpapper e Icons</a>
+            <a href="https://lacosprofanos.com.br/prioridades" target="_blank">Lista de prioridades de LP</a>
+            <a href="https://lacosprofanos.com.br/livro" target="_blank">Livro interativo</a>
+            <a href="#">Início</a>
+            <a href="#" id="social-button-mobile">Redes Sociais de Laços Profanos</a>
+        </div>
+    </div>
+
+    <div class="linktree-container">
+        <img class="profile-image" src="https://i.imgur.com/mgxXSto.png" alt="Logo Laços Profanos">
+        <h1 class="title">Wahi</h1>
+        
+        <a href="https://www.youtube.com/@euwahi" class="linktree-button main-button" target="_blank">
+            Canal do youtube
+        </a>
+        
+        <a href="https://www.instagram.com/euwahi" class="linktree-button" target="_blank">
+            Instagram
+        </a>
+        
+        <a href="https://x.com/euwahi" class="linktree-button" target="_blank">
+            X (Twitter)
+        </a>
+        
+        <a href="https://discord.gg/CAs8c9pfBg" class="linktree-button" target="_blank">
+            Junte-se ao Discord
+        </a>
+    </div>
+
+    <!-- Popup de Redes Sociais -->
+    <div id="social-popup-overlay">
+        <div id="social-popup">
+            <button id="social-close-button">×</button>
+            <h3>Redes Sociais de Laços Profanos</h3>
+            <div class="social-buttons">
+                <a class="social-button" href="https://tipa.ai/lacosprofanos" target="_blank">TIPA.AI</a>
+                <a class="social-button" href="https://bit.ly/La%C3%A7osprofanoszap" target="_blank">WHATSAPP</a>
+                <a class="social-button" href="https://t.me/lacosprofanos" target="_blank">TELEGRAM</a>
+                <a class="social-button" href="https://is.gd/DAv0em" target="_blank">YOUTUBE</a>
+                <a class="social-button" href="https://www.instagram.com/lacosprofanos" target="_blank">INSTAGRAM</a>
+                <a class="social-button" href="https://x.com/LacosProfanos" target="_blank">X (Twitter)</a>
+                <a class="social-button" href="https://fanart.lacosprofanos.com.br" target="_blank">MURAL DE FANARTS</a>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <p>&copy; 2025 Laços Profanos - Todos os direitos reservados</p>
+    </footer>
+
+    <script>
+        // Controle do popup de redes sociais
+        document.getElementById('social-button-mobile').addEventListener('click', function(e) {
+            e.preventDefault();
+            document.getElementById('social-popup-overlay').style.display = 'flex';
+            document.getElementById('menu-toggle').checked = false;
+        });
+
+        document.getElementById('social-close-button').addEventListener('click', function() {
+            document.getElementById('social-popup-overlay').style.display = 'none';
+        });
+
+        // Fechar popup ao clicar fora
+        document.getElementById('social-popup-overlay').addEventListener('click', function(e) {
+            if (e.target === this) {
+                this.style.display = 'none';
+            }
+        });
+
+        // Fechar menu mobile ao clicar em um link
+        document.querySelectorAll('.mobile-menu a').forEach(link => {
+            link.addEventListener('click', function() {
+                // Não fechar o menu se for um link externo (com target="_blank")
+                if (!this.getAttribute('target') || this.getAttribute('target') !== '_blank') {
+                    document.getElementById('menu-toggle').checked = false;
+                }
+            });
+        });
+    </script>
+</body>
+</html>
