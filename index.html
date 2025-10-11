@@ -29,13 +29,17 @@
 
     .banner {
         width: 100%;
-        height: 200px;
+        /* Removida a altura fixa para manter proporções originais */
         background-image: url('https://i.imgur.com/KVkn4aT.gif');
-        background-size: cover;
+        background-size: contain; /* Alterado para conter a imagem inteira */
         background-position: center;
+        background-repeat: no-repeat;
         border-radius: 8px;
         margin-bottom: 30px;
         box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
+        /* Adicionado aspect-ratio ou altura mínima para garantir visibilidade */
+        min-height: 150px;
+        aspect-ratio: 16/9; /* Proporção comum para banners */
     }
 
     .navegacao {
@@ -148,6 +152,7 @@
         font-size: 14px;
         cursor: pointer;
         transition: all 0.3s ease;
+        text-decoration: none;
     }
 
     .rede-social:hover {
@@ -257,8 +262,8 @@
     <!-- Navegação -->
     <div class="redes-sociais">
         <a href="https://lacosprofanos.com.br/icon&wallpaper/" class="rede-social">Wallpapers e icons</a>
-        </div>
-        <br>
+    </div>
+    <br>
 
     <!-- Conteúdo Principal -->
     <div class="conteudo">
@@ -278,7 +283,7 @@
             <p>🍃 Molton — o continente intermediário, de equilíbrio entre frio e calor, diversidade natural e cultural.</p>
             <p>🔥 Clifton — o continente quente, repleto de calor intenso, vida vibrante e tradições moldadas pelo sol.</p>
         </div>
-    
+    </div>
 
     <!-- Trailer -->
     <div class="trailer-container">
@@ -286,7 +291,6 @@
             <source src="https://i.imgur.com/BRxaHek.mp4" type="video/mp4">
             Seu navegador não suporta o elemento de vídeo.
         </video>
-    </div>
     </div>
 
     <!-- Redes Sociais -->
@@ -301,8 +305,6 @@
          <a href="https://t.me/lacosprofanos" class="rede-social">Canal no Telegram</a>
         <a href="https://www.youtube.com/@lacosprofanos" class="rede-social">Canal do Youtube</a>
         <a href="https://www.reddit.com/r/lacosprofanos" class="rede-social">Comunidade no Reddit</a>
-       
-        
     </div>
 </div>
 </body>
