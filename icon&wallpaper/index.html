@@ -14,6 +14,7 @@
             --accent: #4a76d0;
             --accent-hover: #5a86e0;
             --border: #333;
+            --success: #4CAF50;
         }
 
         * {
@@ -67,6 +68,29 @@
 
         .btn-primary:hover {
             background-color: var(--accent-hover);
+        }
+
+        .btn-download {
+            background-color: var(--success);
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            margin-top: 15px;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .btn-download:hover {
+            background-color: #45a049;
+        }
+
+        .btn-download i {
+            font-size: 1.1rem;
         }
 
         .search-section {
@@ -132,12 +156,27 @@
 
         .item {
             text-align: center;
+            margin-bottom: 25px;
+            padding-bottom: 20px;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .item:last-child {
+            border-bottom: none;
+            margin-bottom: 0;
+            padding-bottom: 0;
         }
 
         .item img {
             max-width: 100%;
             border-radius: 8px;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            transition: transform 0.3s;
+            cursor: pointer;
+        }
+
+        .item img:hover {
+            transform: scale(1.02);
         }
 
         .item-title {
@@ -152,6 +191,19 @@
             font-size: 0.9rem;
         }
 
+        .item-actions {
+            margin-top: 15px;
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+        }
+
+        .download-info {
+            font-size: 0.8rem;
+            color: var(--text-secondary);
+            margin-top: 5px;
+        }
+
         footer {
             text-align: center;
             margin-top: 40px;
@@ -159,6 +211,55 @@
             border-top: 1px solid var(--border);
             color: var(--text-secondary);
             font-size: 0.9rem;
+        }
+
+        /* Modal para visualização de imagem */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.9);
+            animation: fadeIn 0.3s;
+        }
+
+        .modal-content {
+            margin: auto;
+            display: block;
+            max-width: 90%;
+            max-height: 90%;
+            margin-top: 2%;
+            border-radius: 8px;
+        }
+
+        .modal-close {
+            position: absolute;
+            top: 15px;
+            right: 35px;
+            color: #f1f1f1;
+            font-size: 40px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        .modal-close:hover {
+            color: #bbb;
+        }
+
+        .modal-download {
+            position: absolute;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
         }
 
         @media (max-width: 768px) {
@@ -173,6 +274,11 @@
             
             h1 {
                 font-size: 2rem;
+            }
+            
+            .modal-content {
+                max-width: 95%;
+                max-height: 80%;
             }
         }
     </style>
@@ -195,25 +301,53 @@
             <section class="section">
                 <h2 class="section-title">Wallpapers</h2>
                 <div class="item">
-                    <img src="https://i.imgur.com/RA2LetQ.png" alt="Wallpapers">
+                    <img src="https://i.imgur.com/RA2LetQ.png" alt="Wallpaper Hamiah vs Enaya">
                     <h3 class="item-title">Hamiah vs Enaya</h3>
+                    <div class="item-actions">
+                        <button class="btn-download" data-image="https://i.imgur.com/RA2LetQ.png" data-filename="wallpaper-hamiah-vs-enaya.png">
+                            <i>⬇</i> Baixar Wallpaper
+                        </button>
+                    </div>
+                    <p class="download-info">Resolução: 1280x720 • Tamanho: 584 kb</p>
                 </div>
+                
             </section>
 
             <section class="section">
-                <h2 class="section-title">Icons</h2>
+                <h2 class="section-title">Ícones</h2>
                 <div class="item">
-                    <img src="https://i.imgur.com/WVrHpaB.jpeg" alt="Ícone">
-                    <h3 class="item-title">Icon do Kaleb</h3>
+                    <img src="https://i.imgur.com/WVrHpaB.jpeg" alt="Ícone do Kaleb">
+                    <h3 class="item-title">Ícone do Kaleb</h3>
+                    <div class="item-actions">
+                        <button class="btn-download" data-image="https://i.imgur.com/WVrHpaB.jpeg" data-filename="icone-kaleb.jpeg">
+                            <i>⬇</i> Baixar Ícone
+                        </button>
+                    </div>
+                    <p class="download-info">Resolução: 736x736 • Tamanho: 57,78 kb</p>
                 </div>
             </section>
         </main>
+        
+        <!-- Modal para visualização de imagem -->
+        <div id="imageModal" class="modal">
+            <span class="modal-close">&times;</span>
+            <img class="modal-content" id="modalImage">
+            <button class="btn-download modal-download" id="modalDownload">
+                <i>⬇</i> Baixar Imagem
+            </button>
+        </div>
     </div>
 
     <script>
         document.addEventListener('DOMContentLoaded', function() {
             const searchInput = document.querySelector('.search-input');
             const searchBtn = document.querySelector('.search-btn');
+            const downloadButtons = document.querySelectorAll('.btn-download');
+            const modal = document.getElementById('imageModal');
+            const modalImage = document.getElementById('modalImage');
+            const modalDownload = document.getElementById('modalDownload');
+            const modalClose = document.querySelector('.modal-close');
+            const itemImages = document.querySelectorAll('.item img');
             
             // Função para normalizar texto (remover acentos e converter para minúsculas)
             function normalizeText(text) {
@@ -249,6 +383,36 @@
                 });
             }
             
+            // Função para baixar imagem
+            function downloadImage(imageUrl, filename) {
+                // Criar um link temporário para download
+                const link = document.createElement('a');
+                link.href = imageUrl;
+                link.download = filename;
+                document.body.appendChild(link);
+                link.click();
+                document.body.removeChild(link);
+                
+                // Feedback visual (opcional)
+                const button = event.target.closest('.btn-download');
+                const originalText = button.innerHTML;
+                button.innerHTML = '<i>✓</i> Baixado!';
+                button.style.backgroundColor = '#2E7D32';
+                
+                setTimeout(() => {
+                    button.innerHTML = originalText;
+                    button.style.backgroundColor = '';
+                }, 2000);
+            }
+            
+            // Função para abrir modal com imagem
+            function openModal(imageUrl, filename) {
+                modalImage.src = imageUrl;
+                modalDownload.setAttribute('data-image', imageUrl);
+                modalDownload.setAttribute('data-filename', filename);
+                modal.style.display = 'block';
+            }
+            
             // Event listeners para busca
             searchBtn.addEventListener('click', performSearch);
             searchInput.addEventListener('keyup', function(event) {
@@ -258,6 +422,44 @@
                 
                 // Busca em tempo real (opcional)
                 performSearch();
+            });
+            
+            // Event listeners para download
+            downloadButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    const imageUrl = this.getAttribute('data-image');
+                    const filename = this.getAttribute('data-filename');
+                    downloadImage(imageUrl, filename);
+                });
+            });
+            
+            // Event listeners para visualização de imagem
+            itemImages.forEach(img => {
+                img.addEventListener('click', function() {
+                    const item = this.closest('.item');
+                    const downloadBtn = item.querySelector('.btn-download');
+                    const imageUrl = this.src;
+                    const filename = downloadBtn.getAttribute('data-filename');
+                    openModal(imageUrl, filename);
+                });
+            });
+            
+            // Event listeners para o modal
+            modalClose.addEventListener('click', function() {
+                modal.style.display = 'none';
+            });
+            
+            modalDownload.addEventListener('click', function() {
+                const imageUrl = this.getAttribute('data-image');
+                const filename = this.getAttribute('data-filename');
+                downloadImage(imageUrl, filename);
+            });
+            
+            // Fechar modal ao clicar fora da imagem
+            window.addEventListener('click', function(event) {
+                if (event.target === modal) {
+                    modal.style.display = 'none';
+                }
             });
         });
     </script>
