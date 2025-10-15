@@ -1,318 +1,349 @@
-we<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-<meta charset="UTF-8">
-<meta name="google-adsense-account" content="ca-pub-2715085153658985">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<link rel="icon" href="https://i.imgur.com/mgxXSto.png" type="image/png">
-<title>Laços Profanos</title>
-<style>
-    * {
-        margin: 0;
-        padding: 0;
-        box-sizing: border-box;
-        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    }
+    <meta charset="UTF-8">
+    <meta name="google-adsense-account" content="ca-pub-2715085153658985">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="https://i.imgur.com/mgxXSto.png" type="image/png">
+    <title>Laços Profanos</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
 
-    body {
-        background-color: #1a1a1a;
-        color: #e0e0e0;
-        background-image: url('https://www.transparenttextures.com/patterns/dark-mosaic.png');
-        padding: 20px;
-        min-height: 100vh;
-    }
+        body {
+            background-color: #1a1a1a;
+            color: #e0e0e0;
+            background-image: url('https://www.transparenttextures.com/patterns/dark-mosaic.png');
+            padding: 20px;
+            min-height: 100vh;
+        }
 
-    .parede {
-        max-width: 1200px;
-        margin: 0 auto;
-        position: relative;
-        min-height: 100vh;
-    }
+        .parede {
+            max-width: 1200px;
+            margin: 0 auto;
+            position: relative;
+            min-height: 100vh;
+        }
 
-    .banner {
-        width: 100%;
-        /* Removida a altura fixa para manter proporções originais */
-        background-image: url('https://i.imgur.com/KVkn4aT.gif');
-        background-size: contain; /* Alterado para conter a imagem inteira */
-        background-position: center;
-        background-repeat: no-repeat;
-        border-radius: 8px;
-        margin-bottom: 30px;
-        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
-        /* Adicionado aspect-ratio ou altura mínima para garantir visibilidade */
-        min-height: 150px;
-        aspect-ratio: 16/9; /* Proporção comum para banners */
-    }
+        .banner {
+            width: 100%;
+            background-image: url('https://i.imgur.com/SS6mRYP.png');
+            background-size: contain;
+            background-position: center;
+            background-repeat: no-repeat;
+            border-radius: 8px;
+            margin-bottom: 15px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
+            min-height: 150px;
+            aspect-ratio: 16/9;
+            cursor: pointer;
+        }
 
-    .navegacao {
-        display: flex;
-        justify-content: center;
-        gap: 20px;
-        margin-bottom: 40px;
-    }
+        .footer-banner {
+            text-align: center;
+            color: #c9a959;
+            font-size: 18px;
+            font-weight: bold;
+            margin-bottom: 30px;
+            padding: 10px;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+        }
 
-    .botao {
-        background-color: #2a2a2a;
-        color: #e0e0e0;
-        border: 2px solid #444;
-        padding: 12px 25px;
-        border-radius: 30px;
-        font-size: 16px;
-        font-weight: bold;
-        cursor: pointer;
-        transition: all 0.3s ease;
-        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
-    }
+        .navegacao {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin-bottom: 40px;
+            flex-wrap: wrap;
+        }
 
-    .botao:hover {
-        background-color: #3a3a3a;
-        transform: translateY(-3px);
-        box-shadow: 0 6px 12px rgba(0, 0, 0, 0.4);
-    }
+        .botao {
+            background-color: #2a2a2a;
+            color: #e0e0e0;
+            border: 2px solid #444;
+            padding: 12px 25px;
+            border-radius: 30px;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+        }
 
-    .conteudo {
-        display: grid;
-        grid-template-columns: 1fr;
-        gap: 40px;
-        margin-bottom: 40px;
-        position: relative;
-    }
+        .botao:hover {
+            background-color: #3a3a3a;
+            transform: translateY(-3px);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.4);
+        }
 
-    .quadro {
-        background-color: #2a2a2a;
-        border: 2px solid #444;
-        border-radius: 8px;
-        padding: 20px;
-        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4);
-        position: relative;
-        transition: transform 0.3s ease;
-        min-height: 250px;
-    }
+        .conteudo {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 40px;
+            margin-bottom: 40px;
+            position: relative;
+        }
 
-    .quadro:hover {
-        transform: translateY(-5px);
-    }
+        .quadro {
+            background-color: #2a2a2a;
+            border: 2px solid #444;
+            border-radius: 8px;
+            padding: 20px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4);
+            position: relative;
+            transition: transform 0.3s ease;
+            min-height: 250px;
+        }
 
-    .quadro h2 {
-        color: #c9a959;
-        margin-bottom: 15px;
-        font-size: 22px;
-        border-bottom: 1px solid #444;
-        padding-bottom: 8px;
-    }
+        .quadro:hover {
+            transform: translateY(-5px);
+        }
 
-    .quadro p {
-        line-height: 1.6;
-        margin-bottom: 15px;
-    }
+        .quadro h2 {
+            color: #c9a959;
+            margin-bottom: 15px;
+            font-size: 22px;
+            border-bottom: 1px solid #444;
+            padding-bottom: 8px;
+        }
 
-    /* Chibis em pé sobre o quadro */
-    .chibi {
-        width: 80px;
-        height: auto;
-        position: absolute;
-        top: -80px; /* acima do quadro */
-        object-fit: contain;
-    }
+        .quadro p {
+            line-height: 1.6;
+            margin-bottom: 15px;
+        }
 
-    .chibi-luke {
-        left: 10px; /* canto esquerdo */
-    }
+        .trailer-container {
+            width: 100%;
+            max-width: 800px;
+            margin: 0 auto 40px;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.5);
+        }
 
-    .chibi-hamiah {
-        right: 10px; /* canto direito */
-    }
+        .trailer {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
 
-    .trailer-container {
-        width: 100%;
-        max-width: 800px;
-        margin: 0 auto 40px;
-        border-radius: 8px;
-        overflow: hidden;
-        box-shadow: 0 6px 20px rgba(0, 0, 0, 0.5);
-    }
+        .redes-sociais {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-top: 30px;
+            flex-wrap: wrap;
+        }
 
-    .trailer {
-        width: 100%;
-        height: auto;
-        display: block;
-    }
+        .rede-social {
+            background-color: #2a2a2a;
+            color: #e0e0e0;
+            border: 2px solid #444;
+            padding: 10px 15px;
+            border-radius: 30px;
+            font-size: 14px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            text-align: center;
+            flex: 0 1 auto;
+        }
 
-    .redes-sociais {
-        display: flex;
-        justify-content: center;
-        gap: 20px;
-        margin-top: 30px;
-    }
+        .rede-social:hover {
+            background-color: #3a3a3a;
+            transform: translateY(-3px);
+        }
 
-    .rede-social {
-        background-color: #2a2a2a;
-        color: #e0e0e0;
-        border: 2px solid #444;
-        padding: 10px 20px;
-        border-radius: 30px;
-        font-size: 14px;
-        cursor: pointer;
-        transition: all 0.3s ease;
-        text-decoration: none;
-    }
+        .imagem-continente {
+            width: 100%;
+            margin: 15px 0;
+            border-radius: 5px;
+        }
 
-    .rede-social:hover {
-        background-color: #3a3a3a;
-        transform: translateY(-3px);
-    }
+        /* Estilos para o produto */
+        .produto-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin: 30px 0;
+        }
 
-    .imagem-continente {
-        width: 100%;
-        margin: 15px 0;
-        border-radius: 5px;
-    }
+        .produto {
+            width: 100%;
+            max-width: 300px;
+            background-color: #2a2a2a;
+            border: 2px solid #444;
+            border-radius: 8px;
+            padding: 15px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4);
+            transition: transform 0.3s ease;
+            cursor: pointer;
+            text-align: center;
+        }
 
-    /* Estilos para o ranking de doadores */
-    .ranking {
-        background-color: #2a2a2a;
-        border: 2px solid #444;
-        border-radius: 8px;
-        padding: 20px;
-        margin-bottom: 30px;
-        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4);
-    }
+        .produto:hover {
+            transform: translateY(-5px);
+        }
 
-    .ranking h2 {
-        color: #c9a959;
-        margin-bottom: 20px;
-        font-size: 22px;
-        border-bottom: 1px solid #444;
-        padding-bottom: 8px;
-        text-align: center;
-    }
+        .produto img {
+            width: 100%;
+            border-radius: 5px;
+            margin-bottom: 10px;
+        }
 
-    .doador {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        padding: 12px 15px;
-        margin-bottom: 10px;
-        background-color: #333;
-        border-radius: 5px;
-        border-left: 4px solid #c9a959;
-    }
+        .produto-preco {
+            color: #c9a959;
+            font-weight: bold;
+            font-size: 18px;
+            margin: 10px 0;
+        }
 
-    .doador:first-child {
-        border-left-color: #ffd700;
-        background-color: #3a2e00;
-    }
+        /* Responsividade */
+        @media (max-width: 768px) {
+            .banner {
+                aspect-ratio: 16/9;
+                min-height: 120px;
+            }
+            
+            .footer-banner {
+                font-size: 16px;
+            }
+            
+            .redes-sociais {
+                gap: 10px;
+            }
+            
+            .rede-social {
+                padding: 8px 12px;
+                font-size: 13px;
+            }
+            
+            .quadro {
+                padding: 15px;
+            }
+            
+            .botao {
+                padding: 10px 20px;
+                font-size: 14px;
+            }
+        }
 
-    .doador:nth-child(2) {
-        border-left-color: #c0c0c0;
-        background-color: #2a2a2a;
-    }
-
-    .doador:nth-child(3) {
-        border-left-color: #cd7f32;
-        background-color: #332200;
-    }
-
-    .nome-doador {
-        font-weight: bold;
-        color: #e0e0e0;
-    }
-
-    .valor-doador {
-        color: #c9a959;
-        font-weight: bold;
-    }
-
-    .botao-doacao {
-        background: linear-gradient(45deg, #c9a959, #ffd700);
-        color: #1a1a1a;
-        border: none;
-        padding: 12px 25px;
-        border-radius: 30px;
-        font-size: 16px;
-        font-weight: bold;
-        cursor: pointer;
-        transition: all 0.3s ease;
-        box-shadow: 0 4px 8px rgba(201, 169, 89, 0.3);
-        display: block;
-        margin: 20px auto;
-        text-decoration: none;
-        text-align: center;
-        width: fit-content;
-    }
-
-    .botao-doacao:hover {
-        transform: translateY(-3px);
-        box-shadow: 0 6px 12px rgba(201, 169, 89, 0.5);
-        background: linear-gradient(45deg, #ffd700, #c9a959);
-    }
-
-    .atualizacao {
-        text-align: center;
-        color: #888;
-        font-size: 12px;
-        margin-top: 10px;
-        font-style: italic;
-    }
-</style>
+        @media (max-width: 480px) {
+            body {
+                padding: 10px;
+            }
+            
+            .banner {
+                min-height: 100px;
+            }
+            
+            .footer-banner {
+                font-size: 14px;
+            }
+            
+            .redes-sociais {
+                gap: 8px;
+            }
+            
+            .rede-social {
+                padding: 6px 10px;
+                font-size: 12px;
+                flex: 1 1 45%;
+            }
+            
+            .quadro h2 {
+                font-size: 18px;
+            }
+            
+            .produto {
+                max-width: 100%;
+            }
+        }
+    </style>
 </head>
 <body>
-<div class="parede">
-    <!-- Banner -->
-    <div class="banner"></div>
+    <!-- Footer do Banner -->
+        <div class="footer-banner">
+            Conheça nossos produtos novos incríveis 
+    <div class="parede">
+        <!-- Banner -->
+        <a href="https://www.zazzle.com.br/z/a3u5u048" target="_blank">
+            <div class="banner"></div>
+        </a>
 
-    <!-- Navegação -->
-    <div class="redes-sociais">
-        <a href="https://lacosprofanos.com.br/icon&wallpaper/" class="rede-social">Wallpapers e icons</a>
-    </div>
-    <br>
+        <!-- Navegação -->
+        <div class="redes-sociais">
+            <a href="https://lacosprofanos.com.br/icon&wallpaper/" class="rede-social">Wallpapers e icons</a>
+        </div>
+        <br>
 
-    <!-- Conteúdo Principal -->
-    <div class="conteudo">
-        <!-- Quadro Sobre Nós -->
-        <div class="quadro">
-            <h2>Sobre Nós</h2>
-            <p>"Laços Profanos nasceu como uma simples história moldada pela fórmula da jornada do herói em nosso mundo. Com o tempo, foi crescendo, tomando forma, e se expandindo até se tornar um universo inteiro — com suas próprias regras, marcos históricos, criaturas, frutos e mistérios que existem apenas lá.</p>
-            <p>Mais do que uma trama, é um projeto construído com cuidado e dedicação, pensado para dar vida a narrativas únicas."</p>
+        <!-- Produto -->
+        <div class="produto-container">
+            <a href="https://www.zazzle.com.br/z/a3u5u048" target="_blank" class="produto">
+                <img src="https://i.imgur.com/fHH6hrx.jpeg" alt="Produto Laços Profanos">
+                <div class="produto-preco">R$ 73,20</div>
+                <div>Comprar Agora</div>
+            </a>
         </div>
 
-        <!-- Quadro A Terra em Laços Profanos -->
-        <div class="quadro">
-            <h2>A Terra em Laços Profanos</h2>
-            <p>"No universo de Laços Profanos, o planeta Terra não é como o nosso. Ele é dividido em apenas três continentes, cada um com suas próprias características, culturas e histórias:"</p>
-            <img src="https://i.imgur.com/jrrLcpW.png" alt="Continentes" class="imagem-continente">
-            <p>❄️ Kelster — o continente frio, marcado por climas rigorosos, paisagens geladas e povos acostumados à resistência.</p>
-            <p>🍃 Molton — o continente intermediário, de equilíbrio entre frio e calor, diversidade natural e cultural.</p>
-            <p>🔥 Clifton — o continente quente, repleto de calor intenso, vida vibrante e tradições moldadas pelo sol.</p>
+        <!-- Conteúdo Principal -->
+        <div class="conteudo">
+            <!-- Quadro Sobre Nós -->
+            <div class="quadro">
+                <h2>Sobre Nós</h2>
+                <p>"Laços Profanos nasceu como uma simples história moldada pela fórmula da jornada do herói em nosso mundo. Com o tempo, foi crescendo, tomando forma, e se expandindo até se tornar um universo inteiro — com suas próprias regras, marcos históricos, criaturas, frutos e mistérios que existem apenas lá.</p>
+                <p>Mais do que uma trama, é um projeto construído com cuidado e dedicação, pensado para dar vida a narrativas únicas."</p>
+            </div>
+
+            <!-- Quadro A Terra em Laços Profanos -->
+            <div class="quadro">
+                <h2>A Terra em Laços Profanos</h2>
+                <p>"No universo de Laços Profanos, o planeta Terra não é como o nosso. Ele é dividido em apenas três continentes, cada um com suas próprias características, culturas e histórias:"</p>
+                <img src="https://i.imgur.com/jrrLcpW.png" alt="Continentes" class="imagem-continente">
+                <p>❄️ Kelster — o continente frio, marcado por climas rigorosos, paisagens geladas e povos acostumados à resistência.</p>
+                <p>🍃 Molton — o continente intermediário, de equilíbrio entre frio e calor, diversidade natural e cultural.</p>
+                <p>🔥 Clifton — o continente quente, repleto de calor intenso, vida vibrante e tradições moldadas pelo sol.</p>
+            </div>
+        </div>
+
+        <!-- Trailer -->
+        <div class="trailer-container">
+            <video class="trailer" controls>
+                <source src="https://i.imgur.com/BRxaHek.mp4" type="video/mp4">
+                Seu navegador não suporta o elemento de vídeo.
+            </video>
+        </div>
+
+        <!-- Redes Sociais -->
+        <div class="redes-sociais">
+            <a href="https://tipa.ai/lacosprofanos" class="rede-social">Canal no Tipa.ai</a>
+            <a href="https://bit.ly/lacosprofanosZap" class="rede-social">Canal do Whatsapp</a>
+            <a href="https://instagram.com/lacosprofanos" class="rede-social">Instagram</a>
+        </div>
+        <div class="redes-sociais">
+            <a href="https://twitter.com/lacosprofanos" class="rede-social">Twitter</a>
+        </div>
+        <div class="redes-sociais">
+            <a href="https://t.me/lacosprofanos" class="rede-social">Canal no Telegram</a>
+            <a href="https://www.youtube.com/@lacosprofanos" class="rede-social">Canal do Youtube</a>
+        </div>
+        <div class="redes-sociais">
+            <a href="https://www.reddit.com/r/lacosprofanos" class="rede-social">Comunidade no Reddit</a>
+        </div>
+        <div class="redes-sociais">
+            <a href="https://discord.gg/CAs8c9pfBg" class="rede-social">Discord</a>
         </div>
     </div>
 
-    <!-- Trailer -->
-    <div class="trailer-container">
-        <video class="trailer" controls>
-            <source src="https://i.imgur.com/BRxaHek.mp4" type="video/mp4">
-            Seu navegador não suporta o elemento de vídeo.
-        </video>
-    </div>
-
-    <!-- Redes Sociais -->
-    <div class="redes-sociais">
-         <a href="https://tipa.ai/lacosprofanos" class="rede-social">Canal no Tipa.ai</a>
-        <a href="https://bit.ly/lacosprofanosZap" class="rede-social">Canal do Whatsapp</a>
-        <a href="https://instagram.com/lacosprofanos" class="rede-social">Instagram</a>
-   </div>
-    <div class="redes-sociais">
-        <a href="https://twitter.com/lacosprofanos" class="rede-social">Twitter</a>
-    <div class="redes-sociais">
-         <a href="https://t.me/lacosprofanos" class="rede-social">Canal no Telegram</a>
-        <a href="https://www.youtube.com/@lacosprofanos" class="rede-social">Canal do Youtube</a>
-    </div>
-  <div class="redes-sociais">
-        <a href="https://www.reddit.com/r/lacosprofanos" class="rede-social">Comunidade no Reddit</a>
-    </div>
-<div class="redes-sociais">
-        <a href="https://discord.gg/CAs8c9pfBg" class="rede-social">Discord</a>
-    </div>
-</div>
+    <script>
+        // Adiciona funcionalidade de clique no banner
+        document.querySelector('.banner').addEventListener('click', function() {
+            window.open('https://www.zazzle.com.br/z/a3u5u048', '_blank');
+        });
+    </script>
 </body>
 </html>
