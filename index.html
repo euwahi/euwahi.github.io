@@ -3,9 +3,6 @@
 <head>
     <meta charset="UTF-8">
     <meta name="google-adsense-account" content="ca-pub-2715085153658985">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="icon" href="https://i.imgur.com/mgxXSto.png" type="image/png">
-
 <!-- Google tag (gtag.js) -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-5159ZC3M24"></script>
 <script>
@@ -16,7 +13,10 @@
   gtag('config', 'G-5159ZC3M24');
 </script>
 
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="https://i.imgur.com/mgxXSto.png" type="image/png">
     <title>Laços Profanos</title>
+    <script src="https://cdn.commoninja.com/sdk/latest/commonninja.js" defer></script>
     <style>
         * {
             margin: 0;
@@ -40,18 +40,12 @@
             min-height: 100vh;
         }
 
-        .banner {
+        .banner-container {
             width: 100%;
-            background-image: url('https://i.imgur.com/SS6mRYP.png');
-            background-size: contain;
-            background-position: center;
-            background-repeat: no-repeat;
             border-radius: 8px;
             margin-bottom: 15px;
+            overflow: hidden;
             box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
-            min-height: 150px;
-            aspect-ratio: 16/9;
-            cursor: pointer;
         }
 
         .footer-banner {
@@ -175,17 +169,15 @@
             border-radius: 5px;
         }
 
-        /* Estilos para o produto */
-        .produto-container {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            margin: 30px 0;
+        /* Estilos para os produtos */
+        .produtos-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 30px;
+            margin: 40px 0;
         }
 
         .produto {
-            width: 100%;
-            max-width: 300px;
             background-color: #2a2a2a;
             border: 2px solid #444;
             border-radius: 8px;
@@ -194,6 +186,9 @@
             transition: transform 0.3s ease;
             cursor: pointer;
             text-align: center;
+            display: flex;
+            flex-direction: column;
+            height: 100%;
         }
 
         .produto:hover {
@@ -202,8 +197,19 @@
 
         .produto img {
             width: 100%;
+            height: 200px;
+            object-fit: contain;
             border-radius: 5px;
             margin-bottom: 10px;
+            background-color: #1a1a1a;
+        }
+
+        .produto-titulo {
+            color: #e0e0e0;
+            font-weight: bold;
+            margin: 10px 0;
+            font-size: 16px;
+            flex-grow: 1;
         }
 
         .produto-preco {
@@ -213,13 +219,14 @@
             margin: 10px 0;
         }
 
+        .produto-link {
+            display: block;
+            text-decoration: none;
+            color: inherit;
+        }
+
         /* Responsividade */
         @media (max-width: 768px) {
-            .banner {
-                aspect-ratio: 16/9;
-                min-height: 120px;
-            }
-            
             .footer-banner {
                 font-size: 16px;
             }
@@ -241,15 +248,16 @@
                 padding: 10px 20px;
                 font-size: 14px;
             }
+            
+            .produtos-container {
+                grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+                gap: 20px;
+            }
         }
 
         @media (max-width: 480px) {
             body {
                 padding: 10px;
-            }
-            
-            .banner {
-                min-height: 100px;
             }
             
             .footer-banner {
@@ -270,34 +278,57 @@
                 font-size: 18px;
             }
             
-            .produto {
-                max-width: 100%;
+            .produtos-container {
+                grid-template-columns: 1fr;
+                gap: 15px;
             }
         }
     </style>
 </head>
 <body>
-    <!-- Footer do Banner -->
-        <div class="footer-banner">
-            Conheça nossos produtos novos incríveis 
     <div class="parede">
-        <!-- Banner -->
-        <a href="https://www.zazzle.com.br/z/a3u5u048" target="_blank">
-            <div class="banner"></div>
-        </a>
+        <!-- Banner Interativo -->
+        <div class="banner-container">
+            <div class="commonninja_component pid-8ddadbd8-fe55-47d0-a739-fe9def7dc195"></div>
+        </div>
+
+        <!-- Footer do Banner -->
+        <div class="footer-banner">
+            Conheça nossos produtos novos incríveis!
+        </div>
 
         <!-- Navegação -->
         <div class="redes-sociais">
             <a href="https://lacosprofanos.com.br/icon&wallpaper/" class="rede-social">Wallpapers e icons</a>
         </div>
-        <br>
+</div>
+        <!-- Produtos -->
 
-        <!-- Produto -->
-        <div class="produto-container">
-            <a href="https://www.zazzle.com.br/z/a3u5u048" target="_blank" class="produto">
-                <img src="https://i.imgur.com/fHH6hrx.jpeg" alt="Produto Laços Profanos">
-                <div class="produto-preco">R$ 73,20</div>
-                <div>Comprar Agora</div>
+            <!-- Camiseta unissex - Asas e auréola -->
+            <a href="https://umapenca.com/lacosprofanos/camiseta/asas-e-aureola-299258.html" target="_blank" class="produto-link">
+                <div class="produto">
+                    <img src="https://i.imgur.com/ZbPYh1c.jpeg" alt="Camiseta Asas e auréola">
+                    <div class="produto-titulo">Camiseta unissex - Asas e auréola</div>
+                    <div class="produto-preco">R$ 63,70</div>
+                </div>
+            </a>
+            
+                        <!-- Poster-->
+            <a href="https://umapenca.com/lacosprofanos/poster/o-ultimo-anjo-299270.html" target="_blank" class="produto-link">
+                <div class="produto">
+                    <img src="https://i.imgur.com/Ce0LFhX.jpeg" alt="Camiseta Asas e auréola">
+                    <div class="produto-titulo">Poster O último anjo</div>
+                    <div class="produto-preco">R$ 42,06 - R$ 68,06</div>
+                </div>
+            </a>
+
+            <!-- Caderno  -->
+            <a href="https://www.zazzle.com.br/z/a3u5u048" target="_blank" class="produto-link">
+                <div class="produto">
+                    <img src="https://i.imgur.com/fHH6hrx.jpeg" alt="Caderno Laços Profanos">
+                    <div class="produto-titulo">Caderno Laços Profanos</div>
+                    <div class="produto-preco">R$ 73,20</div>
+                </div>
             </a>
         </div>
 
@@ -349,12 +380,5 @@
             <a href="https://discord.gg/CAs8c9pfBg" class="rede-social">Discord</a>
         </div>
     </div>
-
-    <script>
-        // Adiciona funcionalidade de clique no banner
-        document.querySelector('.banner').addEventListener('click', function() {
-            window.open('https://www.zazzle.com.br/z/a3u5u048', '_blank');
-        });
-    </script>
 </body>
 </html>
