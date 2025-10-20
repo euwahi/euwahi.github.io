@@ -44,6 +44,7 @@
             margin-bottom: 15px;
             overflow: hidden;
             box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
+            display: none; /* Ocultando o banner */
         }
 
         .footer-banner {
@@ -54,6 +55,7 @@
             margin-bottom: 30px;
             padding: 10px;
             text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+            display: none; /* Ocultando o footer do banner */
         }
 
         .navegacao {
@@ -169,7 +171,7 @@
 
         /* Estilos para os produtos */
         .produtos-container {
-            display: grid;
+            display: none; /* Ocultando os produtos */
             grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
             gap: 30px;
             margin: 40px 0;
@@ -285,12 +287,12 @@
 </head>
 <body>
     <div class="parede">
-        <!-- Banner Interativo -->
+        <!-- Banner Interativo (OCULTO) -->
         <div class="banner-container">
             <div class="commonninja_component pid-8ddadbd8-fe55-47d0-a739-fe9def7dc195"></div>
         </div>
 
-        <!-- Footer do Banner -->
+        <!-- Footer do Banner (OCULTO) -->
         <div class="footer-banner">
             Conheça nossos produtos novos incríveis!
         </div>
@@ -300,7 +302,7 @@
             <a href="https://lacosprofanos.com.br/icon&wallpaper/" class="rede-social">Wallpapers e icons</a>
         </div>
 
-        <!-- Produtos -->
+        <!-- Produtos (OCULTOS) -->
         <div class="produtos-container">
             <!-- Camiseta unissex - Asas e auréola -->
             <a href="https://umapenca.com/lacosprofanos/camiseta/asas-e-aureola-299258.html" target="_blank" class="produto-link">
