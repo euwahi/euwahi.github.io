@@ -3,492 +3,115 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-<!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-5159ZC3M24"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-
-  gtag('config', 'G-5159ZC3M24');
-</script>
-
-    <title>site hackeado</title>
+    <title>Wahi - Redes Sociais</title>
+    <link rel="icon" href="https://i.imgur.com/mgxXSto.png" type="image/png">
     <style>
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
         }
-        
+
         body {
-            background-color: #000;
-            color: #0f0;
-            font-family: 'Courier New', monospace;
-            overflow-x: hidden;
-            position: relative;
+            font-family: 'Arial', sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
             min-height: 100vh;
-        }
-        
-        .container {
-            padding: 20px;
-            max-width: 800px;
-            margin: 0 auto;
-        }
-        
-        h1 {
-            color: #f00;
-            text-align: center;
-            margin: 20px 0;
-            text-transform: uppercase;
-            text-shadow: 0 0 10px #f00;
-        }
-        
-        .warning {
-            border: 2px solid #f00;
-            padding: 15px;
-            margin: 20px 0;
-            background-color: #200;
-        }
-        
-        .message {
-            margin: 30px 0;
-            line-height: 1.6;
-        }
-        
-        .hacker-icon {
-            text-align: center;
-            font-size: 50px;
-            margin: 20px 0;
-            color: #0f0;
-        }
-        
-        .scan-line {
-            position: absolute;
-            height: 10px;
-            width: 100%;
-            background: linear-gradient(to bottom, rgba(0,255,0,0.5), transparent);
-            animation: scan 3s linear infinite;
-        }
-        
-        .matrix-rain {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            z-index: -1;
-            opacity: 0.3;
-        }
-        
-        /* Estilos do Caça-Palavras */
-        .word-search {
-            margin: 40px auto;
-            padding: 15px;
-            border: 1px solid #0f0;
-            background-color: rgba(0, 20, 0, 0.8);
-            position: relative;
-            overflow: hidden;
-            max-width: 800px;
-        }
-        
-        .word-search-title {
-            text-align: center;
-            color: #f00;
-            margin-bottom: 15px;
-            text-transform: uppercase;
-            font-size: 14px;
-        }
-        
-        .word-search-grid {
-            display: grid;
-            grid-template-columns: repeat(20, 1fr);
-            gap: 2px;
-            margin: 0 auto;
-            position: relative;
-        }
-        
-        .word-search-letter {
-            width: 25px;
-            height: 25px;
-            text-align: center;
-            line-height: 25px;
-            font-size: 14px;
-            background-color: rgba(0, 0, 0, 0.5);
-            color: #0f0;
-            border: 1px solid #033;
-            position: relative;
-            z-index: 2;
-            user-select: none;
-        }
-        
-        .word-search-letter.selected {
-            background-color: #130;
-            color: #0f0;
-            text-shadow: 0 0 5px #0f0;
-        }
-        
-        .word-search-hint {
-            text-align: center;
-            margin-top: 15px;
-            font-size: 12px;
-            color: #666;
-        }
-        
-        .word-search-found {
-            text-align: center;
-            margin-top: 15px;
-            color: #0f0;
-            display: none;
-        }
-        
-        .grid-noise {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            pointer-events: none;
-            z-index: 1;
-            opacity: 0.1;
-        }
-        
-        @keyframes scan {
-            0% { top: 0; }
-            100% { top: 100vh; }
-        }
-        
-        .terminal {
-            background-color: #000;
-            border: 1px solid #0f0;
-            padding: 15px;
-            margin-top: 20px;
-            height: 150px;
-            overflow: hidden;
-        }
-        
-        .terminal-line {
-            animation: type 0.1s linear;
-            white-space: nowrap;
-            overflow: hidden;
-        }
-        
-        @keyframes type {
-            from { width: 0; }
-            to { width: 100%; }
-        }
-        
-        /* Estilos do Pop-up */
-        .popup-overlay {
-            display: none;
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-color: rgba(0, 0, 0, 0.8);
-            z-index: 1000;
+            display: flex;
+            flex-direction: column;
             justify-content: center;
             align-items: center;
-        }
-        
-        .popup-content {
-            background-color: #000;
-            border: 2px solid #f00;
             padding: 20px;
+            color: white;
+            text-align: center;
+        }
+
+        .container {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 40px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+            border: 1px solid rgba(255, 255, 255, 0.2);
             max-width: 500px;
-            width: 80%;
-            color: #0f0;
-            position: relative;
-            box-shadow: 0 0 20px #f00;
+            width: 100%;
         }
-        
-        .popup-close {
-            position: absolute;
-            top: 10px;
-            right: 15px;
-            color: #f00;
-            font-size: 24px;
-            font-weight: bold;
+
+        h1 {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+        }
+
+        .message {
+            font-size: 1.2rem;
+            margin-bottom: 30px;
+            line-height: 1.6;
+            opacity: 0.9;
+        }
+
+        .btn {
+            display: inline-block;
+            background: linear-gradient(45deg, #ff6b6b, #ee5a24);
+            color: white;
+            padding: 15px 30px;
+            font-size: 1.1rem;
+            text-decoration: none;
+            border-radius: 50px;
+            border: none;
             cursor: pointer;
-            text-shadow: 0 0 5px #f00;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 1px;
         }
-        
-        .popup-message {
-            margin: 20px 0;
-            word-break: break-all;
-            font-size: 14px;
+
+        .btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+            background: linear-gradient(45deg, #ff5252, #ff3838);
+        }
+
+        .btn:active {
+            transform: translateY(-1px);
+        }
+
+        .footer {
+            margin-top: 30px;
+            font-size: 0.9rem;
+            opacity: 0.7;
+        }
+
+        @media (max-width: 600px) {
+            .container {
+                padding: 30px 20px;
+            }
+            
+            h1 {
+                font-size: 2rem;
+            }
+            
+            .message {
+                font-size: 1rem;
+            }
+            
+            .btn {
+                padding: 12px 25px;
+                font-size: 1rem;
+            }
         }
     </style>
 </head>
 <body>
-    <div class="matrix-rain" id="matrixRain"></div>
-    <div class="scan-line"></div>
-    
-    <!-- Pop-up -->
-    <div class="popup-overlay" id="popup">
-        <div class="popup-content">
-            <span class="popup-close" id="closePopup">X</span>
-            <div class="popup-message">
-                yphk842_SLL6ky2Y8qc7LoYNSBnRxebPmyzQVFEsR0El5fges-9IRk_CjRmbbHPDTlCZHlDlxGN4YPAxrjbRGO45Lr6M6JICd5cgD32Bf-o5lEHkXtzhf4HY4fGHhbvS
-            </div>
-        </div>
-    </div>
-    
     <div class="container">
-        <div class="hacker-icon">☠️</div>
-        
-        <h1>ALERTA DE SEGURANÇA</h1>
-        
-        <div class="warning">
-            <p>⚠️ ESSE SITE FOI HACKEADO⚠️</p>
-        </div>
-        
+        <h1>Wahi</h1>
         <div class="message">
-            <p> Amanheceu um dia tranquilo,
-<br>Nuvens dançavam no céu sem pressa,
-<br> Imaginar coisas boas é meu jeito de viver,
-<br>Vento leve traz lembranças doces,
-<br>Estrelas surgem quando a noite chega,
-<br>Risos surgem mesmo nas pequenas coisas,
-<br>Sorrisos se espalham sem pedir licença,
-<br> Amor está em gestos simples,
-<br>Recomeços sempre são possíveis,
-<br>Intuição me guia pelo caminho certo,
-<br>Olhos atentos captam beleza em todo lugar. 
-<br>dica: /?</p>
-            <!-- s$!&&0<<@%+,@0Y,A\ko0(]7%5:}@;_,X6|5}*=%1[($<Q#i+--$]6)1#@=,*}$>{4$#@c0(<6.uW\/CeD{6/&/8=%t_{-&-b8t&0?$})1*$V%*$]7%3>(7;0;{!<-#$[/5:8@.9-=7/P#<[-9#9)==],6/9;$[%4,8m<&-_@8KA"/E/#$6.5[8@\0:$&%)(,=]+(]6?&*{[%5:,@/0(+&=$$,WduW\/C,m2QC,A\gs%)(-c0:$&%(/$6|&&2QC,Amg%-$!@%(/$-%5/8[<=b8k._6S/C,q'=c0?$_+1#=@%5]@=._>9}%%,8{\5#%={0]{[/&#_,=1>8#&+,]&?&b -->
+            Veio por algum vídeo antigo? Tudo bem.<br>
+            Visite as redes sociais da Wahi!
         </div>
-        
-        <!-- dica: 5 letras -->
-        <div class="word-search">
-            <div class="word-search-grid" id="wordSearchGrid"></div>
-            <div class="word-search-found" id="wordFound"></div>
-            <canvas class="grid-noise" id="gridNoise"></canvas>
-        </div>
-       
+        <a href="https://lacosprofanos.com.br/wahi" class="btn">
+            Redes Sociais da Wahi!
+        </a>
     </div>
-
-    <script>
-        // Efeito de chuva Matrix simples
-        const matrixChars = "01アイウエオカキクケコABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789$%^&*()_+[]{}|;:,.<>?/~`";
-        const matrixRain = document.getElementById('matrixRain');
-        
-        function createMatrixRain() {
-            const span = document.createElement('span');
-            span.style.left = Math.random() * 100 + 'vw';
-            span.style.animationDuration = (Math.random() * 3 + 2) + 's';
-            span.style.color = Math.random() > 0.5 ? '#0f0' : '#0a0';
-            span.innerText = matrixChars.charAt(Math.floor(Math.random() * matrixChars.length));
-            matrixRain.appendChild(span);
-            
-            // Remover após animação
-            setTimeout(() => {
-                span.remove();
-            }, 5000);
-        }
-        
-        // Iniciar a chuva Matrix
-        setInterval(createMatrixRain, 50);
-        
-        // Função para decodificar a palavra ofuscada
-        function getSecretWord() {
-            // Técnica de ofuscação: converter números hexadecimais para caracteres
-            const hexCodes = ['41', '4D', '49', '47', '4F'];
-            let result = '';
-            for (let i = 0; i < hexCodes.length; i++) {
-                result += String.fromCharCode(parseInt(hexCodes[i], 16));
-            }
-            return result;
-        }
-        
-        // Criar o caça-palavras extremamente difícil
-        function createWordSearch() {
-            const grid = document.getElementById('wordSearchGrid');
-            const gridSize = 20;
-            
-            // Obter a palavra secreta de forma ofuscada
-            const word = getSecretWord();
-            const letters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789!@#$%&*";
-            
-            // Inicializar a grade vazia
-            let gridArray = Array(gridSize).fill().map(() => Array(gridSize).fill(''));
-            
-            // Posição fixa para a palavra "AMIGO": linha 7, coluna 8, na horizontal
-            const fixedPosition = {x: 8, y: 7};
-            
-            // Colocar a palavra na posição fixa (horizontal)
-            for (let i = 0; i < word.length; i++) {
-                gridArray[fixedPosition.y][fixedPosition.x + i] = word[i];
-            }
-            
-            // Preencher o resto da grade com letras aleatórias
-            for (let y = 0; y < gridSize; y++) {
-                for (let x = 0; x < gridSize; x++) {
-                    if (gridArray[y][x] === '') {
-                        // Adicionar ruído visual - alguns caracteres com efeitos especiais
-                        const randomChar = letters[Math.floor(Math.random() * letters.length)];
-                        gridArray[y][x] = randomChar;
-                    }
-                    
-                    const letterElement = document.createElement('div');
-                    letterElement.className = 'word-search-letter';
-                    letterElement.textContent = gridArray[y][x];
-                    letterElement.dataset.x = x;
-                    letterElement.dataset.y = y;
-                    
-                    grid.appendChild(letterElement);
-                }
-            }
-            
-            // Adicionar evento de clique para seleção
-            let selectedLetters = [];
-            let isSelecting = false;
-            
-            // Suporte para dispositivos touch
-            grid.addEventListener('touchstart', (e) => {
-                if (e.target.classList.contains('word-search-letter')) {
-                    e.preventDefault();
-                    isSelecting = true;
-                    selectedLetters = [e.target];
-                    e.target.classList.add('selected');
-                }
-            });
-            
-            grid.addEventListener('mousedown', (e) => {
-                if (e.target.classList.contains('word-search-letter')) {
-                    isSelecting = true;
-                    selectedLetters = [e.target];
-                    e.target.classList.add('selected');
-                }
-            });
-            
-            grid.addEventListener('touchmove', (e) => {
-                if (isSelecting) {
-                    e.preventDefault();
-                    const touch = e.touches[0];
-                    const element = document.elementFromPoint(touch.clientX, touch.clientY);
-                    
-                    if (element && element.classList.contains('word-search-letter') && !selectedLetters.includes(element)) {
-                        selectedLetters.push(element);
-                        element.classList.add('selected');
-                    }
-                }
-            });
-            
-            grid.addEventListener('mouseover', (e) => {
-                if (isSelecting && e.target.classList.contains('word-search-letter')) {
-                    if (!selectedLetters.includes(e.target)) {
-                        selectedLetters.push(e.target);
-                        e.target.classList.add('selected');
-                    }
-                }
-            });
-            
-            document.addEventListener('touchend', () => {
-                checkSelectedWord();
-            });
-            
-            document.addEventListener('mouseup', () => {
-                checkSelectedWord();
-            });
-            
-            function checkSelectedWord() {
-                if (isSelecting) {
-                    isSelecting = false;
-                    
-                    // Verificar se a palavra selecionada é a correta
-                    const selectedWord = selectedLetters.map(letter => letter.textContent).join('');
-                    if (selectedWord === word) {
-                        // Mensagem também ofuscada
-                        const messageElement = document.getElementById('wordFound');
-                        const hexCodes = ['50', '41', '4C', '41', '56', '52', '41', '20', '45', '4E', '43', '4F', '4E', '54', '52', '41', '44', '41', '3A', '20', '41', '4D', '49', '47', '4F'];
-                        let message = '';
-                        for (let i = 0; i < hexCodes.length; i++) {
-                            message += String.fromCharCode(parseInt(hexCodes[i], 16));
-                        }
-                        messageElement.textContent = message;
-                        messageElement.style.display = 'block';
-                        
-                        // Destacar as letras corretas
-                        selectedLetters.forEach(letter => {
-                            letter.style.backgroundColor = '#0f0';
-                            letter.style.color = '#000';
-                        });
-                    } else {
-                        // Limpar seleção incorreta
-                        setTimeout(() => {
-                            selectedLetters.forEach(letter => {
-                                letter.classList.remove('selected');
-                            });
-                            selectedLetters = [];
-                        }, 500);
-                    }
-                }
-            }
-        }
-        
-        // Adicionar ruído ao canvas
-        function addNoise() {
-            const canvas = document.getElementById('gridNoise');
-            if (!canvas) return;
-            
-            const ctx = canvas.getContext('2d');
-            
-            function resizeCanvas() {
-                canvas.width = canvas.offsetWidth;
-                canvas.height = canvas.offsetHeight;
-            }
-            
-            resizeCanvas();
-            window.addEventListener('resize', resizeCanvas);
-            
-            function drawNoise() {
-                const imageData = ctx.createImageData(canvas.width, canvas.height);
-                const data = imageData.data;
-                
-                for (let i = 0; i < data.length; i += 4) {
-                    const color = Math.random() > 0.5 ? 50 : 0;
-                    data[i] = 0;     // R
-                    data[i + 1] = color; // G
-                    data[i + 2] = 0;   // B
-                    data[i + 3] = 50;  // A
-                }
-                
-                ctx.putImageData(imageData, 0, 0);
-            }
-            
-            function animateNoise() {
-                drawNoise();
-                setTimeout(animateNoise, 100);
-            }
-            
-            animateNoise();
-        }
-        
-        // Verificar código na URL e mostrar pop-up
-        function checkUrlCode() {
-            // Verificar se a URL contém ?2910
-            if (window.location.search === '?2910') {
-                const popup = document.getElementById('popup');
-                if (popup) {
-                    popup.style.display = 'flex';
-                }
-            }
-        }
-        
-        // Fechar o pop-up
-        document.getElementById('closePopup').addEventListener('click', function() {
-            document.getElementById('popup').style.display = 'none';
-        });
-        
-        // Inicializar o caça-palavras quando a página carregar
-        window.addEventListener('load', () => {
-            createWordSearch();
-            addNoise();
-            checkUrlCode();
-        });
-    </script>
 </body>
 </html>
