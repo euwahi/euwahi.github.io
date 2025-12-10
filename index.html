@@ -2,384 +2,877 @@
 <html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
-    <meta name="google-adsense-account" content="ca-pub-2715085153658985">
-    <!-- Google tag (gtag.js) -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-5159ZC3M24"></script>
-    <script>
-      window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
-      gtag('js', new Date());
-      gtag('config', 'G-5159ZC3M24');
-    </script>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="icon" href="https://i.imgur.com/mgxXSto.png" type="image/png">
     <title>Laços Profanos</title>
-    <script src="https://cdn.commoninja.com/sdk/latest/commonninja.js" defer></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
+        /* Reset e configurações globais */
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, sans-serif;
         }
 
         body {
-            background-color: #1a1a1a;
-            color: #e0e0e0;
-            background-image: url('https://www.transparenttextures.com/patterns/dark-mosaic.png');
-            padding: 20px;
+            background: #000000;
+            color: #ffffff;
+            line-height: 1.6;
             min-height: 100vh;
         }
 
-        .parede {
+        /* Estilos para scrollbar personalizada */
+        ::-webkit-scrollbar {
+            width: 10px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: #111111;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: #f01b85;
+            border-radius: 5px;
+        }
+
+        .container {
             max-width: 1200px;
             margin: 0 auto;
-            position: relative;
-            min-height: 100vh;
+            padding: 0 20px;
         }
 
-        .banner-container {
-            width: 100%;
-            border-radius: 8px;
-            margin-bottom: 15px;
-            overflow: hidden;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
-            display: none; /* Ocultando o banner */
+        /* Header */
+        header {
+            background: rgba(0, 0, 0, 0.95);
+            padding: 25px 0;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            box-shadow: 0 5px 20px rgba(240, 27, 133, 0.1);
         }
 
-        .footer-banner {
-            text-align: center;
-            color: #c9a959;
-            font-size: 18px;
-            font-weight: bold;
-            margin-bottom: 30px;
-            padding: 10px;
-            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
-            display: none; /* Ocultando o footer do banner */
-        }
-
-        .navegacao {
+        .header-content {
             display: flex;
-            justify-content: center;
-            gap: 20px;
-            margin-bottom: 40px;
+            justify-content: space-between;
+            align-items: center;
             flex-wrap: wrap;
         }
 
-        .botao {
-            background-color: #2a2a2a;
-            color: #e0e0e0;
-            border: 2px solid #444;
-            padding: 12px 25px;
-            border-radius: 30px;
-            font-size: 16px;
-            font-weight: bold;
+        .logo {
+            font-size: 2rem;
+            font-weight: 800;
+            color: #ffffff;
+            letter-spacing: -0.5px;
+        }
+
+        .logo span {
+            background: linear-gradient(90deg, #f01b85 0%, #ff4da6 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .nav-buttons {
+            display: flex;
+            gap: 20px;
+        }
+
+        .nav-btn {
+            background: rgba(240, 27, 133, 0.2);
+            color: #ffffff;
+            border: 2px solid #f01b85;
+            padding: 12px 28px;
+            border-radius: 50px;
             cursor: pointer;
+            font-weight: 600;
             transition: all 0.3s ease;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 1rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            text-decoration: none;
         }
 
-        .botao:hover {
-            background-color: #3a3a3a;
+        .nav-btn:hover {
+            background: #f01b85;
             transform: translateY(-3px);
-            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.4);
+            box-shadow: 0 10px 25px rgba(240, 27, 133, 0.3);
         }
 
-        .conteudo {
-            display: grid;
-            grid-template-columns: 1fr;
-            gap: 40px;
+        .language-selector {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .language-selector select {
+            background: rgba(240, 27, 133, 0.2);
+            color: #ffffff;
+            border: 2px solid #f01b85;
+            padding: 8px 20px;
+            border-radius: 50px;
+            cursor: pointer;
+            font-weight: 600;
+        }
+
+        /* Conteúdo principal */
+        main {
+            padding: 60px 0 40px 0;
+        }
+
+        .section {
+            margin-bottom: 80px;
+        }
+
+        .section-title {
+            font-size: 2.5rem;
             margin-bottom: 40px;
+            text-align: center;
             position: relative;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 1px;
         }
 
-        .quadro {
-            background-color: #2a2a2a;
-            border: 2px solid #444;
-            border-radius: 8px;
-            padding: 20px;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4);
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 5px;
+            background: #f01b85;
+            border-radius: 2px;
+        }
+
+        .about-text {
+            font-size: 1.2rem;
+            line-height: 1.8;
+            margin-bottom: 30px;
+            text-align: center;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+            color: #cccccc;
+        }
+
+        .highlight {
+            color: #f01b85;
+            font-weight: 700;
+        }
+
+        /* Redes sociais - ESTILO IDÊNTICO AOS BOTÕES DE NAVEGAÇÃO */
+        .social-buttons {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 20px;
+            margin-top: 50px;
+        }
+
+        .social-btn {
+            background: rgba(240, 27, 133, 0.2);
+            color: #ffffff;
+            border: 2px solid #f01b85;
+            padding: 15px 25px;
+            border-radius: 50px;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            font-weight: 600;
+            text-align: left;
+            min-height: 70px;
+        }
+
+        .social-btn:hover {
+            background: #f01b85;
+            transform: translateY(-3px);
+            box-shadow: 0 10px 25px rgba(240, 27, 133, 0.3);
+        }
+
+        .social-icon {
+            font-size: 1.5rem;
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+        }
+
+        .social-content {
+            flex: 1;
+        }
+
+        .social-content h3 {
+            font-size: 1.1rem;
+            margin-bottom: 5px;
+            font-weight: 600;
+        }
+
+        .social-content p {
+            font-size: 0.85rem;
+            color: rgba(255, 255, 255, 0.8);
+        }
+
+        /* Continentes */
+        .continents-container {
+            margin-top: 40px;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 20px;
+            padding: 40px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
             position: relative;
-            transition: transform 0.3s ease;
-            min-height: 250px;
+            overflow: hidden;
         }
 
-        .quadro:hover {
-            transform: translateY(-5px);
+        .continents-container::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 5px;
+            background: #f01b85;
         }
 
-        .quadro h2 {
-            color: #c9a959;
-            margin-bottom: 15px;
-            font-size: 22px;
-            border-bottom: 1px solid #444;
-            padding-bottom: 8px;
-        }
-
-        .quadro p {
-            line-height: 1.6;
-            margin-bottom: 15px;
-        }
-
-        .trailer-container {
+        .continents-image {
             width: 100%;
             max-width: 800px;
             margin: 0 auto 40px;
-            border-radius: 8px;
+            border-radius: 15px;
             overflow: hidden;
-            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.5);
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
+            border: 3px solid rgba(240, 27, 133, 0.3);
         }
 
-        .trailer {
+        .continents-image img {
+            width: 100%;
+            height: auto;
+            display: block;
+            transition: transform 0.8s ease;
+        }
+
+        .continents-image:hover img {
+            transform: scale(1.03);
+        }
+
+        .continents-description {
+            text-align: center;
+            color: #ffffff;
+            line-height: 1.8;
+            font-size: 1.2rem;
+            background: rgba(240, 27, 133, 0.1);
+            padding: 25px;
+            border-radius: 15px;
+            border-left: 5px solid #f01b85;
+        }
+
+        /* Criadores */
+        .creators-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 40px;
+            margin-top: 40px;
+        }
+
+        .creator-card {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 20px;
+            padding: 40px 30px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .creator-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 5px;
+            background: #f01b85;
+        }
+
+        .creator-card:hover {
+            transform: translateY(-10px);
+            border-color: #f01b85;
+            box-shadow: 0 20px 40px rgba(240, 27, 133, 0.2);
+        }
+
+        .creator-avatar {
+            width: 180px;
+            height: 180px;
+            border-radius: 50%;
+            margin-bottom: 25px;
+            overflow: hidden;
+            border: 4px solid #f01b85;
+            position: relative;
+            box-shadow: 0 15px 30px rgba(240, 27, 133, 0.3);
+        }
+
+        .creator-avatar img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .creator-avatar:hover img {
+            transform: scale(1.1);
+        }
+
+        .creator-name {
+            font-size: 1.8rem;
+            margin-bottom: 15px;
+            font-weight: 800;
+            color: #ffffff;
+        }
+
+        .creator-role {
+            color: #f01b85;
+            font-weight: 700;
+            margin-bottom: 25px;
+            font-size: 1.2rem;
+            position: relative;
+            display: inline-block;
+            padding: 0 20px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .creator-role::before,
+        .creator-role::after {
+            content: '✦';
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #ff4da6;
+            font-size: 1.5rem;
+        }
+
+        .creator-role::before {
+            left: 0;
+        }
+
+        .creator-role::after {
+            right: 0;
+        }
+
+        .creator-desc {
+            color: #cccccc;
+            line-height: 1.8;
+            font-size: 1.1rem;
+        }
+
+        /* Trailer */
+        .trailer-container {
+            margin-top: 40px;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 20px;
+            padding: 40px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .trailer-container::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 5px;
+            background: #f01b85;
+        }
+
+        .trailer-video {
+            width: 100%;
+            max-width: 900px;
+            margin: 0 auto;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.5);
+            border: 3px solid rgba(240, 27, 133, 0.3);
+        }
+
+        .trailer-video video {
             width: 100%;
             height: auto;
             display: block;
         }
 
-        .redes-sociais {
-            display: flex;
-            justify-content: center;
-            gap: 15px;
-            margin-top: 30px;
-            flex-wrap: wrap;
-        }
-
-        .rede-social {
-            background-color: #2a2a2a;
-            color: #e0e0e0;
-            border: 2px solid #444;
-            padding: 10px 15px;
-            border-radius: 30px;
-            font-size: 14px;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            text-decoration: none;
-            text-align: center;
-            flex: 0 1 auto;
-        }
-
-        .rede-social:hover {
-            background-color: #3a3a3a;
-            transform: translateY(-3px);
-        }
-
-        .imagem-continente {
-            width: 100%;
-            margin: 15px 0;
-            border-radius: 5px;
-        }
-
-        /* Estilos para os produtos */
-        .produtos-container {
-            display: none; /* Ocultando os produtos */
-            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-            gap: 30px;
-            margin: 40px 0;
-        }
-
-        .produto {
-            background-color: #2a2a2a;
-            border: 2px solid #444;
-            border-radius: 8px;
-            padding: 15px;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4);
-            transition: transform 0.3s ease;
-            cursor: pointer;
-            text-align: center;
-            display: flex;
-            flex-direction: column;
-            height: 100%;
-        }
-
-        .produto:hover {
-            transform: translateY(-5px);
-        }
-
-        .produto img {
-            width: 100%;
-            height: 200px;
-            object-fit: contain;
-            border-radius: 5px;
-            margin-bottom: 10px;
-            background-color: #1a1a1a;
-        }
-
-        .produto-titulo {
-            color: #e0e0e0;
-            font-weight: bold;
-            margin: 10px 0;
-            font-size: 16px;
-            flex-grow: 1;
-        }
-
-        .produto-preco {
-            color: #c9a959;
-            font-weight: bold;
-            font-size: 18px;
-            margin: 10px 0;
-        }
-
-        .produto-link {
-            display: block;
-            text-decoration: none;
-            color: inherit;
-        }
-
         /* Responsividade */
         @media (max-width: 768px) {
-            .footer-banner {
-                font-size: 16px;
+            .header-content {
+                flex-direction: column;
+                gap: 25px;
             }
             
-            .redes-sociais {
-                gap: 10px;
+            .nav-buttons {
+                width: 100%;
+                justify-content: center;
+                flex-wrap: wrap;
             }
             
-            .rede-social {
-                padding: 8px 12px;
-                font-size: 13px;
+            .language-selector {
+                margin-top: 15px;
             }
             
-            .quadro {
-                padding: 15px;
+            .section-title {
+                font-size: 2rem;
             }
             
-            .botao {
-                padding: 10px 20px;
-                font-size: 14px;
+            .social-buttons {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 15px;
             }
             
-            .produtos-container {
-                grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-                gap: 20px;
+            .social-btn {
+                padding: 12px 20px;
+                min-height: 65px;
+            }
+            
+            .social-icon {
+                font-size: 1.3rem;
+                width: 35px;
+                height: 35px;
+            }
+            
+            .social-content h3 {
+                font-size: 1rem;
+            }
+            
+            .social-content p {
+                font-size: 0.8rem;
+            }
+            
+            .creators-grid {
+                grid-template-columns: 1fr;
+                gap: 30px;
+            }
+            
+            .continents-container,
+            .trailer-container {
+                padding: 25px;
+            }
+            
+            .creator-avatar {
+                width: 150px;
+                height: 150px;
             }
         }
 
         @media (max-width: 480px) {
-            body {
-                padding: 10px;
+            .nav-buttons {
+                flex-direction: column;
+                width: 100%;
             }
             
-            .footer-banner {
-                font-size: 14px;
+            .nav-btn {
+                width: 100%;
+                justify-content: center;
             }
             
-            .redes-sociais {
-                gap: 8px;
-            }
-            
-            .rede-social {
-                padding: 6px 10px;
-                font-size: 12px;
-                flex: 1 1 45%;
-            }
-            
-            .quadro h2 {
-                font-size: 18px;
-            }
-            
-            .produtos-container {
+            .social-buttons {
                 grid-template-columns: 1fr;
-                gap: 15px;
+            }
+            
+            .section-title {
+                font-size: 1.8rem;
+            }
+            
+            .about-text {
+                font-size: 1.1rem;
+            }
+            
+            .creator-avatar {
+                width: 140px;
+                height: 140px;
+            }
+            
+            .social-btn {
+                min-height: 60px;
+                padding: 10px 15px;
+            }
+        }
+
+        /* Animações */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .section {
+            animation: fadeInUp 0.8s ease-out;
+        }
+
+        /* Efeito de brilho nos botões */
+        .social-btn, .nav-btn, .creator-avatar, .continents-image, .trailer-video {
+            transition: all 0.3s ease;
+        }
+
+        .social-btn:hover, .nav-btn:hover {
+            animation: glow 1s ease-in-out infinite alternate;
+        }
+
+        @keyframes glow {
+            from {
+                box-shadow: 0 0 20px rgba(240, 27, 133, 0.4);
+            }
+            to {
+                box-shadow: 0 0 30px rgba(240, 27, 133, 0.6);
             }
         }
     </style>
 </head>
 <body>
-    <div class="parede">
-        <!-- Banner Interativo (OCULTO) -->
-        <div class="banner-container">
-            <div class="commonninja_component pid-8ddadbd8-fe55-47d0-a739-fe9def7dc195"></div>
-        </div>
-
-        <!-- Footer do Banner (OCULTO) -->
-        <div class="footer-banner">
-            Conheça nossos produtos novos incríveis!
-        </div>
-
-        <!-- Navegação Corrigida -->
-        <div class="navegacao">
-            <a href="https://lacosprofanos.com.br/icon&wallpaper/" class="botao">Wallpapers e icons</a>
-            <a href="https://lacosprofanos.fandom.com/pt-br" class="botao">Wiki</a>
-        </div>
-
-        <!-- Produtos (OCULTOS) -->
-        <div class="produtos-container">
-            <!-- Camiseta unissex - Asas e auréola -->
-            <a href="https://umapenca.com/lacosprofanos/camiseta/asas-e-aureola-299258.html" target="_blank" class="produto-link">
-                <div class="produto">
-                    <img src="https://i.imgur.com/ZbPYh1c.jpeg" alt="Camiseta Asas e auréola">
-                    <div class="produto-titulo">Camiseta unissex - Asas e auréola</div>
-                    <div class="produto-preco">R$ 63,70</div>
-                </div>
-            </a>
-
-            <!-- Poster-->
-            <a href="https://umapenca.com/lacosprofanos/poster/o-ultimo-anjo-299270.html" target="_blank" class="produto-link">
-                <div class="produto">
-                    <img src="https://i.imgur.com/Ce0LFhX.jpeg" alt="Poster O último anjo">
-                    <div class="produto-titulo">Poster O último anjo</div>
-                    <div class="produto-preco">R$ 42,06 - R$ 68,06</div>
-                </div>
-            </a>
-
-            <!-- Caderno  -->
-            <a href="https://www.zazzle.com.br/z/a3u5u048" target="_blank" class="produto-link">
-                <div class="produto">
-                    <img src="https://i.imgur.com/fHH6hrx.jpeg" alt="Caderno Laços Profanos">
-                    <div class="produto-titulo">Caderno Laços Profanos</div>
-                    <div class="produto-preco">R$ 73,20</div>
-                </div>
-            </a>
-        </div>
-
-        <!-- Conteúdo Principal -->
-        <div class="conteudo">
-            <!-- Quadro Sobre Nós -->
-            <div class="quadro">
-                <h2>Sobre Nós</h2>
-                <p>"Laços Profanos nasceu como uma simples história moldada pela fórmula da jornada do herói em nosso mundo. Com o tempo, foi crescendo, tomando forma, e se expandindo até se tornar um universo inteiro — com suas próprias regras, marcos históricos, criaturas, frutos e mistérios que existem apenas lá.</p>
-                <p>Mais do que uma trama, é um projeto construído com cuidado e dedicação, pensado para dar vida a narrativas únicas."</p>
+    <!-- Cabeçalho com navegação -->
+    <header>
+        <div class="container header-content">
+            <div class="logo"><span id="site-title">Laços Profanos</span></div>
+            
+            <div class="nav-buttons">
+                <a href="https://lacosprofanos.com.br/icon&wallpaper/" target="_blank" class="nav-btn">
+                    <i class="fas fa-image"></i>
+                    <span id="wallpapers-text">Wallpapers & Icons</span>
+                </a>
+                <a href="https://lacosprofanos.fandom.com/pt-br/wiki/Laços_Profanos_Wiki" target="_blank" class="nav-btn">
+                    <i class="fas fa-book"></i>
+                    <span id="wiki-text">Wiki</span>
+                </a>
             </div>
-
-            <!-- Quadro A Terra em Laços Profanos -->
-            <div class="quadro">
-                <h2>A Terra em Laços Profanos</h2>
-                <p>"No universo de Laços Profanos, o planeta Terra não é como o nosso. Ele é dividido em apenas três continentes, cada um com suas próprias características, culturas e histórias:"</p>
-                <img src="https://i.imgur.com/jrrLcpW.png" alt="Continentes" class="imagem-continente">
-                <p>❄️ Kelster — o continente frio, marcado por climas rigorosos, paisagens geladas e povos acostumados à resistência.</p>
-                <p>🍃 Molton — o continente intermediário, de equilíbrio entre frio e calor, diversidade natural e cultural.</p>
-                <p>🔥 Clifton — o continente quente, repleto de calor intenso, vida vibrante e tradições moldadas pelo sol.</p>
+            
+            <div class="language-selector">
+                <span id="language-label">Idioma:</span>
+                <select id="language-select">
+                    <option value="pt">Português</option>
+                    <option value="en">English</option>
+                </select>
             </div>
         </div>
+    </header>
 
-        <!-- Trailer -->
-        <div class="trailer-container">
-            <video class="trailer" controls>
-                <source src="https://i.imgur.com/BRxaHek.mp4" type="video/mp4">
-                Seu navegador não suporta o elemento de vídeo.
-            </video>
-        </div>
+    <main class="container">
+        <!-- Seção Sobre Nós -->
+        <section id="about" class="section">
+            <h2 class="section-title" id="about-title">Sobre Nós</h2>
+            <div class="about-text">
+                <p id="about-text-1">
+                    <span class="highlight">Laços Profanos</span> é uma história fictícia que nasceu como a ideia de um mangá inspirado em obras populares da época. Com o tempo, essa primeira versão foi totalmente repensada, descartada e reconstruída — e assim o universo se expandiu até se tornar o que conhecemos hoje.
+                </p>
+                <p id="about-text-2">
+                    Somos um projeto completamente independente, desenvolvido e mantido por apenas duas pessoas. Trabalhamos com dedicação para dar vida a esse universo, criar conteúdo de qualidade e compartilhar nossa visão com quem deseja conhecer mais sobre Laços Profanos.
+                </p>
+            </div>
+        </section>
 
-        <!-- Redes Sociais -->
-        <div class="redes-sociais">
-            <a href="https://tipa.ai/lacosprofanos" class="rede-social">Canal no Tipa.ai</a>
-            <a href="https://bit.ly/lacosprofanosZap" class="rede-social">Canal do Whatsapp</a>
-            <a href="https://instagram.com/lacosprofanos" class="rede-social">Instagram</a>
-        </div>
-        <div class="redes-sociais">
-            <a href="https://twitter.com/lacosprofanos" class="rede-social">Twitter</a>
-        </div>
-        <div class="redes-sociais">
-            <a href="https://t.me/lacosprofanos" class="rede-social">Canal no Telegram</a>
-            <a href="https://www.youtube.com/@LaçosProfanos" class="rede-social">Canal do Youtube</a>
-        </div>
-        <div class="redes-sociais">
-            <a href="https://www.reddit.com/r/lacosprofanos" class="rede-social">Comunidade no Reddit</a>
-        </div>
-        <div class="redes-sociais">
-            <a href="https://discord.gg/u4sD2JyTuT" class="rede-social">Discord</a>
-        </div>
-    </div>
+        <!-- Seção Redes Sociais - MESMO ESTILO EXATO DOS BOTÕES DE NAVEGAÇÃO -->
+        <section id="social" class="section">
+            <h2 class="section-title" id="social-title">Redes Sociais</h2>
+            <div class="about-text">
+                <p>Conecte-se conosco através das nossas redes sociais:</p>
+            </div>
+            <div class="social-buttons">
+                <a href="https://tipa.ai/lacosprofanos" target="_blank" class="social-btn">
+                    <div class="social-icon">
+                        <i class="fas fa-robot"></i>
+                    </div>
+                    <div class="social-content">
+                        <h3>Tipa.ai</h3>
+                        <p id="social-tipa">Canal no Tipa.ai</p>
+                    </div>
+                </a>
+                
+                <a href="https://bit.ly/lacosprofanosZap" target="_blank" class="social-btn">
+                    <div class="social-icon">
+                        <i class="fab fa-whatsapp"></i>
+                    </div>
+                    <div class="social-content">
+                        <h3>WhatsApp</h3>
+                        <p id="social-whatsapp">Canal no WhatsApp</p>
+                    </div>
+                </a>
+                
+                <a href="https://discord.com/invite/u4sD2JyTuT" target="_blank" class="social-btn">
+                    <div class="social-icon">
+                        <i class="fab fa-discord"></i>
+                    </div>
+                    <div class="social-content">
+                        <h3>Discord</h3>
+                        <p id="social-discord">Servidor no Discord</p>
+                    </div>
+                </a>
+                
+                <a href="https://www.instagram.com/lacosprofanos" target="_blank" class="social-btn">
+                    <div class="social-icon">
+                        <i class="fab fa-instagram"></i>
+                    </div>
+                    <div class="social-content">
+                        <h3>Instagram</h3>
+                        <p id="social-instagram">Perfil no Instagram</p>
+                    </div>
+                </a>
+                
+                <a href="https://x.com/lacosprofanos" target="_blank" class="social-btn">
+                    <div class="social-icon">
+                        <i class="fab fa-twitter"></i>
+                    </div>
+                    <div class="social-content">
+                        <h3>X (Twitter)</h3>
+                        <p id="social-twitter">Perfil no X (Twitter)</p>
+                    </div>
+                </a>
+                
+                <a href="https://www.youtube.com/@LaçosProfanos" target="_blank" class="social-btn">
+                    <div class="social-icon">
+                        <i class="fab fa-youtube"></i>
+                    </div>
+                    <div class="social-content">
+                        <h3>YouTube</h3>
+                        <p id="social-youtube">Canal no YouTube</p>
+                    </div>
+                </a>
+                
+                <a href="https://t.me/lacosprofanos" target="_blank" class="social-btn">
+                    <div class="social-icon">
+                        <i class="fab fa-telegram"></i>
+                    </div>
+                    <div class="social-content">
+                        <h3>Telegram</h3>
+                        <p id="social-telegram">Canal no Telegram</p>
+                    </div>
+                </a>
+                
+                <a href="https://www.reddit.com/r/lacosprofanos" target="_blank" class="social-btn">
+                    <div class="social-icon">
+                        <i class="fab fa-reddit"></i>
+                    </div>
+                    <div class="social-content">
+                        <h3>Reddit</h3>
+                        <p id="social-reddit">Comunidade no Reddit</p>
+                    </div>
+                </a>
+            </div>
+        </section>
+
+        <!-- Seção A Terra em Laços Profanos -->
+        <section id="earth" class="section">
+            <h2 class="section-title" id="earth-title">A Terra em Laços Profanos</h2>
+            <div class="about-text">
+                <p id="earth-text">
+                    "No universo de Laços Profanos, o planeta Terra não é como o nosso. Ele é dividido em apenas três continentes, cada um com suas próprias características, culturas e histórias:"
+                </p>
+            </div>
+            
+            <div class="continents-container">
+                <div class="continents-image">
+                    <img src="https://i.imgur.com/jrrLcpW.png" alt="Os três continentes de Laços Profanos: Kelster, Molton e Clifton">
+                </div>
+                
+                <p class="continents-description" id="continents-desc">
+                    ❄️ Kelster — o continente frio, marcado por climas rigorosos, paisagens geladas e povos acostumados à resistência.<br>
+                    🍃 Molton — o continente intermediário, de equilíbrio entre frio e calor, diversidade natural e cultural.<br>
+                    🔥 Clifton — o continente quente, repleto de calor intenso, vida vibrante e tradições moldadas pelo sol.
+                </p>
+            </div>
+        </section>
+
+        <!-- Seção As Mentes por Trás -->
+        <section id="creators" class="section">
+            <h2 class="section-title" id="creators-title">As Mentes por Trás</h2>
+            
+            <div class="creators-grid">
+                <div class="creator-card">
+                    <div class="creator-avatar">
+                        <img src="https://i.imgur.com/Py44HxM.png" alt="Eduarda Victoria - A Criadora">
+                    </div>
+                    <h3 class="creator-name" id="creator-1-name">Eduarda Victoria</h3>
+                    <p class="creator-role" id="creator-1-role">A Criadora</p>
+                    <p class="creator-desc" id="creator-1-desc">
+                        Mais conhecida pelo pseudônimo Wahipogo ou Wahi, é a mente criativa por trás do universo de Laços Profanos. Além de idealizar a obra, atua como roteirista, diretora criativa e responsável pela administração do projeto. Também cria conteúdo em plataformas como o YouTube, mantendo sua identidade visual anônima e nunca tendo mostrado o rosto oficialmente.
+                    </p>
+                </div>
+                
+                <div class="creator-card">
+                    <div class="creator-avatar">
+                        <img src="https://i.imgur.com/ByfmPFO.png" alt="Elisa Lana - A Artista">
+                    </div>
+                    <h3 class="creator-name" id="creator-2-name">Elisa Lana</h3>
+                    <p class="creator-role" id="creator-2-role">A Artista</p>
+                    <p class="creator-desc" id="creator-2-desc">
+                        Elisa Lana é a segunda mente por trás de Laços Profanos. Enquanto Eduarda conduz a parte criativa e narrativa, Elisa é responsável pela ilustração e visualização das ideias, dando vida ao universo com seu talento artístico e transformando conceitos em imagens que encantam os fãs.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Seção Trailer -->
+        <section id="trailer" class="section">
+            <h2 class="section-title" id="trailer-title">Trailer</h2>
+            
+            <div class="trailer-container">
+                <div class="trailer-video">
+                    <video controls poster="https://i.imgur.com/jrrLcpW.png">
+                        <source src="https://i.imgur.com/KG1l8FD.mp4" type="video/mp4">
+                        Seu navegador não suporta a tag de vídeo.
+                    </video>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <script>
+        // Textos em português
+        const portugueseTexts = {
+            siteTitle: "Laços Profanos",
+            wallpapersText: "Wallpapers & Icons",
+            wikiText: "Wiki",
+            languageLabel: "Idioma:",
+            aboutTitle: "Sobre Nós",
+            aboutText1: "<span class='highlight'>Laços Profanos</span> é uma história fictícia que nasceu como a ideia de um mangá inspirado em obras populares da época. Com o tempo, essa primeira versão foi totalmente repensada, descartada e reconstruída — e assim o universo se expandiu até se tornar o que conhecemos hoje.",
+            aboutText2: "Somos um projeto completamente independente, desenvolvido e mantido por apenas duas pessoas. Trabalhamos com dedicação para dar vida a esse universo, criar conteúdo de qualidade e compartilhar nossa visão com quem deseja conhecer mais sobre Laços Profanos.",
+            socialTitle: "Redes Sociais",
+            socialTipa: "Canal no Tipa.ai",
+            socialWhatsapp: "Canal no WhatsApp",
+            socialDiscord: "Servidor no Discord",
+            socialInstagram: "Perfil no Instagram",
+            socialTwitter: "Perfil no X (Twitter)",
+            socialYoutube: "Canal no YouTube",
+            socialTelegram: "Canal no Telegram",
+            socialReddit: "Comunidade no Reddit",
+            earthTitle: "A Terra em Laços Profanos",
+            earthText: "\"No universo de Laços Profanos, o planeta Terra não é como o nosso. Ele é dividido em apenas três continentes, cada um com suas próprias características, culturas e histórias:\"",
+            continentsDesc: "❄️ Kelster — o continente frio, marcado por climas rigorosos, paisagens geladas e povos acostumados à resistência.<br>🍃 Molton — o continente intermediário, de equilíbrio entre frio e calor, diversidade natural e cultural.<br>🔥 Clifton — o continente quente, repleto de calor intenso, vida vibrante e tradições moldadas pelo sol.",
+            creatorsTitle: "As Mentes por Trás",
+            creator1Name: "Eduarda Victoria",
+            creator1Role: "A Criadora",
+            creator1Desc: "Mais conhecida pelo pseudônimo Wahipogo ou Wahi, é a mente criativa por trás do universo de Laços Profanos. Além de idealizar a obra, atua como roteirista, diretora criativa e responsável pela administração do projeto. Também cria conteúdo em plataformas como o YouTube, mantendo sua identidade visual anônima e nunca tendo mostrado o rosto oficialmente.",
+            creator2Name: "Elisa Lana",
+            creator2Role: "A Artista",
+            creator2Desc: "Elisa Lana é a segunda mente por trás de Laços Profanos. Enquanto Eduarda conduz a parte criativa e narrativa, Elisa é responsável pela ilustração e visualização das ideias, dando vida ao universo com seu talento artístico e transformando conceitos em imagens que encantam os fãs.",
+            trailerTitle: "Trailer"
+        };
+
+        // Textos em inglês
+        const englishTexts = {
+            siteTitle: "Profane Bonds",
+            wallpapersText: "Wallpapers & Icons",
+            wikiText: "Wiki",
+            languageLabel: "Language:",
+            aboutTitle: "About Us",
+            aboutText1: "<span class='highlight'>Profane Bonds</span> is a fictional story that began as an idea for a manga inspired by popular works of the time. Over time, this first version was completely rethought, discarded and rebuilt — and so the universe expanded to become what we know today.",
+            aboutText2: "We are a completely independent project, developed and maintained by just two people. We work diligently to bring this universe to life, create quality content, and share our vision with those who want to learn more about Profane Bonds.",
+            socialTitle: "Social Media",
+            socialTipa: "Tipa.ai Channel",
+            socialWhatsapp: "WhatsApp Channel",
+            socialDiscord: "Discord Server",
+            socialInstagram: "Instagram Profile",
+            socialTwitter: "X (Twitter) Profile",
+            socialYoutube: "YouTube Channel",
+            socialTelegram: "Telegram Channel",
+            socialReddit: "Reddit Community",
+            earthTitle: "The Earth in Profane Bonds",
+            earthText: "\"In the Profane Bonds universe, planet Earth is not like ours. It is divided into only three continents, each with its own characteristics, cultures and histories:\"",
+            continentsDesc: "❄️ Kelster — the cold continent, marked by harsh climates, icy landscapes and peoples accustomed to resistance.<br>🍃 Molton — the intermediate continent, with a balance between cold and heat, natural and cultural diversity.<br>🔥 Clifton — the hot continent, full of intense heat, vibrant life and traditions shaped by the sun.",
+            creatorsTitle: "The Minds Behind",
+            creator1Name: "Eduarda Victoria",
+            creator1Role: "The Creator",
+            creator1Desc: "Better known by the pseudonym Wahipogo or Wahi, she is the creative mind behind the Profane Bonds universe. In addition to conceiving the work, she works as a screenwriter, creative director and is responsible for project administration. She also creates content on platforms like YouTube, maintaining her anonymous visual identity and never having officially shown her face.",
+            creator2Name: "Elisa Lana",
+            creator2Role: "The Artist",
+            creator2Desc: "Elisa Lana is the second mind behind Profane Bonds. While Eduarda leads the creative and narrative part, Elisa is responsible for illustrating and visualizing the ideas, bringing the universe to life with her artistic talent and turning concepts into images that delight fans.",
+            trailerTitle: "Trailer"
+        };
+
+        // Elementos DOM
+        const languageSelect = document.getElementById('language-select');
+        const siteTitle = document.getElementById('site-title');
+        const wallpapersText = document.getElementById('wallpapers-text');
+        const wikiText = document.getElementById('wiki-text');
+        const languageLabel = document.getElementById('language-label');
+        const aboutTitle = document.getElementById('about-title');
+        const aboutText1 = document.getElementById('about-text-1');
+        const aboutText2 = document.getElementById('about-text-2');
+        const socialTitle = document.getElementById('social-title');
+        const socialTipa = document.getElementById('social-tipa');
+        const socialWhatsapp = document.getElementById('social-whatsapp');
+        const socialDiscord = document.getElementById('social-discord');
+        const socialInstagram = document.getElementById('social-instagram');
+        const socialTwitter = document.getElementById('social-twitter');
+        const socialYoutube = document.getElementById('social-youtube');
+        const socialTelegram = document.getElementById('social-telegram');
+        const socialReddit = document.getElementById('social-reddit');
+        const earthTitle = document.getElementById('earth-title');
+        const earthText = document.getElementById('earth-text');
+        const continentsDesc = document.getElementById('continents-desc');
+        const creatorsTitle = document.getElementById('creators-title');
+        const creator1Name = document.getElementById('creator-1-name');
+        const creator1Role = document.getElementById('creator-1-role');
+        const creator1Desc = document.getElementById('creator-1-desc');
+        const creator2Name = document.getElementById('creator-2-name');
+        const creator2Role = document.getElementById('creator-2-role');
+        const creator2Desc = document.getElementById('creator-2-desc');
+        const trailerTitle = document.getElementById('trailer-title');
+
+        // Função para atualizar os textos conforme o idioma selecionado
+        function updateLanguage() {
+            const selectedLanguage = languageSelect.value;
+            const texts = selectedLanguage === 'en' ? englishTexts : portugueseTexts;
+            
+            // Atualizar todos os textos
+            siteTitle.textContent = texts.siteTitle;
+            wallpapersText.textContent = texts.wallpapersText;
+            wikiText.textContent = texts.wikiText;
+            languageLabel.textContent = texts.languageLabel;
+            aboutTitle.textContent = texts.aboutTitle;
+            aboutText1.innerHTML = texts.aboutText1;
+            aboutText2.textContent = texts.aboutText2;
+            socialTitle.textContent = texts.socialTitle;
+            socialTipa.textContent = texts.socialTipa;
+            socialWhatsapp.textContent = texts.socialWhatsapp;
+            socialDiscord.textContent = texts.socialDiscord;
+            socialInstagram.textContent = texts.socialInstagram;
+            socialTwitter.textContent = texts.socialTwitter;
+            socialYoutube.textContent = texts.socialYoutube;
+            socialTelegram.textContent = texts.socialTelegram;
+            socialReddit.textContent = texts.socialReddit;
+            earthTitle.textContent = texts.earthTitle;
+            earthText.textContent = texts.earthText;
+            continentsDesc.innerHTML = texts.continentsDesc;
+            creatorsTitle.textContent = texts.creatorsTitle;
+            creator1Name.textContent = texts.creator1Name;
+            creator1Role.textContent = texts.creator1Role;
+            creator1Desc.textContent = texts.creator1Desc;
+            creator2Name.textContent = texts.creator2Name;
+            creator2Role.textContent = texts.creator2Role;
+            creator2Desc.textContent = texts.creator2Desc;
+            trailerTitle.textContent = texts.trailerTitle;
+        }
+
+        // Adicionar evento de mudança no seletor de idioma
+        languageSelect.addEventListener('change', updateLanguage);
+
+        // Inicializar com textos em português
+        updateLanguage();
+    </script>
 </body>
 </html>
