@@ -705,11 +705,11 @@
             <!-- Linha superior: botões + pesquisa -->
             <div class="nav-top-row">
                 <div class="main-nav">
-                    <a href="https://lacosprofanos.com.br/" target="_blank" class="main-nav-btn">
+                    <a href="https://lacosprofanos.com.br/" target="_blank" class="main-nav-btn" id="home-link">
                         <i class="fas fa-home"></i>
                         <span id="home-text">Site Principal</span>
                     </a>
-                    <a href="https://lacosprofanos.fandom.com/pt-br/wiki/Laços_Profanos_Wiki" target="_blank" class="main-nav-btn">
+                    <a href="https://lacosprofanos.fandom.com/pt-br/wiki/Laços_Profanos_Wiki" target="_blank" class="main-nav-btn" id="wiki-link">
                         <i class="fas fa-book"></i>
                         <span id="wiki-text">Wiki</span>
                     </a>
@@ -824,6 +824,10 @@
             const noResults = document.getElementById('no-results');
             const noResultsText = document.getElementById('no-results-text');
             
+            // Links que mudam com o idioma
+            const homeLink = document.getElementById('home-link');
+            const wikiLink = document.getElementById('wiki-link');
+            
             // Elementos do sistema
             const filterButtons = document.querySelectorAll('.filter-btn');
             const contentItems = document.querySelectorAll('.content-item');
@@ -839,6 +843,18 @@
             let currentSearch = '';
             let currentLanguage = 'pt';
 
+            // URLs para cada idioma
+            const urls = {
+                pt: {
+                    home: "https://lacosprofanos.com.br/",
+                    wiki: "https://lacosprofanos.fandom.com/pt-br/wiki/Laços_Profanos_Wiki"
+                },
+                en: {
+                    home: "https://lacosprofanos.com.br/", // Mantém o mesmo site principal
+                    wiki: "https://profanebonds.fandom.com/wiki/Profane_Bonds_Wiki"
+                }
+            };
+
             // Função para normalizar texto
             function normalizeText(text) {
                 return text
@@ -853,6 +869,10 @@
             // Função para atualizar todos os textos conforme o idioma
             function updateLanguage(language) {
                 currentLanguage = language;
+                
+                // Atualizar links
+                homeLink.href = urls[language].home;
+                wikiLink.href = urls[language].wiki;
                 
                 if (language === 'en') {
                     // Inglês
