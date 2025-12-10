@@ -556,7 +556,7 @@
                     <i class="fas fa-image"></i>
                     <span id="wallpapers-text">Wallpapers & Icons</span>
                 </a>
-                <a href="https://lacosprofanos.fandom.com/pt-br/wiki/Laços_Profanos_Wiki" target="_blank" class="nav-btn">
+                <a href="https://lacosprofanos.fandom.com/pt-br/wiki/Laços_Profanos_Wiki" target="_blank" class="nav-btn" id="wiki-link">
                     <i class="fas fa-book"></i>
                     <span id="wiki-text">Wiki</span>
                 </a>
@@ -742,6 +742,16 @@
     </main>
 
     <script>
+        // URLs para cada idioma
+        const urls = {
+            pt: {
+                wiki: "https://lacosprofanos.fandom.com/pt-br/wiki/Laços_Profanos_Wiki"
+            },
+            en: {
+                wiki: "https://profanebonds.fandom.com/wiki/Profane_Bonds_Wiki"
+            }
+        };
+
         // Textos em português
         const portugueseTexts = {
             siteTitle: "Laços Profanos",
@@ -809,6 +819,7 @@
         const siteTitle = document.getElementById('site-title');
         const wallpapersText = document.getElementById('wallpapers-text');
         const wikiText = document.getElementById('wiki-text');
+        const wikiLink = document.getElementById('wiki-link');
         const languageLabel = document.getElementById('language-label');
         const aboutTitle = document.getElementById('about-title');
         const aboutText1 = document.getElementById('about-text-1');
@@ -838,6 +849,9 @@
         function updateLanguage() {
             const selectedLanguage = languageSelect.value;
             const texts = selectedLanguage === 'en' ? englishTexts : portugueseTexts;
+            
+            // Atualizar link da Wiki
+            wikiLink.href = urls[selectedLanguage].wiki;
             
             // Atualizar todos os textos
             siteTitle.textContent = texts.siteTitle;
