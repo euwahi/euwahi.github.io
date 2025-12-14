@@ -703,6 +703,12 @@
                 animation: none;
             }
         }
+        
+        /* Estilo específico para japonês */
+        .japanese-font {
+            font-family: "'Hiragino Sans', 'Hiragino Kaku Gothic Pro', 'Yu Gothic', 'Meiryo', sans-serif";
+            line-height: 1.8;
+        }
     </style>
 </head>
 <body>
@@ -725,7 +731,7 @@
                     <i class="fas fa-image"></i>
                     <span id="wallpapers-text">Wallpapers & Icons</span>
                 </a>
-                <a href="https://lacosprofanos.fandom.com/pt-br/wiki/Laços_Profanos_Wiki" target="_blank" class="nav-btn" id="wiki-link">
+                <a href="https://profanebonds.fandom.com/wiki/Profane_Bonds_Wiki" target="_blank" class="nav-btn" id="wiki-link">
                     <i class="fas fa-book"></i>
                     <span id="wiki-text">Wiki</span>
                 </a>
@@ -889,17 +895,9 @@
     </main>
 
     <script>
-        // URLs para cada idioma (Wiki)
+        // URLs para cada idioma (sempre direcionar para Wiki em inglês)
         const urls = {
-            pt: {
-                wiki: "https://lacosprofanos.fandom.com/pt-br/wiki/Laços_Profanos_Wiki"
-            },
-            en: {
-                wiki: "https://profanebonds.fandom.com/wiki/Profane_Bonds_Wiki"
-            },
-            jp: {
-                wiki: "https://profanebonds.fandom.com/wiki/Profane_Bonds_Wiki" // Página em inglês como fallback
-            }
+            wiki: "https://profanebonds.fandom.com/wiki/Profane_Bonds_Wiki"
         };
 
         // Textos em português
@@ -962,34 +960,34 @@
             creator2Desc: "Elisa Lana is the second mind behind Profane Bonds. While Eduarda leads the creative and narrative part, Elisa is responsible for illustrating and visualizing the ideas, bringing the universe to life with her artistic talent and turning concepts into images that delight fans."
         };
 
-        // Textos em japonês
+        // Textos em japonês - CORRIGIDO
         const japaneseTexts = {
             siteTitle: "背徳の絆",
             wallpapersText: "壁紙 & アイコン",
             wikiText: "ウィキ",
             languageLabel: "言語:",
             aboutTitle: "私たちについて",
-            aboutText1: "<span class='highlight'>背徳の絆</span>は、当時人気の作品に影響を受けたマンガのアイデアとして生まれた架空の物語です。時が経つにつれ、この最初のバージョンは完全に再考され、廃棄され、再構築されました。こうして、ユニバースは拡大し、今日私たちが知るものになりました。",
-            aboutText2: "私たちは完全に独立したプロジェクトであり、わずか二人によって開発され、維持されています。私たちはこのユニバースに命を吹き込み、質の高いコンテンツを作成し、背徳の絆についてもっと知りたい人々と私たちのビジョンを共有するために熱心に取り組んでいます。",
+            aboutText1: "<span class='highlight'>背徳の絆</span>は、当時人気だった作品にインスパイアされた漫画のアイデアとして生まれた架空の物語です。時間の経過とともに、この最初のバージョンは完全に再考され、廃棄されて再構築されました。その結果、世界観は拡大し、現在私たちが知る形になりました。",
+            aboutText2: "私たちは完全に独立したプロジェクトであり、たった二人だけで開発・運営されています。この世界観に命を吹き込み、質の高いコンテンツを作成し、背徳の絆についてもっと知りたい方々と私たちのビジョンを共有するために、誠心誠意取り組んでいます。",
             socialTitle: "ソーシャルメディア",
             socialTipa: "Tipa.ai チャンネル",
             socialWhatsapp: "WhatsApp チャンネル",
             socialDiscord: "Discord サーバー",
             socialInstagram: "Instagram プロフィール",
-            socialTwitter: "X (Twitter) プロフィール",
+            socialTwitter: "X（Twitter） プロフィール",
             socialYoutube: "YouTube チャンネル",
             socialTelegram: "Telegram チャンネル",
             socialReddit: "Reddit コミュニティ",
             earthTitle: "背徳の絆の地球",
-            earthText: "「背徳の絆の宇宙では、地球は私たちのものとは異なります。それは3つの大陸に分かれており、それぞれ独自の特徴、文化、歴史を持っています：」",
-            continentsDesc: "❄️ ケルスター — 厳しい気候、氷に覆われた風景、抵抗力に慣れた人々が特徴の寒冷大陸。<br>🍃 モルトン — 寒さと熱のバランスが取れた中間的な大陸で、自然と文化の多様性に富んでいます。<br>🔥 クリフトン — 強い熱気、活気に満ちた生命、太陽によって形作られた伝統に満ちた暑い大陸。",
+            earthText: "「背徳の絆の世界では、地球は私たちの世界とは異なります。たった3つの大陸に分かれており、それぞれが独自の特徴、文化、歴史を持っています：」",
+            continentsDesc: "❄️ ケルスター ― 厳しい気候、氷に覆われた風景、忍耐強さに慣れた人々が特徴の寒冷大陸。<br>🍃 モルトン ― 寒さと暑さのバランスが取れた中間的な大陸で、自然と文化の多様性に富んでいます。<br>🔥 クリフトン ― 強い熱気に包まれ、活気に満ちた生命と太陽によって形作られた伝統を持つ暑い大陸。",
             creatorsTitle: "制作者たち",
             creator1Name: "エドゥアルダ・ビクトリア",
-            creator1Role: "クリエイター",
-            creator1Desc: "ワヒポゴまたはワヒというペンネームで知られる彼女は、背徳の絆の宇宙の創造的な頭脳です。作品を構想するだけでなく、脚本家、クリエイティブディレクターとして活動し、プロジェクトの管理を担当しています。また、YouTubeなどのプラットフォームでコンテンツを作成し、匿名の視覚的アイデンティティを維持し、公式に顔を公開したことはありません。",
+            creator1Role: "創造主",
+            creator1Desc: "ワヒポゴもしくはワヒというペンネームで知られる彼女は、背徳の絆の世界観を創造した人物です。作品の構想だけでなく、脚本家、クリエイティブディレクターとしても活動し、プロジェクト全体の管理も担当しています。また、YouTubeなどのプラットフォームでコンテンツを制作していますが、視覚的な匿名性を保ち、公式に顔を公開したことはありません。",
             creator2Name: "エリサ・ラナ",
             creator2Role: "アーティスト",
-            creator2Desc: "エリサ・ラナは、背徳の絆の背後にいる2番目の頭脳です。エドゥアルダが創造的で物語の部分を担当する一方、エリサはアイデアのイラスト化と視覚化を担当し、芸術的才能で宇宙に命を吹き込み、コンセプトをファンを魅了する画像に変えています。"
+            creator2Desc: "エリサ・ラナは、背徳の絆の背後にいるもう一人の創造者です。エドゥアルダが創造的・物語的な部分を担当する一方で、エリサはアイデアのイラスト化と視覚化を担当し、芸術的才能でこの世界観に命を吹き込み、コンセプトをファンを魅了する画像へと変えています。"
         };
 
         // Elementos DOM
@@ -1022,6 +1020,19 @@
         const creator2Role = document.getElementById('creator-2-role');
         const creator2Desc = document.getElementById('creator-2-desc');
 
+        // Função para aplicar estilo japonês
+        function applyJapaneseStyle(apply) {
+            const elements = document.querySelectorAll('body, .about-text, .creator-desc, .continents-description, .social-content p, .social-content h3');
+            
+            elements.forEach(el => {
+                if (apply) {
+                    el.classList.add('japanese-font');
+                } else {
+                    el.classList.remove('japanese-font');
+                }
+            });
+        }
+
         // Função para atualizar os textos conforme o idioma selecionado
         function updateLanguage() {
             const selectedLanguage = languageSelect.value;
@@ -1030,18 +1041,19 @@
             switch(selectedLanguage) {
                 case 'en':
                     texts = englishTexts;
+                    applyJapaneseStyle(false);
                     break;
                 case 'jp':
                     texts = japaneseTexts;
+                    applyJapaneseStyle(true);
                     break;
                 default:
                     texts = portugueseTexts;
+                    applyJapaneseStyle(false);
             }
             
-            // Atualizar link da Wiki
-            if (urls[selectedLanguage]) {
-                wikiLink.href = urls[selectedLanguage].wiki;
-            }
+            // Sempre usar Wiki em inglês (conforme solicitado)
+            wikiLink.href = urls.wiki;
             
             // Atualizar todos os textos
             siteTitle.textContent = texts.siteTitle;
@@ -1071,18 +1083,10 @@
             creator2Role.textContent = texts.creator2Role;
             creator2Desc.textContent = texts.creator2Desc;
             
-            // Ajustar estilo para japonês se necessário
-            if (selectedLanguage === 'jp') {
-                document.body.style.fontFamily = "'Inter', 'Hiragino Sans', 'Hiragino Kaku Gothic Pro', 'Yu Gothic', sans-serif";
-                document.querySelectorAll('.about-text, .creator-desc, .continents-description').forEach(el => {
-                    el.style.lineHeight = '1.8';
-                });
-            } else {
-                document.body.style.fontFamily = "'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, sans-serif";
-                document.querySelectorAll('.about-text, .creator-desc, .continents-description').forEach(el => {
-                    el.style.lineHeight = '1.7';
-                });
-            }
+            // Ajustar título da página
+            document.title = texts.siteTitle === "背徳の絆" ? "背徳の絆" : 
+                            texts.siteTitle === "Profane Bonds" ? "Profane Bonds" : 
+                            "Laços Profanos";
         }
 
         // Adicionar evento de mudança no seletor de idioma
@@ -1098,9 +1102,9 @@
             const browserLang = navigator.language || navigator.userLanguage;
             const langCode = browserLang.substring(0, 2).toLowerCase();
             
-            // Se o idioma do navegador for inglês ou japonês, selecionar automaticamente
-            if (langCode === 'en' || langCode === 'jp') {
-                languageSelect.value = langCode;
+            // Se o idioma do navegador for japonês, selecionar automaticamente
+            if (langCode === 'ja' || langCode === 'jp') {
+                languageSelect.value = 'jp';
             }
             
             // Inicializar com textos no idioma selecionado
