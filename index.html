@@ -125,7 +125,18 @@
             cursor: pointer;
             font-weight: 600;
             font-size: 0.85rem;
-            min-width: 90px;
+            min-width: 110px;
+            appearance: none;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' fill='white' viewBox='0 0 16 16'%3E%3Cpath d='M7.247 11.14 2.451 5.658C1.885 5.013 2.345 4 3.204 4h9.592a1 1 0 0 1 .753 1.659l-4.796 5.48a1 1 0 0 1-1.506 0z'/%3E%3C/svg%3E");
+            background-repeat: no-repeat;
+            background-position: right 10px center;
+            background-size: 12px;
+            padding-right: 30px;
+        }
+
+        .language-selector select:focus {
+            outline: none;
+            box-shadow: 0 0 0 2px rgba(240, 27, 133, 0.3);
         }
 
         /* Conteúdo principal */
@@ -569,7 +580,7 @@
             .language-selector select {
                 padding: 5px 10px;
                 font-size: 0.8rem;
-                min-width: 80px;
+                min-width: 90px;
             }
         }
 
@@ -661,7 +672,7 @@
             }
         }
 
-        /* Efeito de brilho nos botões */
+        /* Efeito de brilho */
         @keyframes glow {
             from {
                 box-shadow: 0 0 15px rgba(240, 27, 133, 0.4);
@@ -703,9 +714,9 @@
             <div class="language-selector">
                 <span id="language-label">Idioma:</span>
                 <select id="language-select">
-                    <option value="pt">Português</option>
+                    <option value="pt">Português (BR)</option>
                     <option value="en">English</option>
-                    <option value="ja">日本語</option>
+                    <option value="jp">日本語</option>
                 </select>
             </div>
             
@@ -878,7 +889,7 @@
     </main>
 
     <script>
-        // URLs para cada idioma
+        // URLs para cada idioma (Wiki)
         const urls = {
             pt: {
                 wiki: "https://lacosprofanos.fandom.com/pt-br/wiki/Laços_Profanos_Wiki"
@@ -886,8 +897,8 @@
             en: {
                 wiki: "https://profanebonds.fandom.com/wiki/Profane_Bonds_Wiki"
             },
-            ja: {
-                wiki: "https://lacosprofanos.fandom.com/pt-br/wiki/Laços_Profanos_Wiki" // Manter em português para japonês por enquanto
+            jp: {
+                wiki: "https://profanebonds.fandom.com/wiki/Profane_Bonds_Wiki" // Página em inglês como fallback
             }
         };
 
@@ -954,16 +965,150 @@
         // Textos em japonês
         const japaneseTexts = {
             siteTitle: "背徳の絆",
-            wallpapersText: "壁紙＆アイコン",
-            wikiText: "Wiki",
-            languageLabel: "言語：",
+            wallpapersText: "壁紙 & アイコン",
+            wikiText: "ウィキ",
+            languageLabel: "言語:",
             aboutTitle: "私たちについて",
-            aboutText1: "<span class='highlight'>背徳の絆</span>は、当時の人気作品に触発されたマンガのアイデアとして生まれた架空の物語です。時間の経過とともに、この最初のバージョンは完全に再考され、破棄され、再構築されました。こうして、私たちが今日知るものになるまで宇宙は拡大しました。",
-            aboutText2: "私たちは完全に独立したプロジェクトであり、わずか二人によって開発・維持されています。この宇宙に命を吹き込み、質の高いコンテンツを作成し、背徳の絆についてもっと知りたい人々と私たちのビジョンを共有するために、献身的に取り組んでいます。",
+            aboutText1: "<span class='highlight'>背徳の絆</span>は、当時人気の作品に影響を受けたマンガのアイデアとして生まれた架空の物語です。時が経つにつれ、この最初のバージョンは完全に再考され、廃棄され、再構築されました。こうして、ユニバースは拡大し、今日私たちが知るものになりました。",
+            aboutText2: "私たちは完全に独立したプロジェクトであり、わずか二人によって開発され、維持されています。私たちはこのユニバースに命を吹き込み、質の高いコンテンツを作成し、背徳の絆についてもっと知りたい人々と私たちのビジョンを共有するために熱心に取り組んでいます。",
             socialTitle: "ソーシャルメディア",
-            socialTipa: "Tipa.aiチャンネル",
-            socialWhatsapp: "WhatsAppチャンネル",
-            socialDiscord: "Discordサーバー",
-            socialInstagram: "Instagramプロフィール",
-            socialTwitter: "X（旧Twitter）プロフィール",
-            socialYoutube: "YouTubeチャンネ
+            socialTipa: "Tipa.ai チャンネル",
+            socialWhatsapp: "WhatsApp チャンネル",
+            socialDiscord: "Discord サーバー",
+            socialInstagram: "Instagram プロフィール",
+            socialTwitter: "X (Twitter) プロフィール",
+            socialYoutube: "YouTube チャンネル",
+            socialTelegram: "Telegram チャンネル",
+            socialReddit: "Reddit コミュニティ",
+            earthTitle: "背徳の絆の地球",
+            earthText: "「背徳の絆の宇宙では、地球は私たちのものとは異なります。それは3つの大陸に分かれており、それぞれ独自の特徴、文化、歴史を持っています：」",
+            continentsDesc: "❄️ ケルスター — 厳しい気候、氷に覆われた風景、抵抗力に慣れた人々が特徴の寒冷大陸。<br>🍃 モルトン — 寒さと熱のバランスが取れた中間的な大陸で、自然と文化の多様性に富んでいます。<br>🔥 クリフトン — 強い熱気、活気に満ちた生命、太陽によって形作られた伝統に満ちた暑い大陸。",
+            creatorsTitle: "制作者たち",
+            creator1Name: "エドゥアルダ・ビクトリア",
+            creator1Role: "クリエイター",
+            creator1Desc: "ワヒポゴまたはワヒというペンネームで知られる彼女は、背徳の絆の宇宙の創造的な頭脳です。作品を構想するだけでなく、脚本家、クリエイティブディレクターとして活動し、プロジェクトの管理を担当しています。また、YouTubeなどのプラットフォームでコンテンツを作成し、匿名の視覚的アイデンティティを維持し、公式に顔を公開したことはありません。",
+            creator2Name: "エリサ・ラナ",
+            creator2Role: "アーティスト",
+            creator2Desc: "エリサ・ラナは、背徳の絆の背後にいる2番目の頭脳です。エドゥアルダが創造的で物語の部分を担当する一方、エリサはアイデアのイラスト化と視覚化を担当し、芸術的才能で宇宙に命を吹き込み、コンセプトをファンを魅了する画像に変えています。"
+        };
+
+        // Elementos DOM
+        const languageSelect = document.getElementById('language-select');
+        const siteTitle = document.getElementById('site-title');
+        const wallpapersText = document.getElementById('wallpapers-text');
+        const wikiText = document.getElementById('wiki-text');
+        const wikiLink = document.getElementById('wiki-link');
+        const languageLabel = document.getElementById('language-label');
+        const aboutTitle = document.getElementById('about-title');
+        const aboutText1 = document.getElementById('about-text-1');
+        const aboutText2 = document.getElementById('about-text-2');
+        const socialTitle = document.getElementById('social-title');
+        const socialTipa = document.getElementById('social-tipa');
+        const socialWhatsapp = document.getElementById('social-whatsapp');
+        const socialDiscord = document.getElementById('social-discord');
+        const socialInstagram = document.getElementById('social-instagram');
+        const socialTwitter = document.getElementById('social-twitter');
+        const socialYoutube = document.getElementById('social-youtube');
+        const socialTelegram = document.getElementById('social-telegram');
+        const socialReddit = document.getElementById('social-reddit');
+        const earthTitle = document.getElementById('earth-title');
+        const earthText = document.getElementById('earth-text');
+        const continentsDesc = document.getElementById('continents-desc');
+        const creatorsTitle = document.getElementById('creators-title');
+        const creator1Name = document.getElementById('creator-1-name');
+        const creator1Role = document.getElementById('creator-1-role');
+        const creator1Desc = document.getElementById('creator-1-desc');
+        const creator2Name = document.getElementById('creator-2-name');
+        const creator2Role = document.getElementById('creator-2-role');
+        const creator2Desc = document.getElementById('creator-2-desc');
+
+        // Função para atualizar os textos conforme o idioma selecionado
+        function updateLanguage() {
+            const selectedLanguage = languageSelect.value;
+            let texts;
+            
+            switch(selectedLanguage) {
+                case 'en':
+                    texts = englishTexts;
+                    break;
+                case 'jp':
+                    texts = japaneseTexts;
+                    break;
+                default:
+                    texts = portugueseTexts;
+            }
+            
+            // Atualizar link da Wiki
+            if (urls[selectedLanguage]) {
+                wikiLink.href = urls[selectedLanguage].wiki;
+            }
+            
+            // Atualizar todos os textos
+            siteTitle.textContent = texts.siteTitle;
+            wallpapersText.textContent = texts.wallpapersText;
+            wikiText.textContent = texts.wikiText;
+            languageLabel.textContent = texts.languageLabel;
+            aboutTitle.textContent = texts.aboutTitle;
+            aboutText1.innerHTML = texts.aboutText1;
+            aboutText2.textContent = texts.aboutText2;
+            socialTitle.textContent = texts.socialTitle;
+            socialTipa.textContent = texts.socialTipa;
+            socialWhatsapp.textContent = texts.socialWhatsapp;
+            socialDiscord.textContent = texts.socialDiscord;
+            socialInstagram.textContent = texts.socialInstagram;
+            socialTwitter.textContent = texts.socialTwitter;
+            socialYoutube.textContent = texts.socialYoutube;
+            socialTelegram.textContent = texts.socialTelegram;
+            socialReddit.textContent = texts.socialReddit;
+            earthTitle.textContent = texts.earthTitle;
+            earthText.textContent = texts.earthText;
+            continentsDesc.innerHTML = texts.continentsDesc;
+            creatorsTitle.textContent = texts.creatorsTitle;
+            creator1Name.textContent = texts.creator1Name;
+            creator1Role.textContent = texts.creator1Role;
+            creator1Desc.textContent = texts.creator1Desc;
+            creator2Name.textContent = texts.creator2Name;
+            creator2Role.textContent = texts.creator2Role;
+            creator2Desc.textContent = texts.creator2Desc;
+            
+            // Ajustar estilo para japonês se necessário
+            if (selectedLanguage === 'jp') {
+                document.body.style.fontFamily = "'Inter', 'Hiragino Sans', 'Hiragino Kaku Gothic Pro', 'Yu Gothic', sans-serif";
+                document.querySelectorAll('.about-text, .creator-desc, .continents-description').forEach(el => {
+                    el.style.lineHeight = '1.8';
+                });
+            } else {
+                document.body.style.fontFamily = "'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, sans-serif";
+                document.querySelectorAll('.about-text, .creator-desc, .continents-description').forEach(el => {
+                    el.style.lineHeight = '1.7';
+                });
+            }
+        }
+
+        // Adicionar evento de mudança no seletor de idioma
+        languageSelect.addEventListener('change', updateLanguage);
+        
+        // Melhorar a usabilidade do select em mobile
+        languageSelect.addEventListener('touchstart', function(e) {
+            e.stopPropagation();
+        }, { passive: true });
+
+        // Detectar idioma preferido do navegador
+        function detectPreferredLanguage() {
+            const browserLang = navigator.language || navigator.userLanguage;
+            const langCode = browserLang.substring(0, 2).toLowerCase();
+            
+            // Se o idioma do navegador for inglês ou japonês, selecionar automaticamente
+            if (langCode === 'en' || langCode === 'jp') {
+                languageSelect.value = langCode;
+            }
+            
+            // Inicializar com textos no idioma selecionado
+            updateLanguage();
+        }
+
+        // Inicializar
+        detectPreferredLanguage();
+    </script>
+</body>
+</html>
