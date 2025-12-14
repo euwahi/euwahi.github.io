@@ -135,6 +135,7 @@
 
         .section {
             margin-bottom: 60px;
+            animation: fadeInUp 0.6s ease-out;
         }
 
         .section-title {
@@ -203,6 +204,7 @@
             background: #f01b85;
             transform: translateY(-3px);
             box-shadow: 0 8px 20px rgba(240, 27, 133, 0.3);
+            animation: glow 1s ease-in-out infinite alternate;
         }
 
         .social-icon {
@@ -395,43 +397,6 @@
             font-size: 1rem;
         }
 
-        /* Trailer */
-        .trailer-container {
-            margin-top: 30px;
-            background: rgba(255, 255, 255, 0.05);
-            border-radius: 15px;
-            padding: 25px;
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            position: relative;
-            overflow: hidden;
-        }
-
-        .trailer-container::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 4px;
-            background: #f01b85;
-        }
-
-        .trailer-video {
-            width: 100%;
-            max-width: 800px;
-            margin: 0 auto;
-            border-radius: 12px;
-            overflow: hidden;
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5);
-            border: 2px solid rgba(240, 27, 133, 0.3);
-        }
-
-        .trailer-video video {
-            width: 100%;
-            height: auto;
-            display: block;
-        }
-
         /* ========================= */
         /* RESPONSIVIDADE AVANÇADA */
         /* ========================= */
@@ -530,8 +495,7 @@
                 gap: 25px;
             }
             
-            .continents-container,
-            .trailer-container {
+            .continents-container {
                 padding: 20px;
             }
             
@@ -697,19 +661,7 @@
             }
         }
 
-        .section {
-            animation: fadeInUp 0.6s ease-out;
-        }
-
         /* Efeito de brilho nos botões */
-        .social-btn, .nav-btn, .creator-avatar, .continents-image, .trailer-video {
-            transition: all 0.3s ease;
-        }
-
-        .social-btn:hover, .nav-btn:hover {
-            animation: glow 1s ease-in-out infinite alternate;
-        }
-
         @keyframes glow {
             from {
                 box-shadow: 0 0 15px rgba(240, 27, 133, 0.4);
@@ -717,6 +669,10 @@
             to {
                 box-shadow: 0 0 20px rgba(240, 27, 133, 0.6);
             }
+        }
+
+        .nav-btn:hover {
+            animation: glow 1s ease-in-out infinite alternate;
         }
 
         /* Otimização para touch */
@@ -733,6 +689,7 @@
             .nav-btn:hover, .social-btn:hover {
                 transform: none;
                 box-shadow: none;
+                animation: none;
             }
         }
     </style>
@@ -748,6 +705,7 @@
                 <select id="language-select">
                     <option value="pt">Português</option>
                     <option value="en">English</option>
+                    <option value="ja">日本語</option>
                 </select>
             </div>
             
@@ -917,20 +875,6 @@
                 </div>
             </div>
         </section>
-
-        <!-- Seção Trailer -->
-        <section id="trailer" class="section">
-            <h2 class="section-title" id="trailer-title">Trailer</h2>
-            
-            <div class="trailer-container">
-                <div class="trailer-video">
-                    <video controls poster="https://i.imgur.com/jrrLcpW.png">
-                        <source src="https://i.imgur.com/KG1l8FD.mp4" type="video/mp4">
-                        Seu navegador não suporta a tag de vídeo.
-                    </video>
-                </div>
-            </div>
-        </section>
     </main>
 
     <script>
@@ -941,6 +885,9 @@
             },
             en: {
                 wiki: "https://profanebonds.fandom.com/wiki/Profane_Bonds_Wiki"
+            },
+            ja: {
+                wiki: "https://lacosprofanos.fandom.com/pt-br/wiki/Laços_Profanos_Wiki" // Manter em português para japonês por enquanto
             }
         };
 
@@ -971,8 +918,7 @@
             creator1Desc: "Mais conhecida pelo pseudônimo Wahipogo ou Wahi, é a mente criativa por trás do universo de Laços Profanos. Além de idealizar a obra, atua como roteirista, diretora criativa e responsável pela administração do projeto. Também cria conteúdo em plataformas como o YouTube, mantendo sua identidade visual anônima e nunca tendo mostrado o rosto oficialmente.",
             creator2Name: "Elisa Lana",
             creator2Role: "A Artista",
-            creator2Desc: "Elisa Lana é a segunda mente por trás de Laços Profanos. Enquanto Eduarda conduz a parte criativa e narrativa, Elisa é responsável pela ilustração e visualização das ideias, dando vida ao universo com seu talento artístico e transformando conceitos em imagens que encantam os fãs.",
-            trailerTitle: "Trailer"
+            creator2Desc: "Elisa Lana é a segunda mente por trás de Laços Profanos. Enquanto Eduarda conduz a parte criativa e narrativa, Elisa é responsável pela ilustração e visualização das ideias, dando vida ao universo com seu talento artístico e transformando conceitos em imagens que encantam os fãs."
         };
 
         // Textos em inglês
@@ -1002,84 +948,22 @@
             creator1Desc: "Better known by the pseudonym Wahipogo or Wahi, she is the creative mind behind the Profane Bonds universe. In addition to conceiving the work, she works as a screenwriter, creative director and is responsible for project administration. She also creates content on platforms like YouTube, maintaining her anonymous visual identity and never having officially shown her face.",
             creator2Name: "Elisa Lana",
             creator2Role: "The Artist",
-            creator2Desc: "Elisa Lana is the second mind behind Profane Bonds. While Eduarda leads the creative and narrative part, Elisa is responsible for illustrating and visualizing the ideas, bringing the universe to life with her artistic talent and turning concepts into images that delight fans.",
-            trailerTitle: "Trailer"
+            creator2Desc: "Elisa Lana is the second mind behind Profane Bonds. While Eduarda leads the creative and narrative part, Elisa is responsible for illustrating and visualizing the ideas, bringing the universe to life with her artistic talent and turning concepts into images that delight fans."
         };
 
-        // Elementos DOM
-        const languageSelect = document.getElementById('language-select');
-        const siteTitle = document.getElementById('site-title');
-        const wallpapersText = document.getElementById('wallpapers-text');
-        const wikiText = document.getElementById('wiki-text');
-        const wikiLink = document.getElementById('wiki-link');
-        const languageLabel = document.getElementById('language-label');
-        const aboutTitle = document.getElementById('about-title');
-        const aboutText1 = document.getElementById('about-text-1');
-        const aboutText2 = document.getElementById('about-text-2');
-        const socialTitle = document.getElementById('social-title');
-        const socialTipa = document.getElementById('social-tipa');
-        const socialWhatsapp = document.getElementById('social-whatsapp');
-        const socialDiscord = document.getElementById('social-discord');
-        const socialInstagram = document.getElementById('social-instagram');
-        const socialTwitter = document.getElementById('social-twitter');
-        const socialYoutube = document.getElementById('social-youtube');
-        const socialTelegram = document.getElementById('social-telegram');
-        const socialReddit = document.getElementById('social-reddit');
-        const earthTitle = document.getElementById('earth-title');
-        const earthText = document.getElementById('earth-text');
-        const continentsDesc = document.getElementById('continents-desc');
-        const creatorsTitle = document.getElementById('creators-title');
-        const creator1Name = document.getElementById('creator-1-name');
-        const creator1Role = document.getElementById('creator-1-role');
-        const creator1Desc = document.getElementById('creator-1-desc');
-        const creator2Name = document.getElementById('creator-2-name');
-        const creator2Role = document.getElementById('creator-2-role');
-        const creator2Desc = document.getElementById('creator-2-desc');
-        const trailerTitle = document.getElementById('trailer-title');
-
-        // Função para atualizar os textos conforme o idioma selecionado
-        function updateLanguage() {
-            const selectedLanguage = languageSelect.value;
-            const texts = selectedLanguage === 'en' ? englishTexts : portugueseTexts;
-            
-            // Atualizar link da Wiki
-            wikiLink.href = urls[selectedLanguage].wiki;
-            
-            // Atualizar todos os textos
-            siteTitle.textContent = texts.siteTitle;
-            wallpapersText.textContent = texts.wallpapersText;
-            wikiText.textContent = texts.wikiText;
-            languageLabel.textContent = texts.languageLabel;
-            aboutTitle.textContent = texts.aboutTitle;
-            aboutText1.innerHTML = texts.aboutText1;
-            aboutText2.textContent = texts.aboutText2;
-            socialTitle.textContent = texts.socialTitle;
-            socialTipa.textContent = texts.socialTipa;
-            socialWhatsapp.textContent = texts.socialWhatsapp;
-            socialDiscord.textContent = texts.socialDiscord;
-            socialInstagram.textContent = texts.socialInstagram;
-            socialTwitter.textContent = texts.socialTwitter;
-            socialYoutube.textContent = texts.socialYoutube;
-            socialTelegram.textContent = texts.socialTelegram;
-            socialReddit.textContent = texts.socialReddit;
-            earthTitle.textContent = texts.earthTitle;
-            earthText.textContent = texts.earthText;
-            continentsDesc.innerHTML = texts.continentsDesc;
-            creatorsTitle.textContent = texts.creatorsTitle;
-            creator1Name.textContent = texts.creator1Name;
-            creator1Role.textContent = texts.creator1Role;
-            creator1Desc.textContent = texts.creator1Desc;
-            creator2Name.textContent = texts.creator2Name;
-            creator2Role.textContent = texts.creator2Role;
-            creator2Desc.textContent = texts.creator2Desc;
-            trailerTitle.textContent = texts.trailerTitle;
-        }
-
-        // Adicionar evento de mudança no seletor de idioma
-        languageSelect.addEventListener('change', updateLanguage);
-
-        // Inicializar com textos em português
-        updateLanguage();
-    </script>
-</body>
-</html>
+        // Textos em japonês
+        const japaneseTexts = {
+            siteTitle: "背徳の絆",
+            wallpapersText: "壁紙＆アイコン",
+            wikiText: "Wiki",
+            languageLabel: "言語：",
+            aboutTitle: "私たちについて",
+            aboutText1: "<span class='highlight'>背徳の絆</span>は、当時の人気作品に触発されたマンガのアイデアとして生まれた架空の物語です。時間の経過とともに、この最初のバージョンは完全に再考され、破棄され、再構築されました。こうして、私たちが今日知るものになるまで宇宙は拡大しました。",
+            aboutText2: "私たちは完全に独立したプロジェクトであり、わずか二人によって開発・維持されています。この宇宙に命を吹き込み、質の高いコンテンツを作成し、背徳の絆についてもっと知りたい人々と私たちのビジョンを共有するために、献身的に取り組んでいます。",
+            socialTitle: "ソーシャルメディア",
+            socialTipa: "Tipa.aiチャンネル",
+            socialWhatsapp: "WhatsAppチャンネル",
+            socialDiscord: "Discordサーバー",
+            socialInstagram: "Instagramプロフィール",
+            socialTwitter: "X（旧Twitter）プロフィール",
+            socialYoutube: "YouTubeチャンネ
