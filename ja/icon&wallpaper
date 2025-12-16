@@ -1,0 +1,889 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>背徳の絆</title>
+    <link rel="icon" href="https://i.imgur.com/mgxXSto.png" type="image/png">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* リセットとグローバル設定 */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Inter', 'Hiragino Kaku Gothic ProN', 'Meiryo', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, sans-serif;
+        }
+
+        body {
+            background: #000000;
+            color: #ffffff;
+            line-height: 1.6;
+            min-height: 100vh;
+        }
+
+        /* カスタムスクロールバースタイル */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: #111111;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: #f01b85;
+            border-radius: 4px;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 15px;
+        }
+
+        /* コンパクトヘッダー */
+        header {
+            background: rgba(0, 0, 0, 0.98);
+            padding: 12px 0;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            box-shadow: 0 2px 10px rgba(240, 27, 133, 0.1);
+            backdrop-filter: blur(10px);
+        }
+
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+
+        .logo {
+            font-size: 1.4rem;
+            font-weight: 800;
+            color: #ffffff;
+            letter-spacing: -0.3px;
+            flex-shrink: 0;
+        }
+
+        .logo span {
+            background: linear-gradient(90deg, #f01b85 0%, #ff4da6 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .nav-buttons {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+            justify-content: center;
+            flex: 1;
+        }
+
+        .nav-btn {
+            background: rgba(240, 27, 133, 0.15);
+            color: #ffffff;
+            border: 1px solid #f01b85;
+            padding: 8px 16px;
+            border-radius: 25px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 0.9rem;
+            text-decoration: none;
+            white-space: nowrap;
+        }
+
+        .nav-btn:hover {
+            background: #f01b85;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(240, 27, 133, 0.3);
+        }
+
+        .language-selector {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 0.85rem;
+            flex-shrink: 0;
+        }
+
+        .language-selector select {
+            background: rgba(240, 27, 133, 0.15);
+            color: #ffffff;
+            border: 1px solid #f01b85;
+            padding: 6px 12px;
+            border-radius: 20px;
+            cursor: pointer;
+            font-weight: 600;
+            font-size: 0.85rem;
+            min-width: 110px;
+            appearance: none;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' fill='white' viewBox='0 0 16 16'%3E%3Cpath d='M7.247 11.14 2.451 5.658C1.885 5.013 2.345 4 3.204 4h9.592a1 1 0 0 1 .753 1.659l-4.796 5.48a1 1 0 0 1-1.506 0z'/%3E%3C/svg%3E");
+            background-repeat: no-repeat;
+            background-position: right 10px center;
+            background-size: 12px;
+            padding-right: 30px;
+        }
+
+        .language-selector select:focus {
+            outline: none;
+            box-shadow: 0 0 0 2px rgba(240, 27, 133, 0.3);
+        }
+
+        /* メインコンテンツ */
+        main {
+            padding: 30px 0 40px 0;
+        }
+
+        .section {
+            margin-bottom: 60px;
+            animation: fadeInUp 0.6s ease-out;
+        }
+
+        .section-title {
+            font-size: 2rem;
+            margin-bottom: 30px;
+            text-align: center;
+            position: relative;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 4px;
+            background: #f01b85;
+            border-radius: 2px;
+        }
+
+        .about-text {
+            font-size: 1.1rem;
+            line-height: 1.7;
+            margin-bottom: 25px;
+            text-align: center;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+            color: #cccccc;
+        }
+
+        .highlight {
+            color: #f01b85;
+            font-weight: 700;
+        }
+
+        /* ソーシャルメディア - コンパクト */
+        .social-buttons {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+            margin-top: 40px;
+        }
+
+        .social-btn {
+            background: rgba(240, 27, 133, 0.15);
+            color: #ffffff;
+            border: 1px solid #f01b85;
+            padding: 12px 20px;
+            border-radius: 25px;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-weight: 600;
+            text-align: left;
+            min-height: 60px;
+        }
+
+        .social-btn:hover {
+            background: #f01b85;
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(240, 27, 133, 0.3);
+            animation: glow 1s ease-in-out infinite alternate;
+        }
+
+        .social-icon {
+            font-size: 1.2rem;
+            width: 36px;
+            height: 36px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            flex-shrink: 0;
+        }
+
+        .social-content {
+            flex: 1;
+            min-width: 0;
+        }
+
+        .social-content h3 {
+            font-size: 1rem;
+            margin-bottom: 4px;
+            font-weight: 600;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .social-content p {
+            font-size: 0.8rem;
+            color: rgba(255, 255, 255, 0.8);
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        /* 大陸 */
+        .continents-container {
+            margin-top: 30px;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 15px;
+            padding: 25px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .continents-container::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: #f01b85;
+        }
+
+        .continents-image {
+            width: 100%;
+            max-width: 700px;
+            margin: 0 auto 30px;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.5);
+            border: 2px solid rgba(240, 27, 133, 0.3);
+        }
+
+        .continents-image img {
+            width: 100%;
+            height: auto;
+            display: block;
+            transition: transform 0.8s ease;
+        }
+
+        .continents-image:hover img {
+            transform: scale(1.03);
+        }
+
+        .continents-description {
+            text-align: center;
+            color: #ffffff;
+            line-height: 1.7;
+            font-size: 1.1rem;
+            background: rgba(240, 27, 133, 0.1);
+            padding: 20px;
+            border-radius: 12px;
+            border-left: 4px solid #f01b85;
+        }
+
+        /* クリエイター */
+        .creators-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+            margin-top: 30px;
+        }
+
+        .creator-card {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 15px;
+            padding: 30px 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .creator-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: #f01b85;
+        }
+
+        .creator-card:hover {
+            transform: translateY(-8px);
+            border-color: #f01b85;
+            box-shadow: 0 15px 30px rgba(240, 27, 133, 0.2);
+        }
+
+        .creator-avatar {
+            width: 140px;
+            height: 140px;
+            border-radius: 50%;
+            margin-bottom: 20px;
+            overflow: hidden;
+            border: 3px solid #f01b85;
+            position: relative;
+            box-shadow: 0 10px 20px rgba(240, 27, 133, 0.3);
+        }
+
+        .creator-avatar img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .creator-avatar:hover img {
+            transform: scale(1.1);
+        }
+
+        .creator-name {
+            font-size: 1.5rem;
+            margin-bottom: 12px;
+            font-weight: 800;
+            color: #ffffff;
+        }
+
+        .creator-role {
+            color: #f01b85;
+            font-weight: 700;
+            margin-bottom: 20px;
+            font-size: 1rem;
+            position: relative;
+            display: inline-block;
+            padding: 0 15px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .creator-role::before,
+        .creator-role::after {
+            content: '✦';
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #ff4da6;
+            font-size: 1.2rem;
+        }
+
+        .creator-role::before {
+            left: 0;
+        }
+
+        .creator-role::after {
+            right: 0;
+        }
+
+        .creator-desc {
+            color: #cccccc;
+            line-height: 1.7;
+            font-size: 1rem;
+        }
+
+        /* ========================= */
+        /* 高度なレスポンシブデザイン */
+        /* ========================= */
+
+        /* タブレットと中画面 */
+        @media (max-width: 992px) {
+            .container {
+                padding: 0 12px;
+            }
+            
+            .header-content {
+                flex-direction: column;
+                gap: 12px;
+                text-align: center;
+            }
+            
+            .logo {
+                font-size: 1.3rem;
+            }
+            
+            .nav-buttons {
+                width: 100%;
+                order: 3;
+                margin-top: 5px;
+            }
+            
+            .language-selector {
+                order: 2;
+            }
+            
+            .section-title {
+                font-size: 1.8rem;
+            }
+            
+            .social-buttons {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 12px;
+            }
+            
+            .creator-avatar {
+                width: 120px;
+                height: 120px;
+            }
+            
+            .creator-name {
+                font-size: 1.3rem;
+            }
+        }
+
+        /* モバイル（768px以下） */
+        @media (max-width: 768px) {
+            header {
+                padding: 10px 0;
+            }
+            
+            .nav-btn {
+                padding: 7px 14px;
+                font-size: 0.85rem;
+                gap: 6px;
+                flex: 1;
+                justify-content: center;
+                min-width: 140px;
+            }
+            
+            .nav-buttons {
+                gap: 8px;
+            }
+            
+            .social-buttons {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 10px;
+            }
+            
+            .social-btn {
+                padding: 10px 15px;
+                min-height: 55px;
+                gap: 10px;
+            }
+            
+            .social-icon {
+                width: 32px;
+                height: 32px;
+                font-size: 1.1rem;
+            }
+            
+            .social-content h3 {
+                font-size: 0.95rem;
+            }
+            
+            .social-content p {
+                font-size: 0.75rem;
+            }
+            
+            .creators-grid {
+                grid-template-columns: 1fr;
+                gap: 25px;
+            }
+            
+            .continents-container {
+                padding: 20px;
+            }
+            
+            .creator-card {
+                padding: 25px 15px;
+            }
+            
+            .section-title {
+                font-size: 1.6rem;
+                margin-bottom: 25px;
+            }
+            
+            .about-text {
+                font-size: 1rem;
+            }
+        }
+
+        /* 小さいモバイル（480px以下） */
+        @media (max-width: 480px) {
+            .nav-buttons {
+                flex-direction: column;
+                width: 100%;
+            }
+            
+            .nav-btn {
+                width: 100%;
+                max-width: 280px;
+                margin: 0 auto;
+            }
+            
+            .social-buttons {
+                grid-template-columns: 1fr;
+                gap: 8px;
+            }
+            
+            .social-btn {
+                min-height: 50px;
+                padding: 8px 12px;
+            }
+            
+            .section-title {
+                font-size: 1.4rem;
+            }
+            
+            .about-text {
+                font-size: 0.95rem;
+            }
+            
+            .creator-avatar {
+                width: 110px;
+                height: 110px;
+            }
+            
+            .creator-name {
+                font-size: 1.2rem;
+            }
+            
+            .creator-desc {
+                font-size: 0.95rem;
+            }
+            
+            .continents-description {
+                font-size: 1rem;
+                padding: 15px;
+            }
+            
+            .language-selector {
+                font-size: 0.8rem;
+            }
+            
+            .language-selector select {
+                padding: 5px 10px;
+                font-size: 0.8rem;
+                min-width: 90px;
+            }
+        }
+
+        /* 非常に小さいモバイル（360px以下） */
+        @media (max-width: 360px) {
+            .logo {
+                font-size: 1.2rem;
+            }
+            
+            .nav-btn {
+                font-size: 0.8rem;
+                padding: 6px 12px;
+            }
+            
+            .section-title {
+                font-size: 1.3rem;
+            }
+            
+            .social-buttons {
+                gap: 6px;
+            }
+            
+            .social-btn {
+                padding: 7px 10px;
+            }
+            
+            .social-icon {
+                width: 28px;
+                height: 28px;
+                font-size: 1rem;
+            }
+            
+            .social-content h3 {
+                font-size: 0.9rem;
+            }
+            
+            .social-content p {
+                font-size: 0.7rem;
+            }
+            
+            .creator-avatar {
+                width: 100px;
+                height: 100px;
+            }
+            
+            .creator-name {
+                font-size: 1.1rem;
+            }
+        }
+
+        /* モバイルでの横向き */
+        @media (max-height: 500px) and (orientation: landscape) {
+            header {
+                padding: 8px 0;
+            }
+            
+            .nav-btn {
+                padding: 5px 10px;
+                font-size: 0.8rem;
+            }
+            
+            .logo {
+                font-size: 1.2rem;
+            }
+            
+            main {
+                padding: 20px 0 30px 0;
+            }
+            
+            .section {
+                margin-bottom: 40px;
+            }
+            
+            .section-title {
+                font-size: 1.5rem;
+                margin-bottom: 20px;
+            }
+        }
+
+        /* アニメーション */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* グロウエフェクト */
+        @keyframes glow {
+            from {
+                box-shadow: 0 0 15px rgba(240, 27, 133, 0.4);
+            }
+            to {
+                box-shadow: 0 0 20px rgba(240, 27, 133, 0.6);
+            }
+        }
+
+        .nav-btn:hover {
+            animation: glow 1s ease-in-out infinite alternate;
+        }
+
+        /* タッチ最適化 */
+        @media (hover: none) and (pointer: coarse) {
+            .nav-btn, .social-btn {
+                min-height: 44px; /* タッチ用最小サイズ */
+            }
+            
+            .nav-btn:active, .social-btn:active {
+                transform: scale(0.97);
+                background: #f01b85;
+            }
+            
+            .nav-btn:hover, .social-btn:hover {
+                transform: none;
+                box-shadow: none;
+                animation: none;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- コンパクトナビゲーションヘッダー -->
+    <header>
+        <div class="container header-content">
+            <div class="logo"><span id="site-title">背徳の絆</span></div>
+            
+            <div class="language-selector">
+                <span id="language-label">言語:</span>
+                <select id="language-select">
+                    <option value="jp">日本語</option>
+                    <option value="en">English</option>
+                    <option value="pt">Português (BR)</option>
+                </select>
+            </div>
+            
+            <div class="nav-buttons">
+                <a href="https://lacosprofanos.com.br/ja/icon&wallpaper/" target="_blank" class="nav-btn">
+                    <i class="fas fa-image"></i>
+                    <span>壁紙とアイコン</span>
+                </a>
+                <a href="https://profanebonds.fandom.com/" target="_blank" class="nav-btn">
+                    <i class="fas fa-book"></i>
+                    <span>Wiki</span>
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <main class="container">
+        <!-- アバウトセクション -->
+        <section id="about" class="section">
+            <h2 class="section-title">プロジェクトについて</h2>
+            <div class="about-text">
+                <p>
+                    <span class="highlight">背徳の絆</span> は、当時の人気作品に触発されてマンガのコンセプトとして始まった架空の物語です。長年にわたって、この初期バージョンは完全に再構想され、破棄され、再構築されました。そしてこの宇宙は、今日私たちが知るものへと拡大していきました。
+                   私たちは完全に独立したプロジェクトで、わずか二人によって開発・維持されています。私たちは、この宇宙に命を吹き込み、質の高いコンテンツを作成し、背徳の絆についてさらに学びたい人々と私たちのビジョンを共有するために献身的に取り組んでいます。
+                </p>
+            </div>
+        </section>
+
+        <!-- ソーシャルメディアセクション - コンパクト -->
+        <section id="social" class="section">
+            <h2 class="section-title">ソーシャルメディア</h2>
+            <div class="about-text">
+                <p>私たちのソーシャルメディアチャンネルで繋がりましょう：</p>
+            </div>
+            <div class="social-buttons">
+                <a href="https://ko-fi.com/profanebonds" target="_blank" class="social-btn">
+                    <div class="social-icon">
+                        <i class="fas fa-robot"></i>
+                    </div>
+                    <div class="social-content">
+                        <h3>Ko-fi</h3>
+                        <p>Ko-fiで支援する</p>
+                    </div>
+                </a>
+                
+                <a href="https://discord.com/invite/u4sD2JyTuT" target="_blank" class="social-btn">
+                    <div class="social-icon">
+                        <i class="fab fa-discord"></i>
+                    </div>
+                    <div class="social-content">
+                        <h3>Discord</h3>
+                        <p>Discordサーバー</p>
+                    </div>
+                </a>
+                
+                <a href="https://www.youtube.com/@背徳の絆" target="_blank" class="social-btn">
+                    <div class="social-icon">
+                        <i class="fab fa-youtube"></i>
+                    </div>
+                    <div class="social-content">
+                        <h3>YouTube</h3>
+                        <p>YouTubeチャンネル</p>
+                    </div>
+                </a>
+            </div>
+        </section>
+
+        <!-- 背徳の絆の地球セクション -->
+        <section id="earth" class="section">
+            <h2 class="section-title">背徳の絆の地球</h2>
+            <div class="about-text">
+                <p>
+                    「背徳の絆の宇宙では、地球は私たちのものとは異なります。それはわずか三つの大陸に分かれており、それぞれが独自の特徴、文化、歴史を持っています：」
+                </p>
+            </div>
+            
+            <div class="continents-container">
+                <div class="continents-image">
+                    <img src="https://i.imgur.com/jrrLcpW.png" alt="背徳の絆の三つの大陸：ケルスター、モルトン、クリフトン">
+                </div>
+                
+                <p class="continents-description">
+                    ❄️ ケルスター — 寒冷大陸、厳しい気候、氷の風景、そして忍耐強さに慣れた人々が特徴です。<br> 🍃 モルトン — 中間大陸、冷たさと熱さのバランスを取り、自然と文化の多様性に富んでいます。<br> 🔥 クリフトン — 熱帯大陸、強烈な暑さ、活気ある生命、そして太陽によって形成された伝統に満ちています。
+                </p>
+            </div>
+        </section>
+
+        <!-- 制作者セクション -->
+        <section id="creators" class="section">
+            <h2 class="section-title">制作者たち</h2>
+            
+            <div class="creators-grid">
+                <div class="creator-card">
+                    <div class="creator-avatar">
+                        <img src="https://i.imgur.com/Py44HxM.png" alt="Eduarda Victoria - 創造者">
+                    </div>
+                    <h3 class="creator-name">Eduarda Victoria</h3>
+                    <p class="creator-role">創造者</p>
+                    <p class="creator-desc">
+                        WahipogoまたはWahiというペンネームで知られ、背徳の絆の宇宙を生み出した創造的な頭脳です。作品を構想するだけでなく、脚本家、クリエイティブディレクターとして活動し、プロジェクトの管理も担当しています。また、YouTubeなどのプラットフォームでコンテンツを作成し、視覚的なアイデンティティを匿名に保ち、公式に顔を見せたことはありません。
+                    </p>
+                </div>
+                
+                <div class="creator-card">
+                    <div class="creator-avatar">
+                        <img src="https://i.imgur.com/ByfmPFO.png" alt="Elisa Lana - アーティスト">
+                    </div>
+                    <h3 class="creator-name">Elisa Lana</h3>
+                    <p class="creator-role">アーティスト</p>
+                    <p class="creator-desc">
+                        Elisa Lanaは、背徳の絆の第二の頭脳です。Eduardaが創造的および物語的側面をリードする一方で、Elisaはアイデアをイラスト化し、視覚化する責任を担い、彼女の芸術的才能で宇宙に命を吹き込み、コンセプトをファンを魅了する画像に変えています。
+                    </p>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <script>
+        // 各言語のURL
+        const languageUrls = {
+            jp: "https://lacosprofanos.com.br/ja", // 日本語メインページ
+            en: "https://lacosprofanos.com.br/en", // 英語
+            pt: "https://lacosprofanos.com.br"     // ポルトガル語
+        };
+
+        // セレクト要素
+        const languageSelect = document.getElementById('language-select');
+
+        // 言語セレクターの変更イベントを追加
+        languageSelect.addEventListener('change', function() {
+            const selectedLanguage = this.value;
+            
+            // 対応するURLにリダイレクト
+            if (languageUrls[selectedLanguage]) {
+                window.location.href = languageUrls[selectedLanguage];
+            }
+        });
+
+        // ブラウザの優先言語を検出
+        function detectPreferredLanguage() {
+            const browserLang = navigator.language || navigator.userLanguage;
+            const langCode = browserLang.substring(0, 2).toLowerCase();
+            
+            // メインページ（日本語）にいるか確認
+            const currentPath = window.location.pathname;
+            
+            // メインページではない場合、セレクトを調整
+            if (currentPath.includes('/jp')) {
+                languageSelect.value = 'jp';
+            } else if (currentPath.includes('/en')) {
+                languageSelect.value = 'en';
+            } else if (currentPath.includes('/pt') || currentPath === '/' || 
+                       currentPath === '/index.html' || 
+                       (currentPath.includes('lacosprofanos.com.br') && 
+                       !currentPath.includes('/en') && 
+                       !currentPath.includes('/jp'))) {
+                languageSelect.value = 'pt';
+            }
+        }
+
+        // 初期化
+        detectPreferredLanguage();
+        
+        // モバイルでのセレクトの使いやすさを向上
+        languageSelect.addEventListener('touchstart', function(e) {
+            e.stopPropagation();
+        }, { passive: true });
+    </script>
+</body>
+</html>
