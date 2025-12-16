@@ -459,12 +459,6 @@
             to { opacity: 1; }
         }
 
-        /* Estilo específico para japonês */
-        .japanese-font {
-            font-family: "'Hiragino Sans', 'Hiragino Kaku Gothic Pro', 'Yu Gothic', 'Meiryo', sans-serif";
-            line-height: 1.8;
-        }
-
         /* ====================== */
         /* RESPONSIVIDADE POR BREAKPOINTS */
         /* ====================== */
@@ -690,12 +684,12 @@
     <!-- Header fixo responsivo -->
     <div class="header-fixed">
         <div class="header-content">
-            <div class="logo"><span id="site-title">Laços Profanos</span></div>
+            <div class="logo"><span>Laços Profanos</span></div>
             
             <div class="language-selector">
-                <span id="language-label">Idioma:</span>
+                <span>Idioma:</span>
                 <select id="language-select">
-                    <option value="pt">Português</option>
+                    <option value="pt">Português (BR)</option>
                     <option value="en">English</option>
                     <option value="jp">日本語</option>
                 </select>
@@ -712,13 +706,13 @@
             <!-- Linha superior: botões + pesquisa -->
             <div class="nav-top-row">
                 <div class="main-nav">
-                    <a href="https://lacosprofanos.com.br/" target="_blank" class="main-nav-btn" id="home-link">
+                    <a href="https://lacosprofanos.com.br/" target="_blank" class="main-nav-btn">
                         <i class="fas fa-home"></i>
-                        <span id="home-text">Site Principal</span>
+                        <span>Site Principal</span>
                     </a>
-                    <a href="https://profanebonds.fandom.com/wiki/Profane_Bonds_Wiki" target="_blank" class="main-nav-btn" id="wiki-link">
+                    <a href="https://profanebonds.fandom.com/wiki/Profane_Bonds_Wiki" target="_blank" class="main-nav-btn">
                         <i class="fas fa-book"></i>
-                        <span id="wiki-text">Wiki</span>
+                        <span>Wiki</span>
                     </a>
                 </div>
                 
@@ -726,16 +720,16 @@
                     <input type="text" class="search-input" id="search-input" placeholder="Pesquisar wallpapers e ícones...">
                     <button class="search-btn" id="search-btn">
                         <i class="fas fa-search"></i>
-                        <span id="search-text">Buscar</span>
+                        <span>Buscar</span>
                     </button>
                 </div>
             </div>
             
             <!-- Filtros -->
             <div class="filters">
-                <button class="filter-btn active" data-filter="all" id="filter-all">Todos</button>
-                <button class="filter-btn" data-filter="wallpaper" id="filter-wallpaper">Wallpapers</button>
-                <button class="filter-btn" data-filter="icon" id="filter-icon">Ícones</button>
+                <button class="filter-btn active" data-filter="all">Todos</button>
+                <button class="filter-btn" data-filter="wallpaper">Wallpapers</button>
+                <button class="filter-btn" data-filter="icon">Ícones</button>
             </div>
             
             <!-- Contador de resultados -->
@@ -748,24 +742,20 @@
 
     <!-- Conteúdo principal -->
     <div class="container">
-        <h1 class="page-title" id="page-title">Mural de Wallpapers e Ícones</h1>
+        <h1 class="page-title">Mural de Wallpapers e Ícones</h1>
 
         <!-- Mensagem sem resultados -->
         <div class="no-results" id="no-results">
             <i class="fas fa-search"></i>
-            <p id="no-results-text">Nenhum resultado encontrado para sua pesquisa</p>
+            <p>Nenhum resultado encontrado para sua pesquisa</p>
         </div>
 
         <!-- Grid de conteúdos -->
         <div class="content-grid" id="content-grid">
             <!-- Wallpapers -->
             <div class="content-item" data-type="wallpaper" 
-                 data-name-pt="Hamiah vs Enaya" 
-                 data-name-en="Hamiah vs Enaya"
-                 data-name-jp="ハミア vs エナヤ"
-                 data-tags-pt="hamiah enaya batalha wallpaper" 
-                 data-tags-en="hamiah enaya battle wallpaper"
-                 data-tags-jp="ハミア エナヤ バトル 壁紙">
+                 data-name="Hamiah vs Enaya" 
+                 data-tags="hamiah enaya batalha wallpaper">
                 <img src="https://i.imgur.com/RA2LetQ.png" alt="Wallpaper Hamiah vs Enaya" loading="lazy">
                 <div class="item-info">
                     <h3 class="item-title">Hamiah vs Enaya</h3>
@@ -776,19 +766,15 @@
                     </div>
                     <button class="btn-download" data-image="https://i.imgur.com/RA2LetQ.png" data-filename="wallpaper-hamiah-vs-enaya.png">
                         <i class="fas fa-download"></i>
-                        <span class="download-text">Baixar Wallpaper</span>
+                        <span>Baixar Wallpaper</span>
                     </button>
                 </div>
             </div>
             
             <!-- NOVO Wallpaper -->
             <div class="content-item" data-type="wallpaper" 
-                 data-name-pt="O último anjo" 
-                 data-name-en="The Last Angel"
-                 data-name-jp="最後の天使"
-                 data-tags-pt="anjo celestial wallpaper" 
-                 data-tags-en="angel celestial wallpaper"
-                 data-tags-jp="天使 天界 壁紙">
+                 data-name="O último anjo" 
+                 data-tags="anjo celestial wallpaper">
                 <img src="https://i.imgur.com/IHCgQPS.png" alt="Wallpaper O último anjo" loading="lazy">
                 <div class="item-info">
                     <h3 class="item-title">O último anjo</h3>
@@ -799,19 +785,15 @@
                     </div>
                     <button class="btn-download" data-image="https://i.imgur.com/IHCgQPS.png" data-filename="wallpaper-o-ultimo-anjo.png">
                         <i class="fas fa-download"></i>
-                        <span class="download-text">Baixar Wallpaper</span>
+                        <span>Baixar Wallpaper</span>
                     </button>
                 </div>
             </div>
             
             <!-- Ícones -->
             <div class="content-item" data-type="icon"
-                 data-name-pt="Ícone do Kaleb" 
-                 data-name-en="Kaleb Icon"
-                 data-name-jp="カレブのアイコン"
-                 data-tags-pt="kaleb icone personagem" 
-                 data-tags-en="kaleb icon character"
-                 data-tags-jp="カレブ アイコン キャラクター">
+                 data-name="Ícone do Kaleb" 
+                 data-tags="kaleb icone personagem">
                 <img src="https://i.imgur.com/WVrHpaB.jpeg" alt="Ícone do Kaleb" loading="lazy">
                 <div class="item-info">
                     <h3 class="item-title">Ícone do Kaleb</h3>
@@ -822,19 +804,15 @@
                     </div>
                     <button class="btn-download" data-image="https://i.imgur.com/WVrHpaB.jpeg" data-filename="icone-kaleb.jpeg">
                         <i class="fas fa-download"></i>
-                        <span class="download-text">Baixar Ícone</span>
+                        <span>Baixar Ícone</span>
                     </button>
                 </div>
             </div>
             
             <!-- NOVO Ícone -->
             <div class="content-item" data-type="icon"
-                 data-name-pt="Ícone da Wahi" 
-                 data-name-en="Wahi Icon"
-                 data-name-jp="ワヒのアイコン"
-                 data-tags-pt="wahi wahipogo criadora icone" 
-                 data-tags-en="wahi wahipogo creator icon"
-                 data-tags-jp="ワヒ ワヒポゴ 創造主 アイコン">
+                 data-name="Ícone da Wahi" 
+                 data-tags="wahi wahipogo criadora icone">
                 <img src="https://i.imgur.com/Py44HxM.png" alt="Ícone da Wahi" loading="lazy">
                 <div class="item-info">
                     <h3 class="item-title">Ícone da Wahi</h3>
@@ -845,7 +823,7 @@
                     </div>
                     <button class="btn-download" data-image="https://i.imgur.com/Py44HxM.png" data-filename="icone-wahi.png">
                         <i class="fas fa-download"></i>
-                        <span class="download-text">Baixar Ícone</span>
+                        <span>Baixar Ícone</span>
                     </button>
                 </div>
             </div>
@@ -857,7 +835,7 @@
             <img class="modal-content" id="modalImage" alt="Visualização ampliada">
             <button class="btn-download modal-download" id="modalDownload">
                 <i class="fas fa-download"></i>
-                <span id="modal-download-text">Baixar Imagem</span>
+                <span>Baixar Imagem</span>
             </button>
         </div>
     </div>
@@ -867,27 +845,8 @@
         document.addEventListener('DOMContentLoaded', function() {
             // Elementos DOM
             const languageSelect = document.getElementById('language-select');
-            const siteTitle = document.getElementById('site-title');
-            const homeText = document.getElementById('home-text');
-            const wikiText = document.getElementById('wiki-text');
-            const languageLabel = document.getElementById('language-label');
-            const pageTitle = document.getElementById('page-title');
             const searchInput = document.getElementById('search-input');
             const searchBtn = document.getElementById('search-btn');
-            const searchText = document.getElementById('search-text');
-            const filterAll = document.getElementById('filter-all');
-            const filterWallpaper = document.getElementById('filter-wallpaper');
-            const filterIcon = document.getElementById('filter-icon');
-            const modalDownloadText = document.getElementById('modal-download-text');
-            const resultsCounter = document.getElementById('results-counter');
-            const noResults = document.getElementById('no-results');
-            const noResultsText = document.getElementById('no-results-text');
-            
-            // Links que mudam com o idioma
-            const homeLink = document.getElementById('home-link');
-            const wikiLink = document.getElementById('wiki-link');
-            
-            // Elementos do sistema
             const filterButtons = document.querySelectorAll('.filter-btn');
             const contentItems = document.querySelectorAll('.content-item');
             const downloadButtons = document.querySelectorAll('.btn-download');
@@ -896,91 +855,19 @@
             const modalDownloadBtn = document.getElementById('modalDownload');
             const modalClose = document.querySelector('.modal-close');
             const itemImages = document.querySelectorAll('.content-item img');
-            
+            const resultsCounter = document.getElementById('results-counter');
+            const noResults = document.getElementById('no-results');
+
+            // URLs para cada idioma
+            const languageUrls = {
+                pt: "https://lacosprofanos.com.br/icon&wallpaper/",
+                en: "https://lacosprofanos.com.br/en/icon&wallpaper/",
+                jp: "https://lacosprofanos.com.br/jp/icon&wallpaper/"
+            };
+
             // Estado da aplicação
             let currentFilter = 'all';
             let currentSearch = '';
-            let currentLanguage = 'pt';
-
-            // URLs para cada idioma
-            const urls = {
-                pt: {
-                    home: "https://lacosprofanos.com.br/",
-                    wiki: "https://profanebonds.fandom.com/wiki/Profane_Bonds_Wiki"
-                },
-                en: {
-                    home: "https://lacosprofanos.com.br/",
-                    wiki: "https://profanebonds.fandom.com/wiki/Profane_Bonds_Wiki"
-                },
-                jp: {
-                    home: "https://lacosprofanos.com.br/",
-                    wiki: "https://profanebonds.fandom.com/wiki/Profane_Bonds_Wiki"
-                }
-            };
-
-            // Traduções completas
-            const translations = {
-                pt: {
-                    siteTitle: "Laços Profanos",
-                    homeText: "Site Principal",
-                    wikiText: "Wiki",
-                    languageLabel: "Idioma:",
-                    pageTitle: "Mural de Wallpapers e Ícones",
-                    searchPlaceholder: "Pesquisar wallpapers e ícones...",
-                    searchText: "Buscar",
-                    filterAll: "Todos",
-                    filterWallpaper: "Wallpapers",
-                    filterIcon: "Ícones",
-                    modalDownloadText: "Baixar Imagem",
-                    noResultsText: "Nenhum resultado encontrado para sua pesquisa",
-                    resultsShowing: "Mostrando",
-                    resultsOf: "de",
-                    resultsItems: "itens",
-                    downloadedText: "Baixado!",
-                    wallpaperText: "Wallpaper",
-                    iconText: "Ícone"
-                },
-                en: {
-                    siteTitle: "Profane Bonds",
-                    homeText: "Main Site",
-                    wikiText: "Wiki",
-                    languageLabel: "Language:",
-                    pageTitle: "Wallpapers and Icons Gallery",
-                    searchPlaceholder: "Search wallpapers and icons...",
-                    searchText: "Search",
-                    filterAll: "All",
-                    filterWallpaper: "Wallpapers",
-                    filterIcon: "Icons",
-                    modalDownloadText: "Download Image",
-                    noResultsText: "No results found for your search",
-                    resultsShowing: "Showing",
-                    resultsOf: "of",
-                    resultsItems: "items",
-                    downloadedText: "Downloaded!",
-                    wallpaperText: "Wallpaper",
-                    iconText: "Icon"
-                },
-                jp: {
-                    siteTitle: "背徳の絆",
-                    homeText: "メインサイト",
-                    wikiText: "ウィキ",
-                    languageLabel: "言語:",
-                    pageTitle: "壁紙とアイコングラリー",
-                    searchPlaceholder: "壁紙とアイコンを検索...",
-                    searchText: "検索",
-                    filterAll: "すべて",
-                    filterWallpaper: "壁紙",
-                    filterIcon: "アイコン",
-                    modalDownloadText: "画像をダウンロード",
-                    noResultsText: "検索結果が見つかりませんでした",
-                    resultsShowing: "表示中",
-                    resultsOf: "/",
-                    resultsItems: "アイテム",
-                    downloadedText: "ダウンロード完了！",
-                    wallpaperText: "壁紙",
-                    iconText: "アイコン"
-                }
-            };
 
             // Função para normalizar texto
             function normalizeText(text) {
@@ -993,75 +880,6 @@
                     .trim();
             }
 
-            // Função para aplicar estilo japonês
-            function applyJapaneseStyle(apply) {
-                const elements = document.querySelectorAll('body, .about-text, .creator-desc, .continents-description, .social-content p, .social-content h3, .item-title, .item-details, .results-counter, .no-results');
-                
-                elements.forEach(el => {
-                    if (apply) {
-                        el.classList.add('japanese-font');
-                    } else {
-                        el.classList.remove('japanese-font');
-                    }
-                });
-            }
-
-            // Função para atualizar todos os textos conforme o idioma
-            function updateLanguage(language) {
-                currentLanguage = language;
-                const texts = translations[language];
-                
-                // Atualizar links
-                homeLink.href = urls[language].home;
-                wikiLink.href = urls[language].wiki;
-                
-                // Atualizar textos estáticos
-                siteTitle.textContent = texts.siteTitle;
-                homeText.textContent = texts.homeText;
-                wikiText.textContent = texts.wikiText;
-                languageLabel.textContent = texts.languageLabel;
-                pageTitle.textContent = texts.pageTitle;
-                searchInput.placeholder = texts.searchPlaceholder;
-                searchText.textContent = texts.searchText;
-                filterAll.textContent = texts.filterAll;
-                filterWallpaper.textContent = texts.filterWallpaper;
-                filterIcon.textContent = texts.filterIcon;
-                modalDownloadText.textContent = texts.modalDownloadText;
-                noResultsText.textContent = texts.noResultsText;
-                
-                // Aplicar estilo japonês se necessário
-                if (language === 'jp') {
-                    applyJapaneseStyle(true);
-                } else {
-                    applyJapaneseStyle(false);
-                }
-                
-                // Atualizar textos dos cards
-                contentItems.forEach(item => {
-                    const titleElement = item.querySelector('.item-title');
-                    const downloadBtn = item.querySelector('.btn-download span');
-                    const typeElement = item.querySelector('.item-type');
-                    const type = item.getAttribute('data-type');
-                    
-                    // Atualizar título
-                    const nameAttr = `data-name-${language}`;
-                    if (item.hasAttribute(nameAttr)) {
-                        const name = item.getAttribute(nameAttr);
-                        titleElement.textContent = name;
-                    }
-                    
-                    // Atualizar botão de download e tipo
-                    downloadBtn.textContent = type === 'wallpaper' 
-                        ? `${texts.downloadedText.includes('Baixar') ? 'Baixar' : 'Download'} ${texts.wallpaperText}`
-                        : `${texts.downloadedText.includes('Baixar') ? 'Baixar' : 'Download'} ${texts.iconText}`;
-                    
-                    typeElement.textContent = type === 'wallpaper' ? texts.wallpaperText : texts.iconText;
-                });
-                
-                // Atualizar contador de resultados
-                updateResultsCounter();
-            }
-
             // Função para atualizar contador de resultados
             function updateResultsCounter() {
                 const visibleItems = document.querySelectorAll('.content-item:not(.hidden)').length;
@@ -1072,8 +890,7 @@
                     resultsCounter.textContent = '';
                 } else {
                     noResults.style.display = 'none';
-                    const texts = translations[currentLanguage];
-                    resultsCounter.textContent = `${texts.resultsShowing} ${visibleItems} ${texts.resultsOf} ${totalItems} ${texts.resultsItems}`;
+                    resultsCounter.textContent = `Mostrando ${visibleItems} de ${totalItems} itens`;
                 }
             }
 
@@ -1093,28 +910,9 @@
                     if (searchTerm) {
                         let searchData = '';
                         
-                        // Coletar dados de busca para o idioma atual
-                        const nameAttr = `data-name-${currentLanguage}`;
-                        const tagsAttr = `data-tags-${currentLanguage}`;
-                        
-                        if (item.hasAttribute(nameAttr)) {
-                            searchData += item.getAttribute(nameAttr) + ' ';
-                        }
-                        
-                        if (item.hasAttribute(tagsAttr)) {
-                            searchData += item.getAttribute(tagsAttr) + ' ';
-                        }
-                        
-                        // Adicionar dados em inglês e português também (para busca mais abrangente)
-                        if (currentLanguage !== 'en') {
-                            searchData += item.getAttribute('data-name-en') + ' ';
-                            searchData += item.getAttribute('data-tags-en') + ' ';
-                        }
-                        
-                        if (currentLanguage !== 'pt') {
-                            searchData += item.getAttribute('data-name-pt') + ' ';
-                            searchData += item.getAttribute('data-tags-pt') + ' ';
-                        }
+                        // Coletar dados de busca
+                        searchData += item.getAttribute('data-name') + ' ';
+                        searchData += item.getAttribute('data-tags') + ' ';
                         
                         const normalizedSearchData = normalizeText(searchData);
                         passesSearch = normalizedSearchData.includes(searchTerm);
@@ -1161,8 +959,7 @@
                 const button = event.target.closest('.btn-download');
                 if (button) {
                     const originalContent = button.innerHTML;
-                    const texts = translations[currentLanguage];
-                    button.innerHTML = `<i class="fas fa-check"></i> ${texts.downloadedText}`;
+                    button.innerHTML = `<i class="fas fa-check"></i> Baixado!`;
                     button.style.backgroundColor = '#2E7D32';
                     
                     setTimeout(() => {
@@ -1248,23 +1045,28 @@
                 }
             });
 
-            // Idioma
+            // Idioma - redirecionamento
             languageSelect.addEventListener('change', function() {
-                updateLanguage(this.value);
+                const selectedLanguage = this.value;
+                
+                // Redirecionar para a URL correspondente
+                if (languageUrls[selectedLanguage]) {
+                    window.location.href = languageUrls[selectedLanguage];
+                }
             });
 
-            // Detectar idioma preferido do navegador
+            // Detectar idioma preferido do navegador e ajustar select
             function detectPreferredLanguage() {
-                const browserLang = navigator.language || navigator.userLanguage;
-                const langCode = browserLang.substring(0, 2).toLowerCase();
+                const currentPath = window.location.pathname;
                 
-                if (langCode === 'ja' || langCode === 'jp') {
-                    languageSelect.value = 'jp';
-                } else if (langCode === 'en') {
+                // Verificar se estamos em alguma das páginas específicas
+                if (currentPath.includes('/en/icon&wallpaper') || currentPath.includes('/en/icon%26wallpaper')) {
                     languageSelect.value = 'en';
+                } else if (currentPath.includes('/jp/icon&wallpaper') || currentPath.includes('/jp/icon%26wallpaper')) {
+                    languageSelect.value = 'jp';
+                } else {
+                    languageSelect.value = 'pt';
                 }
-                
-                updateLanguage(languageSelect.value);
             }
 
             // Otimização para touch devices
