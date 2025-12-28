@@ -352,6 +352,13 @@
             flex-wrap: wrap;
         }
 
+        /* Estilo para os botões de download */
+        .download-buttons {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
         .btn-download {
             background: rgba(240, 27, 133, 0.15);
             color: #ffffff;
@@ -368,11 +375,22 @@
             justify-content: center;
             text-decoration: none;
             font-size: clamp(0.8rem, 2.5vw, 0.9rem);
+            text-align: center;
         }
 
         .btn-download:hover {
             background: rgba(240, 27, 133, 0.3);
             transform: translateY(-2px);
+        }
+
+        /* Botão do itch.io com estilo diferente */
+        .btn-itch {
+            background: rgba(250, 90, 90, 0.15);
+            border-color: #FA5A5A;
+        }
+
+        .btn-itch:hover {
+            background: rgba(250, 90, 90, 0.3);
         }
 
         /* Mensagem sem resultados responsiva */
@@ -763,10 +781,16 @@
                         <span>1280x720</span>
                         <span>584 kb</span>
                     </div>
-                    <button class="btn-download" data-image="https://i.imgur.com/RA2LetQ.png" data-filename="wallpaper-hamiah-vs-enaya.png">
-                        <i class="fas fa-download"></i>
-                        <span>Baixar Wallpaper</span>
-                    </button>
+                    <div class="download-buttons">
+                        <button class="btn-download" data-image="https://i.imgur.com/RA2LetQ.png" data-filename="wallpaper-hamiah-vs-enaya.png">
+                            <i class="fas fa-download"></i>
+                            <span>Baixar Wallpaper</span>
+                        </button>
+                        <a href="https://lacosprofanos2.itch.io/wallpaper2" target="_blank" class="btn-download btn-itch">
+                            <i class="fab fa-itch-io"></i>
+                            <span>Baixar no itch.io</span>
+                        </a>
+                    </div>
                 </div>
             </div>
             
@@ -782,10 +806,16 @@
                         <span>1280x720</span>
                         <span>829.7 kb</span>
                     </div>
-                    <button class="btn-download" data-image="https://i.imgur.com/IHCgQPS.png" data-filename="wallpaper-o-ultimo-anjo.png">
-                        <i class="fas fa-download"></i>
-                        <span>Baixar Wallpaper</span>
-                    </button>
+                    <div class="download-buttons">
+                        <button class="btn-download" data-image="https://i.imgur.com/IHCgQPS.png" data-filename="wallpaper-o-ultimo-anjo.png">
+                            <i class="fas fa-download"></i>
+                            <span>Baixar Wallpaper</span>
+                        </button>
+                        <a href="https://lacosprofanos2.itch.io/wallpaper1" target="_blank" class="btn-download btn-itch">
+                            <i class="fab fa-itch-io"></i>
+                            <span>Baixar no itch.io</span>
+                        </a>
+                    </div>
                 </div>
             </div>
             
@@ -801,10 +831,16 @@
                         <span>736x736</span>
                         <span>57.78 kb</span>
                     </div>
-                    <button class="btn-download" data-image="https://i.imgur.com/WVrHpaB.jpeg" data-filename="icone-kaleb.jpeg">
-                        <i class="fas fa-download"></i>
-                        <span>Baixar Ícone</span>
-                    </button>
+                    <div class="download-buttons">
+                        <button class="btn-download" data-image="https://i.imgur.com/WVrHpaB.jpeg" data-filename="icone-kaleb.jpeg">
+                            <i class="fas fa-download"></i>
+                            <span>Baixar Ícone</span>
+                        </button>
+                        <a href="https://lacosprofanos2.itch.io/icon1" target="_blank" class="btn-download btn-itch">
+                            <i class="fab fa-itch-io"></i>
+                            <span>Baixar no itch.io</span>
+                        </a>
+                    </div>
                 </div>
             </div>
             
@@ -820,10 +856,16 @@
                         <span>768x768</span>
                         <span>171.1 kb</span>
                     </div>
-                    <button class="btn-download" data-image="https://i.imgur.com/Py44HxM.png" data-filename="icone-wahi.png">
-                        <i class="fas fa-download"></i>
-                        <span>Baixar Ícone</span>
-                    </button>
+                    <div class="download-buttons">
+                        <button class="btn-download" data-image="https://i.imgur.com/Py44HxM.png" data-filename="icone-wahi.png">
+                            <i class="fas fa-download"></i>
+                            <span>Baixar Ícone</span>
+                        </button>
+                        <a href="https://lacosprofanos2.itch.io/icon2" target="_blank" class="btn-download btn-itch">
+                            <i class="fab fa-itch-io"></i>
+                            <span>Baixar no itch.io</span>
+                        </a>
+                    </div>
                 </div>
             </div>
         </div>
@@ -848,7 +890,7 @@
             const searchBtn = document.getElementById('search-btn');
             const filterButtons = document.querySelectorAll('.filter-btn');
             const contentItems = document.querySelectorAll('.content-item');
-            const downloadButtons = document.querySelectorAll('.btn-download');
+            const downloadButtons = document.querySelectorAll('.btn-download:not(.btn-itch)');
             const modal = document.getElementById('imageModal');
             const modalImage = document.getElementById('modalImage');
             const modalDownloadBtn = document.getElementById('modalDownload');
@@ -1014,7 +1056,7 @@
             itemImages.forEach(img => {
                 img.addEventListener('click', function() {
                     const item = this.closest('.content-item');
-                    const downloadBtn = item.querySelector('.btn-download');
+                    const downloadBtn = item.querySelector('.btn-download:not(.btn-itch)');
                     const imageUrl = this.src;
                     const filename = downloadBtn.getAttribute('data-filename');
                     openModal(imageUrl, filename);
