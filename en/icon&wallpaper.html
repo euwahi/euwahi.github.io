@@ -14,7 +14,7 @@
     </script>
 
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Wallpaper and Icon Gallery</title>
+    <title>Wallpapers and Icons Gallery</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         :root {
@@ -42,7 +42,7 @@
             overflow-x: hidden;
         }
 
-        /* Responsive fixed header */
+        /* Fixed responsive header */
         .header-fixed {
             background: rgba(0, 0, 0, 0.98);
             padding: clamp(8px, 2vw, 12px) 0;
@@ -102,7 +102,7 @@
             height: clamp(45px, 10vw, 60px);
         }
 
-        /* Responsive main container */
+        /* Main responsive container */
         .container {
             max-width: min(1200px, 95vw);
             margin: 0 auto;
@@ -126,7 +126,7 @@
             padding: 0 clamp(10px, 3vw, 20px);
         }
 
-        /* Responsive compact layout for buttons and search */
+        /* Compact responsive layout for buttons and search */
         .nav-top-row {
             display: flex;
             gap: clamp(8px, 2vw, 15px);
@@ -246,7 +246,7 @@
             box-shadow: 0 2px 8px rgba(240, 27, 133, 0.3);
         }
 
-        /* Responsive results counter */
+        /* Results counter responsive */
         .results-counter {
             color: #cccccc;
             font-size: clamp(0.75rem, 2.5vw, 0.9rem);
@@ -260,7 +260,7 @@
             height: clamp(110px, 25vw, 140px);
         }
 
-        /* Responsive page title */
+        /* Page title responsive */
         .page-title {
             font-size: clamp(1.4rem, 5vw, 2.2rem);
             margin-bottom: clamp(15px, 4vw, 25px);
@@ -352,6 +352,13 @@
             flex-wrap: wrap;
         }
 
+        /* Style for download buttons */
+        .download-buttons {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
         .btn-download {
             background: rgba(240, 27, 133, 0.15);
             color: #ffffff;
@@ -368,6 +375,7 @@
             justify-content: center;
             text-decoration: none;
             font-size: clamp(0.8rem, 2.5vw, 0.9rem);
+            text-align: center;
         }
 
         .btn-download:hover {
@@ -375,7 +383,17 @@
             transform: translateY(-2px);
         }
 
-        /* Responsive no results message */
+        /* itch.io button with different style */
+        .btn-itch {
+            background: rgba(250, 90, 90, 0.15);
+            border-color: #FA5A5A;
+        }
+
+        .btn-itch:hover {
+            background: rgba(250, 90, 90, 0.3);
+        }
+
+        /* No results message responsive */
         .no-results {
             text-align: center;
             padding: clamp(25px, 8vw, 40px);
@@ -460,7 +478,7 @@
         }
 
         /* ====================== */
-        /* BREAKPOINT RESPONSIVENESS */
+        /* BREAKPOINTS RESPONSIVENESS */
         /* ====================== */
 
         /* Very small screens (up to 320px) */
@@ -681,7 +699,7 @@
     </style>
 </head>
 <body>
-    <!-- Responsive fixed header -->
+    <!-- Fixed responsive header -->
     <div class="header-fixed">
         <div class="header-content">
             <div class="logo"><span>Profane Bonds</span></div>
@@ -709,7 +727,7 @@
                         <i class="fas fa-home"></i>
                         <span>Main Site</span>
                     </a>
-                    <a href="https://profanebonds.fandom.com/wiki" target="_blank" class="main-nav-btn">
+                    <a href="https://lacosprofanos.fandom.com/wiki/La%C3%A7os_Profanos_Wiki" target="_blank" class="main-nav-btn">
                         <i class="fas fa-book"></i>
                         <span>Wiki</span>
                     </a>
@@ -741,12 +759,12 @@
 
     <!-- Main content -->
     <div class="container">
-        <h1 class="page-title">Wallpaper and Icon Wall</h1>
+        <h1 class="page-title">Wallpapers and Icons Gallery</h1>
 
         <!-- No results message -->
         <div class="no-results" id="no-results">
             <i class="fas fa-search"></i>
-            <p>No results were found for your search.</p>
+            <p>No results found for your search</p>
         </div>
 
         <!-- Content grid -->
@@ -763,10 +781,16 @@
                         <span>1280x720</span>
                         <span>584 kb</span>
                     </div>
-                    <button class="btn-download" data-image="https://i.imgur.com/RA2LetQ.png" data-filename="wallpaper-hamiah-vs-enaya.png">
-                        <i class="fas fa-download"></i>
-                        <span>Download Wallpaper</span>
-                    </button>
+                    <div class="download-buttons">
+                        <button class="btn-download" data-image="https://i.imgur.com/RA2LetQ.png" data-filename="wallpaper-hamiah-vs-enaya.png">
+                            <i class="fas fa-download"></i>
+                            <span>Download Wallpaper</span>
+                        </button>
+                        <a href="https://lacosprofanos2.itch.io/wallpaper2" target="_blank" class="btn-download btn-itch">
+                            <i class="fab fa-itch-io"></i>
+                            <span>Download on itch.io</span>
+                        </a>
+                    </div>
                 </div>
             </div>
             
@@ -782,53 +806,71 @@
                         <span>1280x720</span>
                         <span>829.7 kb</span>
                     </div>
-                    <button class="btn-download" data-image="https://i.imgur.com/IHCgQPS.png" data-filename="wallpaper-the-last-angel.png">
-                        <i class="fas fa-download"></i>
-                        <span>Download Wallpaper</span>
-                    </button>
+                    <div class="download-buttons">
+                        <button class="btn-download" data-image="https://i.imgur.com/IHCgQPS.png" data-filename="wallpaper-the-last-angel.png">
+                            <i class="fas fa-download"></i>
+                            <span>Download Wallpaper</span>
+                        </button>
+                        <a href="https://lacosprofanos2.itch.io/wallpaper1" target="_blank" class="btn-download btn-itch">
+                            <i class="fab fa-itch-io"></i>
+                            <span>Download on itch.io</span>
+                        </a>
+                    </div>
                 </div>
             </div>
             
             <!-- Icons -->
             <div class="content-item" data-type="icon"
-                 data-name="Kaleb's icon" 
+                 data-name="Kaleb Icon" 
                  data-tags="kaleb icon character">
-                <img src="https://i.imgur.com/WVrHpaB.jpeg" alt="Kaleb's icon" loading="lazy">
+                <img src="https://i.imgur.com/WVrHpaB.jpeg" alt="Kaleb Icon" loading="lazy">
                 <div class="item-info">
-                    <h3 class="item-title">Kaleb's icon</h3>
+                    <h3 class="item-title">Kaleb Icon</h3>
                     <span class="item-type">Icon</span>
                     <div class="item-details">
                         <span>736x736</span>
                         <span>57.78 kb</span>
                     </div>
-                    <button class="btn-download" data-image="https://i.imgur.com/WVrHpaB.jpeg" data-filename="icon-kaleb.jpeg">
-                        <i class="fas fa-download"></i>
-                        <span>Download Icon</span>
-                    </button>
+                    <div class="download-buttons">
+                        <button class="btn-download" data-image="https://i.imgur.com/WVrHpaB.jpeg" data-filename="icon-kaleb.jpeg">
+                            <i class="fas fa-download"></i>
+                            <span>Download Icon</span>
+                        </button>
+                        <a href="https://lacosprofanos2.itch.io/icon1" target="_blank" class="btn-download btn-itch">
+                            <i class="fab fa-itch-io"></i>
+                            <span>Download on itch.io</span>
+                        </a>
+                    </div>
                 </div>
             </div>
             
             <!-- NEW Icon -->
             <div class="content-item" data-type="icon"
-                 data-name="Wahi's icon" 
+                 data-name="Wahi Icon" 
                  data-tags="wahi wahipogo creator icon">
-                <img src="https://i.imgur.com/Py44HxM.png" alt="Wahi's icon" loading="lazy">
+                <img src="https://i.imgur.com/Py44HxM.png" alt="Wahi Icon" loading="lazy">
                 <div class="item-info">
-                    <h3 class="item-title">Wahi's icon</h3>
+                    <h3 class="item-title">Wahi Icon</h3>
                     <span class="item-type">Icon</span>
                     <div class="item-details">
                         <span>768x768</span>
                         <span>171.1 kb</span>
                     </div>
-                    <button class="btn-download" data-image="https://i.imgur.com/Py44HxM.png" data-filename="icon-wahi.png">
-                        <i class="fas fa-download"></i>
-                        <span>Download Image</span>
-                    </button>
+                    <div class="download-buttons">
+                        <button class="btn-download" data-image="https://i.imgur.com/Py44HxM.png" data-filename="icon-wahi.png">
+                            <i class="fas fa-download"></i>
+                            <span>Download Icon</span>
+                        </button>
+                        <a href="https://lacosprofanos2.itch.io/icon2" target="_blank" class="btn-download btn-itch">
+                            <i class="fab fa-itch-io"></i>
+                            <span>Download on itch.io</span>
+                        </a>
+                    </div>
                 </div>
             </div>
         </div>
 
-        <!-- Image preview modal -->
+        <!-- Modal for image preview -->
         <div id="imageModal" class="modal">
             <span class="modal-close">&times;</span>
             <img class="modal-content" id="modalImage" alt="Enlarged preview">
@@ -842,13 +884,13 @@
     <script>
         // Main system
         document.addEventListener('DOMContentLoaded', function() {
-            // DOM Elements
+            // DOM elements
             const languageSelect = document.getElementById('language-select');
             const searchInput = document.getElementById('search-input');
             const searchBtn = document.getElementById('search-btn');
             const filterButtons = document.querySelectorAll('.filter-btn');
             const contentItems = document.querySelectorAll('.content-item');
-            const downloadButtons = document.querySelectorAll('.btn-download');
+            const downloadButtons = document.querySelectorAll('.btn-download:not(.btn-itch)');
             const modal = document.getElementById('imageModal');
             const modalImage = document.getElementById('modalImage');
             const modalDownloadBtn = document.getElementById('modalDownload');
@@ -860,7 +902,7 @@
             // URLs for each language
             const languageUrls = {
                 en: "https://lacosprofanos.com.br/en/icon&wallpaper/",
-                pt: "https://lacosprofanos.com.br/icon&wallpaper/"
+                pt: "https://lacosprofanos.com.br/icon&wallpaper/",
             };
 
             // Application state
@@ -916,7 +958,7 @@
                         passesSearch = normalizedSearchData.includes(searchTerm);
                     }
                     
-                    // Show or hide item
+                    // Show or hide the item
                     if (passesFilter && passesSearch) {
                         item.classList.remove('hidden');
                     } else {
@@ -1014,7 +1056,7 @@
             itemImages.forEach(img => {
                 img.addEventListener('click', function() {
                     const item = this.closest('.content-item');
-                    const downloadBtn = item.querySelector('.btn-download');
+                    const downloadBtn = item.querySelector('.btn-download:not(.btn-itch)');
                     const imageUrl = this.src;
                     const filename = downloadBtn.getAttribute('data-filename');
                     openModal(imageUrl, filename);
@@ -1053,7 +1095,7 @@
                 }
             });
 
-            // Detect preferred browser language and adjust select
+            // Detect browser preferred language and adjust select
             function detectPreferredLanguage() {
                 const currentPath = window.location.pathname;
                 
@@ -1067,7 +1109,7 @@
                 }
             }
 
-            // Touch device optimization
+            // Touch device optimizations
             if ('ontouchstart' in window) {
                 document.documentElement.classList.add('touch-device');
                 
@@ -1090,4 +1132,4 @@
         });
     </script>
 </body>
-          </html>
+</html>
