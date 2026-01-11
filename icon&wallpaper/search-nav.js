@@ -8,19 +8,8 @@ class SearchNavComponent extends HTMLElement {
         this.innerHTML = `
             <div class="nav-section">
                 <div class="nav-content">
-                    <!-- Linha superior: botões + pesquisa -->
+                    <!-- Linha superior: barra de pesquisa -->
                     <div class="nav-top-row">
-                        <div class="main-nav">
-                            <a href="https://lacosprofanos.com.br/" target="_blank" class="main-nav-btn">
-                                <i class="fas fa-home"></i>
-                                <span>Site Principal</span>
-                            </a>
-                            <a href="https://lacosprofanos.fandom.com/pt-br/" target="_blank" class="main-nav-btn">
-                                <i class="fas fa-book"></i>
-                                <span>Wiki</span>
-                            </a>
-                        </div>
-                        
                         <div class="search-box">
                             <input type="text" class="search-input" id="search-input" placeholder="Pesquisar wallpapers e ícones...">
                             <button class="search-btn" id="search-btn">
