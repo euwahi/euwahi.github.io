@@ -8,7 +8,7 @@ class SearchNavComponent extends HTMLElement {
         this.innerHTML = `
             <div class="nav-section">
                 <div class="nav-content">
-                    <!-- Linha superior: barra de pesquisa -->
+                    <!-- Barra de pesquisa -->
                     <div class="nav-top-row">
                         <div class="search-box">
                             <input type="text" class="search-input" id="search-input" placeholder="Pesquisar wallpapers e ícones...">
@@ -47,7 +47,8 @@ class SearchNavComponent extends HTMLElement {
             currentFilter: 'all',
             currentSearch: '',
             updateResultsCounter: this.updateResultsCounter.bind(this),
-            performSearch: this.performSearch.bind(this)
+            performSearch: this.performSearch.bind(this),
+            normalizeText: this.normalizeText.bind(this)
         };
 
         // Event listeners para busca
