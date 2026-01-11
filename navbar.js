@@ -1,45 +1,80 @@
-/* Estilos para a navbar */
-.nav-buttons {
-    display: flex;
-    gap: 10px;
-    align-items: center;
+// navbar.js - Componente de Navegação
+class NavbarComponent extends HTMLElement {
+    constructor() {
+        super();
+    }
+
+    connectedCallback() {
+        this.innerHTML = `
+            <header>
+                <div class="container header-content">
+                    <div class="logo"><span id="site-title">Laços Profanos</span></div>
+                    
+                    <div class="language-selector">
+                        <span id="language-label">Idioma:</span>
+                        <select id="language-select">
+                            <option value="pt">Português (BR)</option>
+                            <option value="en">English</option>
+                        </select>
+                    </div>
+                    
+                    <div class="nav-buttons">
+                        <a href="https://lacosprofanos.blogspot.com/" target="_blank" class="nav-btn">
+                            <i class="fas fa-blog"></i>
+                            <span>Blog</span>
+                        </a>
+                        <a href="https://lacosprofanos.com.br/icon&wallpaper/" target="_blank" class="nav-btn">
+                            <i class="fas fa-image"></i>
+                            <span>Wallpapers & Icons</span>
+                        </a>
+                        <a href="https://lacosprofanos.fandom.com/pt-br/" target="_blank" class="nav-btn">
+                            <i class="fas fa-book"></i>
+                            <span>Wiki</span>
+                        </a>
+                        <a href="https://lacosprofanos.com.br/tos" target="_blank" class="nav-btn">
+                            <i class="fas fa-file-contract"></i>
+                            <span>Termos de Serviço</span>
+                        </a>
+                    </div>
+                </div>
+            </header>
+        `;
+        
+        // Inicializar funcionalidades da navbar
+        this.initializeNavbar();
+    }
+
+    initializeNavbar() {
+        // URLs para cada idioma
+        const languageUrls = {
+            pt: "https://lacosprofanos.com.br",
+            en: "https://lacosprofanos.com.br/en",
+        };
+
+        const languageSelect = document.getElementById('language-select');
+
+        languageSelect.addEventListener('change', function() {
+            const selectedLanguage = this.value;
+            if (languageUrls[selectedLanguage]) {
+                window.location.href = languageUrls[selectedLanguage];
+            }
+        });
+
+        // Detectar idioma atual
+        this.detectCurrentLanguage();
+    }
+
+    detectCurrentLanguage() {
+        const currentPath = window.location.pathname;
+        const languageSelect = document.getElementById('language-select');
+        
+        if (currentPath.includes('/en')) {
+            languageSelect.value = 'en';
+        } else {
+            languageSelect.value = 'pt';
+        }
+    }
 }
 
-.nav-btn {
-    display: flex;
-    align-items: center;
-    gap: 5px;
-    padding: 8px 12px;
-    background-color: #f0f0f0;
-    border-radius: 4px;
-    text-decoration: none;
-    color: #333;
-    transition: background-color 0.3s;
-}
-
-.nav-btn:hover {
-    background-color: #e0e0e0;
-}
-
-.nav-btn i {
-    font-size: 16px;
-}
-
-.terms-container {
-    text-align: center;
-    padding: 10px;
-    background-color: #f9f9f9;
-    border-top: 1px solid #eee;
-    margin-top: 10px;
-}
-
-.terms-link {
-    color: #666;
-    text-decoration: none;
-    font-size: 14px;
-}
-
-.terms-link:hover {
-    color: #333;
-    text-decoration: underline;
-}
+// Registrar o componente customizado
+customElements.define('navbar-component', NavbarComponent);
