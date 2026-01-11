@@ -1,4 +1,4 @@
-/* wallpapers.css - Styles specific to wallpapers page */
+/* wallpapers.css - Estilos específicos para a página de wallpapers */
 :root {
     --bg-primary: #000000;
     --bg-secondary: #111111;
@@ -452,11 +452,7 @@ body {
     to { opacity: 1; }
 }
 
-/* ====================== */
-/* RESPONSIVIDADE POR BREAKPOINTS */
-/* ====================== */
-
-/* Telas muito pequenas (até 320px) */
+/* Responsividade adicional */
 @media (max-width: 320px) {
     .main-nav {
         flex-direction: column;
@@ -498,7 +494,6 @@ body {
     }
 }
 
-/* Tablets e telas médias (321px - 768px) */
 @media (min-width: 321px) and (max-width: 768px) {
     .nav-top-row {
         flex-direction: column;
@@ -523,7 +518,6 @@ body {
     }
 }
 
-/* Telas grandes (769px - 1024px) */
 @media (min-width: 769px) and (max-width: 1024px) {
     .nav-top-row {
         flex-wrap: nowrap;
@@ -547,7 +541,6 @@ body {
     }
 }
 
-/* Telas muito grandes (acima de 1024px) */
 @media (min-width: 1025px) {
     .content-grid {
         grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
@@ -558,7 +551,6 @@ body {
     }
 }
 
-/* Orientação paisagem em mobile */
 @media (max-height: 600px) and (orientation: landscape) {
     .header-spacer {
         height: 40px;
@@ -582,57 +574,17 @@ body {
     }
 }
 
-/* Dark mode preference */
-@media (prefers-color-scheme: dark) {
-    body {
-        background-color: #0a0a0a;
-    }
-    
-    .content-item {
-        background: rgba(255, 255, 255, 0.05);
-    }
-}
-
-/* High contrast mode */
-@media (prefers-contrast: high) {
-    :root {
-        --accent: #ff0066;
-        --accent-hover: #ff3385;
-    }
-    
-    .filter-btn.active {
-        border-width: 2px;
-    }
-}
-
-/* Reduced motion */
-@media (prefers-reduced-motion: reduce) {
-    * {
-        animation-duration: 0.01ms !important;
-        animation-iteration-count: 1 !important;
-        transition-duration: 0.01ms !important;
-    }
-    
-    .content-item:hover {
-        transform: none;
-    }
-    
-    .content-item:hover img {
-        transform: none;
-    }
-}
-
 /* Touch device optimizations */
 @media (hover: none) and (pointer: coarse) {
     .btn-download,
     .filter-btn,
     .main-nav-btn {
-        min-height: 44px; /* Tamanho mínimo para touch */
+        min-height: 44px;
     }
     
     .search-input {
         min-height: 44px;
-        font-size: 16px; /* Previne zoom no iOS */
+        font-size: 16px;
     }
     
     .content-item:hover {
@@ -642,32 +594,5 @@ body {
     
     .content-item:active {
         transform: scale(0.98);
-    }
-}
-
-/* Impressão */
-@media print {
-    .header-fixed,
-    .nav-section,
-    .search-box,
-    .filters,
-    .btn-download {
-        display: none !important;
-    }
-    
-    .header-spacer,
-    .nav-spacer {
-        height: 0;
-    }
-    
-    body {
-        background: white;
-        color: black;
-    }
-    
-    .content-item {
-        break-inside: avoid;
-        border: 1px solid #ddd;
-        background: white;
     }
 }
