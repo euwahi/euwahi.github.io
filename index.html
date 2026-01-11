@@ -1,16 +1,17 @@
 <!DOCTYPE html>
-<html lang="pt-BR">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Laços Profanos</title>
+    <title>Profane Bonds</title>
     <link rel="icon" href="https://i.imgur.com/mgxXSto.png" type="image/png">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
-    <!-- Importar estilos da navbar -->
-    <link rel="stylesheet" href="navbar.css">
+    <!-- Navbar styles -->
+    <link rel="stylesheet" href="en/navbar.css">
     
     <style>
-        /* Reset e configurações globais */
+        /* Reset and global settings */
         * {
             margin: 0;
             padding: 0;
@@ -310,7 +311,6 @@
             margin-bottom: 15px;
         }
 
-        /* Botões extras no card do criador */
         .creator-buttons {
             display: flex;
             gap: 15px;
@@ -349,11 +349,7 @@
             to { box-shadow: 0 0 20px rgba(240, 27, 133, 0.6); }
         }
 
-        .social-btn:hover {
-            animation: glow 1s ease-in-out infinite alternate;
-        }
-
-        /* Responsividade */
+        /* Responsiveness */
         @media (max-width: 768px) {
             .creators-grid { grid-template-columns: 1fr; gap: 25px; }
         }
@@ -363,102 +359,101 @@
     <navbar-component></navbar-component>
 
     <main class="container">
-        <!-- Sobre Nós -->
+        <!-- About Us -->
         <section id="about" class="section">
-            <h2 class="section-title">Sobre Nós</h2>
+            <h2 class="section-title">About Us</h2>
             <div class="about-text">
                 <p>
-                    <span class="highlight">Laços Profanos</span> é uma história fictícia que nasceu como a ideia de um mangá inspirado em obras populares da época. Com o tempo, essa primeira versão foi totalmente repensada, descartada e reconstruída — e assim o universo se expandiu até se tornar o que conhecemos hoje.
+                    <span class="highlight">Profane Bonds</span> is a fictional story that originated as the idea of a manga inspired by popular works of its time. Over time, this first version was completely rethought, discarded, and rebuilt — and the universe expanded until it became what we know today.
                 </p>
                 <p>
-                    Somos um projeto completamente independente, desenvolvido e mantido por apenas duas pessoas. Trabalhamos com dedicação para dar vida a esse universo, criar conteúdo de qualidade e compartilhar nossa visão com quem deseja conhecer mais sobre Laços Profanos.
+                    We are a completely independent project, developed and maintained by only two people. We work with dedication to bring this universe to life, create quality content, and share our vision with anyone who wants to know more about <span class="highlight">Profane Bonds</span>.
                 </p>
             </div>
         </section>
 
-        <!-- Redes Sociais -->
+        <!-- Social Media -->
         <section id="social" class="section">
-            <h2 class="section-title">Redes Sociais</h2>
+            <h2 class="section-title">Social Media</h2>
             <div class="about-text">
-                <p>Conecte-se conosco através das nossas redes sociais:</p>
+                <p>Connect with us through our social media channels:</p>
             </div>
             <div class="social-buttons">
                 <a href="https://tipa.ai/lacosprofanos" target="_blank" class="social-btn">
                     <div class="social-icon"><i class="fas fa-robot"></i></div>
-                    <div class="social-content"><h3>Tipa.ai</h3><p>Canal no Tipa.ai</p></div>
+                    <div class="social-content"><h3>Tipa.ai</h3><p>Channel on Tipa.ai</p></div>
                 </a>
                 <a href="https://bit.ly/lacosprofanosZap" target="_blank" class="social-btn">
                     <div class="social-icon"><i class="fab fa-whatsapp"></i></div>
-                    <div class="social-content"><h3>WhatsApp</h3><p>Canal no WhatsApp</p></div>
+                    <div class="social-content"><h3>WhatsApp</h3><p>Channel on WhatsApp</p></div>
                 </a>
                 <a href="https://discord.com/invite/u4sD2JyTuT" target="_blank" class="social-btn">
                     <div class="social-icon"><i class="fab fa-discord"></i></div>
-                    <div class="social-content"><h3>Discord</h3><p>Servidor no Discord</p></div>
+                    <div class="social-content"><h3>Discord</h3><p>Server on Discord</p></div>
                 </a>
                 <a href="https://www.instagram.com/lacosprofanos" target="_blank" class="social-btn">
                     <div class="social-icon"><i class="fab fa-instagram"></i></div>
-                    <div class="social-content"><h3>Instagram</h3><p>Perfil no Instagram</p></div>
+                    <div class="social-content"><h3>Instagram</h3><p>Profile on Instagram</p></div>
                 </a>
                 <a href="https://x.com/lacosprofanos" target="_blank" class="social-btn">
                     <div class="social-icon"><i class="fab fa-twitter"></i></div>
-                    <div class="social-content"><h3>X (Twitter)</h3><p>Perfil no X (Twitter)</p></div>
+                    <div class="social-content"><h3>X (Twitter)</h3><p>Profile on X (Twitter)</p></div>
                 </a>
                 <a href="https://www.youtube.com/@LaçosProfanos" target="_blank" class="social-btn">
                     <div class="social-icon"><i class="fab fa-youtube"></i></div>
-                    <div class="social-content"><h3>YouTube</h3><p>Canal no YouTube</p></div>
+                    <div class="social-content"><h3>YouTube</h3><p>Channel on YouTube</p></div>
                 </a>
                 <a href="https://t.me/lacosprofanos" target="_blank" class="social-btn">
                     <div class="social-icon"><i class="fab fa-telegram"></i></div>
-                    <div class="social-content"><h3>Telegram</h3><p>Canal no Telegram</p></div>
+                    <div class="social-content"><h3>Telegram</h3><p>Channel on Telegram</p></div>
                 </a>
                 <a href="https://www.reddit.com/r/lacosprofanos" target="_blank" class="social-btn">
                     <div class="social-icon"><i class="fab fa-reddit"></i></div>
-                    <div class="social-content"><h3>Reddit</h3><p>Comunidade no Reddit</p></div>
+                    <div class="social-content"><h3>Reddit</h3><p>Community on Reddit</p></div>
                 </a>
             </div>
         </section>
 
-        <!-- A Terra em Laços Profanos -->
+        <!-- Earth in Profane Bonds -->
         <section id="earth" class="section">
-            <h2 class="section-title">A Terra em Laços Profanos</h2>
+            <h2 class="section-title">Earth in Profane Bonds</h2>
             <div class="about-text">
                 <p>
-                    No universo de Laços Profanos, o planeta Terra não é como o nosso. Ele é dividido em apenas três continentes, cada um com suas próprias características, culturas e histórias:
+                    In the universe of <span class="highlight">Profane Bonds</span>, planet Earth is not like ours. It is divided into only three continents, each with its own characteristics, cultures, and histories:
                 </p>
             </div>
             <div class="continents-container">
                 <div class="continents-image">
-                    <img src="https://i.imgur.com/jrrLcpW.png" alt="Os três continentes de Laços Profanos: Kelster, Molton e Clifton">
+                    <img src="https://i.imgur.com/jrrLcpW.png" alt="The three continents of Profane Bonds: Kelster, Molton, and Clifton">
                 </div>
                 <p class="continents-description">
-                    ❄️ Kelster — o continente frio, marcado por climas rigorosos, paisagens geladas e povos acostumados à resistência.<br>
-                    🍃 Molton — o continente intermediário, de equilíbrio entre frio e calor, diversidade natural e cultural.<br>
-                    🔥 Clifton — o continente quente, repleto de calor intenso, vida vibrante e tradições moldadas pelo sol.
+                    ❄️ Kelster — the cold continent, marked by harsh climates, frozen landscapes, and resilient peoples.<br>
+                    🍃 Molton — the intermediate continent, balanced between cold and heat, with natural and cultural diversity.<br>
+                    🔥 Clifton — the hot continent, full of intense heat, vibrant life, and traditions shaped by the sun.
                 </p>
             </div>
         </section>
 
-        <!-- As Mentes por Trás -->
+        <!-- The Minds Behind -->
         <section id="creators" class="section">
-            <h2 class="section-title">As Mentes por Trás</h2>
+            <h2 class="section-title">The Minds Behind</h2>
             <div class="creators-grid">
                 <!-- Wahi -->
                 <div class="creator-card">
                     <div class="creator-avatar">
-                        <img src="https://i.imgur.com/LOXjaKn.jpeg" alt="Eduarda Victoria - A Criadora">
+                        <img src="https://i.imgur.com/LOXjaKn.jpeg" alt="Eduarda Victoria - The Creator">
                     </div>
                     <h3 class="creator-name">Eduarda Victoria</h3>
-                    <p class="creator-role">A Criadora</p>
+                    <p class="creator-role">The Creator</p>
                     <p class="creator-desc">
-                        Mais conhecida pelos pseudônimos Wahipogo ou Wahi, é a mente criativa por trás do universo de Laços Profanos. Além de idealizar a obra, atua como roteirista, diretora criativa e gestora do projeto. Também é programadora, responsável pelo desenvolvimento e manutenção do site oficial da obra.
+                        Better known by the pseudonyms Wahipogo or Wahi, she is the creative mind behind the <span class="highlight">Profane Bonds</span> universe. In addition to conceiving the work, she acts as scriptwriter, creative director, and project manager. She is also a programmer, responsible for the development and maintenance of the official website.
                     </p>
-                    <!-- Botões adicionais -->
                     <div class="creator-buttons">
                         <a href="https://lacosprofanos.com.br/wahi" target="_blank">
-                            <i class="fas fa-share-alt"></i> Redes Sociais
+                            <i class="fas fa-share-alt"></i> Social Media
                         </a>
                         <a href="https://lacosprofanos.com.br/wahi/portfolio" target="_blank">
-                            <i class="fas fa-folder-open"></i> Portfólio
+                            <i class="fas fa-folder-open"></i> Portfolio
                         </a>
                     </div>
                 </div>
@@ -466,18 +461,19 @@
                 <!-- Elisa Lana -->
                 <div class="creator-card">
                     <div class="creator-avatar">
-                        <img src="https://i.imgur.com/ByfmPFO.png" alt="Elisa Lana - A Artista">
+                        <img src="https://i.imgur.com/ByfmPFO.png" alt="Elisa Lana - The Artist">
                     </div>
                     <h3 class="creator-name">Elisa Lana</h3>
-                    <p class="creator-role">A Artista</p>
+                    <p class="creator-role">The Artist</p>
                     <p class="creator-desc">
-                        Elisa Lana é a segunda mente por trás de Laços Profanos. Enquanto Eduarda conduz a parte criativa e narrativa, Elisa é responsável pela ilustração e visualização das ideias, dando vida ao universo com seu talento artístico e transformando conceitos em imagens que encantam os fãs.
+                        Elisa Lana is the second mind behind <span class="highlight">Profane Bonds</span>. While Eduarda handles the creative and narrative part, Elisa is responsible for illustrating and visualizing ideas, bringing the universe to life with her artistic talent and transforming concepts into images that delight fans.
                     </p>
                 </div>
             </div>
         </section>
     </main>
 
-    <script src="navbar.js"></script>
+    <!-- Navbar script -->
+    <script src="en/navbar.js"></script>
 </body>
 </html>
