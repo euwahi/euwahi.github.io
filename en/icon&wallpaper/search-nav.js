@@ -58,7 +58,8 @@ class SearchNavComponent extends HTMLElement {
             currentFilter: 'all',
             currentSearch: '',
             updateResultsCounter: this.updateResultsCounter.bind(this),
-            performSearch: this.performSearch.bind(this)
+            performSearch: this.performSearch.bind(this),
+            normalizeText: this.normalizeText.bind(this)
         };
 
         // Event listeners for search
@@ -88,6 +89,7 @@ class SearchNavComponent extends HTMLElement {
 
     // Function to normalize text
     normalizeText(text) {
+        if (!text) return '';
         return text
             .toLowerCase()
             .normalize('NFD')
@@ -135,7 +137,6 @@ class SearchNavComponent extends HTMLElement {
         const searchTerm = this.normalizeText(searchInput.value);
         window.searchState.currentSearch = searchInput.value;
         
-        // Return normalized search term
         return searchTerm;
     }
 }
