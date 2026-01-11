@@ -28,10 +28,10 @@ class NavbarTopComponent extends HTMLElement {
     initializeNavbar() {
         const languageSelect = this.querySelector('#language-select');
         
-        // URLs for each language
+        // URLs for each language - usando caminhos relativos
         const languageUrls = {
-            en: "https://lacosprofanos.com.br/en/icon&wallpaper/",
-            pt: "https://lacosprofanos.com.br/icon&wallpaper/",
+            en: "./", // Página atual em inglês
+            pt: "../../icon&wallpaper/" // Volta duas pastas e vai para a versão PT
         };
 
         languageSelect.addEventListener('change', function() {
