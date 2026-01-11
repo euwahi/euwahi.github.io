@@ -1,4 +1,4 @@
-// navbar.js - Menu Hambúrguer Sempre
+// navbar.js - Menu Hambúrguer com Idioma separado
 class NavbarComponent extends HTMLElement {
     constructor() {
         super();
@@ -10,7 +10,16 @@ class NavbarComponent extends HTMLElement {
                 <div class="header-content">
                     <div class="logo"><span id="site-title">Laços Profanos</span></div>
 
-                    <!-- Botão menu hambúrguer - SEMPRE VISÍVEL -->
+                    <!-- Seletor de Idioma - FORA do menu -->
+                    <div class="language-selector">
+                        <span>Idioma:</span>
+                        <select id="language-select">
+                            <option value="pt">Português (BR)</option>
+                            <option value="en">English</option>
+                        </select>
+                    </div>
+
+                    <!-- Botão menu hambúrguer -->
                     <button class="menu-toggle" aria-label="Abrir menu de navegação">
                         <span></span>
                         <span></span>
@@ -37,17 +46,6 @@ class NavbarComponent extends HTMLElement {
                             <span>Termos de Serviço</span>
                         </a>
                     </div>
-
-                    <!-- Idioma no mobile -->
-                    <div class="mobile-language">
-                        <div class="language-selector">
-                            <span>Idioma:</span>
-                            <select id="language-select-mobile">
-                                <option value="pt">Português (BR)</option>
-                                <option value="en">English</option>
-                            </select>
-                        </div>
-                    </div>
                 </div>
             </header>
         `;
@@ -64,11 +62,11 @@ class NavbarComponent extends HTMLElement {
             en: "https://lacosprofanos.com.br/en",
         };
 
-        // Configurar seletor de idioma mobile
-        const languageSelectMobile = this.querySelector('#language-select-mobile');
+        // Configurar seletor de idioma
+        const languageSelect = this.querySelector('#language-select');
 
-        if (languageSelectMobile) {
-            languageSelectMobile.addEventListener('change', function() {
+        if (languageSelect) {
+            languageSelect.addEventListener('change', function() {
                 const selectedLanguage = this.value;
                 if (languageUrls[selectedLanguage]) {
                     window.location.href = languageUrls[selectedLanguage];
@@ -82,13 +80,13 @@ class NavbarComponent extends HTMLElement {
 
     detectCurrentLanguage() {
         const currentPath = window.location.pathname;
-        const languageSelectMobile = this.querySelector('#language-select-mobile');
+        const languageSelect = this.querySelector('#language-select');
 
-        if (languageSelectMobile) {
+        if (languageSelect) {
             if (currentPath.includes('/en')) {
-                languageSelectMobile.value = 'en';
+                languageSelect.value = 'en';
             } else {
-                languageSelectMobile.value = 'pt';
+                languageSelect.value = 'pt';
             }
         }
     }
@@ -133,6 +131,13 @@ class NavbarComponent extends HTMLElement {
         // Fechar menu com ESC
         document.addEventListener('keydown', (e) => {
             if (e.key === 'Escape' && mobileMenu.classList.contains('active')) {
+                toggleMenu();
+            }
+        });
+
+        // Fechar menu ao redimensionar (para segurança)
+        window.addEventListener('resize', () => {
+            if (window.innerWidth > 768 && mobileMenu.classList.contains('active')) {
                 toggleMenu();
             }
         });
