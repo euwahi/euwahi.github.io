@@ -6,6 +6,10 @@
     <title>Laços Profanos</title>
     <link rel="icon" href="https://i.imgur.com/mgxXSto.png" type="image/png">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Importar estilos da navbar -->
+    <link rel="stylesheet" href="navbar.css">
+    
     <style>
         /* Reset e configurações globais */
         * {
@@ -40,103 +44,6 @@
             max-width: 1200px;
             margin: 0 auto;
             padding: 0 15px;
-        }
-
-        /* Header COMPACTO */
-        header {
-            background: rgba(0, 0, 0, 0.98);
-            padding: 12px 0;
-            position: sticky;
-            top: 0;
-            z-index: 1000;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-            box-shadow: 0 2px 10px rgba(240, 27, 133, 0.1);
-            backdrop-filter: blur(10px);
-        }
-
-        .header-content {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            flex-wrap: wrap;
-            gap: 15px;
-        }
-
-        .logo {
-            font-size: 1.4rem;
-            font-weight: 800;
-            color: #ffffff;
-            letter-spacing: -0.3px;
-            flex-shrink: 0;
-        }
-
-        .logo span {
-            background: linear-gradient(90deg, #f01b85 0%, #ff4da6 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-        }
-
-        .nav-buttons {
-            display: flex;
-            gap: 10px;
-            flex-wrap: wrap;
-            justify-content: center;
-            flex: 1;
-        }
-
-        .nav-btn {
-            background: rgba(240, 27, 133, 0.15);
-            color: #ffffff;
-            border: 1px solid #f01b85;
-            padding: 8px 16px;
-            border-radius: 25px;
-            cursor: pointer;
-            font-weight: 600;
-            transition: all 0.3s ease;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            font-size: 0.9rem;
-            text-decoration: none;
-            white-space: nowrap;
-        }
-
-        .nav-btn:hover {
-            background: #f01b85;
-            transform: translateY(-2px);
-            box-shadow: 0 5px 15px rgba(240, 27, 133, 0.3);
-        }
-
-        .language-selector {
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            font-size: 0.85rem;
-            flex-shrink: 0;
-        }
-
-        .language-selector select {
-            background: rgba(240, 27, 133, 0.15);
-            color: #ffffff;
-            border: 1px solid #f01b85;
-            padding: 6px 12px;
-            border-radius: 20px;
-            cursor: pointer;
-            font-weight: 600;
-            font-size: 0.85rem;
-            min-width: 110px;
-            appearance: none;
-            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' fill='white' viewBox='0 0 16 16'%3E%3Cpath d='M7.247 11.14 2.451 5.658C1.885 5.013 2.345 4 3.204 4h9.592a1 1 0 0 1 .753 1.659l-4.796 5.48a1 1 0 0 1-1.506 0z'/%3E%3C/svg%3E");
-            background-repeat: no-repeat;
-            background-position: right 10px center;
-            background-size: 12px;
-            padding-right: 30px;
-        }
-
-        .language-selector select:focus {
-            outline: none;
-            box-shadow: 0 0 0 2px rgba(240, 27, 133, 0.3);
         }
 
         /* Conteúdo principal */
@@ -408,74 +315,8 @@
             font-size: 1rem;
         }
 
-        /* ========================= */
-        /* RESPONSIVIDADE AVANÇADA */
-        /* ========================= */
-
-        /* Tablets e telas médias */
-        @media (max-width: 992px) {
-            .container {
-                padding: 0 12px;
-            }
-            
-            .header-content {
-                flex-direction: column;
-                gap: 12px;
-                text-align: center;
-            }
-            
-            .logo {
-                font-size: 1.3rem;
-            }
-            
-            .nav-buttons {
-                width: 100%;
-                order: 3;
-                margin-top: 5px;
-            }
-            
-            .language-selector {
-                order: 2;
-            }
-            
-            .section-title {
-                font-size: 1.8rem;
-            }
-            
-            .social-buttons {
-                grid-template-columns: repeat(2, 1fr);
-                gap: 12px;
-            }
-            
-            .creator-avatar {
-                width: 120px;
-                height: 120px;
-            }
-            
-            .creator-name {
-                font-size: 1.3rem;
-            }
-        }
-
-        /* Mobile (768px e abaixo) */
+        /* Responsividade do conteúdo */
         @media (max-width: 768px) {
-            header {
-                padding: 10px 0;
-            }
-            
-            .nav-btn {
-                padding: 7px 14px;
-                font-size: 0.85rem;
-                gap: 6px;
-                flex: 1;
-                justify-content: center;
-                min-width: 140px;
-            }
-            
-            .nav-buttons {
-                gap: 8px;
-            }
-            
             .social-buttons {
                 grid-template-columns: repeat(2, 1fr);
                 gap: 10px;
@@ -524,19 +365,7 @@
             }
         }
 
-        /* Mobile pequeno (480px e abaixo) */
         @media (max-width: 480px) {
-            .nav-buttons {
-                flex-direction: column;
-                width: 100%;
-            }
-            
-            .nav-btn {
-                width: 100%;
-                max-width: 280px;
-                margin: 0 auto;
-            }
-            
             .social-buttons {
                 grid-template-columns: 1fr;
                 gap: 8px;
@@ -572,92 +401,6 @@
                 font-size: 1rem;
                 padding: 15px;
             }
-            
-            .language-selector {
-                font-size: 0.8rem;
-            }
-            
-            .language-selector select {
-                padding: 5px 10px;
-                font-size: 0.8rem;
-                min-width: 90px;
-            }
-        }
-
-        /* Mobile muito pequeno (360px e abaixo) */
-        @media (max-width: 360px) {
-            .logo {
-                font-size: 1.2rem;
-            }
-            
-            .nav-btn {
-                font-size: 0.8rem;
-                padding: 6px 12px;
-            }
-            
-            .section-title {
-                font-size: 1.3rem;
-            }
-            
-            .social-buttons {
-                gap: 6px;
-            }
-            
-            .social-btn {
-                padding: 7px 10px;
-            }
-            
-            .social-icon {
-                width: 28px;
-                height: 28px;
-                font-size: 1rem;
-            }
-            
-            .social-content h3 {
-                font-size: 0.9rem;
-            }
-            
-            .social-content p {
-                font-size: 0.7rem;
-            }
-            
-            .creator-avatar {
-                width: 100px;
-                height: 100px;
-            }
-            
-            .creator-name {
-                font-size: 1.1rem;
-            }
-        }
-
-        /* Orientação paisagem em mobile */
-        @media (max-height: 500px) and (orientation: landscape) {
-            header {
-                padding: 8px 0;
-            }
-            
-            .nav-btn {
-                padding: 5px 10px;
-                font-size: 0.8rem;
-            }
-            
-            .logo {
-                font-size: 1.2rem;
-            }
-            
-            main {
-                padding: 20px 0 30px 0;
-            }
-            
-            .section {
-                margin-bottom: 40px;
-            }
-            
-            .section-title {
-                font-size: 1.5rem;
-                margin-bottom: 20px;
-            }
         }
 
         /* Animações */
@@ -672,7 +415,6 @@
             }
         }
 
-        /* Efeito de brilho */
         @keyframes glow {
             from {
                 box-shadow: 0 0 15px rgba(240, 27, 133, 0.4);
@@ -682,55 +424,14 @@
             }
         }
 
-        .nav-btn:hover {
+        .social-btn:hover {
             animation: glow 1s ease-in-out infinite alternate;
-        }
-
-        /* Otimização para touch */
-        @media (hover: none) and (pointer: coarse) {
-            .nav-btn, .social-btn {
-                min-height: 44px; /* Tamanho mínimo para toque */
-            }
-            
-            .nav-btn:active, .social-btn:active {
-                transform: scale(0.97);
-                background: #f01b85;
-            }
-            
-            .nav-btn:hover, .social-btn:hover {
-                transform: none;
-                box-shadow: none;
-                animation: none;
-            }
         }
     </style>
 </head>
 <body>
-    <!-- Cabeçalho com navegação COMPACTA -->
-    <header>
-        <div class="container header-content">
-            <div class="logo"><span id="site-title">Laços Profanos</span></div>
-            
-            <div class="language-selector">
-                <span id="language-label">Idioma:</span>
-                <select id="language-select">
-                    <option value="pt">Português (BR)</option>
-                    <option value="en">English</option>
-                </select>
-            </div>
-            
-            <div class="nav-buttons">
-                <a href="https://lacosprofanos.com.br/icon&wallpaper/" target="_blank" class="nav-btn">
-                    <i class="fas fa-image"></i>
-                    <span>Wallpapers & Icons</span>
-                </a>
-                <a href="https://lacosprofanos.fandom.com/pt-br/" target="_blank" class="nav-btn">
-                    <i class="fas fa-book"></i>
-                    <span>Wiki</span>
-                </a>
-            </div>
-        </div>
-    </header>
+    <!-- Navbar como Web Component -->
+    <navbar-component></navbar-component>
 
     <main class="container">
         <!-- Seção Sobre Nós -->
@@ -887,56 +588,7 @@
         </section>
     </main>
 
-    <script>
-        // URLs para cada idioma
-        const languageUrls = {
-            pt: "https://lacosprofanos.com.br", // Página principal
-            en: "https://lacosprofanos.com.br/en", // Inglês
-        };
-
-        // Elemento select
-        const languageSelect = document.getElementById('language-select');
-
-        // Adicionar evento de mudança no seletor de idioma
-        languageSelect.addEventListener('change', function() {
-            const selectedLanguage = this.value;
-            
-            // Redirecionar para a URL correspondente
-            if (languageUrls[selectedLanguage]) {
-                window.location.href = languageUrls[selectedLanguage];
-            }
-        });
-
-        // Detectar idioma preferido do navegador
-        function detectPreferredLanguage() {
-            const browserLang = navigator.language || navigator.userLanguage;
-            const langCode = browserLang.substring(0, 2).toLowerCase();
-            
-            // Verificar se estamos na página principal (português)
-            const currentPath = window.location.pathname;
-            const isMainPage = currentPath === '/' || 
-                              currentPath === '/index.html' || 
-                              currentPath.includes('lacosprofanos.com.br') && 
-                              !currentPath.includes('/en') && 
-                              !currentPath.includes('/jp');
-            
-            // Se não estamos na página principal, ajustar o select
-            if (currentPath.includes('/en')) {
-                languageSelect.value = 'en';
-            } else if (currentPath.includes('/jp')) {
-                languageSelect.value = 'jp';
-            } else {
-                languageSelect.value = 'pt';
-            }
-        }
-
-        // Inicializar
-        detectPreferredLanguage();
-        
-        // Melhorar a usabilidade do select em mobile
-        languageSelect.addEventListener('touchstart', function(e) {
-            e.stopPropagation();
-        }, { passive: true });
-    </script>
+    <!-- Importar o script da navbar -->
+    <script src="navbar.js"></script>
 </body>
 </html>
