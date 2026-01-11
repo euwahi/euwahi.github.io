@@ -1,9 +1,9 @@
-/* navbar.css - Versão Fluida e Responsiva com Menu Hambúrguer */
+/* navbar.css - Menu Hambúrguer SEMPRE visível */
 
 /* Header */
 header {
     background: rgba(0, 0, 0, 0.98);
-    padding: 12px clamp(10px, 2%, 20px);
+    padding: 12px 20px;
     position: sticky;
     top: 0;
     z-index: 1000;
@@ -18,8 +18,6 @@ header {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    flex-wrap: wrap;
-    gap: 10px;
     max-width: 1200px;
     margin: 0 auto;
     width: 100%;
@@ -27,12 +25,11 @@ header {
 
 /* Logo */
 .logo {
-    font-size: clamp(1rem, 3vw, 1.5rem);
+    font-size: 1.5rem;
     font-weight: 800;
     color: #ffffff;
     letter-spacing: -0.3px;
-    flex-shrink: 0;
-    padding: 5px 0;
+    flex: 1;
 }
 
 .logo span {
@@ -42,79 +39,9 @@ header {
     background-clip: text;
 }
 
-/* Botões de Navegação */
-.nav-buttons {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 8px;
-    justify-content: center;
-    flex: 1 1 auto;
-}
-
-/* Cada botão */
-.nav-btn {
-    background: rgba(240, 27, 133, 0.15);
-    color: #ffffff;
-    border: 1px solid #f01b85;
-    padding: clamp(8px, 1vw, 12px) clamp(12px, 1.5vw, 16px);
-    border-radius: 25px;
-    cursor: pointer;
-    font-weight: 600;
-    display: flex;
-    align-items: center;
-    gap: 0.5em;
-    font-size: clamp(0.75rem, 1.5vw, 0.9rem);
-    text-decoration: none;
-    white-space: nowrap;
-    flex: 1 1 auto;
-    min-width: min-content;
-    max-width: 250px;
-    transition: all 0.3s ease;
-    justify-content: center;
-    text-align: center;
-}
-
-.nav-btn:hover {
-    background: #f01b85;
-    transform: translateY(-2px);
-    box-shadow: 0 5px 15px rgba(240, 27, 133, 0.3);
-}
-
-/* Selector de Idioma */
-.language-selector {
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    font-size: clamp(0.7rem, 1.5vw, 0.85rem);
-    flex-shrink: 0;
-}
-
-.language-selector select {
-    background: rgba(240, 27, 133, 0.15);
-    color: #ffffff;
-    border: 1px solid #f01b85;
-    padding: 6px 12px;
-    border-radius: 20px;
-    cursor: pointer;
-    font-weight: 600;
-    font-size: inherit;
-    min-width: min-content;
-    appearance: none;
-    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' fill='white' viewBox='0 0 16 16'%3E%3Cpath d='M7.247 11.14 2.451 5.658C1.885 5.013 2.345 4 3.204 4h9.592a1 1 0 0 1 .753 1.659l-4.796 5.48a1 1 0 0 1-1.506 0z'/%3E%3C/svg%3E");
-    background-repeat: no-repeat;
-    background-position: right 10px center;
-    background-size: 12px;
-    padding-right: 30px;
-}
-
-.language-selector select:focus {
-    outline: none;
-    box-shadow: 0 0 0 2px rgba(240, 27, 133, 0.3);
-}
-
-/* Menu Hambúrguer */
+/* Menu Hambúrguer - SEMPRE VISÍVEL */
 .menu-toggle {
-    display: none;
+    display: flex;
     flex-direction: column;
     justify-content: space-between;
     width: 30px;
@@ -123,8 +50,8 @@ header {
     border: none;
     cursor: pointer;
     padding: 0;
-    z-index: 10;
-    flex-shrink: 0;
+    z-index: 1001;
+    margin-right: 15px;
 }
 
 .menu-toggle span {
@@ -147,32 +74,13 @@ header {
     transform: translateY(-9px) rotate(-45deg);
 }
 
-/* Menu Overlay para mobile */
-.mobile-menu-overlay {
-    display: none;
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(0, 0, 0, 0.9);
-    z-index: 999;
-    opacity: 0;
-    transition: opacity 0.3s ease;
-}
-
-.mobile-menu-overlay.active {
-    display: block;
-    opacity: 1;
-}
-
 /* Menu Mobile */
 .mobile-menu {
     position: fixed;
     top: 0;
     right: -100%;
     width: 280px;
-    height: 100%;
+    height: 100vh;
     background: rgba(0, 0, 0, 0.98);
     border-left: 1px solid rgba(240, 27, 133, 0.3);
     z-index: 1000;
@@ -186,6 +94,7 @@ header {
     right: 0;
 }
 
+/* Botões no menu mobile */
 .mobile-menu .nav-buttons {
     display: flex;
     flex-direction: column;
@@ -194,17 +103,29 @@ header {
 }
 
 .mobile-menu .nav-btn {
-    max-width: 100%;
-    width: 100%;
-    justify-content: flex-start;
+    background: rgba(240, 27, 133, 0.15);
+    color: #ffffff;
+    border: 1px solid #f01b85;
     padding: 15px 20px;
     border-radius: 10px;
+    text-decoration: none;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    gap: 10px;
     font-size: 1rem;
-    background: rgba(240, 27, 133, 0.1);
+    transition: all 0.3s ease;
+    width: 100%;
+}
+
+.mobile-menu .nav-btn:hover {
+    background: #f01b85;
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(240, 27, 133, 0.3);
 }
 
 .mobile-menu .nav-btn i {
-    width: 24px;
+    width: 20px;
     text-align: center;
 }
 
@@ -223,41 +144,39 @@ header {
 }
 
 .mobile-language .language-selector select {
-    width: 100%;
+    background: rgba(240, 27, 133, 0.15);
+    color: #ffffff;
+    border: 1px solid #f01b85;
     padding: 12px 15px;
+    border-radius: 20px;
+    cursor: pointer;
+    font-weight: 600;
     font-size: 1rem;
+    appearance: none;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' fill='white' viewBox='0 0 16 16'%3E%3Cpath d='M7.247 11.14 2.451 5.658C1.885 5.013 2.345 4 3.204 4h9.592a1 1 0 0 1 .753 1.659l-4.796 5.48a1 1 0 0 1-1.506 0z'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 15px center;
+    background-size: 12px;
+    padding-right: 35px;
 }
 
-/* Responsividade */
-@media (max-width: 992px) {
-    .nav-buttons {
-        gap: 6px;
-    }
-    
-    .nav-btn {
-        min-width: 140px;
-        padding: 10px 15px;
-    }
+/* Overlay para menu aberto */
+.mobile-menu-overlay {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    background: rgba(0, 0, 0, 0.7);
+    z-index: 999;
 }
 
-@media (max-width: 768px) {
-    .nav-buttons {
-        display: none;
-    }
-    
-    .language-selector:not(.mobile-language .language-selector) {
-        display: none;
-    }
-    
-    .menu-toggle {
-        display: flex;
-    }
-    
-    .logo {
-        flex: 1;
-    }
+.mobile-menu-overlay.active {
+    display: block;
 }
 
+/* Responsividade para telas muito pequenas */
 @media (max-width: 480px) {
     .mobile-menu {
         width: 100%;
@@ -269,43 +188,12 @@ header {
     }
     
     .logo {
-        font-size: 1.2rem;
+        font-size: 1.3rem;
     }
     
     .menu-toggle {
         width: 28px;
         height: 20px;
+        margin-right: 10px;
     }
-}
-
-/* Otimização para touch devices */
-@media (hover: none) and (pointer: coarse) {
-    .nav-btn {
-        min-height: 44px;
-        padding: 12px 16px;
-    }
-    
-    .nav-btn:active {
-        transform: scale(0.97);
-        background: #f01b85;
-    }
-    
-    .mobile-menu .nav-btn {
-        min-height: 50px;
-    }
-    
-    .menu-toggle:active {
-        transform: scale(0.95);
-    }
-}
-
-/* Animações */
-@keyframes slideIn {
-    from { right: -100%; }
-    to { right: 0; }
-}
-
-@keyframes slideOut {
-    from { right: 0; }
-    to { right: -100%; }
 }
