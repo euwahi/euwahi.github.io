@@ -26,26 +26,29 @@ class NavbarTopComponent extends HTMLElement {
                             </button>
                         </div>
                         <div class="mobile-menu-content">
+                            <a href="https://lacosprofanos.com.br/" target="_blank" class="mobile-menu-item">
+                                <i class="fas fa-home"></i>
+                                <span>Site Principal</span>
+                            </a>
                             <a href="https://lacosprofanos.blogspot.com/" target="_blank" class="mobile-menu-item">
                                 <i class="fas fa-blog"></i>
                                 <span>Blog</span>
-                            </a>
-                            <a href="https://lacosprofanos.com.br/icon&wallpaper/" class="mobile-menu-item">
-                                <i class="fas fa-image"></i>
-                                <span>Wallpapers & Icons</span>
-                            </a>
-                            <a href="https://lacosprofanos.fandom.com/pt-br/" target="_blank" class="mobile-menu-item">
-                                <i class="fas fa-book"></i>
-                                <span>Wiki</span>
                             </a>
                             <a href="https://lacosprofanos.com.br/tos" target="_blank" class="mobile-menu-item">
                                 <i class="fas fa-file-contract"></i>
                                 <span>Termos de Serviço</span>
                             </a>
-                            <a href="https://lacosprofanos.com.br/" target="_blank" class="mobile-menu-item">
-                                <i class="fas fa-home"></i>
-                                <span>Site Principal</span>
+                            <a href="https://lacosprofanos.fandom.com/pt-br/" target="_blank" class="mobile-menu-item">
+                                <i class="fas fa-book"></i>
+                                <span>Wiki</span>
                             </a>
+                            <div class="mobile-language-selector">
+                                <span>Idioma:</span>
+                                <select id="mobile-language-select">
+                                    <option value="pt">Português (BR)</option>
+                                    <option value="en">English</option>
+                                </select>
+                            </div>
                         </div>
                     </div>
                     
@@ -67,6 +70,7 @@ class NavbarTopComponent extends HTMLElement {
 
     initializeNavbar() {
         const languageSelect = this.querySelector('#language-select');
+        const mobileLanguageSelect = this.querySelector('#mobile-language-select');
         
         // URLs para cada idioma
         const languageUrls = {
@@ -74,7 +78,16 @@ class NavbarTopComponent extends HTMLElement {
             en: "https://lacosprofanos.com.br/en/icon&wallpaper/",
         };
 
+        // Configurar seletor de idioma desktop
         languageSelect.addEventListener('change', function() {
+            const selectedLanguage = this.value;
+            if (languageUrls[selectedLanguage]) {
+                window.location.href = languageUrls[selectedLanguage];
+            }
+        });
+
+        // Configurar seletor de idioma mobile
+        mobileLanguageSelect.addEventListener('change', function() {
             const selectedLanguage = this.value;
             if (languageUrls[selectedLanguage]) {
                 window.location.href = languageUrls[selectedLanguage];
@@ -107,6 +120,7 @@ class NavbarTopComponent extends HTMLElement {
 
         // Detectar idioma atual
         this.detectCurrentLanguage(languageSelect);
+        this.detectCurrentLanguage(mobileLanguageSelect);
     }
 
     detectCurrentLanguage(languageSelect) {
