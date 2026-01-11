@@ -1,0 +1,198 @@
+/* navbar.css - Navigation Bar Styles */
+
+/* COMPACT Header */
+header {
+    background: rgba(0, 0, 0, 0.98);
+    padding: 12px 0;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    box-shadow: 0 2px 10px rgba(240, 27, 133, 0.1);
+    backdrop-filter: blur(10px);
+}
+
+.header-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 15px;
+}
+
+.logo {
+    font-size: 1.4rem;
+    font-weight: 800;
+    color: #ffffff;
+    letter-spacing: -0.3px;
+    flex-shrink: 0;
+}
+
+.logo span {
+    background: linear-gradient(90deg, #f01b85 0%, #ff4da6 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.nav-buttons {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+    justify-content: center;
+    flex: 1;
+}
+
+.nav-btn {
+    background: rgba(240, 27, 133, 0.15);
+    color: #ffffff;
+    border: 1px solid #f01b85;
+    padding: 8px 16px;
+    border-radius: 25px;
+    cursor: pointer;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 0.9rem;
+    text-decoration: none;
+    white-space: nowrap;
+}
+
+.nav-btn:hover {
+    background: #f01b85;
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(240, 27, 133, 0.3);
+    animation: glow 1s ease-in-out infinite alternate;
+}
+
+.language-selector {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 0.85rem;
+    flex-shrink: 0;
+}
+
+.language-selector select {
+    background: rgba(240, 27, 133, 0.15);
+    color: #ffffff;
+    border: 1px solid #f01b85;
+    padding: 6px 12px;
+    border-radius: 20px;
+    cursor: pointer;
+    font-weight: 600;
+    font-size: 0.85rem;
+    min-width: 110px;
+    appearance: none;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' fill='white' viewBox='0 0 16 16'%3E%3Cpath d='M7.247 11.14 2.451 5.658C1.885 5.013 2.345 4 3.204 4h9.592a1 1 0 0 1 .753 1.659l-4.796 5.48a1 1 0 0 1-1.506 0z'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 10px center;
+    background-size: 12px;
+    padding-right: 30px;
+}
+
+.language-selector select:focus {
+    outline: none;
+    box-shadow: 0 0 0 2px rgba(240, 27, 133, 0.3);
+}
+
+/* Navbar Responsiveness */
+@media (max-width: 992px) {
+    .header-content {
+        flex-direction: column;
+        gap: 12px;
+        text-align: center;
+    }
+    
+    .logo {
+        font-size: 1.3rem;
+    }
+    
+    .nav-buttons {
+        width: 100%;
+        order: 3;
+        margin-top: 5px;
+    }
+    
+    .language-selector {
+        order: 2;
+    }
+}
+
+@media (max-width: 768px) {
+    header {
+        padding: 10px 0;
+    }
+    
+    .nav-btn {
+        padding: 7px 14px;
+        font-size: 0.85rem;
+        gap: 6px;
+        flex: 1;
+        justify-content: center;
+        min-width: 140px;
+    }
+    
+    .nav-buttons {
+        gap: 8px;
+    }
+}
+
+@media (max-width: 480px) {
+    .nav-buttons {
+        flex-direction: column;
+        width: 100%;
+    }
+    
+    .nav-btn {
+        width: 100%;
+        max-width: 280px;
+        margin: 0 auto;
+    }
+}
+
+@media (max-width: 360px) {
+    .logo {
+        font-size: 1.2rem;
+    }
+    
+    .nav-btn {
+        font-size: 0.8rem;
+        padding: 6px 12px;
+    }
+}
+
+@media (max-height: 500px) and (orientation: landscape) {
+    header {
+        padding: 8px 0;
+    }
+    
+    .nav-btn {
+        padding: 5px 10px;
+        font-size: 0.8rem;
+    }
+    
+    .logo {
+        font-size: 1.2rem;
+    }
+}
+
+/* Touch optimization */
+@media (hover: none) and (pointer: coarse) {
+    .nav-btn {
+        min-height: 44px;
+    }
+    
+    .nav-btn:active {
+        transform: scale(0.97);
+        background: #f01b85;
+    }
+    
+    .nav-btn:hover {
+        transform: none;
+        box-shadow: none;
+        animation: none;
+    }
+}
