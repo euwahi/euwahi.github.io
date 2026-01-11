@@ -1,17 +1,17 @@
-// navbar.js - Componente de Navegação
-class NavbarComponent extends HTMLElement {
+// navbar2.js - Componente da barra de navegação superior
+class NavbarTopComponent extends HTMLElement {
     constructor() {
         super();
     }
 
     connectedCallback() {
         this.innerHTML = `
-            <header>
-                <div class="container header-content">
-                    <div class="logo"><span id="site-title">Laços Profanos</span></div>
+            <div class="header-fixed">
+                <div class="header-content">
+                    <div class="logo"><span>Laços Profanos</span></div>
                     
                     <div class="language-selector">
-                        <span id="language-label">Idioma:</span>
+                        <span>Idioma:</span>
                         <select id="language-select">
                             <option value="pt">Português (BR)</option>
                             <option value="en">English</option>
@@ -23,10 +23,6 @@ class NavbarComponent extends HTMLElement {
                             <i class="fas fa-blog"></i>
                             <span>Blog</span>
                         </a>
-                        <a href="https://lacosprofanos.com.br/icon&wallpaper/" target="_blank" class="nav-btn">
-                            <i class="fas fa-image"></i>
-                            <span>Wallpapers & Icons</span>
-                        </a>
                         <a href="https://lacosprofanos.fandom.com/pt-br/" target="_blank" class="nav-btn">
                             <i class="fas fa-book"></i>
                             <span>Wiki</span>
@@ -37,21 +33,21 @@ class NavbarComponent extends HTMLElement {
                         </a>
                     </div>
                 </div>
-            </header>
+            </div>
+            <div class="header-spacer"></div>
         `;
         
-        // Inicializar funcionalidades da navbar
         this.initializeNavbar();
     }
 
     initializeNavbar() {
+        const languageSelect = this.querySelector('#language-select');
+        
         // URLs para cada idioma
         const languageUrls = {
-            pt: "https://lacosprofanos.com.br",
-            en: "https://lacosprofanos.com.br/en",
+            pt: "https://lacosprofanos.com.br/icon&wallpaper/",
+            en: "https://lacosprofanos.com.br/en/icon&wallpaper/",
         };
-
-        const languageSelect = document.getElementById('language-select');
 
         languageSelect.addEventListener('change', function() {
             const selectedLanguage = this.value;
@@ -61,14 +57,13 @@ class NavbarComponent extends HTMLElement {
         });
 
         // Detectar idioma atual
-        this.detectCurrentLanguage();
+        this.detectCurrentLanguage(languageSelect);
     }
 
-    detectCurrentLanguage() {
+    detectCurrentLanguage(languageSelect) {
         const currentPath = window.location.pathname;
-        const languageSelect = document.getElementById('language-select');
         
-        if (currentPath.includes('/en')) {
+        if (currentPath.includes('/en/icon&wallpaper') || currentPath.includes('/en/icon%26wallpaper')) {
             languageSelect.value = 'en';
         } else {
             languageSelect.value = 'pt';
@@ -76,5 +71,4 @@ class NavbarComponent extends HTMLElement {
     }
 }
 
-// Registrar o componente customizado
-customElements.define('navbar-component', NavbarComponent);
+customElements.define('navbar-top-component', NavbarTopComponent);
