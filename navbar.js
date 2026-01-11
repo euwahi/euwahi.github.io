@@ -19,6 +19,10 @@ class NavbarComponent extends HTMLElement {
                     </div>
                     
                     <div class="nav-buttons">
+                        <a href="https://lacosprofanos.blogspot.com/" target="_blank" class="nav-btn">
+                            <i class="fas fa-blog"></i>
+                            <span>Blog</span>
+                        </a>
                         <a href="https://lacosprofanos.com.br/icon&wallpaper/" target="_blank" class="nav-btn">
                             <i class="fas fa-image"></i>
                             <span>Wallpapers & Icons</span>
