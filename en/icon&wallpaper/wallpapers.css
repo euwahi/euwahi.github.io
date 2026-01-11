@@ -1,4 +1,4 @@
-/* wallpapers.css - Estilos específicos para a página de wallpapers */
+/* wallpapers.css - Styles specific to wallpapers page */
 :root {
     --bg-primary: #000000;
     --bg-secondary: #111111;
@@ -22,6 +22,13 @@ body {
     line-height: 1.6;
     min-height: 100vh;
     overflow-x: hidden;
+}
+
+/* Container principal - ADICIONE ESTE SE NÃO EXISTIR */
+.container {
+    max-width: min(1200px, 95vw);
+    margin: 0 auto;
+    padding: clamp(10px, 3vw, 20px);
 }
 
 /* Header fixo responsivo */
@@ -452,7 +459,11 @@ body {
     to { opacity: 1; }
 }
 
-/* Responsividade adicional */
+/* ====================== */
+/* RESPONSIVIDADE POR BREAKPOINTS */
+/* ====================== */
+
+/* Telas muito pequenas (até 320px) */
 @media (max-width: 320px) {
     .main-nav {
         flex-direction: column;
@@ -494,6 +505,7 @@ body {
     }
 }
 
+/* Tablets e telas médias (321px - 768px) */
 @media (min-width: 321px) and (max-width: 768px) {
     .nav-top-row {
         flex-direction: column;
@@ -518,6 +530,7 @@ body {
     }
 }
 
+/* Telas grandes (769px - 1024px) */
 @media (min-width: 769px) and (max-width: 1024px) {
     .nav-top-row {
         flex-wrap: nowrap;
@@ -541,6 +554,7 @@ body {
     }
 }
 
+/* Telas muito grandes (acima de 1024px) */
 @media (min-width: 1025px) {
     .content-grid {
         grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
@@ -551,6 +565,7 @@ body {
     }
 }
 
+/* Orientação paisagem em mobile */
 @media (max-height: 600px) and (orientation: landscape) {
     .header-spacer {
         height: 40px;
