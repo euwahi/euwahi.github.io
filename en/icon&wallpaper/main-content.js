@@ -5,8 +5,6 @@ class MainContentComponent extends HTMLElement {
     }
 
     connectedCallback() {
-        // HTML content will be injected by index.html
-        // This class only manages logic
         this.initializeContent();
     }
 
