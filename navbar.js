@@ -7,7 +7,7 @@ class NavbarComponent extends HTMLElement {
     connectedCallback() {
         this.innerHTML = `
             <header>
-                <div class="container header-content">
+                <div class="header-content">
                     <div class="logo"><span id="site-title">Laços Profanos</span></div>
 
                     <!-- Botão menu hamburguer -->
@@ -82,8 +82,9 @@ class NavbarComponent extends HTMLElement {
     initializeMenuToggle() {
         const menuToggle = this.querySelector('.menu-toggle');
         const navButtons = this.querySelector('.nav-buttons');
+        const header = this.querySelector('header');
 
-        if (!menuToggle || !navButtons) return;
+        if (!menuToggle || !navButtons || !header) return;
 
         menuToggle.addEventListener('click', () => {
             // Alterna a exibição dos botões
@@ -92,16 +93,25 @@ class NavbarComponent extends HTMLElement {
             } else {
                 navButtons.style.display = 'flex';
             }
+            
+            // Alterna classe para estilização CSS
+            header.classList.toggle('expanded');
         });
 
         // Detecta redimensionamento para resetar o menu
         window.addEventListener('resize', () => {
-            if (window.innerWidth > 600) {
+            if (window.innerWidth > 768) {
                 navButtons.style.display = 'flex';
+                header.classList.remove('expanded');
             } else {
                 navButtons.style.display = 'none';
             }
         });
+
+        // Inicializar estado inicial
+        if (window.innerWidth <= 768) {
+            navButtons.style.display = 'none';
+        }
     }
 }
 
