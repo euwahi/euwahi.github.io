@@ -1,4 +1,4 @@
-/* ========== NOVOS ESTILOS PARA BOTÕES DA NAVBAR SUPERIOR ========== */
+/* ===== NOVOS ESTILOS PARA BOTÕES DA NAVBAR SUPERIOR ===== */
 
 /* Container para os botões */
 .nav-buttons {
@@ -6,7 +6,6 @@
     gap: clamp(4px, 1vw, 8px);
     align-items: center;
     flex-wrap: wrap;
-    justify-content: flex-end;
 }
 
 /* Botões individuais */
@@ -37,30 +36,17 @@
     font-size: clamp(0.8rem, 3vw, 1rem);
 }
 
-/* Responsividade */
+/* Responsividade para os botões da navbar */
 @media (max-width: 768px) {
     .nav-buttons {
-        display: none; /* Esconde em telas muito pequenas */
-    }
-    
-    .header-content {
-        justify-content: space-between;
-        gap: 10px;
+        display: none; /* Esconde em telas pequenas */
     }
 }
 
 @media (min-width: 769px) and (max-width: 1024px) {
-    .nav-buttons {
-        display: flex;
-        justify-content: center;
-        width: 100%;
-        order: 3;
-        margin-top: 10px;
-    }
-    
     .header-content {
         flex-wrap: wrap;
-        gap: 15px;
+        gap: 10px;
     }
     
     .logo {
@@ -71,19 +57,20 @@
         order: 2;
         margin-left: auto;
     }
+    
+    .nav-buttons {
+        order: 3;
+        width: 100%;
+        justify-content: center;
+        margin-top: 10px;
+    }
 }
 
 @media (min-width: 1025px) {
-    .nav-buttons {
-        display: flex;
-        justify-content: flex-end;
-        flex: 1;
-    }
-    
     .header-content {
         display: grid;
         grid-template-columns: auto 1fr auto;
-        gap: 20px;
+        gap: clamp(10px, 2vw, 20px);
         align-items: center;
     }
     
@@ -110,5 +97,13 @@
     
     .nav-btn i {
         font-size: 1.1rem;
+    }
+}
+
+/* Touch device optimizations */
+@media (hover: none) and (pointer: coarse) {
+    .nav-btn {
+        min-height: 44px;
+        min-width: 44px;
     }
 }
