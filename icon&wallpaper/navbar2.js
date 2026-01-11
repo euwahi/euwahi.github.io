@@ -1,17 +1,17 @@
-// navbar2.js - Componente da barra de navegação superior
-class NavbarTopComponent extends HTMLElement {
+// navbar.js - Componente de Navegação
+class NavbarComponent extends HTMLElement {
     constructor() {
         super();
     }
 
     connectedCallback() {
         this.innerHTML = `
-            <div class="header-fixed">
-                <div class="header-content">
-                    <div class="logo"><span>Laços Profanos</span></div>
+            <header>
+                <div class="container header-content">
+                    <div class="logo"><span id="site-title">Laços Profanos</span></div>
                     
                     <div class="language-selector">
-                        <span>Idioma:</span>
+                        <span id="language-label">Idioma:</span>
                         <select id="language-select">
                             <option value="pt">Português (BR)</option>
                             <option value="en">English</option>
@@ -37,21 +37,21 @@ class NavbarTopComponent extends HTMLElement {
                         </a>
                     </div>
                 </div>
-            </div>
-            <div class="header-spacer"></div>
+            </header>
         `;
         
+        // Inicializar funcionalidades da navbar
         this.initializeNavbar();
     }
 
     initializeNavbar() {
-        const languageSelect = this.querySelector('#language-select');
-        
         // URLs para cada idioma
         const languageUrls = {
-            pt: "https://lacosprofanos.com.br/icon&wallpaper/",
-            en: "https://lacosprofanos.com.br/en/icon&wallpaper/",
+            pt: "https://lacosprofanos.com.br",
+            en: "https://lacosprofanos.com.br/en",
         };
+
+        const languageSelect = document.getElementById('language-select');
 
         languageSelect.addEventListener('change', function() {
             const selectedLanguage = this.value;
@@ -61,13 +61,14 @@ class NavbarTopComponent extends HTMLElement {
         });
 
         // Detectar idioma atual
-        this.detectCurrentLanguage(languageSelect);
+        this.detectCurrentLanguage();
     }
 
-    detectCurrentLanguage(languageSelect) {
+    detectCurrentLanguage() {
         const currentPath = window.location.pathname;
+        const languageSelect = document.getElementById('language-select');
         
-        if (currentPath.includes('/en/icon&wallpaper') || currentPath.includes('/en/icon%26wallpaper')) {
+        if (currentPath.includes('/en')) {
             languageSelect.value = 'en';
         } else {
             languageSelect.value = 'pt';
@@ -75,4 +76,5 @@ class NavbarTopComponent extends HTMLElement {
     }
 }
 
-customElements.define('navbar-top-component', NavbarTopComponent);
+// Registrar o componente customizado
+customElements.define('navbar-component', NavbarComponent);
