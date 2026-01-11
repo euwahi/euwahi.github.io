@@ -6,10 +6,11 @@
     <title>Laços Profanos</title>
     <link rel="icon" href="https://i.imgur.com/mgxXSto.png" type="image/png">
     
-    <!-- Importar estilos da navbar -->
-    <link rel="stylesheet" href="navbar.css">
-    <!-- Font Awesome para ícones -->
+    <!-- Font Awesome PRIMEIRO -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Importar estilos da navbar DEPOIS -->
+    <link rel="stylesheet" href="navbar.css">
     
     <style>
         /* Reset e configurações globais */
@@ -489,45 +490,10 @@
             }
         }
 
-        /* Ajustes para telas muito pequenas (smartphones antigos) */
-        @media (max-width: 320px) {
-            .section-title {
-                font-size: 1.3rem;
-            }
-            
-            .about-text {
-                font-size: 0.9rem;
-            }
-            
-            .social-content h3 {
-                font-size: 0.85rem;
-            }
-            
-            .social-content p {
-                font-size: 0.7rem;
-            }
-        }
-
         /* Para evitar overflow horizontal */
         img, video, iframe {
             max-width: 100%;
             height: auto;
-        }
-
-        /* Ajustes de texto para telas pequenas */
-        @media (max-width: 480px) {
-            .continents-description {
-                font-size: 0.9rem;
-                padding: 12px;
-            }
-            
-            .creator-name {
-                font-size: 1.1rem;
-            }
-            
-            .creator-role {
-                font-size: 0.8rem;
-            }
         }
     </style>
 </head>
