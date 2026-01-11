@@ -39,8 +39,8 @@ class NavbarComponent extends HTMLElement {
     initializeNavbar() {
         // URLs for each language
         const languageUrls = {
-            en: "https://profanebonds.com",
-            pt: "https://profanebonds.com/pt",
+            en: "https://lacosprofanos.com.br/en/",
+            pt: "https://lacosprofanos.com.br/",
         };
 
         const languageSelect = document.getElementById('language-select');
