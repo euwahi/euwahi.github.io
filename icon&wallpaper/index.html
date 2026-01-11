@@ -82,4 +82,82 @@
                             <i class="fas fa-download"></i>
                             <span>Baixar Wallpaper</span>
                         </button>
-                        <a href="https://lacosprofanos2.itch.io/wallpaper1" target="_blank" class
+                        <a href="https://lacosprofanos2.itch.io/wallpaper1" target="_blank" class="btn-download btn-itch">
+                            <i class="fab fa-itch-io"></i>
+                            <span>Baixar no itch.io</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Ícones -->
+            <div class="content-item" data-type="icon"
+                 data-name="Ícone do Kaleb" 
+                 data-tags="kaleb icone personagem">
+                <img src="https://i.imgur.com/WVrHpaB.jpeg" alt="Ícone do Kaleb" loading="lazy">
+                <div class="item-info">
+                    <h3 class="item-title">Ícone do Kaleb</h3>
+                    <span class="item-type">Ícone</span>
+                    <div class="item-details">
+                        <span>736x736</span>
+                        <span>57.78 kb</span>
+                    </div>
+                    <div class="download-buttons">
+                        <button class="btn-download" data-image="https://i.imgur.com/WVrHpaB.jpeg" data-filename="icone-kaleb.jpeg">
+                            <i class="fas fa-download"></i>
+                            <span>Baixar Ícone</span>
+                        </button>
+                        <a href="https://lacosprofanos2.itch.io/icon1" target="_blank" class="btn-download btn-itch">
+                            <i class="fab fa-itch-io"></i>
+                            <span>Baixar no itch.io</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- NOVO Ícone -->
+            <div class="content-item" data-type="icon"
+                 data-name="Ícone da Wahi" 
+                 data-tags="wahi wahipogo criadora icone">
+                <img src="https://i.imgur.com/Py44HxM.png" alt="Ícone da Wahi" loading="lazy">
+                <div class="item-info">
+                    <h3 class="item-title">Ícone da Wahi</h3>
+                    <span class="item-type">Ícone</span>
+                    <div class="item-details">
+                        <span>768x768</span>
+                        <span>171.1 kb</span>
+                    </div>
+                    <div class="download-buttons">
+                        <button class="btn-download" data-image="https://i.imgur.com/Py44HxM.png" data-filename="icone-wahi.png">
+                            <i class="fas fa-download"></i>
+                            <span>Baixar Ícone</span>
+                        </button>
+                        <a href="https://lacosprofanos2.itch.io/icon2" target="_blank" class="btn-download btn-itch">
+                            <i class="fab fa-itch-io"></i>
+                            <span>Baixar no itch.io</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Modal para visualização de imagem -->
+        <div id="imageModal" class="modal">
+            <span class="modal-close">&times;</span>
+            <img class="modal-content" id="modalImage" alt="Visualização ampliada">
+            <button class="btn-download modal-download" id="modalDownload">
+                <i class="fas fa-download"></i>
+                <span>Baixar Imagem</span>
+            </button>
+        </div>
+    </div>
+
+    <!-- Componentes JavaScript -->
+    <script src="navbar2.js"></script>
+    <script src="search-nav.js"></script>
+    <script src="main-content.js"></script>
+    
+    <!-- Inicializar componente do conteúdo -->
+    <main-content-component></main-content-component>
+</body>
+</html>
