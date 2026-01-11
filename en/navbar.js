@@ -19,11 +19,11 @@ class NavbarComponent extends HTMLElement {
                     </div>
                     
                     <div class="nav-buttons">
-                        <a href="https://profanebonds.com/icon&wallpaper/" target="_blank" class="nav-btn">
+                        <a href="https://lacosprofanos.com.br/en/icon&wallpaper/" target="_blank" class="nav-btn">
                             <i class="fas fa-image"></i>
                             <span>Wallpapers & Icons</span>
                         </a>
-                        <a href="https://profanebonds.fandom.com/" target="_blank" class="nav-btn">
+                        <a href="https://lacosprofanos.fandom.com/" target="_blank" class="nav-btn">
                             <i class="fas fa-book"></i>
                             <span>Wiki</span>
                         </a>
@@ -60,10 +60,11 @@ class NavbarComponent extends HTMLElement {
         const currentPath = window.location.pathname;
         const languageSelect = document.getElementById('language-select');
         
-        if (currentPath.includes('/pt')) {
-            languageSelect.value = 'pt';
-        } else {
+        // Set the correct option based on current path
+        if (currentPath.includes('/en')) {
             languageSelect.value = 'en';
+        } else {
+            languageSelect.value = 'pt';
         }
     }
 }
