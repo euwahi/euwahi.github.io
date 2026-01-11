@@ -1,4 +1,4 @@
-// navbar.js - Componente de Navegação
+// navbar.js - Componente de Navegação Atualizado
 class NavbarComponent extends HTMLElement {
     constructor() {
         super();
@@ -9,7 +9,10 @@ class NavbarComponent extends HTMLElement {
             <header>
                 <div class="container header-content">
                     <div class="logo"><span id="site-title">Laços Profanos</span></div>
-                    
+
+                    <!-- Botão menu hamburguer -->
+                    <div class="menu-toggle">&#9776;</div>
+
                     <div class="language-selector">
                         <span id="language-label">Idioma:</span>
                         <select id="language-select">
@@ -17,7 +20,7 @@ class NavbarComponent extends HTMLElement {
                             <option value="en">English</option>
                         </select>
                     </div>
-                    
+
                     <div class="nav-buttons">
                         <a href="https://lacosprofanos.blogspot.com/" target="_blank" class="nav-btn">
                             <i class="fas fa-blog"></i>
@@ -39,9 +42,10 @@ class NavbarComponent extends HTMLElement {
                 </div>
             </header>
         `;
-        
+
         // Inicializar funcionalidades da navbar
         this.initializeNavbar();
+        this.initializeMenuToggle();
     }
 
     initializeNavbar() {
@@ -51,7 +55,7 @@ class NavbarComponent extends HTMLElement {
             en: "https://lacosprofanos.com.br/en",
         };
 
-        const languageSelect = document.getElementById('language-select');
+        const languageSelect = this.querySelector('#language-select');
 
         languageSelect.addEventListener('change', function() {
             const selectedLanguage = this.value;
@@ -66,13 +70,38 @@ class NavbarComponent extends HTMLElement {
 
     detectCurrentLanguage() {
         const currentPath = window.location.pathname;
-        const languageSelect = document.getElementById('language-select');
-        
+        const languageSelect = this.querySelector('#language-select');
+
         if (currentPath.includes('/en')) {
             languageSelect.value = 'en';
         } else {
             languageSelect.value = 'pt';
         }
+    }
+
+    initializeMenuToggle() {
+        const menuToggle = this.querySelector('.menu-toggle');
+        const navButtons = this.querySelector('.nav-buttons');
+
+        if (!menuToggle || !navButtons) return;
+
+        menuToggle.addEventListener('click', () => {
+            // Alterna a exibição dos botões
+            if (navButtons.style.display === 'flex' || navButtons.style.display === '') {
+                navButtons.style.display = navButtons.style.display === 'flex' ? 'none' : 'flex';
+            } else {
+                navButtons.style.display = 'flex';
+            }
+        });
+
+        // Detecta redimensionamento para resetar o menu
+        window.addEventListener('resize', () => {
+            if (window.innerWidth > 600) {
+                navButtons.style.display = 'flex';
+            } else {
+                navButtons.style.display = 'none';
+            }
+        });
     }
 }
 
