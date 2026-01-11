@@ -23,10 +23,18 @@ class NavbarComponent extends HTMLElement {
                             <i class="fas fa-image"></i>
                             <span>Wallpapers & Icons</span>
                         </a>
+                        <a href="https://lacosprofanos.blogspot.com/" target="_blank" class="nav-btn">
+                            <i class="fas fa-blog"></i>
+                            <span>Blog</span>
+                        </a>
                         <a href="https://profanebonds.fandom.com/wiki/" target="_blank" class="nav-btn">
                             <i class="fas fa-book"></i>
                             <span>Wiki</span>
                         </a>
+                    </div>
+                    
+                    <div class="footer-links">
+                        <a href="https://lacosprofanos.com.br/tos" target="_blank" class="footer-link">Terms of Service</a>
                     </div>
                 </div>
             </header>
