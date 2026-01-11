@@ -1,9 +1,9 @@
-/* navbar.css - Estilos da Barra de Navegação */
+/* navbar.css - Versão Fluida e Responsiva */
 
-/* Header COMPACTO */
+/* Header */
 header {
     background: rgba(0, 0, 0, 0.98);
-    padding: 12px 0;
+    padding: 12px 2%;
     position: sticky;
     top: 0;
     z-index: 1000;
@@ -12,16 +12,18 @@ header {
     backdrop-filter: blur(10px);
 }
 
+/* Conteúdo do Header */
 .header-content {
     display: flex;
     justify-content: space-between;
     align-items: center;
     flex-wrap: wrap;
-    gap: 15px;
+    gap: 10px;
 }
 
+/* Logo */
 .logo {
-    font-size: 1.4rem;
+    font-size: clamp(1.2rem, 3vw, 1.5rem);
     font-weight: 800;
     color: #ffffff;
     letter-spacing: -0.3px;
@@ -35,29 +37,34 @@ header {
     background-clip: text;
 }
 
+/* Botões de Navegação */
 .nav-buttons {
     display: flex;
-    gap: 10px;
     flex-wrap: wrap;
+    gap: 8px;
     justify-content: center;
-    flex: 1;
+    flex: 1 1 auto;
 }
 
+/* Cada botão */
 .nav-btn {
     background: rgba(240, 27, 133, 0.15);
     color: #ffffff;
     border: 1px solid #f01b85;
-    padding: 8px 16px;
+    padding: 0.5em 1em;
     border-radius: 25px;
     cursor: pointer;
     font-weight: 600;
-    transition: all 0.3s ease;
     display: flex;
     align-items: center;
-    gap: 8px;
-    font-size: 0.9rem;
+    gap: 0.5em;
+    font-size: clamp(0.8rem, 1vw, 0.9rem);
     text-decoration: none;
     white-space: nowrap;
+    flex: 1 1 auto;
+    min-width: 120px;
+    max-width: 250px;
+    transition: all 0.3s ease;
 }
 
 .nav-btn:hover {
@@ -67,11 +74,12 @@ header {
     animation: glow 1s ease-in-out infinite alternate;
 }
 
+/* Selector de Idioma */
 .language-selector {
     display: flex;
     align-items: center;
     gap: 8px;
-    font-size: 0.85rem;
+    font-size: clamp(0.75rem, 1vw, 0.85rem);
     flex-shrink: 0;
 }
 
@@ -83,8 +91,8 @@ header {
     border-radius: 20px;
     cursor: pointer;
     font-weight: 600;
-    font-size: 0.85rem;
-    min-width: 110px;
+    font-size: inherit;
+    min-width: 100px;
     appearance: none;
     background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' fill='white' viewBox='0 0 16 16'%3E%3Cpath d='M7.247 11.14 2.451 5.658C1.885 5.013 2.345 4 3.204 4h9.592a1 1 0 0 1 .753 1.659l-4.796 5.48a1 1 0 0 1-1.506 0z'/%3E%3C/svg%3E");
     background-repeat: no-repeat;
@@ -98,88 +106,34 @@ header {
     box-shadow: 0 0 0 2px rgba(240, 27, 133, 0.3);
 }
 
-/* Responsividade da Navbar */
-@media (max-width: 992px) {
-    .header-content {
-        flex-direction: column;
-        gap: 12px;
-        text-align: center;
-    }
-    
-    .logo {
-        font-size: 1.3rem;
-    }
-    
-    .nav-buttons {
-        width: 100%;
-        order: 3;
-        margin-top: 5px;
-    }
-    
-    .language-selector {
-        order: 2;
-    }
+/* Menu Hamburguer (apenas em telas pequenas) */
+.menu-toggle {
+    display: none;
+    font-size: 1.5rem;
+    color: #ffffff;
+    cursor: pointer;
+    flex-shrink: 0;
 }
 
-@media (max-width: 768px) {
-    header {
-        padding: 10px 0;
-    }
-    
-    .nav-btn {
-        padding: 7px 14px;
-        font-size: 0.85rem;
+/* Responsividade Automática */
+@media (max-width: 600px) {
+    .nav-buttons {
+        display: none;
+        width: 100%;
+        flex-direction: column;
         gap: 6px;
-        flex: 1;
-        justify-content: center;
-        min-width: 140px;
     }
     
-    .nav-buttons {
-        gap: 8px;
+    .menu-toggle {
+        display: block;
+    }
+    
+    header.expanded .nav-buttons {
+        display: flex;
     }
 }
 
-@media (max-width: 480px) {
-    .nav-buttons {
-        flex-direction: column;
-        width: 100%;
-    }
-    
-    .nav-btn {
-        width: 100%;
-        max-width: 280px;
-        margin: 0 auto;
-    }
-}
-
-@media (max-width: 360px) {
-    .logo {
-        font-size: 1.2rem;
-    }
-    
-    .nav-btn {
-        font-size: 0.8rem;
-        padding: 6px 12px;
-    }
-}
-
-@media (max-height: 500px) and (orientation: landscape) {
-    header {
-        padding: 8px 0;
-    }
-    
-    .nav-btn {
-        padding: 5px 10px;
-        font-size: 0.8rem;
-    }
-    
-    .logo {
-        font-size: 1.2rem;
-    }
-}
-
-/* Otimização para touch */
+/* Otimização para touch devices */
 @media (hover: none) and (pointer: coarse) {
     .nav-btn {
         min-height: 44px;
@@ -195,4 +149,10 @@ header {
         box-shadow: none;
         animation: none;
     }
+}
+
+/* Pequenas animações (opcional) */
+@keyframes glow {
+    from { box-shadow: 0 0 5px rgba(240, 27, 133, 0.5); }
+    to { box-shadow: 0 0 20px rgba(240, 27, 133, 0.8); }
 }
