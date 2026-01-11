@@ -26,7 +26,6 @@
             min-height: 100vh;
         }
 
-        /* Estilos para scrollbar personalizada */
         ::-webkit-scrollbar {
             width: 8px;
         }
@@ -46,7 +45,6 @@
             padding: 0 15px;
         }
 
-        /* Conteúdo principal */
         main {
             padding: 30px 0 40px 0;
         }
@@ -94,7 +92,6 @@
             font-weight: 700;
         }
 
-        /* Redes sociais - COMPACTO */
         .social-buttons {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
@@ -159,7 +156,6 @@
             text-overflow: ellipsis;
         }
 
-        /* Continentes */
         .continents-container {
             margin-top: 30px;
             background: rgba(255, 255, 255, 0.05);
@@ -212,7 +208,6 @@
             border-left: 4px solid #f01b85;
         }
 
-        /* Criadores */
         .creators-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
@@ -313,128 +308,63 @@
             color: #cccccc;
             line-height: 1.7;
             font-size: 1rem;
+            margin-bottom: 15px;
         }
 
-        /* Responsividade do conteúdo */
-        @media (max-width: 768px) {
-            .social-buttons {
-                grid-template-columns: repeat(2, 1fr);
-                gap: 10px;
-            }
-            
-            .social-btn {
-                padding: 10px 15px;
-                min-height: 55px;
-                gap: 10px;
-            }
-            
-            .social-icon {
-                width: 32px;
-                height: 32px;
-                font-size: 1.1rem;
-            }
-            
-            .social-content h3 {
-                font-size: 0.95rem;
-            }
-            
-            .social-content p {
-                font-size: 0.75rem;
-            }
-            
-            .creators-grid {
-                grid-template-columns: 1fr;
-                gap: 25px;
-            }
-            
-            .continents-container {
-                padding: 20px;
-            }
-            
-            .creator-card {
-                padding: 25px 15px;
-            }
-            
-            .section-title {
-                font-size: 1.6rem;
-                margin-bottom: 25px;
-            }
-            
-            .about-text {
-                font-size: 1rem;
-            }
+        /* Botões extras no card do criador */
+        .creator-buttons {
+            display: flex;
+            gap: 15px;
+            margin-top: 10px;
+            flex-wrap: wrap;
+            justify-content: center;
         }
 
-        @media (max-width: 480px) {
-            .social-buttons {
-                grid-template-columns: 1fr;
-                gap: 8px;
-            }
-            
-            .social-btn {
-                min-height: 50px;
-                padding: 8px 12px;
-            }
-            
-            .section-title {
-                font-size: 1.4rem;
-            }
-            
-            .about-text {
-                font-size: 0.95rem;
-            }
-            
-            .creator-avatar {
-                width: 110px;
-                height: 110px;
-            }
-            
-            .creator-name {
-                font-size: 1.2rem;
-            }
-            
-            .creator-desc {
-                font-size: 0.95rem;
-            }
-            
-            .continents-description {
-                font-size: 1rem;
-                padding: 15px;
-            }
+        .creator-buttons a {
+            background: rgba(240, 27, 133, 0.15);
+            color: #ffffff;
+            border: 1px solid #f01b85;
+            padding: 10px 18px;
+            border-radius: 25px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 8px;
         }
 
-        /* Animações */
+        .creator-buttons a:hover {
+            background: #f01b85;
+            box-shadow: 0 8px 20px rgba(240, 27, 133, 0.3);
+            transform: translateY(-2px);
+        }
+
         @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(20px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
         }
 
         @keyframes glow {
-            from {
-                box-shadow: 0 0 15px rgba(240, 27, 133, 0.4);
-            }
-            to {
-                box-shadow: 0 0 20px rgba(240, 27, 133, 0.6);
-            }
+            from { box-shadow: 0 0 15px rgba(240, 27, 133, 0.4); }
+            to { box-shadow: 0 0 20px rgba(240, 27, 133, 0.6); }
         }
 
         .social-btn:hover {
             animation: glow 1s ease-in-out infinite alternate;
         }
+
+        /* Responsividade */
+        @media (max-width: 768px) {
+            .creators-grid { grid-template-columns: 1fr; gap: 25px; }
+        }
     </style>
 </head>
 <body>
-    <!-- Navbar como Web Component -->
     <navbar-component></navbar-component>
 
     <main class="container">
-        <!-- Seção Sobre Nós -->
+        <!-- Sobre Nós -->
         <section id="about" class="section">
             <h2 class="section-title">Sobre Nós</h2>
             <div class="about-text">
@@ -447,7 +377,7 @@
             </div>
         </section>
 
-        <!-- Seção Redes Sociais - COMPACTA -->
+        <!-- Redes Sociais -->
         <section id="social" class="section">
             <h2 class="section-title">Redes Sociais</h2>
             <div class="about-text">
@@ -455,101 +385,52 @@
             </div>
             <div class="social-buttons">
                 <a href="https://tipa.ai/lacosprofanos" target="_blank" class="social-btn">
-                    <div class="social-icon">
-                        <i class="fas fa-robot"></i>
-                    </div>
-                    <div class="social-content">
-                        <h3>Tipa.ai</h3>
-                        <p>Canal no Tipa.ai</p>
-                    </div>
+                    <div class="social-icon"><i class="fas fa-robot"></i></div>
+                    <div class="social-content"><h3>Tipa.ai</h3><p>Canal no Tipa.ai</p></div>
                 </a>
-                
                 <a href="https://bit.ly/lacosprofanosZap" target="_blank" class="social-btn">
-                    <div class="social-icon">
-                        <i class="fab fa-whatsapp"></i>
-                    </div>
-                    <div class="social-content">
-                        <h3>WhatsApp</h3>
-                        <p>Canal no WhatsApp</p>
-                    </div>
+                    <div class="social-icon"><i class="fab fa-whatsapp"></i></div>
+                    <div class="social-content"><h3>WhatsApp</h3><p>Canal no WhatsApp</p></div>
                 </a>
-                
                 <a href="https://discord.com/invite/u4sD2JyTuT" target="_blank" class="social-btn">
-                    <div class="social-icon">
-                        <i class="fab fa-discord"></i>
-                    </div>
-                    <div class="social-content">
-                        <h3>Discord</h3>
-                        <p>Servidor no Discord</p>
-                    </div>
+                    <div class="social-icon"><i class="fab fa-discord"></i></div>
+                    <div class="social-content"><h3>Discord</h3><p>Servidor no Discord</p></div>
                 </a>
-                
                 <a href="https://www.instagram.com/lacosprofanos" target="_blank" class="social-btn">
-                    <div class="social-icon">
-                        <i class="fab fa-instagram"></i>
-                    </div>
-                    <div class="social-content">
-                        <h3>Instagram</h3>
-                        <p>Perfil no Instagram</p>
-                    </div>
+                    <div class="social-icon"><i class="fab fa-instagram"></i></div>
+                    <div class="social-content"><h3>Instagram</h3><p>Perfil no Instagram</p></div>
                 </a>
-                
                 <a href="https://x.com/lacosprofanos" target="_blank" class="social-btn">
-                    <div class="social-icon">
-                        <i class="fab fa-twitter"></i>
-                    </div>
-                    <div class="social-content">
-                        <h3>X (Twitter)</h3>
-                        <p>Perfil no X (Twitter)</p>
-                    </div>
+                    <div class="social-icon"><i class="fab fa-twitter"></i></div>
+                    <div class="social-content"><h3>X (Twitter)</h3><p>Perfil no X (Twitter)</p></div>
                 </a>
-                
                 <a href="https://www.youtube.com/@LaçosProfanos" target="_blank" class="social-btn">
-                    <div class="social-icon">
-                        <i class="fab fa-youtube"></i>
-                    </div>
-                    <div class="social-content">
-                        <h3>YouTube</h3>
-                        <p>Canal no YouTube</p>
-                    </div>
+                    <div class="social-icon"><i class="fab fa-youtube"></i></div>
+                    <div class="social-content"><h3>YouTube</h3><p>Canal no YouTube</p></div>
                 </a>
-                
                 <a href="https://t.me/lacosprofanos" target="_blank" class="social-btn">
-                    <div class="social-icon">
-                        <i class="fab fa-telegram"></i>
-                    </div>
-                    <div class="social-content">
-                        <h3>Telegram</h3>
-                        <p>Canal no Telegram</p>
-                    </div>
+                    <div class="social-icon"><i class="fab fa-telegram"></i></div>
+                    <div class="social-content"><h3>Telegram</h3><p>Canal no Telegram</p></div>
                 </a>
-                
                 <a href="https://www.reddit.com/r/lacosprofanos" target="_blank" class="social-btn">
-                    <div class="social-icon">
-                        <i class="fab fa-reddit"></i>
-                    </div>
-                    <div class="social-content">
-                        <h3>Reddit</h3>
-                        <p>Comunidade no Reddit</p>
-                    </div>
+                    <div class="social-icon"><i class="fab fa-reddit"></i></div>
+                    <div class="social-content"><h3>Reddit</h3><p>Comunidade no Reddit</p></div>
                 </a>
             </div>
         </section>
 
-        <!-- Seção A Terra em Laços Profanos -->
+        <!-- A Terra em Laços Profanos -->
         <section id="earth" class="section">
             <h2 class="section-title">A Terra em Laços Profanos</h2>
             <div class="about-text">
                 <p>
-                    "No universo de Laços Profanos, o planeta Terra não é como o nosso. Ele é dividido em apenas três continentes, cada um com suas próprias características, culturas e histórias:"
+                    No universo de Laços Profanos, o planeta Terra não é como o nosso. Ele é dividido em apenas três continentes, cada um com suas próprias características, culturas e histórias:
                 </p>
             </div>
-            
             <div class="continents-container">
                 <div class="continents-image">
                     <img src="https://i.imgur.com/jrrLcpW.png" alt="Os três continentes de Laços Profanos: Kelster, Molton e Clifton">
                 </div>
-                
                 <p class="continents-description">
                     ❄️ Kelster — o continente frio, marcado por climas rigorosos, paisagens geladas e povos acostumados à resistência.<br>
                     🍃 Molton — o continente intermediário, de equilíbrio entre frio e calor, diversidade natural e cultural.<br>
@@ -558,22 +439,32 @@
             </div>
         </section>
 
-        <!-- Seção As Mentes por Trás -->
+        <!-- As Mentes por Trás -->
         <section id="creators" class="section">
             <h2 class="section-title">As Mentes por Trás</h2>
-            
             <div class="creators-grid">
+                <!-- Wahi -->
                 <div class="creator-card">
                     <div class="creator-avatar">
-                        <img src="https://i.imgur.com/Py44HxM.png" alt="Eduarda Victoria - A Criadora">
+                        <img src="https://i.imgur.com/LOXjaKn.jpeg" alt="Eduarda Victoria - A Criadora">
                     </div>
                     <h3 class="creator-name">Eduarda Victoria</h3>
                     <p class="creator-role">A Criadora</p>
                     <p class="creator-desc">
-                        Mais conhecida pelo pseudônimo Wahipogo ou Wahi, é a mente criativa por trás do universo de Laços Profanos. Além de idealizar a obra, atua como roteirista, diretora criativa e responsável pela administração do projeto. Também cria conteúdo em plataformas como o YouTube, mantendo sua identidade visual anônima e nunca tendo mostrado o rosto oficialmente.
+                        Mais conhecida pelos pseudônimos Wahipogo ou Wahi, é a mente criativa por trás do universo de Laços Profanos. Além de idealizar a obra, atua como roteirista, diretora criativa e gestora do projeto. Também é programadora, responsável pelo desenvolvimento e manutenção do site oficial da obra.
                     </p>
+                    <!-- Botões adicionais -->
+                    <div class="creator-buttons">
+                        <a href="https://lacosprofanos.com.br/wahi" target="_blank">
+                            <i class="fas fa-share-alt"></i> Redes Sociais
+                        </a>
+                        <a href="https://lacosprofanos.com.br/wahi/portfolio" target="_blank">
+                            <i class="fas fa-folder-open"></i> Portfólio
+                        </a>
+                    </div>
                 </div>
-                
+
+                <!-- Elisa Lana -->
                 <div class="creator-card">
                     <div class="creator-avatar">
                         <img src="https://i.imgur.com/ByfmPFO.png" alt="Elisa Lana - A Artista">
@@ -588,7 +479,6 @@
         </section>
     </main>
 
-    <!-- Importar o script da navbar -->
     <script src="navbar.js"></script>
 </body>
 </html>
