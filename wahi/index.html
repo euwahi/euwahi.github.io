@@ -200,7 +200,7 @@
             padding: 30px 0 60px 0;
         }
 
-        /* === CABEÇALHO DA PÁGINA === */
+        /* === CABEÇALHO DA PÁGINA COM FOTO === */
         .header {
             text-align: center;
             margin-bottom: 50px;
@@ -209,36 +209,84 @@
             position: relative;
         }
 
+        .profile-section {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 30px;
+            margin-bottom: 30px;
+            flex-wrap: wrap;
+        }
+
+        .profile-image {
+            width: 180px;
+            height: 180px;
+            border-radius: 50%;
+            overflow: hidden;
+            border: 4px solid #f01b85;
+            box-shadow: 0 10px 30px rgba(240, 27, 133, 0.3);
+            transition: transform 0.5s ease;
+        }
+
+        .profile-image:hover {
+            transform: scale(1.05);
+        }
+
+        .profile-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .profile-info {
+            text-align: left;
+            max-width: 600px;
+        }
+
         .page-title {
             font-size: clamp(2rem, 5vw, 2.8rem);
-            margin-bottom: 20px;
+            margin-bottom: 10px;
             font-weight: 800;
             text-transform: uppercase;
             letter-spacing: 0.5px;
             color: #ffffff;
             position: relative;
             display: inline-block;
-            padding-bottom: 15px;
         }
 
-        .page-title::after {
-            content: '';
+        .creator-title {
+            font-size: 1.3rem;
+            color: #f01b85;
+            font-weight: 700;
+            margin-bottom: 15px;
+            position: relative;
+            display: inline-block;
+            padding: 0 15px;
+        }
+
+        .creator-title::before,
+        .creator-title::after {
+            content: '✦';
             position: absolute;
-            bottom: 0;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 100px;
-            height: 4px;
-            background: #f01b85;
-            border-radius: 2px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #ff4da6;
+            font-size: 1.2rem;
+        }
+
+        .creator-title::before {
+            left: 0;
+        }
+
+        .creator-title::after {
+            right: 0;
         }
 
         .subtitle {
-            font-size: 1.2rem;
+            font-size: 1.1rem;
             color: #cccccc;
-            max-width: 800px;
-            margin: 0 auto;
             line-height: 1.7;
+            margin-top: 10px;
         }
 
         .highlight {
@@ -263,6 +311,21 @@
         @media (max-width: 600px) {
             .sections-grid {
                 grid-template-columns: 1fr;
+            }
+            
+            .profile-section {
+                flex-direction: column;
+                text-align: center;
+                gap: 20px;
+            }
+            
+            .profile-info {
+                text-align: center;
+            }
+            
+            .profile-image {
+                width: 150px;
+                height: 150px;
             }
         }
 
@@ -311,6 +374,10 @@
         @media (max-width: 768px) {
             .social-grid {
                 grid-template-columns: 1fr;
+            }
+            
+            .section-card {
+                padding: 25px 20px;
             }
         }
 
@@ -541,7 +608,7 @@
             }
             
             .subtitle {
-                font-size: 1.1rem;
+                font-size: 1rem;
             }
             
             .sections-grid {
@@ -554,6 +621,10 @@
             
             .email-address {
                 font-size: 1.2rem;
+            }
+            
+            .creator-title {
+                font-size: 1.1rem;
             }
         }
 
@@ -573,6 +644,11 @@
             .social-content p {
                 white-space: normal;
                 overflow: visible;
+            }
+            
+            .profile-image {
+                width: 130px;
+                height: 130px;
             }
         }
     </style>
@@ -627,12 +703,21 @@
     </a>
 
     <main class="container">
-        <!-- Cabeçalho da página -->
+        <!-- Cabeçalho da página com foto -->
         <header class="header" id="top">
-            <h1 class="page-title">Redes Sociais da Wahi</h1>
-            <p class="subtitle">
-                Conecte-se com a criadora do universo <span class="highlight">Laços Profanos</span> através de suas redes sociais e plataformas
-            </p>
+            <div class="profile-section">
+                <div class="profile-image">
+                    <img src="https://i.imgur.com/LOXjaKn.jpeg" alt="Wahi - Criadora de Laços Profanos">
+                </div>
+                
+                <div class="profile-info">
+                    <h1 class="page-title">Redes Sociais da Wahi</h1>
+                    <p class="subtitle">
+                        Conecte-se com a criadora do universo <span class="highlight">Laços Profanos</span> através de suas redes sociais, 
+                        plataformas de desenvolvimento e canais de conteúdo.
+                    </p>
+                </div>
+            </div>
         </header>
 
         <!-- Grid de seções -->
@@ -740,8 +825,18 @@
                             <i class="fab fa-youtube"></i>
                         </div>
                         <div class="social-content">
-                            <h3>YouTube Dev</h3>
+                            <h3>YouTube Dev (PT)</h3>
                             <p>Canal de desenvolvimento</p>
+                        </div>
+                    </a>
+                    
+                    <a href="https://www.youtube.com/@wahipogo2en" target="_blank" class="social-card">
+                        <div class="social-icon" style="color: #FF0000; background: rgba(255, 0, 0, 0.1);">
+                            <i class="fab fa-youtube"></i>
+                        </div>
+                        <div class="social-content">
+                            <h3>YouTube Dev (EN)</h3>
+                            <p>Canal de desenvolvimento em inglês</p>
                         </div>
                     </a>
                     
