@@ -1,169 +1,900 @@
 <!DOCTYPE html>
-<html lang="pt-br">
+<html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Wahipogo - Laços Profanos</title>
-    <link rel="icon" href="https://i.imgur.com/mgxXSto.png" type="image/png">
+    <title>Redes Sociais da Wahi - Laços Profanos</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
-        /* Reset e configurações gerais */
+        /* === ESTILO DA NAVEGAÇÃO === */
+        .navbar {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background-color: rgba(10, 10, 10, 0.98);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            padding: 15px 20px;
+            border-bottom: 2px solid #f01b85;
+            box-shadow: 0 4px 20px rgba(240, 27, 133, 0.15);
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            color: #ffffff;
+            font-size: 1.5rem;
+            font-weight: 800;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            transition: all 0.3s ease;
+        }
+
+        .logo:hover {
+            color: #f01b85;
+            transform: translateY(-2px);
+        }
+
+        .logo-text {
+            font-size: 1.4rem;
+            font-weight: 800;
+            letter-spacing: 0.5px;
+        }
+
+        .nav-menu {
+            display: flex;
+            list-style: none;
+            gap: 20px;
+        }
+
+        .nav-item a {
+            color: #ffffff;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.95rem;
+            padding: 8px 15px;
+            border-radius: 20px;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            white-space: nowrap;
+        }
+
+        .nav-item a:hover {
+            background-color: #f01b85;
+            color: #000;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(240, 27, 133, 0.3);
+        }
+
+        .nav-item i {
+            font-size: 1rem;
+        }
+
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+            gap: 4px;
+            background: none;
+            border: none;
+            padding: 8px;
+            z-index: 1001;
+        }
+
+        .hamburger span {
+            display: block;
+            width: 25px;
+            height: 3px;
+            background-color: #ffffff;
+            border-radius: 2px;
+            transition: 0.3s;
+        }
+
+        .hamburger.active span:nth-child(1) {
+            transform: rotate(45deg) translate(5px, 5px);
+        }
+
+        .hamburger.active span:nth-child(2) {
+            opacity: 0;
+        }
+
+        .hamburger.active span:nth-child(3) {
+            transform: rotate(-45deg) translate(7px, -6px);
+        }
+
+        /* Responsividade da navegação */
+        @media (max-width: 768px) {
+            .hamburger {
+                display: flex;
+            }
+
+            .nav-menu {
+                position: fixed;
+                top: 70px;
+                left: -100%;
+                flex-direction: column;
+                background-color: rgba(10, 10, 10, 0.98);
+                width: 100%;
+                text-align: left;
+                transition: 0.5s ease;
+                padding: 20px 0;
+                gap: 0;
+                border-top: 1px solid #f01b85;
+                box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+                max-height: calc(100vh - 70px);
+                overflow-y: auto;
+            }
+
+            .nav-menu.active {
+                left: 0;
+            }
+
+            .nav-item {
+                width: 100%;
+            }
+
+            .nav-item a {
+                display: flex;
+                padding: 18px 25px;
+                border-radius: 0;
+                border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+                font-size: 1rem;
+                justify-content: flex-start;
+                gap: 15px;
+            }
+
+            .nav-item a:hover {
+                background-color: #f01b85;
+                color: #000;
+                padding-left: 35px;
+            }
+        }
+
+        /* === ESTILO GERAL === */
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, sans-serif;
         }
 
         body {
-            background-color: #0f0f0f;
-            color: #f0f0f0;
+            background: #000000;
+            color: #ffffff;
+            line-height: 1.6;
             min-height: 100vh;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            padding: 20px;
-            background-image: linear-gradient(to bottom, #0f0f0f, #1a1a1a);
+            padding-top: 70px;
+        }
+
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: #111111;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: #f01b85;
+            border-radius: 4px;
         }
 
         .container {
-            max-width: 480px;
-            width: 100%;
+            max-width: 1200px;
             margin: 0 auto;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 25px;
+            padding: 0 20px;
+            width: 100%;
         }
 
-        /* Cabeçalho com foto e informações */
+        main {
+            padding: 30px 0 60px 0;
+        }
+
+        /* === CABEÇALHO DA PÁGINA === */
         .header {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
             text-align: center;
-            gap: 15px;
-            margin-bottom: 10px;
+            margin-bottom: 50px;
+            padding-bottom: 30px;
+            border-bottom: 2px solid #f01b85;
+            position: relative;
         }
 
-        .profile-pic {
-            width: 150px;
-            height: 150px;
-            border-radius: 50%;
-            object-fit: cover;
-            border: 3px solid #8b0000;
-            box-shadow: 0 0 15px rgba(139, 0, 0, 0.5);
+        .page-title {
+            font-size: clamp(2rem, 5vw, 2.8rem);
+            margin-bottom: 20px;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            color: #ffffff;
+            position: relative;
+            display: inline-block;
+            padding-bottom: 15px;
         }
 
-        .name {
-            font-size: 1.8rem;
-            font-weight: bold;
-            color: #e0e0e0;
-            text-shadow: 0 0 10px rgba(255, 255, 255, 0.2);
+        .page-title::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 4px;
+            background: #f01b85;
+            border-radius: 2px;
         }
 
         .subtitle {
-            font-size: 1rem;
-            color: #b0b0b0;
-            max-width: 80%;
-            line-height: 1.4;
+            font-size: 1.2rem;
+            color: #cccccc;
+            max-width: 800px;
+            margin: 0 auto;
+            line-height: 1.7;
         }
 
-        /* Links */
-        .links {
+        .highlight {
+            color: #f01b85;
+            font-weight: 700;
+        }
+
+        /* === CARDS DE REDES SOCIAIS === */
+        .sections-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(550px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+
+        @media (max-width: 1200px) {
+            .sections-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 600px) {
+            .sections-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .section-card {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 15px;
+            padding: 30px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .section-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
             width: 100%;
-            display: flex;
-            flex-direction: column;
+            height: 4px;
+            background: #f01b85;
+        }
+
+        .section-card:hover {
+            transform: translateY(-5px);
+            border-color: #f01b85;
+            box-shadow: 0 15px 30px rgba(240, 27, 133, 0.2);
+        }
+
+        .section-title {
+            font-size: 1.8rem;
+            margin-bottom: 25px;
+            font-weight: 800;
+            color: #ffffff;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #f01b85;
+            display: inline-block;
+        }
+
+        .social-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
             gap: 15px;
         }
 
-        .link {
+        @media (max-width: 768px) {
+            .social-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .social-card {
+            background: rgba(240, 27, 133, 0.15);
+            color: #ffffff;
+            border: 1px solid #f01b85;
+            padding: 15px 20px;
+            border-radius: 12px;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            min-height: 80px;
+        }
+
+        .social-card:hover {
+            background: #f01b85;
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(240, 27, 133, 0.3);
+        }
+
+        .social-icon {
+            font-size: 1.5rem;
+            width: 50px;
+            height: 50px;
             display: flex;
             align-items: center;
             justify-content: center;
-            padding: 15px 20px;
-            background-color: #1a1a1a;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            flex-shrink: 0;
+        }
+
+        .social-content {
+            flex: 1;
+            min-width: 0;
+        }
+
+        .social-content h3 {
+            font-size: 1.1rem;
+            margin-bottom: 5px;
+            font-weight: 600;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+        }
+
+        .social-content p {
+            font-size: 0.9rem;
+            color: rgba(255, 255, 255, 0.8);
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+        }
+
+        /* === SEÇÃO DE EMAIL === */
+        .email-section {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 15px;
+            padding: 30px;
+            margin-top: 40px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            position: relative;
+            overflow: hidden;
+            text-align: center;
+        }
+
+        .email-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: #f01b85;
+        }
+
+        .email-title {
+            font-size: 1.8rem;
+            margin-bottom: 20px;
+            font-weight: 800;
+            color: #ffffff;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+        }
+
+        .email-box {
+            background: rgba(240, 27, 133, 0.1);
             border-radius: 12px;
-            text-decoration: none;
-            color: #f0f0f0;
-            font-weight: 500;
+            padding: 25px;
+            margin: 20px auto;
+            max-width: 600px;
+            border: 1px solid rgba(240, 27, 133, 0.3);
+        }
+
+        .email-address {
+            font-size: 1.4rem;
+            color: #ffffff;
+            font-weight: 600;
+            margin: 15px 0;
+            word-break: break-all;
+        }
+
+        .email-note {
+            font-size: 0.95rem;
+            color: #cccccc;
+            line-height: 1.6;
+            margin-top: 15px;
+        }
+
+        .copy-btn {
+            background: #f01b85;
+            color: #000;
+            border: none;
+            padding: 10px 25px;
+            border-radius: 25px;
+            font-weight: 600;
+            cursor: pointer;
             transition: all 0.3s ease;
-            border: 1px solid #333;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-        }
-
-        .link:hover {
-            background-color: #8b0000;
-            transform: translateY(-3px);
-            box-shadow: 0 6px 12px rgba(139, 0, 0, 0.3);
-            border-color: #a00;
-        }
-
-        .link-icon {
-            width: 24px;
-            height: 24px;
-            margin-right: 12px;
-            filter: invert(1);
-        }
-
-        /* Logo no final */
-        .logo {
-            width: 120px;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
             margin-top: 10px;
         }
 
-        /* Responsividade */
-        @media (max-width: 480px) {
+        .copy-btn:hover {
+            background: #ff4da6;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(240, 27, 133, 0.4);
+        }
+
+        /* === BOTÃO FLUTUANTE DE VOLTAR AO TOPO === */
+        .floating-top-btn {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background: #f01b85;
+            color: #000;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+            font-size: 1.2rem;
+            box-shadow: 0 5px 20px rgba(240, 27, 133, 0.4);
+            transition: all 0.3s ease;
+            z-index: 100;
+            opacity: 0;
+            visibility: hidden;
+        }
+
+        .floating-top-btn.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .floating-top-btn:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 25px rgba(240, 27, 133, 0.6);
+        }
+
+        /* === RESPONSIVIDADE === */
+        @media (max-width: 992px) {
+            .section-card {
+                padding: 25px;
+            }
+            
+            .sections-grid {
+                gap: 25px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            main {
+                padding: 20px 0 50px 0;
+            }
+            
+            .header {
+                margin-bottom: 40px;
+                padding-bottom: 25px;
+            }
+            
+            .section-card {
+                padding: 20px;
+            }
+            
+            .social-card {
+                padding: 15px;
+                min-height: 75px;
+            }
+            
+            .social-icon {
+                width: 45px;
+                height: 45px;
+                font-size: 1.3rem;
+            }
+            
+            .email-section {
+                padding: 25px 20px;
+            }
+            
+            .floating-top-btn {
+                bottom: 20px;
+                right: 20px;
+                width: 45px;
+                height: 45px;
+                font-size: 1.1rem;
+            }
+        }
+
+        @media (max-width: 576px) {
             .container {
-                padding: 0 10px;
+                padding: 0 15px;
             }
             
-            .profile-pic {
-                width: 130px;
-                height: 130px;
+            .page-title {
+                font-size: 1.8rem;
             }
             
-            .name {
-                font-size: 1.6rem;
+            .section-title {
+                font-size: 1.5rem;
+            }
+            
+            .subtitle {
+                font-size: 1.1rem;
+            }
+            
+            .sections-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .social-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .email-address {
+                font-size: 1.2rem;
+            }
+        }
+
+        @media (max-width: 400px) {
+            .social-card {
+                flex-direction: column;
+                text-align: center;
+                min-height: auto;
+                padding: 20px 15px;
+            }
+            
+            .social-icon {
+                margin-bottom: 10px;
+            }
+            
+            .social-content h3, 
+            .social-content p {
+                white-space: normal;
+                overflow: visible;
             }
         }
     </style>
 </head>
 <body>
-    <div class="container">
-        <div class="header">
-            <img src="https://i.imgur.com/Py44HxM.png" alt="Foto de perfil de Wahipogo" class="profile-pic">
-            <h1 class="name">Wahipogo</h1>
-            <p class="subtitle">Laços Profanos: o fardo da profecia</p>
+    <!-- ===== NAVEGAÇÃO ===== -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="#" class="logo">
+                <span class="logo-text">Laços Profanos</span>
+            </a>
+            
+            <ul class="nav-menu">
+                <li class="nav-item">
+                    <a href="https://lacosprofanos.com.br" target="_blank">
+                        <i class="fas fa-home"></i> Site Principal
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="https://lacosprofanos.com.br/wallpapers&icons" target="_blank">
+                        <i class="fas fa-image"></i> Wallpapers & Icons
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="https://lacosprofanos.blogspot.com/" target="_blank">
+                        <i class="fas fa-blog"></i> Blog
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="https://lacosprofanos.fandom.com/pt-br/" target="_blank">
+                        <i class="fas fa-book"></i> Wiki
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="tos.html" target="_blank">
+                        <i class="fas fa-file-contract"></i> Termos de Serviço
+                    </a>
+                </li>
+            </ul>
+            
+            <button class="hamburger" id="hamburger" aria-label="Menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
         </div>
-        
-        <div class="links">
-            <a href="https://youtube.com/@wahipogo" class="link" target="_blank">
-                <img src="https://cdn-icons-png.flaticon.com/512/1384/1384060.png" alt="YouTube" class="link-icon">
-                YouTube
-            </a>
-            
-            <a href="https://www.instagram.com/wahipogo" class="link" target="_blank">
-                <img src="https://cdn-icons-png.flaticon.com/512/2111/2111463.png" alt="Instagram" class="link-icon">
-                Instagram
-            </a>
-            
-            <a href="https://www.tiktok.com/@wahipogo" class="link" target="_blank">
-                <img src="https://cdn-icons-png.flaticon.com/512/3046/3046126.png" alt="TikTok" class="link-icon">
-                TikTok
-            </a>
-            
-            <a href="https://x.com/wahipoga" class="link" target="_blank">
-                <img src="https://cdn-icons-png.flaticon.com/512/5969/5969020.png" alt="X (Twitter)" class="link-icon">
-                X (Twitter)
-            </a>
-            
-            <a href="https://discord.gg/u4sD2JyTuT" class="link" target="_blank">
-                <img src="https://cdn-icons-png.flaticon.com/512/5968/5968756.png" alt="Discord" class="link-icon">
-                Discord
-            </a>
+    </nav>
+
+    <!-- Botão flutuante para voltar ao topo -->
+    <a href="#top" class="floating-top-btn" id="floatingTopBtn">
+        <i class="fas fa-arrow-up"></i>
+    </a>
+
+    <main class="container">
+        <!-- Cabeçalho da página -->
+        <header class="header" id="top">
+            <h1 class="page-title">Redes Sociais da Wahi</h1>
+            <p class="subtitle">
+                Conecte-se com a criadora do universo <span class="highlight">Laços Profanos</span> através de suas redes sociais e plataformas
+            </p>
+        </header>
+
+        <!-- Grid de seções -->
+        <div class="sections-grid">
+            <!-- Wahipogo (Redes Sociais) -->
+            <div class="section-card">
+                <h2 class="section-title">Wahipogo</h2>
+                <p class="subtitle" style="text-align: left; margin-bottom: 25px;">
+                    Redes sociais pessoais e canais de conteúdo criativo
+                </p>
+                
+                <div class="social-grid">
+                    <a href="https://youtube.com/@wahipogo" target="_blank" class="social-card">
+                        <div class="social-icon" style="color: #FF0000;">
+                            <i class="fab fa-youtube"></i>
+                        </div>
+                        <div class="social-content">
+                            <h3>YouTube</h3>
+                            <p>Canal principal da Wahi</p>
+                        </div>
+                    </a>
+                    
+                    <a href="https://www.instagram.com/wahipogo" target="_blank" class="social-card">
+                        <div class="social-icon" style="color: #E4405F;">
+                            <i class="fab fa-instagram"></i>
+                        </div>
+                        <div class="social-content">
+                            <h3>Instagram</h3>
+                            <p>Perfil pessoal no Instagram</p>
+                        </div>
+                    </a>
+                    
+                    <a href="https://www.tiktok.com/@wahipogo" target="_blank" class="social-card">
+                        <div class="social-icon" style="color: #000000;">
+                            <i class="fab fa-tiktok"></i>
+                        </div>
+                        <div class="social-content">
+                            <h3>TikTok</h3>
+                            <p>Perfil no TikTok</p>
+                        </div>
+                    </a>
+                    
+                    <a href="https://x.com/wahipoga" target="_blank" class="social-card">
+                        <div class="social-icon" style="color: #1DA1F2;">
+                            <i class="fab fa-twitter"></i>
+                        </div>
+                        <div class="social-content">
+                            <h3>X (Twitter)</h3>
+                            <p>Perfil no X (Twitter)</p>
+                        </div>
+                    </a>
+                    
+                    <a href="https://discord.gg/u4sD2JyTuT" target="_blank" class="social-card">
+                        <div class="social-icon" style="color: #5865F2;">
+                            <i class="fab fa-discord"></i>
+                        </div>
+                        <div class="social-content">
+                            <h3>Discord</h3>
+                            <p>Servidor Laços Profanos</p>
+                        </div>
+                    </a>
+                </div>
+            </div>
+
+            <!-- Redes de Desenvolvedor -->
+            <div class="section-card">
+                <h2 class="section-title">Redes de Desenvolvedor</h2>
+                <p class="subtitle" style="text-align: left; margin-bottom: 25px;">
+                    Plataformas de desenvolvimento, portfólio e projetos técnicos
+                </p>
+                
+                <div class="social-grid">
+                    <a href="https://github.com/wahipoga" target="_blank" class="social-card">
+                        <div class="social-icon" style="color: #ffffff;">
+                            <i class="fab fa-github"></i>
+                        </div>
+                        <div class="social-content">
+                            <h3>GitHub</h3>
+                            <p>Conta pessoal no GitHub</p>
+                        </div>
+                    </a>
+                    
+                    <a href="https://github.com/wahipoga/portfolio" target="_blank" class="social-card">
+                        <div class="social-icon" style="color: #4078c0;">
+                            <i class="fas fa-code-branch"></i>
+                        </div>
+                        <div class="social-content">
+                            <h3>GitHub Portfolio</h3>
+                            <p>Repositório do portfólio</p>
+                        </div>
+                    </a>
+                    
+                    <a href="https://lacosprofanos.com.br/wahi/portfolio" target="_blank" class="social-card">
+                        <div class="social-icon" style="color: #f01b85;">
+                            <i class="fas fa-briefcase"></i>
+                        </div>
+                        <div class="social-content">
+                            <h3>Portfólio Online</h3>
+                            <p>Portfólio completo</p>
+                        </div>
+                    </a>
+                    
+                    <a href="https://www.youtube.com/@wahipogo2" target="_blank" class="social-card">
+                        <div class="social-icon" style="color: #FF0000;">
+                            <i class="fab fa-youtube"></i>
+                        </div>
+                        <div class="social-content">
+                            <h3>YouTube Dev</h3>
+                            <p>Canal de desenvolvimento</p>
+                        </div>
+                    </a>
+                    
+                    <a href="https://itch.io/profile/wahipogo" target="_blank" class="social-card">
+                        <div class="social-icon" style="color: #FA5C5C;">
+                            <i class="fas fa-gamepad"></i>
+                        </div>
+                        <div class="social-content">
+                            <h3>itch.io</h3>
+                            <p>Perfil de jogos indie</p>
+                        </div>
+                    </a>
+                </div>
+            </div>
         </div>
-        
-        <img src="https://i.imgur.com/938KvMW.png" alt="Logo" class="logo">
-    </div>
+
+        <!-- Seção de Email -->
+        <div class="email-section">
+            <h2 class="email-title">
+                <i class="fas fa-envelope"></i> Contato Comercial
+            </h2>
+            
+            <div class="email-box">
+                <p style="color: #cccccc; margin-bottom: 10px;">
+                    Para propostas comerciais, parcerias ou questões profissionais:
+                </p>
+                
+                <div class="email-address">
+                    wahipoga@gmail.com
+                </div>
+                
+                <button class="copy-btn" id="copyEmailBtn">
+                    <i class="far fa-copy"></i> Copiar Email
+                </button>
+                
+                <p class="email-note">
+                    <i class="fas fa-info-circle"></i> Este email é destinado apenas para contato comercial e profissional. 
+                    Para outras questões, utilize as redes sociais acima.
+                </p>
+            </div>
+        </div>
+    </main>
+
+    <script>
+        // Função do menu hambúrguer
+        document.addEventListener('DOMContentLoaded', function() {
+            const hamburger = document.getElementById('hamburger');
+            const navMenu = document.querySelector('.nav-menu');
+            
+            // Alternar menu hambúrguer
+            hamburger.addEventListener('click', function() {
+                hamburger.classList.toggle('active');
+                navMenu.classList.toggle('active');
+            });
+            
+            // Fechar menu ao clicar em um link (em telas pequenas)
+            document.querySelectorAll('.nav-item a').forEach(link => {
+                link.addEventListener('click', function() {
+                    if (window.innerWidth <= 768) {
+                        hamburger.classList.remove('active');
+                        navMenu.classList.remove('active');
+                    }
+                });
+            });
+            
+            // Fechar menu ao clicar fora (em telas pequenas)
+            document.addEventListener('click', function(event) {
+                const isClickInsideNav = navMenu.contains(event.target) || hamburger.contains(event.target);
+                
+                if (window.innerWidth <= 768 && 
+                    navMenu.classList.contains('active') && 
+                    !isClickInsideNav) {
+                    hamburger.classList.remove('active');
+                    navMenu.classList.remove('active');
+                }
+            });
+            
+            // Fechar menu ao redimensionar para tamanho grande
+            window.addEventListener('resize', function() {
+                if (window.innerWidth > 768) {
+                    hamburger.classList.remove('active');
+                    navMenu.classList.remove('active');
+                }
+            });
+
+            // Botão copiar email
+            const copyEmailBtn = document.getElementById('copyEmailBtn');
+            if (copyEmailBtn) {
+                copyEmailBtn.addEventListener('click', function() {
+                    const email = 'wahipoga@gmail.com';
+                    
+                    // Usar a API Clipboard
+                    navigator.clipboard.writeText(email).then(function() {
+                        // Feedback visual
+                        const originalText = copyEmailBtn.innerHTML;
+                        copyEmailBtn.innerHTML = '<i class="fas fa-check"></i> Copiado!';
+                        copyEmailBtn.style.background = '#4CAF50';
+                        
+                        setTimeout(function() {
+                            copyEmailBtn.innerHTML = originalText;
+                            copyEmailBtn.style.background = '#f01b85';
+                        }, 2000);
+                    }).catch(function(err) {
+                        console.error('Erro ao copiar: ', err);
+                        // Fallback para método antigo
+                        const textArea = document.createElement('textarea');
+                        textArea.value = email;
+                        document.body.appendChild(textArea);
+                        textArea.select();
+                        document.execCommand('copy');
+                        document.body.removeChild(textArea);
+                        
+                        // Feedback visual mesmo com fallback
+                        const originalText = copyEmailBtn.innerHTML;
+                        copyEmailBtn.innerHTML = '<i class="fas fa-check"></i> Copiado!';
+                        copyEmailBtn.style.background = '#4CAF50';
+                        
+                        setTimeout(function() {
+                            copyEmailBtn.innerHTML = originalText;
+                            copyEmailBtn.style.background = '#f01b85';
+                        }, 2000);
+                    });
+                });
+            }
+        });
+
+        // Mostrar/ocultar botão flutuante de voltar ao topo
+        window.addEventListener('scroll', function() {
+            const floatingBtn = document.getElementById('floatingTopBtn');
+            if (window.scrollY > 300) {
+                floatingBtn.classList.add('active');
+            } else {
+                floatingBtn.classList.remove('active');
+            }
+        });
+
+        // Scroll suave para âncoras
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                
+                const targetId = this.getAttribute('href');
+                if (targetId === '#') return;
+                
+                const targetElement = document.querySelector(targetId);
+                if (targetElement) {
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 80,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+    </script>
 </body>
 </html>
