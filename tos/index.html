@@ -2,127 +2,888 @@
 <html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Termos de Serviço - Laços Profanos</title>
-    <link rel="icon" href="https://i.imgur.com/mgxXSto.png" type="image/png">
-
-    <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-
     <style>
-        /* Reset e configurações globais */
-        * { margin:0; padding:0; box-sizing:border-box; font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, sans-serif; }
-        body { background:#000; color:#fff; line-height:1.6; min-height:100vh; overflow-x:hidden; }
-        a { text-decoration:none; color:#f01b85; }
-        a:hover { text-decoration:underline; }
-        .container { max-width:1200px; margin:0 auto; padding:0 15px; }
-
-        /* Scrollbar */
-        ::-webkit-scrollbar { width:8px; }
-        ::-webkit-scrollbar-track { background:#111; }
-        ::-webkit-scrollbar-thumb { background:#f01b85; border-radius:4px; }
-
-        /* Menu Hambúrguer */
-        .navbar { display:flex; justify-content:space-between; align-items:center; background:#111; padding:15px 20px; position:sticky; top:0; z-index:100; }
-        .navbar .logo { font-weight:800; font-size:1.3rem; text-transform:uppercase; color:#f01b85; }
-        .navbar .menu { display:flex; gap:20px; }
-        .navbar .menu a { color:#fff; font-weight:600; transition:0.3s; }
-        .navbar .menu a:hover { color:#f01b85; }
-        .hamburger { display:none; flex-direction:column; cursor:pointer; gap:5px; }
-        .hamburger div { width:25px; height:3px; background:#fff; border-radius:2px; transition:0.3s; }
-        @media(max-width:768px){
-            .navbar .menu { display:none; flex-direction:column; gap:15px; background:#111; position:absolute; top:60px; right:0; width:200px; padding:15px; border-radius:5px; }
-            .navbar .menu.show { display:flex; }
-            .hamburger { display:flex; }
+        /* === ESTILO DA NAVEGAÇÃO (ATUALIZADO) === */
+        .navbar {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background-color: rgba(10, 10, 10, 0.98);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            padding: 15px 20px;
+            border-bottom: 2px solid #f01b85;
+            box-shadow: 0 4px 20px rgba(240, 27, 133, 0.15);
         }
 
-        /* Títulos de Seção */
-        .section { margin-bottom:60px; animation:fadeInUp 0.6s ease-out; }
-        .section-title { font-size:clamp(1.5rem, 4vw, 2rem); margin-bottom:30px; text-align:center; font-weight:800; text-transform:uppercase; letter-spacing:0.5px; position:relative; }
-        .section-title::after { content:''; position:absolute; bottom:-10px; left:50%; transform:translateX(-50%); width:80px; height:4px; background:#f01b85; border-radius:2px; }
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
 
-        /* Texto */
-        .text { font-size:clamp(1rem,2vw,1.1rem); line-height:1.7; max-width:800px; margin:0 auto 20px auto; color:#ccc; }
+        .logo {
+            color: #ffffff;
+            font-size: 1.5rem;
+            font-weight: 800;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            transition: all 0.3s ease;
+        }
 
-        /* Índice */
-        .toc { background:rgba(255,255,255,0.05); padding:20px; border-radius:10px; margin-bottom:40px; }
-        .toc ul { list-style:none; }
-        .toc li { margin-bottom:10px; }
-        .toc a { color:#f01b85; font-weight:600; }
-        .toc a:hover { text-decoration:underline; }
+        .logo:hover {
+            color: #f01b85;
+            transform: translateY(-2px);
+        }
 
-        /* Destaque */
-        .highlight { color:#f01b85; font-weight:700; }
+        .logo-text {
+            font-size: 1.4rem;
+            font-weight: 800;
+            letter-spacing: 0.5px;
+        }
 
-        @keyframes fadeInUp { from{opacity:0;transform:translateY(20px);} to{opacity:1;transform:translateY(0);} }
+        .nav-menu {
+            display: flex;
+            list-style: none;
+            gap: 20px;
+        }
+
+        .nav-item a {
+            color: #ffffff;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.95rem;
+            padding: 8px 15px;
+            border-radius: 20px;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            white-space: nowrap;
+        }
+
+        .nav-item a:hover {
+            background-color: #f01b85;
+            color: #000;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(240, 27, 133, 0.3);
+        }
+
+        .nav-item i {
+            font-size: 1rem;
+        }
+
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+            gap: 4px;
+            background: none;
+            border: none;
+            padding: 8px;
+            z-index: 1001;
+        }
+
+        .hamburger span {
+            display: block;
+            width: 25px;
+            height: 3px;
+            background-color: #ffffff;
+            border-radius: 2px;
+            transition: 0.3s;
+        }
+
+        .hamburger.active span:nth-child(1) {
+            transform: rotate(45deg) translate(5px, 5px);
+        }
+
+        .hamburger.active span:nth-child(2) {
+            opacity: 0;
+        }
+
+        .hamburger.active span:nth-child(3) {
+            transform: rotate(-45deg) translate(7px, -6px);
+        }
+
+        /* Responsividade da navegação */
+        @media (max-width: 768px) {
+            .hamburger {
+                display: flex;
+            }
+
+            .nav-menu {
+                position: fixed;
+                top: 70px;
+                left: -100%;
+                flex-direction: column;
+                background-color: rgba(10, 10, 10, 0.98);
+                width: 100%;
+                text-align: left;
+                transition: 0.5s ease;
+                padding: 20px 0;
+                gap: 0;
+                border-top: 1px solid #f01b85;
+                box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+                max-height: calc(100vh - 70px);
+                overflow-y: auto;
+            }
+
+            .nav-menu.active {
+                left: 0;
+            }
+
+            .nav-item {
+                width: 100%;
+            }
+
+            .nav-item a {
+                display: flex;
+                padding: 18px 25px;
+                border-radius: 0;
+                border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+                font-size: 1rem;
+                justify-content: flex-start;
+                gap: 15px;
+            }
+
+            .nav-item a:hover {
+                background-color: #f01b85;
+                color: #000;
+                padding-left: 35px;
+            }
+        }
+
+        /* === ESTILO GERAL === */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, sans-serif;
+        }
+
+        body {
+            background: #000000;
+            color: #ffffff;
+            line-height: 1.6;
+            min-height: 100vh;
+            padding-top: 70px;
+        }
+
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: #111111;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: #f01b85;
+            border-radius: 4px;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+            width: 100%;
+        }
+
+        main {
+            padding: 30px 0 60px 0;
+        }
+
+        /* === ESTILO DO CABEÇALHO DA PÁGINA TOS === */
+        .tos-header {
+            text-align: center;
+            margin-bottom: 50px;
+            padding-bottom: 30px;
+            border-bottom: 2px solid #f01b85;
+            position: relative;
+        }
+
+        .tos-title {
+            font-size: clamp(2rem, 5vw, 2.8rem);
+            margin-bottom: 20px;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            color: #ffffff;
+            position: relative;
+            display: inline-block;
+            padding-bottom: 15px;
+        }
+
+        .tos-title::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 4px;
+            background: #f01b85;
+            border-radius: 2px;
+        }
+
+        .last-update {
+            background: rgba(240, 27, 133, 0.15);
+            color: #cccccc;
+            padding: 12px 25px;
+            border-radius: 25px;
+            display: inline-block;
+            margin-top: 15px;
+            border: 1px solid rgba(240, 27, 133, 0.3);
+            font-size: 0.95rem;
+        }
+
+        .warning-box {
+            background: rgba(240, 27, 133, 0.1);
+            border-left: 4px solid #f01b85;
+            padding: 20px;
+            margin: 30px 0;
+            border-radius: 8px;
+            font-size: 1rem;
+            line-height: 1.7;
+        }
+
+        .highlight {
+            color: #f01b85;
+            font-weight: 700;
+        }
+
+        /* === ESTILO DO ÍNDICE (TOC) === */
+        .toc-container {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 15px;
+            padding: 30px;
+            margin: 40px 0;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .toc-container::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: #f01b85;
+        }
+
+        .toc-title {
+            font-size: 1.5rem;
+            margin-bottom: 25px;
+            font-weight: 700;
+            color: #ffffff;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .toc-title i {
+            color: #f01b85;
+        }
+
+        .toc-list {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        .toc-item {
+            margin-bottom: 15px;
+            padding: 12px 15px;
+            border-radius: 10px;
+            transition: all 0.3s ease;
+            border: 1px solid transparent;
+        }
+
+        .toc-item:hover {
+            background: rgba(240, 27, 133, 0.1);
+            border-color: rgba(240, 27, 133, 0.3);
+            transform: translateX(5px);
+        }
+
+        .toc-link {
+            color: #ffffff;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1.1rem;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            transition: color 0.3s ease;
+        }
+
+        .toc-link:hover {
+            color: #f01b85;
+        }
+
+        .toc-link i {
+            font-size: 0.9rem;
+            color: #f01b85;
+        }
+
+        .toc-subitem {
+            margin-left: 30px;
+            margin-top: 10px;
+        }
+
+        .toc-sublink {
+            color: #cccccc;
+            text-decoration: none;
+            font-size: 0.95rem;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 5px 0;
+            transition: color 0.3s ease;
+        }
+
+        .toc-sublink:hover {
+            color: #ff4da6;
+        }
+
+        /* === ESTILO DO CONTEÚDO DOS TERMOS === */
+        .tos-content {
+            background: rgba(255, 255, 255, 0.02);
+            border-radius: 15px;
+            padding: 40px;
+            margin-top: 40px;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .section {
+            margin-bottom: 50px;
+            padding-bottom: 40px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .section:last-of-type {
+            border-bottom: none;
+            margin-bottom: 0;
+            padding-bottom: 0;
+        }
+
+        .section-title {
+            font-size: 1.8rem;
+            margin-bottom: 25px;
+            font-weight: 800;
+            color: #ffffff;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #f01b85;
+            display: inline-block;
+        }
+
+        .section-subtitle {
+            font-size: 1.3rem;
+            margin: 30px 0 20px 0;
+            font-weight: 700;
+            color: #f01b85;
+        }
+
+        .section-text {
+            font-size: 1.05rem;
+            line-height: 1.8;
+            margin-bottom: 20px;
+            color: #cccccc;
+        }
+
+        .section-list {
+            margin: 20px 0 20px 30px;
+            list-style-position: outside;
+        }
+
+        .section-list li {
+            margin-bottom: 12px;
+            color: #cccccc;
+            line-height: 1.7;
+            padding-left: 10px;
+        }
+
+        .prohibited-list {
+            background: rgba(240, 27, 133, 0.08);
+            border-left: 3px solid #f01b85;
+            padding: 20px 20px 20px 40px;
+            border-radius: 0 8px 8px 0;
+            margin: 25px 0;
+        }
+
+        .prohibited-list li {
+            margin-bottom: 10px;
+            position: relative;
+        }
+
+        .prohibited-list li::before {
+            content: '✗';
+            color: #f01b85;
+            font-weight: bold;
+            position: absolute;
+            left: -25px;
+        }
+
+        .allowed-list {
+            background: rgba(76, 175, 80, 0.08);
+            border-left: 3px solid #4CAF50;
+            padding: 20px 20px 20px 40px;
+            border-radius: 0 8px 8px 0;
+            margin: 25px 0;
+        }
+
+        .allowed-list li {
+            margin-bottom: 10px;
+            position: relative;
+        }
+
+        .allowed-list li::before {
+            content: '✓';
+            color: #4CAF50;
+            font-weight: bold;
+            position: absolute;
+            left: -25px;
+        }
+
+        .back-to-top {
+            display: inline-block;
+            margin-top: 30px;
+            color: #f01b85;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.95rem;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            transition: all 0.3s ease;
+        }
+
+        .back-to-top:hover {
+            transform: translateY(-3px);
+            text-shadow: 0 0 10px rgba(240, 27, 133, 0.5);
+        }
+
+        /* === BOTÃO FLUTUANTE DE VOLTAR AO TOPO === */
+        .floating-top-btn {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background: #f01b85;
+            color: #000;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+            font-size: 1.2rem;
+            box-shadow: 0 5px 20px rgba(240, 27, 133, 0.4);
+            transition: all 0.3s ease;
+            z-index: 100;
+            opacity: 0;
+            visibility: hidden;
+        }
+
+        .floating-top-btn.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .floating-top-btn:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 25px rgba(240, 27, 133, 0.6);
+        }
+
+        /* === RESPONSIVIDADE === */
+        @media (max-width: 992px) {
+            .tos-content {
+                padding: 30px;
+            }
+            
+            .toc-container {
+                padding: 25px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            main {
+                padding: 20px 0 50px 0;
+            }
+            
+            .tos-header {
+                margin-bottom: 40px;
+                padding-bottom: 25px;
+            }
+            
+            .tos-content {
+                padding: 25px 20px;
+            }
+            
+            .section-title {
+                font-size: 1.6rem;
+            }
+            
+            .section-subtitle {
+                font-size: 1.2rem;
+            }
+            
+            .toc-container {
+                padding: 20px;
+            }
+            
+            .toc-link {
+                font-size: 1rem;
+            }
+            
+            .floating-top-btn {
+                bottom: 20px;
+                right: 20px;
+                width: 45px;
+                height: 45px;
+                font-size: 1.1rem;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .container {
+                padding: 0 15px;
+            }
+            
+            .tos-title {
+                font-size: 1.8rem;
+            }
+            
+            .section-title {
+                font-size: 1.4rem;
+            }
+            
+            .section-text {
+                font-size: 1rem;
+            }
+            
+            .toc-item {
+                padding: 10px 12px;
+            }
+            
+            .toc-subitem {
+                margin-left: 20px;
+            }
+            
+            .prohibited-list, .allowed-list {
+                padding: 15px 15px 15px 30px;
+            }
+            
+            .last-update {
+                font-size: 0.9rem;
+                padding: 10px 20px;
+            }
+        }
     </style>
 </head>
 <body>
-    <nav class="navbar container">
-        <div class="logo">Laços Profanos</div>
-        <div class="menu" id="menu">
-            <a href="https://lacosprofanos.com.br" target="_blank">Site Principal</a>
-            <a href="https://lacosprofanos.blogspot.com/" target="_blank">Blog</a>
-            <a href="https://lacosprofanos.fandom.com/pt-br/" target="_blank">Wiki</a>
-        </div>
-        <div class="hamburger" id="hamburger">
-            <div></div>
-            <div></div>
-            <div></div>
+    <!-- ===== NAVEGAÇÃO ATUALIZADA ===== -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="#" class="logo">
+                <span class="logo-text">Laços Profanos</span>
+            </a>
+            
+            <ul class="nav-menu">
+                <li class="nav-item">
+                    <a href="https://lacosprofanos.com.br" target="_blank">
+                        <i class="fas fa-home"></i> Site Principal
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="https://lacosprofanos.com.br/wallpapers&icons" target="_blank">
+                        <i class="fas fa-image"></i> Wallpapers & Icons
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="https://lacosprofanos.blogspot.com/" target="_blank">
+                        <i class="fas fa-blog"></i> Blog
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="https://lacosprofanos.fandom.com/pt-br/" target="_blank">
+                        <i class="fas fa-book"></i> Wiki
+                    </a>
+                </li>
+            </ul>
+            
+            <button class="hamburger" id="hamburger" aria-label="Menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
         </div>
     </nav>
 
+    <!-- Botão flutuante para voltar ao topo -->
+    <a href="#top" class="floating-top-btn" id="floatingTopBtn">
+        <i class="fas fa-arrow-up"></i>
+    </a>
+
     <main class="container">
-        <h1 class="section-title">Termos de Serviço</h1>
-        <div class="toc">
-            <h3>Índice</h3>
-            <ul>
-                <li><a href="#marca">1. Sobre a marca e propriedade intelectual</a></li>
-                <li><a href="#fandom">2. Conteúdo criado por fãs</a></li>
-                <ul>
-                    <li><a href="#fandom-nao-monetizado">2.1 Conteúdo de fã não monetizado</a></li>
-                    <li><a href="#fandom-monetizado">2.2 Conteúdo de fã monetizado</a></li>
-                    <li><a href="#limites-gerais">2.3 Limites gerais</a></li>
-                </ul>
+        <!-- Cabeçalho da página -->
+        <header class="tos-header" id="top">
+            <h1 class="tos-title">Termos de Serviço - Laços Profanos</h1>
+            
+            <div class="warning-box">
+                <p><span class="highlight">Aviso:</span> Em caso de divergência entre as versões dos Termos de Serviço, a versão em português prevalecerá.</p>
+            </div>
+            
+            <div class="last-update">
+                <i class="fas fa-calendar-alt"></i> Última atualização: 26/12/2025
+            </div>
+            
+            <p class="section-text" style="text-align: center; margin-top: 20px;">
+                Os Termos de Serviço podem ser atualizados a qualquer momento. É de sua responsabilidade manter-se atualizado(a). Sempre que possível, as atualizações também serão comunicadas por nossos canais oficiais.
+            </p>
+        </header>
+
+        <!-- Índice (Table of Contents) -->
+        <div class="toc-container">
+            <h2 class="toc-title"><i class="fas fa-list"></i> Índice</h2>
+            <ul class="toc-list">
+                <li class="toc-item">
+                    <a href="#section1" class="toc-link">
+                        <i class="fas fa-chevron-right"></i> 1. Sobre a marca, uso e propriedade intelectual
+                    </a>
+                </li>
+                <li class="toc-item">
+                    <a href="#section2" class="toc-link">
+                        <i class="fas fa-chevron-right"></i> 2. Conteúdo criado por fãs
+                    </a>
+                    <ul class="toc-subitem">
+                        <li>
+                            <a href="#section2-1" class="toc-sublink">
+                                <i class="fas fa-angle-right"></i> Conteúdo de fã não monetizado
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#section2-2" class="toc-sublink">
+                                <i class="fas fa-angle-right"></i> Conteúdo de fã monetizado
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#section2-3" class="toc-sublink">
+                                <i class="fas fa-angle-right"></i> Limites gerais
+                            </a>
+                        </li>
+                    </ul>
+                </li>
             </ul>
         </div>
 
-        <!-- Seção 1 -->
-        <section id="marca" class="section">
-            <h2 class="section-title">1. Sobre a marca e propriedade intelectual</h2>
-            <p class="text">Laços Profanos é uma marca indie de entretenimento criada e gerenciada por Wahi, funcionando como marca-guarda-chuva para projetos de entretenimento, incluindo histórias, narrativas, jogos digitais, animações, sites e outros conteúdos criativos.</p>
-            <p class="text">Todo o conteúdo associado à marca Laços Profanos — incluindo nomes, logotipos, textos, imagens, histórias, personagens, universos, jogos, códigos e demais materiais — é protegido por direitos autorais e pertence exclusivamente a Wahi, salvo quando indicado o contrário.</p>
-            <p class="text">É concedida ao público uma licença limitada, não exclusiva, intransferível e revogável para acessar, consumir e compartilhar os conteúdos de forma não comercial, desde que: <span class="highlight">dê crédito adequado</span>, não altere o conteúdo de forma prejudicial e não haja exploração comercial sem autorização.</p>
-            <p class="text">É proibido vender, redistribuir ou explorar comercialmente qualquer conteúdo sem autorização, registrar ou se apropriar de nomes, marcas, personagens ou universos, ou apresentar conteúdos como oficiais quando não forem.</p>
-        </section>
-
-        <!-- Seção 2 -->
-        <section id="fandom" class="section">
-            <h2 class="section-title">2. Conteúdo criado por fãs</h2>
-            <p class="text">Laços Profanos incentiva criações de fãs desde que respeitem estes termos e não prejudiquem a marca, projetos ou comunidade.</p>
-
-            <section id="fandom-nao-monetizado" class="section">
-                <h3 class="section-title">2.1 Conteúdo de fã não monetizado</h3>
-                <p class="text">Fãs podem criar quase qualquer tipo de conteúdo inspirado, desde que não seja apresentado como oficial, não viole leis ou termos, e seja claramente identificado como conteúdo de fã.</p>
+        <!-- Conteúdo dos Termos de Serviço -->
+        <div class="tos-content">
+            <!-- Seção 1 -->
+            <section class="section" id="section1">
+                <h2 class="section-title">1. Sobre a marca, uso e propriedade intelectual</h2>
+                
+                <p class="section-text">
+                    Laços Profanos é uma marca indie de entretenimento criada e gerenciada por Wahi, funcionando como marca-guarda-chuva para projetos de entretenimento, incluindo, mas não se limitando a, histórias, narrativas, jogos digitais, animações, sites e outros conteúdos criativos.
+                </p>
+                
+                <p class="section-text">
+                    Todo o conteúdo associado à marca Laços Profanos — incluindo nomes, logotipos, textos, imagens, histórias, personagens, universos, jogos, códigos e demais materiais — é protegido por direitos autorais e pertence exclusivamente a Wahi, salvo quando indicado o contrário.
+                </p>
+                
+                <p class="section-text">
+                    É concedida ao público uma licença limitada, não exclusiva, intransferível e revogável para acessar, consumir e compartilhar os conteúdos de forma não comercial, desde que:
+                </p>
+                
+                <ul class="allowed-list">
+                    <li>seja dado crédito adequado quando aplicável;</li>
+                    <li>o conteúdo não seja alterado de forma enganosa ou prejudicial;</li>
+                    <li>não haja exploração comercial sem autorização prévia.</li>
+                </ul>
+                
+                <h3 class="section-subtitle">É proibido:</h3>
+                
+                <ul class="prohibited-list">
+                    <li>vender, redistribuir ou explorar comercialmente qualquer conteúdo sem autorização;</li>
+                    <li>registrar, reivindicar ou se apropriar de nomes, marcas, personagens ou universos;</li>
+                    <li>apresentar conteúdos ou criações como oficiais quando não forem;</li>
+                    <li>utilizar qualquer material para fins ilegais, ofensivos, discriminatórios ou que violem direitos de terceiros.</li>
+                </ul>
+                
+                <p class="section-text">
+                    Colaborações, contribuições ou participações em projetos associados à marca não concedem direitos totais, coautoria automática ou propriedade intelectual. Qualquer permissão concedida é limitada, não exclusiva, revogável e restrita ao escopo previamente acordado, permanecendo a titularidade da marca e dos projetos com Wahi.
+                </p>
+                
+                <p class="section-text">
+                    O descumprimento destas regras poderá resultar na revogação imediata da licença de uso, sem aviso prévio, ou em casos graves será levado a justiça.
+                </p>
+                
+                <a href="#top" class="back-to-top">
+                    <i class="fas fa-arrow-up"></i> Voltar ao topo
+                </a>
             </section>
-
-            <section id="fandom-monetizado" class="section">
-                <h3 class="section-title">2.2 Conteúdo de fã monetizado</h3>
-                <p class="text">Monetização é permitida apenas se houver originalidade real e mudanças significativas em relação ao material original, como novas histórias, universos alternativos ou personagens originais.</p>
+            
+            <!-- Seção 2 -->
+            <section class="section" id="section2">
+                <h2 class="section-title">2. Conteúdo criado por fãs</h2>
+                
+                <p class="section-text">
+                    Laços Profanos acredita que comunidades criativas fortalecem universos. Criações de fãs são bem-vindas e incentivadas, desde que respeitem estes termos e não prejudiquem a marca, os projetos ou outros membros da comunidade.
+                </p>
+                
+                <!-- Subseção 2.1 -->
+                <div id="section2-1">
+                    <h3 class="section-subtitle">Conteúdo de fã não monetizado</h3>
+                    
+                    <p class="section-text">
+                        Fãs podem criar quase qualquer tipo de conteúdo inspirado, desde que:
+                    </p>
+                    
+                    <ul class="allowed-list">
+                        <li>não seja apresentado como oficial;</li>
+                        <li>não viole leis ou estes Termos;</li>
+                        <li>seja claramente identificado como conteúdo de fã;</li>
+                        <li>não associe a marca, seus projetos ou universos a conteúdos ilegais, ofensivos, discriminatórios, de ódio ou prejudiciais.</li>
+                    </ul>
+                    
+                    <p class="section-text">
+                        Para conteúdos não monetizados, a regra é simples: divirta-se e crie com responsabilidade.
+                    </p>
+                </div>
+                
+                <!-- Subseção 2.2 -->
+                <div id="section2-2">
+                    <h3 class="section-subtitle">Conteúdo de fã monetizado</h3>
+                    
+                    <p class="section-text">
+                        A monetização só é permitida quando o conteúdo apresentar:
+                    </p>
+                    
+                    <ul class="allowed-list">
+                        <li>originalidade real; e</li>
+                        <li>mudanças significativas em relação ao material original.</li>
+                    </ul>
+                    
+                    <p class="section-text">
+                        Isso inclui, mas não se limita a:
+                    </p>
+                    
+                    <ul class="section-list">
+                        <li>novas histórias ou narrativas próprias;</li>
+                        <li>universos alternativos, multiversos ou releituras profundas;</li>
+                        <li>personagens originais;</li>
+                        <li>mudanças relevantes de contexto, perspectiva ou enredo.</li>
+                    </ul>
+                    
+                    <p class="section-text">
+                        Conteúdos que apenas reproduzam ou adaptem superficialmente o material original não estão autorizados para monetização.
+                    </p>
+                </div>
+                
+                <!-- Subseção 2.3 -->
+                <div id="section2-3">
+                    <h3 class="section-subtitle">Limites gerais</h3>
+                    
+                    <p class="section-text">
+                        Independentemente de monetização, não é permitido:
+                    </p>
+                    
+                    <ul class="prohibited-list">
+                        <li>passar-se por conteúdo oficial;</li>
+                        <li>causar confusão sobre autoria, aprovação ou propriedade;</li>
+                        <li>utilizar a marca para promover práticas ilegais, ofensivas ou prejudiciais;</li>
+                        <li>explorar o material original comercialmente sem contribuição criativa relevante.</li>
+                    </ul>
+                    
+                    <p class="section-text">
+                        Caso os limites estabelecidos nestes Termos sejam ultrapassados, Laços Profanos reserva-se o direito de tomar as medidas cabíveis, incluindo solicitações de remoção, suspensão de permissões e, quando necessário, medidas judiciais.
+                    </p>
+                </div>
+                
+                <a href="#top" class="back-to-top">
+                    <i class="fas fa-arrow-up"></i> Voltar ao topo
+                </a>
             </section>
-
-            <section id="limites-gerais" class="section">
-                <h3 class="section-title">2.3 Limites gerais</h3>
-                <p class="text">Não é permitido passar-se por conteúdo oficial, causar confusão sobre autoria, ou utilizar a marca para fins ilegais, ofensivos ou prejudiciais.</p>
-            </section>
-        </section>
+        </div>
     </main>
 
     <script>
-        // Menu hambúrguer
-        const hamburger = document.getElementById('hamburger');
-        const menu = document.getElementById('menu');
-        hamburger.addEventListener('click', () => { menu.classList.toggle('show'); });
+        // Função do menu hambúrguer
+        document.addEventListener('DOMContentLoaded', function() {
+            const hamburger = document.getElementById('hamburger');
+            const navMenu = document.querySelector('.nav-menu');
+            
+            // Alternar menu hambúrguer
+            hamburger.addEventListener('click', function() {
+                hamburger.classList.toggle('active');
+                navMenu.classList.toggle('active');
+            });
+            
+            // Fechar menu ao clicar em um link (em telas pequenas)
+            document.querySelectorAll('.nav-item a').forEach(link => {
+                link.addEventListener('click', function() {
+                    if (window.innerWidth <= 768) {
+                        hamburger.classList.remove('active');
+                        navMenu.classList.remove('active');
+                    }
+                });
+            });
+            
+            // Fechar menu ao clicar fora (em telas pequenas)
+            document.addEventListener('click', function(event) {
+                const isClickInsideNav = navMenu.contains(event.target) || hamburger.contains(event.target);
+                
+                if (window.innerWidth <= 768 && 
+                    navMenu.classList.contains('active') && 
+                    !isClickInsideNav) {
+                    hamburger.classList.remove('active');
+                    navMenu.classList.remove('active');
+                }
+            });
+            
+            // Fechar menu ao redimensionar para tamanho grande
+            window.addEventListener('resize', function() {
+                if (window.innerWidth > 768) {
+                    hamburger.classList.remove('active');
+                    navMenu.classList.remove('active');
+                }
+            });
+        });
+
+        // Mostrar/ocultar botão flutuante de voltar ao topo
+        window.addEventListener('scroll', function() {
+            const floatingBtn = document.getElementById('floatingTopBtn');
+            if (window.scrollY > 300) {
+                floatingBtn.classList.add('active');
+            } else {
+                floatingBtn.classList.remove('active');
+            }
+        });
+
+        // Scroll suave para âncoras
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                
+                const targetId = this.getAttribute('href');
+                if (targetId === '#') return;
+                
+                const targetElement = document.querySelector(targetId);
+                if (targetElement) {
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 80,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
     </script>
 </body>
 </html>
