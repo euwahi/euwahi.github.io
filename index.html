@@ -6,10 +6,10 @@
     <title>Laços Profanos</title>
     <link rel="icon" href="https://i.imgur.com/mgxXSto.png" type="image/png">
     
-    <!-- Font Awesome PRIMEIRO -->
+    <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
-    <!-- Importar estilos da navbar DEPOIS -->
+    <!-- Importar estilos da navbar -->
     <link rel="stylesheet" href="navbar.css">
     
     <style>
@@ -325,7 +325,6 @@
             padding: 0 10px;
         }
 
-        /* Botões extras no card do criador */
         .creator-buttons {
             display: flex;
             gap: 10px;
@@ -367,18 +366,10 @@
             to { box-shadow: 0 0 20px rgba(240, 27, 133, 0.6); }
         }
 
-        /* Responsividade aprimorada */
+        /* Responsividade */
         @media (max-width: 992px) {
             .social-buttons {
                 grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
-            }
-            
-            .creators-grid {
-                gap: 25px;
-            }
-            
-            .continents-container {
-                padding: 20px;
             }
         }
 
@@ -395,20 +386,6 @@
                 grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
                 gap: 12px;
             }
-            
-            .creator-card {
-                padding: 25px 15px;
-            }
-            
-            .continents-container {
-                padding: 15px;
-                margin-top: 20px;
-            }
-            
-            .continents-description {
-                padding: 15px;
-                font-size: 1rem;
-            }
         }
 
         @media (max-width: 576px) {
@@ -416,84 +393,40 @@
                 grid-template-columns: 1fr;
                 gap: 10px;
             }
-            
-            .social-btn {
-                padding: 10px 15px;
-                min-height: 55px;
-            }
-            
-            .social-content h3 {
-                font-size: 0.9rem;
-            }
-            
-            .social-content p {
-                font-size: 0.75rem;
-            }
-            
-            .creators-grid {
-                grid-template-columns: 1fr;
-                gap: 20px;
-            }
-            
-            .creator-avatar {
-                width: 100px;
-                height: 100px;
-            }
-            
-            .creator-buttons {
-                flex-direction: column;
-                align-items: center;
-                width: 100%;
-            }
-            
-            .creator-buttons a {
-                width: 80%;
-                justify-content: center;
-            }
-            
-            .continents-description br {
-                display: none;
-            }
-            
-            .continents-description {
-                line-height: 1.6;
-                font-size: 0.95rem;
-            }
         }
 
-        @media (max-width: 400px) {
-            .container {
-                padding: 0 10px;
-            }
-            
-            .about-text {
-                padding: 0 5px;
-            }
-            
-            .social-btn {
-                gap: 8px;
-                padding: 8px 12px;
-            }
-            
-            .social-icon {
-                width: 32px;
-                height: 32px;
-                font-size: 1rem;
-            }
-            
-            .creator-card {
-                padding: 20px 10px;
-            }
-            
-            .creator-desc {
-                font-size: 0.9rem;
-            }
+        /* Classes para esconder elementos em inglês */
+        .hide-in-english {
+            display: block;
         }
 
-        /* Para evitar overflow horizontal */
-        img, video, iframe {
-            max-width: 100%;
-            height: auto;
+        .show-in-english {
+            display: none;
+        }
+
+        body.english .hide-in-english {
+            display: none;
+        }
+
+        body.english .show-in-english {
+            display: block;
+        }
+
+        /* Para redes sociais específicas */
+        .social-btn.portuguese-only {
+            display: flex;
+        }
+
+        .social-btn.english-only {
+            display: none;
+        }
+
+        body.english .social-btn.portuguese-only {
+            display: none;
+        }
+
+        body.english .social-btn.english-only {
+            display: flex;
         }
     </style>
 </head>
@@ -503,12 +436,12 @@
     <main class="container">
         <!-- Sobre Nós -->
         <section id="about" class="section">
-            <h2 class="section-title">Sobre Nós</h2>
+            <h2 class="section-title" data-translate="about.title">Sobre Nós</h2>
             <div class="about-text">
-                <p>
+                <p data-translate="about.text1">
                     <span class="highlight">Laços Profanos</span> é uma história fictícia que nasceu como a ideia de um mangá inspirado em obras populares da época. Com o tempo, essa primeira versão foi totalmente repensada, descartada e reconstruída — e assim o universo se expandiu até se tornar o que conhecemos hoje.
                 </p>
-                <p>
+                <p data-translate="about.text2">
                     Somos um projeto completamente independente, desenvolvido e mantido por apenas duas pessoas. Trabalhamos com dedicação para dar vida a esse universo, criar conteúdo de qualidade e compartilhar nossa visão com quem deseja conhecer mais sobre Laços Profanos.
                 </p>
             </div>
@@ -516,51 +449,58 @@
 
         <!-- Redes Sociais -->
         <section id="social" class="section">
-            <h2 class="section-title">Redes Sociais</h2>
+            <h2 class="section-title" data-translate="social.title">Redes Sociais</h2>
             <div class="about-text">
-                <p>Conecte-se conosco através das nossas redes sociais:</p>
+                <p data-translate="social.subtitle">Conecte-se conosco através das nossas redes sociais:</p>
             </div>
             <div class="social-buttons">
-                <a href="https://tipa.ai/lacosprofanos" target="_blank" class="social-btn">
+                <!-- Português apenas -->
+                <a href="https://tipa.ai/lacosprofanos" target="_blank" class="social-btn portuguese-only">
                     <div class="social-icon"><i class="fas fa-robot"></i></div>
                     <div class="social-content"><h3>Tipa.ai</h3><p>Canal no Tipa.ai</p></div>
                 </a>
-                <a href="https://bit.ly/lacosprofanosZap" target="_blank" class="social-btn">
+                <a href="https://bit.ly/lacosprofanosZap" target="_blank" class="social-btn portuguese-only">
                     <div class="social-icon"><i class="fab fa-whatsapp"></i></div>
                     <div class="social-content"><h3>WhatsApp</h3><p>Canal no WhatsApp</p></div>
                 </a>
                 <a href="https://discord.com/invite/u4sD2JyTuT" target="_blank" class="social-btn">
                     <div class="social-icon"><i class="fab fa-discord"></i></div>
-                    <div class="social-content"><h3>Discord</h3><p>Servidor no Discord</p></div>
+                    <div class="social-content"><h3 data-translate="social.discord.title">Discord</h3><p data-translate="social.discord.subtitle">Servidor no Discord</p></div>
                 </a>
-                <a href="https://www.instagram.com/lacosprofanos" target="_blank" class="social-btn">
+                <a href="https://www.instagram.com/lacosprofanos" target="_blank" class="social-btn portuguese-only">
                     <div class="social-icon"><i class="fab fa-instagram"></i></div>
                     <div class="social-content"><h3>Instagram</h3><p>Perfil no Instagram</p></div>
                 </a>
-                <a href="https://x.com/lacosprofanos" target="_blank" class="social-btn">
+                <a href="https://x.com/lacosprofanos" target="_blank" class="social-btn portuguese-only">
                     <div class="social-icon"><i class="fab fa-twitter"></i></div>
                     <div class="social-content"><h3>X (Twitter)</h3><p>Perfil no X (Twitter)</p></div>
                 </a>
                 <a href="https://www.youtube.com/@LaçosProfanos" target="_blank" class="social-btn">
                     <div class="social-icon"><i class="fab fa-youtube"></i></div>
-                    <div class="social-content"><h3>YouTube</h3><p>Canal no YouTube</p></div>
+                    <div class="social-content"><h3 data-translate="social.youtube.title">YouTube</h3><p data-translate="social.youtube.subtitle">Canal no YouTube</p></div>
                 </a>
-                <a href="https://t.me/lacosprofanos" target="_blank" class="social-btn">
+                <a href="https://t.me/lacosprofanos" target="_blank" class="social-btn portuguese-only">
                     <div class="social-icon"><i class="fab fa-telegram"></i></div>
                     <div class="social-content"><h3>Telegram</h3><p>Canal no Telegram</p></div>
                 </a>
-                <a href="https://www.reddit.com/r/lacosprofanos" target="_blank" class="social-btn">
+                <a href="https://www.reddit.com/r/lacosprofanos" target="_blank" class="social-btn portuguese-only">
                     <div class="social-icon"><i class="fab fa-reddit"></i></div>
                     <div class="social-content"><h3>Reddit</h3><p>Comunidade no Reddit</p></div>
+                </a>
+                
+                <!-- Inglês apenas -->
+                <a href="https://ko-fi.com/profanebonds" target="_blank" class="social-btn english-only">
+                    <div class="social-icon"><i class="fas fa-mug-hot"></i></div>
+                    <div class="social-content"><h3 data-translate="social.kofi.title">Ko-fi</h3><p data-translate="social.kofi.subtitle">Support us on Ko-fi</p></div>
                 </a>
             </div>
         </section>
 
         <!-- A Terra em Laços Profanos -->
         <section id="earth" class="section">
-            <h2 class="section-title">A Terra em Laços Profanos</h2>
+            <h2 class="section-title" data-translate="earth.title">A Terra em Laços Profanos</h2>
             <div class="about-text">
-                <p>
+                <p data-translate="earth.intro">
                     No universo de Laços Profanos, o planeta Terra não é como o nosso. Ele é dividido em apenas três continentes, cada um com suas próprias características, culturas e histórias:
                 </p>
             </div>
@@ -568,7 +508,7 @@
                 <div class="continents-image">
                     <img src="https://i.imgur.com/jrrLcpW.png" alt="Os três continentes de Laços Profanos: Kelster, Molton e Clifton">
                 </div>
-                <p class="continents-description">
+                <p class="continents-description" data-translate="earth.description">
                     ❄️ Kelster — o continente frio, marcado por climas rigorosos, paisagens geladas e povos acostumados à resistência.<br>
                     🍃 Molton — o continente intermediário, de equilíbrio entre frio e calor, diversidade natural e cultural.<br>
                     🔥 Clifton — o continente quente, repleto de calor intenso, vida vibrante e tradições moldadas pelo sol.
@@ -578,7 +518,7 @@
 
         <!-- As Mentes por Trás -->
         <section id="creators" class="section">
-            <h2 class="section-title">As Mentes por Trás</h2>
+            <h2 class="section-title" data-translate="creators.title">As Mentes por Trás</h2>
             <div class="creators-grid">
                 <!-- Wahi -->
                 <div class="creator-card">
@@ -586,17 +526,17 @@
                         <img src="https://i.imgur.com/LOXjaKn.jpeg" alt="Eduarda Victoria - A Criadora">
                     </div>
                     <h3 class="creator-name">Eduarda Victoria</h3>
-                    <p class="creator-role">A Criadora</p>
-                    <p class="creator-desc">
+                    <p class="creator-role" data-translate="creators.wahi.role">A Criadora</p>
+                    <p class="creator-desc" data-translate="creators.wahi.description">
                         Mais conhecida pelos pseudônimos Wahipogo ou Wahi, é a mente criativa por trás do universo de Laços Profanos. Além de idealizar a obra, atua como roteirista, diretora criativa e gestora do projeto. Também é programadora, responsável pelo desenvolvimento e manutenção do site oficial da obra.
                     </p>
                     <!-- Botões adicionais -->
                     <div class="creator-buttons">
-                        <a href="https://lacosprofanos.com.br/wahi" target="_blank">
-                            <i class="fas fa-share-alt"></i> Redes Sociais
+                        <a href="https://lacosprofanos.com.br/wahi" target="_blank" class="nav-btn">
+                            <i class="fas fa-share-alt"></i> <span data-translate="creators.buttons.social">Redes Sociais</span>
                         </a>
-                        <a href="https://lacosprofanos.com.br/wahi/portfolio" target="_blank">
-                            <i class="fas fa-folder-open"></i> Portfólio
+                        <a href="https://lacosprofanos.com.br/wahi/portfolio" target="_blank" class="nav-btn">
+                            <i class="fas fa-folder-open"></i> <span data-translate="creators.buttons.portfolio">Portfólio</span>
                         </a>
                     </div>
                 </div>
@@ -607,14 +547,118 @@
                         <img src="https://i.imgur.com/ByfmPFO.png" alt="Elisa Lana - A Artista">
                     </div>
                     <h3 class="creator-name">Elisa Lana</h3>
-                    <p class="creator-role">A Artista</p>
-                    <p class="creator-desc">
+                    <p class="creator-role" data-translate="creators.elisa.role">A Artista</p>
+                    <p class="creator-desc" data-translate="creators.elisa.description">
                         Elisa Lana é a segunda mente por trás de Laços Profanos. Enquanto Eduarda conduz a parte criativa e narrativa, Elisa é responsável pela ilustração e visualização das ideias, dando vida ao universo com seu talento artístico e transformando conceitos em imagens que encantam os fãs.
                     </p>
                 </div>
             </div>
         </section>
     </main>
+
+    <!-- Sistema de Tradução -->
+    <script>
+        // JSON de traduções
+        const translations = {
+            'pt': {
+                'about.title': 'Sobre Nós',
+                'about.text1': '<span class="highlight">Laços Profanos</span> é uma história fictícia que nasceu como a ideia de um mangá inspirado em obras populares da época. Com o tempo, essa primeira versão foi totalmente repensada, descartada e reconstruída — e assim o universo se expandiu até se tornar o que conhecemos hoje.',
+                'about.text2': 'Somos um projeto completamente independente, desenvolvido e mantido por apenas duas pessoas. Trabalhamos com dedicação para dar vida a esse universo, criar conteúdo de qualidade e compartilhar nossa visão com quem deseja conhecer mais sobre Laços Profanos.',
+                
+                'social.title': 'Redes Sociais',
+                'social.subtitle': 'Conecte-se conosco através das nossas redes sociais:',
+                'social.discord.title': 'Discord',
+                'social.discord.subtitle': 'Servidor no Discord',
+                'social.youtube.title': 'YouTube',
+                'social.youtube.subtitle': 'Canal no YouTube',
+                'social.kofi.title': 'Ko-fi',
+                'social.kofi.subtitle': 'Apoie-nos no Ko-fi',
+                
+                'earth.title': 'A Terra em Laços Profanos',
+                'earth.intro': 'No universo de Laços Profanos, o planeta Terra não é como o nosso. Ele é dividido em apenas três continentes, cada um com suas próprias características, culturas e histórias:',
+                'earth.description': '❄️ Kelster — o continente frio, marcado por climas rigorosos, paisagens geladas e povos acostumados à resistência.<br>🍃 Molton — o continente intermediário, de equilíbrio entre frio e calor, diversidade natural e cultural.<br>🔥 Clifton — o continente quente, repleto de calor intenso, vida vibrante e tradições moldadas pelo sol.',
+                
+                'creators.title': 'As Mentes por Trás',
+                'creators.wahi.role': 'A Criadora',
+                'creators.wahi.description': 'Mais conhecida pelos pseudônimos Wahipogo ou Wahi, é a mente criativa por trás do universo de Laços Profanos. Além de idealizar a obra, atua como roteirista, diretora criativa e gestora do projeto. Também é programadora, responsável pelo desenvolvimento e manutenção do site oficial da obra.',
+                'creators.elisa.role': 'A Artista',
+                'creators.elisa.description': 'Elisa Lana é a segunda mente por trás de Laços Profanos. Enquanto Eduarda conduz a parte criativa e narrativa, Elisa é responsável pela ilustração e visualização das ideias, dando vida ao universo com seu talento artístico e transformando conceitos em imagens que encantam os fãs.',
+                'creators.buttons.social': 'Redes Sociais',
+                'creators.buttons.portfolio': 'Portfólio'
+            },
+            'en': {
+                'about.title': 'About Us',
+                'about.text1': '<span class="highlight">Profane Bonds</span> is a fictional story that began as a manga idea inspired by popular works of the time. Over time, this first version was completely rethought, discarded, and rebuilt — and so the universe expanded into what we know today.',
+                'about.text2': 'We are a completely independent project, developed and maintained by just two people. We work diligently to bring this universe to life, create quality content, and share our vision with those who want to learn more about Profane Bonds.',
+                
+                'social.title': 'Social Media',
+                'social.subtitle': 'Connect with us through our social media:',
+                'social.discord.title': 'Discord',
+                'social.discord.subtitle': 'Discord Server',
+                'social.youtube.title': 'YouTube',
+                'social.youtube.subtitle': 'YouTube Channel',
+                'social.kofi.title': 'Ko-fi',
+                'social.kofi.subtitle': 'Support us on Ko-fi',
+                
+                'earth.title': 'Earth in Profane Bonds',
+                'earth.intro': 'In the Profane Bonds universe, planet Earth is not like ours. It is divided into only three continents, each with its own characteristics, cultures, and histories:',
+                'earth.description': '❄️ Kelster — the cold continent, marked by harsh climates, icy landscapes, and peoples accustomed to endurance.<br>🍃 Molton — the intermediate continent, balancing cold and heat, with natural and cultural diversity.<br>🔥 Clifton — the hot continent, full of intense heat, vibrant life, and traditions shaped by the sun.',
+                
+                'creators.title': 'The Minds Behind',
+                'creators.wahi.role': 'The Creator',
+                'creators.wahi.description': 'Better known by the pseudonyms Wahipogo or Wahi, she is the creative mind behind the Profane Bonds universe. In addition to conceptualizing the work, she acts as screenwriter, creative director, and project manager. She is also a programmer, responsible for developing and maintaining the official website.',
+                'creators.elisa.role': 'The Artist',
+                'creators.elisa.description': 'Elisa Lana is the second mind behind Profane Bonds. While Eduarda leads the creative and narrative aspects, Elisa is responsible for illustrating and visualizing ideas, bringing the universe to life with her artistic talent and transforming concepts into images that delight fans.',
+                'creators.buttons.social': 'Social Media',
+                'creators.buttons.portfolio': 'Portfolio'
+            }
+        };
+
+        // Função para aplicar tradução
+        function applyTranslation(lang) {
+            // Atualizar classe do body
+            document.body.classList.toggle('english', lang === 'en');
+            
+            // Atualizar todas as tags com data-translate
+            document.querySelectorAll('[data-translate]').forEach(element => {
+                const key = element.getAttribute('data-translate');
+                if (translations[lang] && translations[lang][key]) {
+                    if (element.tagName === 'INPUT' || element.tagName === 'TEXTAREA') {
+                        element.value = translations[lang][key];
+                    } else {
+                        element.innerHTML = translations[lang][key];
+                    }
+                }
+            });
+            
+            // Salvar preferência
+            localStorage.setItem('preferred-language', lang);
+        }
+
+        // Carregar idioma salvo ou detectar do navegador
+        function loadLanguage() {
+            const savedLang = localStorage.getItem('preferred-language');
+            const browserLang = navigator.language.startsWith('pt') ? 'pt' : 'en';
+            const lang = savedLang || browserLang;
+            
+            applyTranslation(lang);
+            
+            // Atualizar seletor de idioma
+            const languageSelect = document.querySelector('#language-select');
+            if (languageSelect) {
+                languageSelect.value = lang;
+            }
+        }
+
+        // Inicializar quando o DOM carregar
+        document.addEventListener('DOMContentLoaded', loadLanguage);
+        
+        // Exportar para uso no navbar
+        window.TranslationSystem = {
+            applyTranslation,
+            loadLanguage
+        };
+    </script>
 
     <script src="navbar.js"></script>
 </body>
