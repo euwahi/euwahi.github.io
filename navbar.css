@@ -39,7 +39,7 @@ header {
     background-clip: text;
 }
 
-/* Seletor de Idioma - FORA do menu */
+/* Seletor de Idioma */
 .language-selector {
     display: flex;
     align-items: center;
@@ -64,6 +64,10 @@ header {
     background-size: 12px;
     padding-right: 30px;
     min-width: 110px;
+}
+
+.language-selector select:hover {
+    background: rgba(240, 27, 133, 0.25);
 }
 
 /* Menu Hambúrguer */
