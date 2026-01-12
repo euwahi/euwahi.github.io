@@ -1,4 +1,4 @@
-// navbar.js - Menu Hambúrguer com Idioma separado
+// navbar.js - Menu Hambúrguer com Tradução
 class NavbarComponent extends HTMLElement {
     constructor() {
         super();
@@ -8,11 +8,13 @@ class NavbarComponent extends HTMLElement {
         this.innerHTML = `
             <header>
                 <div class="header-content">
-                    <div class="logo"><span id="site-title">Laços Profanos</span></div>
+                    <div class="logo">
+                        <span id="site-title" data-translate="site.title">Laços Profanos</span>
+                    </div>
 
-                    <!-- Seletor de Idioma - FORA do menu -->
+                    <!-- Seletor de Idioma -->
                     <div class="language-selector">
-                        <span>Idioma:</span>
+                        <span data-translate="language.label">Idioma:</span>
                         <select id="language-select">
                             <option value="pt">Português (BR)</option>
                             <option value="en">English</option>
@@ -35,15 +37,15 @@ class NavbarComponent extends HTMLElement {
                     <div class="nav-buttons">
                         <a href="https://lacosprofanos.blogspot.com/" target="_blank" class="nav-btn">
                             <i class="fas fa-blog"></i>
-                            <span>Blog</span>
+                            <span data-translate="menu.blog">Blog</span>
                         </a>
                         <a href="https://lacosprofanos.fandom.com/pt-br/" target="_blank" class="nav-btn">
                             <i class="fas fa-book"></i>
-                            <span>Wiki</span>
+                            <span data-translate="menu.wiki">Wiki</span>
                         </a>
                         <a href="https://lacosprofanos.com.br/tos" target="_blank" class="nav-btn">
                             <i class="fas fa-file-contract"></i>
-                            <span>Termos de Serviço</span>
+                            <span data-translate="menu.tos">Termos de Serviço</span>
                         </a>
                     </div>
                 </div>
@@ -56,38 +58,46 @@ class NavbarComponent extends HTMLElement {
     }
 
     initializeNavbar() {
-        // URLs para cada idioma
-        const languageUrls = {
-            pt: "https://lacosprofanos.com.br",
-            en: "https://lacosprofanos.com.br/en",
-        };
-
         // Configurar seletor de idioma
         const languageSelect = this.querySelector('#language-select');
 
         if (languageSelect) {
+            // Adicionar traduções do navbar ao JSON
+            if (window.translations) {
+                window.translations['pt']['site.title'] = 'Laços Profanos';
+                window.translations['en']['site.title'] = 'Profane Bonds';
+                window.translations['pt']['language.label'] = 'Idioma:';
+                window.translations['en']['language.label'] = 'Language:';
+                window.translations['pt']['menu.blog'] = 'Blog';
+                window.translations['en']['menu.blog'] = 'Blog';
+                window.translations['pt']['menu.wiki'] = 'Wiki';
+                window.translations['en']['menu.wiki'] = 'Wiki';
+                window.translations['pt']['menu.tos'] = 'Termos de Serviço';
+                window.translations['en']['menu.tos'] = 'Terms of Service';
+            }
+
+            // Carregar idioma salvo
+            const savedLang = localStorage.getItem('preferred-language') || 'pt';
+            languageSelect.value = savedLang;
+
+            // Configurar evento de mudança
             languageSelect.addEventListener('change', function() {
                 const selectedLanguage = this.value;
-                if (languageUrls[selectedLanguage]) {
-                    window.location.href = languageUrls[selectedLanguage];
+                
+                // Aplicar tradução usando a função do sistema principal
+                if (window.TranslationSystem) {
+                    window.TranslationSystem.applyTranslation(selectedLanguage);
                 }
+                
+                // Atualizar o favicon conforme o idioma
+                updateFavicon(selectedLanguage);
+                
+                // Salvar preferência
+                localStorage.setItem('preferred-language', selectedLanguage);
             });
 
-            // Detectar idioma atual
-            this.detectCurrentLanguage();
-        }
-    }
-
-    detectCurrentLanguage() {
-        const currentPath = window.location.pathname;
-        const languageSelect = this.querySelector('#language-select');
-
-        if (languageSelect) {
-            if (currentPath.includes('/en')) {
-                languageSelect.value = 'en';
-            } else {
-                languageSelect.value = 'pt';
-            }
+            // Atualizar favicon inicial
+            updateFavicon(savedLang);
         }
     }
 
@@ -134,13 +144,18 @@ class NavbarComponent extends HTMLElement {
                 toggleMenu();
             }
         });
+    }
+}
 
-        // Fechar menu ao redimensionar (para segurança)
-        window.addEventListener('resize', () => {
-            if (window.innerWidth > 768 && mobileMenu.classList.contains('active')) {
-                toggleMenu();
-            }
-        });
+// Função para atualizar favicon conforme idioma
+function updateFavicon(lang) {
+    const favicon = document.querySelector('link[rel="icon"]');
+    if (favicon) {
+        if (lang === 'en') {
+            favicon.href = 'https://i.imgur.com/mgxXSto.png'; // Manter mesmo favicon
+        } else {
+            favicon.href = 'https://i.imgur.com/mgxXSto.png';
+        }
     }
 }
 
