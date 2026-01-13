@@ -204,7 +204,7 @@
         .header {
             text-align: center;
             margin-bottom: 40px;
-            padding-bottom: 30px;
+            padding-bottom: 25px;
             border-bottom: 2px solid #f01b85;
             position: relative;
         }
@@ -246,18 +246,17 @@
             font-weight: 700;
         }
 
-        /* === CONTROLES DE FILTRO E BUSCA === */
-        .controls-container {
+        /* === SISTEMA DE FILTROS E PESQUISA === */
+        .filters-section {
             background: rgba(255, 255, 255, 0.05);
             border-radius: 15px;
             padding: 25px;
-            margin-bottom: 40px;
+            margin: 30px 0 40px 0;
             border: 1px solid rgba(255, 255, 255, 0.1);
             position: relative;
-            overflow: hidden;
         }
 
-        .controls-container::before {
+        .filters-section::before {
             content: '';
             position: absolute;
             top: 0;
@@ -267,7 +266,7 @@
             background: #f01b85;
         }
 
-        .controls-title {
+        .filters-title {
             font-size: 1.5rem;
             margin-bottom: 20px;
             font-weight: 700;
@@ -277,7 +276,7 @@
             gap: 10px;
         }
 
-        .controls-title i {
+        .filters-title i {
             color: #f01b85;
         }
 
@@ -285,14 +284,15 @@
             display: flex;
             flex-wrap: wrap;
             gap: 20px;
-            margin-bottom: 25px;
             align-items: center;
+            justify-content: space-between;
         }
 
         .filter-buttons {
             display: flex;
-            gap: 10px;
             flex-wrap: wrap;
+            gap: 10px;
+            flex: 1;
         }
 
         .filter-btn {
@@ -307,10 +307,11 @@
             display: flex;
             align-items: center;
             gap: 8px;
+            font-size: 0.95rem;
         }
 
         .filter-btn:hover {
-            background: rgba(240, 27, 133, 0.3);
+            background: rgba(240, 27, 133, 0.25);
             transform: translateY(-2px);
         }
 
@@ -320,22 +321,19 @@
         }
 
         .search-container {
-            flex: 1;
-            min-width: 300px;
-        }
-
-        .search-box {
             position: relative;
-            width: 100%;
+            min-width: 300px;
+            flex: 1;
+            max-width: 400px;
         }
 
         .search-input {
             width: 100%;
-            padding: 12px 20px 12px 45px;
             background: rgba(255, 255, 255, 0.08);
             border: 1px solid rgba(255, 255, 255, 0.2);
-            border-radius: 25px;
             color: #ffffff;
+            padding: 12px 20px 12px 45px;
+            border-radius: 25px;
             font-size: 1rem;
             transition: all 0.3s ease;
         }
@@ -344,7 +342,6 @@
             outline: none;
             border-color: #f01b85;
             box-shadow: 0 0 0 2px rgba(240, 27, 133, 0.2);
-            background: rgba(255, 255, 255, 0.12);
         }
 
         .search-icon {
@@ -357,48 +354,29 @@
         }
 
         .results-info {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
             margin-top: 15px;
-            padding-top: 15px;
-            border-top: 1px solid rgba(255, 255, 255, 0.1);
-            font-size: 0.95rem;
             color: #cccccc;
-        }
-
-        .clear-search {
-            color: #f01b85;
-            background: none;
-            border: none;
-            font-weight: 600;
-            cursor: pointer;
-            padding: 5px 10px;
-            border-radius: 5px;
-            transition: all 0.3s ease;
-        }
-
-        .clear-search:hover {
-            background: rgba(240, 27, 133, 0.1);
+            font-size: 0.95rem;
+            display: flex;
+            align-items: center;
+            gap: 10px;
         }
 
         /* === GALERIA DE IMAGENS === */
-        .gallery-container {
-            background: rgba(255, 255, 255, 0.02);
-            border-radius: 15px;
-            padding: 30px;
-            border: 1px solid rgba(255, 255, 255, 0.05);
+        .gallery-section {
+            margin-top: 30px;
         }
 
         .gallery-grid {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
             gap: 25px;
+            margin-top: 20px;
         }
 
         @media (max-width: 768px) {
             .gallery-grid {
-                grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+                grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
                 gap: 20px;
             }
         }
@@ -411,7 +389,7 @@
 
         .image-card {
             background: rgba(255, 255, 255, 0.05);
-            border-radius: 12px;
+            border-radius: 15px;
             overflow: hidden;
             border: 1px solid rgba(255, 255, 255, 0.1);
             transition: all 0.3s ease;
@@ -419,21 +397,27 @@
         }
 
         .image-card:hover {
-            transform: translateY(-5px);
+            transform: translateY(-8px);
             border-color: #f01b85;
-            box-shadow: 0 10px 25px rgba(240, 27, 133, 0.2);
+            box-shadow: 0 15px 30px rgba(240, 27, 133, 0.2);
         }
 
-        .image-card.hidden {
-            display: none;
+        .image-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: #f01b85;
+            z-index: 1;
         }
 
         .image-preview {
             width: 100%;
-            height: 200px;
+            height: 250px;
             overflow: hidden;
             position: relative;
-            background: #111111;
         }
 
         .image-preview img {
@@ -447,27 +431,41 @@
             transform: scale(1.05);
         }
 
-        .badge {
+        .image-overlay {
             position: absolute;
-            top: 15px;
-            right: 15px;
-            padding: 5px 12px;
-            border-radius: 20px;
-            font-size: 0.8rem;
-            font-weight: 700;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-            z-index: 2;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.7);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            transition: opacity 0.3s ease;
         }
 
-        .badge.icon {
-            background: #4CAF50;
-            color: #000;
+        .image-card:hover .image-overlay {
+            opacity: 1;
         }
 
-        .badge.wallpaper {
-            background: #2196F3;
+        .quick-view-btn {
+            background: #f01b85;
             color: #000;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 25px;
+            font-weight: 600;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            transition: all 0.3s ease;
+        }
+
+        .quick-view-btn:hover {
+            background: #ff4da6;
+            transform: translateY(-2px);
         }
 
         .image-info {
@@ -481,59 +479,65 @@
             color: #ffffff;
         }
 
-        .image-details {
-            display: flex;
-            justify-content: space-between;
+        .image-type {
+            display: inline-block;
+            background: rgba(240, 27, 133, 0.2);
+            color: #f01b85;
+            padding: 4px 12px;
+            border-radius: 15px;
+            font-size: 0.8rem;
+            font-weight: 600;
             margin-bottom: 15px;
-            font-size: 0.9rem;
-            color: #cccccc;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
         }
 
-        .image-details span {
+        .image-details {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+            margin-bottom: 15px;
+            color: #cccccc;
+            font-size: 0.9rem;
+        }
+
+        .detail-item {
             display: flex;
             align-items: center;
             gap: 5px;
         }
 
+        .detail-item i {
+            color: #f01b85;
+            font-size: 0.9rem;
+        }
+
         .image-actions {
             display: flex;
             gap: 10px;
-        }
-
-        .action-btn {
-            flex: 1;
-            padding: 10px 15px;
-            border-radius: 8px;
-            border: none;
-            font-weight: 600;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 8px;
-        }
-
-        .view-btn {
-            background: rgba(240, 27, 133, 0.15);
-            color: #ffffff;
-            border: 1px solid #f01b85;
-        }
-
-        .view-btn:hover {
-            background: #f01b85;
-            color: #000;
+            margin-top: 15px;
         }
 
         .download-btn {
             background: #f01b85;
             color: #000;
-            border: 1px solid #f01b85;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 25px;
+            font-weight: 600;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            transition: all 0.3s ease;
+            flex: 1;
+            justify-content: center;
         }
 
         .download-btn:hover {
             background: #ff4da6;
             transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(240, 27, 133, 0.3);
         }
 
         /* === MODAL DE VISUALIZAÇÃO === */
@@ -546,19 +550,13 @@
             height: 100%;
             background: rgba(0, 0, 0, 0.9);
             z-index: 2000;
-            justify-content: center;
             align-items: center;
+            justify-content: center;
             padding: 20px;
         }
 
         .modal.active {
             display: flex;
-            animation: fadeIn 0.3s ease;
-        }
-
-        @keyframes fadeIn {
-            from { opacity: 0; }
-            to { opacity: 1; }
         }
 
         .modal-content {
@@ -586,90 +584,69 @@
             color: #ffffff;
         }
 
-        .modal-close {
+        .close-modal {
             background: none;
             border: none;
             color: #ffffff;
             font-size: 1.5rem;
             cursor: pointer;
-            width: 40px;
-            height: 40px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            transition: all 0.3s ease;
+            transition: color 0.3s ease;
         }
 
-        .modal-close:hover {
-            background: rgba(255, 255, 255, 0.1);
+        .close-modal:hover {
             color: #f01b85;
         }
 
         .modal-body {
-            padding: 30px;
-            text-align: center;
-            max-height: calc(90vh - 140px);
-            overflow-y: auto;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
         }
 
-        .modal-image {
-            max-width: 100%;
-            max-height: 500px;
-            border-radius: 10px;
-            margin-bottom: 20px;
+        .modal-image-container {
+            width: 100%;
+            height: 400px;
+            overflow: hidden;
+            background: #000;
+        }
+
+        .modal-image-container img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
         }
 
         .modal-details {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 15px;
-            margin-top: 20px;
-            padding-top: 20px;
-            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            padding: 20px;
+            background: rgba(255, 255, 255, 0.03);
         }
 
-        .detail-item {
-            text-align: left;
-        }
-
-        .detail-label {
-            font-size: 0.9rem;
-            color: #cccccc;
-            margin-bottom: 5px;
-        }
-
-        .detail-value {
-            font-size: 1rem;
-            color: #ffffff;
-            font-weight: 600;
-        }
-
-        .modal-footer {
+        .modal-actions {
+            display: flex;
+            gap: 10px;
             padding: 20px;
             border-top: 1px solid rgba(255, 255, 255, 0.1);
-            text-align: center;
         }
 
         .modal-download-btn {
             background: #f01b85;
             color: #000;
             border: none;
-            padding: 12px 30px;
+            padding: 12px 25px;
             border-radius: 25px;
-            font-weight: 700;
+            font-weight: 600;
             cursor: pointer;
-            transition: all 0.3s ease;
-            display: inline-flex;
+            display: flex;
             align-items: center;
             gap: 10px;
-            font-size: 1.1rem;
+            transition: all 0.3s ease;
+            flex: 1;
+            justify-content: center;
         }
 
         .modal-download-btn:hover {
             background: #ff4da6;
-            transform: translateY(-3px);
-            box-shadow: 0 5px 15px rgba(240, 27, 133, 0.4);
+            transform: translateY(-2px);
         }
 
         /* === BOTÃO FLUTUANTE DE VOLTAR AO TOPO === */
@@ -704,11 +681,14 @@
             box-shadow: 0 8px 25px rgba(240, 27, 133, 0.6);
         }
 
-        /* === MENSAGEM SEM RESULTADOS === */
+        /* === MENSAGEM DE NENHUM RESULTADO === */
         .no-results {
             text-align: center;
             padding: 60px 20px;
-            display: none;
+            background: rgba(255, 255, 255, 0.03);
+            border-radius: 15px;
+            margin-top: 30px;
+            border: 2px dashed rgba(255, 255, 255, 0.1);
         }
 
         .no-results i {
@@ -730,30 +710,48 @@
         }
 
         /* === RESPONSIVIDADE === */
-        @media (max-width: 768px) {
-            .controls-container {
-                padding: 20px;
-            }
-            
+        @media (max-width: 992px) {
             .filters-row {
                 flex-direction: column;
                 align-items: stretch;
             }
             
             .search-container {
-                min-width: 100%;
+                max-width: 100%;
+            }
+            
+            .filter-buttons {
+                justify-content: center;
+            }
+        }
+
+        @media (max-width: 768px) {
+            main {
+                padding: 20px 0 50px 0;
+            }
+            
+            .header {
+                margin-bottom: 30px;
+            }
+            
+            .filters-section {
+                padding: 20px;
             }
             
             .modal-content {
                 max-height: 95vh;
             }
             
-            .modal-body {
-                max-height: calc(95vh - 140px);
+            .modal-image-container {
+                height: 300px;
             }
             
-            .modal-details {
-                grid-template-columns: 1fr;
+            .floating-top-btn {
+                bottom: 20px;
+                right: 20px;
+                width: 45px;
+                height: 45px;
+                font-size: 1.1rem;
             }
         }
 
@@ -766,12 +764,25 @@
                 font-size: 1.8rem;
             }
             
-            .gallery-container {
-                padding: 20px 15px;
-            }
-            
             .image-actions {
                 flex-direction: column;
+            }
+            
+            .download-btn {
+                width: 100%;
+            }
+            
+            .modal-actions {
+                flex-direction: column;
+            }
+            
+            .modal-download-btn {
+                width: 100%;
+            }
+            
+            .filter-btn {
+                padding: 8px 15px;
+                font-size: 0.9rem;
             }
         }
     </style>
@@ -820,33 +831,46 @@
         </div>
     </nav>
 
+    <!-- Modal de Visualização -->
+    <div class="modal" id="imageModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 class="modal-title" id="modalTitle">Visualizar Imagem</h3>
+                <button class="close-modal" id="closeModal">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div class="modal-image-container">
+                    <img id="modalImage" src="" alt="">
+                </div>
+                <div class="modal-details">
+                    <div class="image-details">
+                        <div class="detail-item">
+                            <i class="fas fa-ruler-combined"></i>
+                            <span id="modalDimensions">-</span>
+                        </div>
+                        <div class="detail-item">
+                            <i class="fas fa-weight-hanging"></i>
+                            <span id="modalSize">-</span>
+                        </div>
+                        <div class="detail-item">
+                            <i class="fas fa-tag"></i>
+                            <span id="modalType">-</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-actions">
+                    <button class="modal-download-btn" id="modalDownloadBtn">
+                        <i class="fas fa-download"></i> Baixar Imagem
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <!-- Botão flutuante para voltar ao topo -->
     <a href="#top" class="floating-top-btn" id="floatingTopBtn">
         <i class="fas fa-arrow-up"></i>
     </a>
-
-    <!-- Modal de visualização -->
-    <div class="modal" id="imageModal">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h3 class="modal-title" id="modalImageTitle">Visualizando Imagem</h3>
-                <button class="modal-close" id="modalClose">
-                    <i class="fas fa-times"></i>
-                </button>
-            </div>
-            <div class="modal-body">
-                <img id="modalImage" src="" alt="" class="modal-image">
-                <div class="modal-details" id="modalDetails">
-                    <!-- Detalhes serão preenchidos via JavaScript -->
-                </div>
-            </div>
-            <div class="modal-footer">
-                <button class="modal-download-btn" id="modalDownloadBtn">
-                    <i class="fas fa-download"></i> Baixar Imagem
-                </button>
-            </div>
-        </div>
-    </div>
 
     <main class="container">
         <!-- Cabeçalho da página -->
@@ -858,49 +882,48 @@
             </p>
         </header>
 
-        <!-- Controles de filtro e busca -->
-        <div class="controls-container">
-            <h2 class="controls-title"><i class="fas fa-sliders-h"></i> Filtros e Busca</h2>
+        <!-- Sistema de Filtros e Pesquisa -->
+        <div class="filters-section">
+            <h2 class="filters-title">
+                <i class="fas fa-filter"></i> Filtros e Busca
+            </h2>
             
             <div class="filters-row">
                 <div class="filter-buttons">
                     <button class="filter-btn active" data-filter="all">
-                        <i class="fas fa-layer-group"></i> Todos
-                    </button>
-                    <button class="filter-btn" data-filter="icon">
-                        <i class="fas fa-user-circle"></i> Icons
+                        <i class="fas fa-th"></i> Todos
                     </button>
                     <button class="filter-btn" data-filter="wallpaper">
                         <i class="fas fa-desktop"></i> Wallpapers
                     </button>
+                    <button class="filter-btn" data-filter="icon">
+                        <i class="fas fa-user-circle"></i> Icons
+                    </button>
                 </div>
                 
                 <div class="search-container">
-                    <div class="search-box">
-                        <i class="fas fa-search search-icon"></i>
-                        <input type="text" class="search-input" id="searchInput" 
-                               placeholder="Buscar por nome (ex: Kaleb, Wahi, Enaya...)">
-                    </div>
+                    <i class="fas fa-search search-icon"></i>
+                    <input type="text" class="search-input" id="searchInput" placeholder="Pesquisar por nome...">
                 </div>
             </div>
             
             <div class="results-info">
-                <span id="resultsCount">Mostrando 6 imagens</span>
-                <button class="clear-search" id="clearSearch">Limpar busca</button>
+                <i class="fas fa-info-circle"></i>
+                <span id="resultsCount">Mostrando todos os 5 itens</span>
             </div>
         </div>
 
-        <!-- Galeria de imagens -->
-        <div class="gallery-container">
-            <div class="gallery-grid" id="galleryGrid">
+        <!-- Galeria de Imagens -->
+        <div class="gallery-section">
+            <div class="gallery-grid" id="imageGallery">
                 <!-- As imagens serão inseridas via JavaScript -->
             </div>
             
-            <!-- Mensagem quando não há resultados -->
-            <div class="no-results" id="noResults">
+            <!-- Mensagem quando não houver resultados -->
+            <div class="no-results" id="noResults" style="display: none;">
                 <i class="fas fa-search"></i>
-                <h3>Nenhuma imagem encontrada</h3>
-                <p>Tente buscar por outro termo ou use um filtro diferente.</p>
+                <h3>Nenhum resultado encontrado</h3>
+                <p>Tente usar outros termos de busca ou selecione um filtro diferente.</p>
             </div>
         </div>
     </main>
@@ -910,247 +933,254 @@
         const imagesData = [
             {
                 id: 1,
-                title: "Kaleb",
+                name: "Kaleb",
                 type: "icon",
                 imageUrl: "wallpapers&icons/kaleb.jpeg",
+                previewUrl: "https://i.imgur.com/WVrHpaB.jpeg",
                 size: "136 KB",
-                dimensions: "1000×1000",
-                description: "Icon do personagem Kaleb Orillum, um prodígio da cura em Laços Profanos."
+                dimensions: "1000x1000",
+                category: "icon"
             },
             {
                 id: 2,
-                title: "O Último Anjo",
+                name: "O Último Anjo",
                 type: "wallpaper",
                 imageUrl: "wallpapers&icons/anjo.png",
+                previewUrl: "https://i.imgur.com/IHCgQPS.png",
                 size: "829 KB",
-                dimensions: "1280×720",
-                description: "Wallpaper da história 'O Último Anjo' com arte impressionante."
+                dimensions: "1280x720",
+                category: "wallpaper"
             },
             {
                 id: 3,
-                title: "Enaya vs Hamiah",
+                name: "Enaya vs Hamiah",
                 type: "wallpaper",
                 imageUrl: "wallpapers&icons/enamiah.png",
+                previewUrl: "https://i.imgur.com/RA2LetQ.png",
                 size: "430 KB",
-                dimensions: "1280×720",
-                description: "Wallpaper épico do confronto entre Enaya e Hamiah."
+                dimensions: "1280x720",
+                category: "wallpaper"
             },
             {
                 id: 4,
-                title: "Wahi",
+                name: "Wahi",
                 type: "icon",
                 imageUrl: "wallpapers&icons/wahi.png",
+                previewUrl: "https://i.imgur.com/Py44HxM.png",
                 size: "171 KB",
-                dimensions: "768×768",
-                description: "Icon da criadora Wahi, autora de Laços Profanos."
+                dimensions: "768x768",
+                category: "icon"
             },
             {
                 id: 5,
-                title: "Noxum",
+                name: "Noxum",
                 type: "icon",
                 imageUrl: "wallpapers&icons/noxum.png",
+                previewUrl: "https://i.imgur.com/jI5RKKU.png",
                 size: "228 KB",
-                dimensions: "1280×1280",
-                description: "Icon do personagem Noxum com design detalhado."
+                dimensions: "1280x1280",
+                category: "icon"
             }
         ];
 
-        // Elementos do DOM
-        const galleryGrid = document.getElementById('galleryGrid');
-        const searchInput = document.getElementById('searchInput');
-        const filterButtons = document.querySelectorAll('.filter-btn');
-        const clearSearchBtn = document.getElementById('clearSearch');
-        const resultsCount = document.getElementById('resultsCount');
-        const noResults = document.getElementById('noResults');
-        const imageModal = document.getElementById('imageModal');
-        const modalImage = document.getElementById('modalImage');
-        const modalImageTitle = document.getElementById('modalImageTitle');
-        const modalDetails = document.getElementById('modalDetails');
-        const modalClose = document.getElementById('modalClose');
-        const modalDownloadBtn = document.getElementById('modalDownloadBtn');
-        const floatingTopBtn = document.getElementById('floatingTopBtn');
-
-        // Estado da aplicação
+        // Variáveis globais
         let currentFilter = 'all';
         let currentSearch = '';
-        let currentImage = null;
 
-        // Função para normalizar texto (remove acentos e converte para minúsculas)
-        function normalizeText(text) {
-            return text
-                .toLowerCase()
-                .normalize('NFD')
-                .replace(/[\u0300-\u036f]/g, '') // Remove acentos
-                .replace(/[^a-z0-9\s]/g, ''); // Remove caracteres especiais
+        // Inicializar a galeria
+        function initGallery() {
+            renderGallery();
+            setupEventListeners();
         }
 
-        // Função para filtrar imagens
-        function filterImages() {
+        // Renderizar a galeria
+        function renderGallery() {
+            const gallery = document.getElementById('imageGallery');
+            const noResults = document.getElementById('noResults');
+            
+            // Filtrar imagens
             const filteredImages = imagesData.filter(image => {
-                // Filtro por tipo
-                const typeMatch = currentFilter === 'all' || image.type === currentFilter;
+                // Aplicar filtro
+                if (currentFilter !== 'all' && image.category !== currentFilter) {
+                    return false;
+                }
                 
-                // Filtro por busca
-                const searchMatch = !currentSearch || 
-                    normalizeText(image.title).includes(normalizeText(currentSearch)) ||
-                    normalizeText(image.description).includes(normalizeText(currentSearch));
+                // Aplicar pesquisa (não diferencia maiúsculas/minúsculas e remove caracteres especiais)
+                if (currentSearch) {
+                    const searchNormalized = normalizeText(currentSearch);
+                    const nameNormalized = normalizeText(image.name);
+                    const typeNormalized = normalizeText(image.type);
+                    
+                    return nameNormalized.includes(searchNormalized) || 
+                           typeNormalized.includes(searchNormalized);
+                }
                 
-                return typeMatch && searchMatch;
+                return true;
             });
             
-            return filteredImages;
-        }
-
-        // Função para renderizar a galeria
-        function renderGallery() {
-            const filteredImages = filterImages();
-            
             // Atualizar contador
-            resultsCount.textContent = `Mostrando ${filteredImages.length} imagem${filteredImages.length !== 1 ? 'ns' : ''}`;
+            updateResultsCount(filteredImages.length);
             
             // Limpar galeria
-            galleryGrid.innerHTML = '';
+            gallery.innerHTML = '';
             
-            // Mostrar/ocultar mensagem de sem resultados
+            // Mostrar mensagem se não houver resultados
             if (filteredImages.length === 0) {
                 noResults.style.display = 'block';
-            } else {
-                noResults.style.display = 'none';
-                
-                // Adicionar imagens à galeria
-                filteredImages.forEach(image => {
-                    const imageCard = document.createElement('div');
-                    imageCard.className = 'image-card';
-                    imageCard.dataset.id = image.id;
-                    
-                    const badgeClass = image.type === 'icon' ? 'icon' : 'wallpaper';
-                    const badgeText = image.type === 'icon' ? 'Icon' : 'Wallpaper';
-                    
-                    imageCard.innerHTML = `
-                        <div class="image-preview">
-                            <div class="badge ${badgeClass}">${badgeText}</div>
-                            <img src="${image.imageUrl}" alt="${image.title}" loading="lazy">
-                        </div>
-                        <div class="image-info">
-                            <h3 class="image-title">${image.title}</h3>
-                            <div class="image-details">
-                                <span><i class="fas fa-expand"></i> ${image.dimensions}</span>
-                                <span><i class="fas fa-hdd"></i> ${image.size}</span>
-                            </div>
-                            <div class="image-actions">
-                                <button class="action-btn view-btn" data-id="${image.id}">
-                                    <i class="fas fa-eye"></i> Visualizar
-                                </button>
-                                <button class="action-btn download-btn" data-id="${image.id}">
-                                    <i class="fas fa-download"></i> Baixar
-                                </button>
-                            </div>
-                        </div>
-                    `;
-                    
-                    galleryGrid.appendChild(imageCard);
-                });
-                
-                // Adicionar eventos aos botões das imagens
-                document.querySelectorAll('.view-btn').forEach(btn => {
-                    btn.addEventListener('click', (e) => {
-                        const id = parseInt(e.target.closest('.view-btn').dataset.id);
-                        openModal(id);
-                    });
-                });
-                
-                document.querySelectorAll('.download-btn').forEach(btn => {
-                    btn.addEventListener('click', (e) => {
-                        const id = parseInt(e.target.closest('.download-btn').dataset.id);
-                        downloadImage(id);
-                    });
-                });
+                return;
             }
+            
+            noResults.style.display = 'none';
+            
+            // Renderizar imagens
+            filteredImages.forEach(image => {
+                const imageCard = createImageCard(image);
+                gallery.appendChild(imageCard);
+            });
         }
 
-        // Função para abrir modal de visualização
-        function openModal(id) {
-            const image = imagesData.find(img => img.id === id);
-            if (!image) return;
+        // Normalizar texto para pesquisa (remover acentos e caracteres especiais)
+        function normalizeText(text) {
+            return text.toLowerCase()
+                .normalize('NFD')
+                .replace(/[\u0300-\u036f]/g, '')
+                .replace(/[^a-z0-9\s]/g, '');
+        }
+
+        // Criar card de imagem
+        function createImageCard(image) {
+            const card = document.createElement('div');
+            card.className = 'image-card';
+            card.dataset.id = image.id;
+            card.dataset.category = image.category;
             
-            currentImage = image;
-            
-            // Configurar modal
-            modalImage.src = image.imageUrl;
-            modalImage.alt = image.title;
-            modalImageTitle.textContent = image.title;
-            
-            // Detalhes da imagem
-            modalDetails.innerHTML = `
-                <div class="detail-item">
-                    <div class="detail-label">Tipo</div>
-                    <div class="detail-value">${image.type === 'icon' ? 'Icon' : 'Wallpaper'}</div>
+            card.innerHTML = `
+                <div class="image-preview">
+                    <img src="${image.previewUrl}" alt="${image.name}" loading="lazy">
+                    <div class="image-overlay">
+                        <button class="quick-view-btn" data-id="${image.id}">
+                            <i class="fas fa-expand"></i> Visualizar
+                        </button>
+                    </div>
                 </div>
-                <div class="detail-item">
-                    <div class="detail-label">Dimensões</div>
-                    <div class="detail-value">${image.dimensions}</div>
-                </div>
-                <div class="detail-item">
-                    <div class="detail-label">Tamanho</div>
-                    <div class="detail-value">${image.size}</div>
-                </div>
-                <div class="detail-item">
-                    <div class="detail-label">Descrição</div>
-                    <div class="detail-value">${image.description}</div>
+                <div class="image-info">
+                    <h3 class="image-title">${image.name}</h3>
+                    <span class="image-type">${image.type === 'wallpaper' ? 'Wallpaper' : 'Icon'}</span>
+                    
+                    <div class="image-details">
+                        <div class="detail-item">
+                            <i class="fas fa-ruler-combined"></i>
+                            <span>${image.dimensions}</span>
+                        </div>
+                        <div class="detail-item">
+                            <i class="fas fa-weight-hanging"></i>
+                            <span>${image.size}</span>
+                        </div>
+                    </div>
+                    
+                    <div class="image-actions">
+                        <button class="download-btn" data-id="${image.id}">
+                            <i class="fas fa-download"></i> Baixar
+                        </button>
+                    </div>
                 </div>
             `;
             
-            // Mostrar modal
-            imageModal.classList.add('active');
-            document.body.style.overflow = 'hidden';
+            return card;
         }
 
-        // Função para fechar modal
-        function closeModal() {
-            imageModal.classList.remove('active');
-            document.body.style.overflow = 'auto';
-            currentImage = null;
-        }
-
-        // Função para baixar imagem
-        function downloadImage(id) {
-            const image = imagesData.find(img => img.id === id);
-            if (!image) return;
+        // Atualizar contador de resultados
+        function updateResultsCount(count) {
+            const resultsElement = document.getElementById('resultsCount');
+            const total = imagesData.length;
             
-            // Criar link de download
-            const link = document.createElement('a');
-            link.href = image.imageUrl;
-            link.download = `laços_profanos_${normalizeText(image.title)}.${image.imageUrl.split('.').pop()}`;
-            document.body.appendChild(link);
-            link.click();
-            document.body.removeChild(link);
-            
-            // Feedback visual
-            const downloadBtn = document.querySelector(`.download-btn[data-id="${id}"]`);
-            if (downloadBtn) {
-                const originalHTML = downloadBtn.innerHTML;
-                downloadBtn.innerHTML = '<i class="fas fa-check"></i> Baixado!';
-                downloadBtn.style.background = '#4CAF50';
-                
-                setTimeout(() => {
-                    downloadBtn.innerHTML = originalHTML;
-                    downloadBtn.style.background = '#f01b85';
-                }, 2000);
+            if (currentFilter === 'all' && !currentSearch) {
+                resultsElement.textContent = `Mostrando todos os ${total} itens`;
+            } else if (count === total) {
+                resultsElement.textContent = `Mostrando todos os ${total} itens`;
+            } else {
+                resultsElement.textContent = `Mostrando ${count} de ${total} itens`;
             }
         }
 
-        // Função do menu hambúrguer
-        document.addEventListener('DOMContentLoaded', function() {
+        // Configurar eventos
+        function setupEventListeners() {
+            // Filtros
+            document.querySelectorAll('.filter-btn').forEach(btn => {
+                btn.addEventListener('click', function() {
+                    // Remover classe active de todos
+                    document.querySelectorAll('.filter-btn').forEach(b => {
+                        b.classList.remove('active');
+                    });
+                    
+                    // Adicionar classe active ao clicado
+                    this.classList.add('active');
+                    
+                    // Atualizar filtro
+                    currentFilter = this.dataset.filter;
+                    renderGallery();
+                });
+            });
+            
+            // Pesquisa
+            const searchInput = document.getElementById('searchInput');
+            let searchTimeout;
+            
+            searchInput.addEventListener('input', function() {
+                clearTimeout(searchTimeout);
+                
+                searchTimeout = setTimeout(() => {
+                    currentSearch = this.value.trim();
+                    renderGallery();
+                }, 300); // Delay de 300ms
+            });
+            
+            // Botões de visualização rápida
+            document.addEventListener('click', function(e) {
+                if (e.target.closest('.quick-view-btn')) {
+                    const btn = e.target.closest('.quick-view-btn');
+                    const imageId = parseInt(btn.dataset.id);
+                    openImageModal(imageId);
+                }
+                
+                if (e.target.closest('.download-btn')) {
+                    const btn = e.target.closest('.download-btn');
+                    const imageId = parseInt(btn.dataset.id);
+                    downloadImage(imageId);
+                }
+            });
+            
+            // Modal
+            const modal = document.getElementById('imageModal');
+            const closeModal = document.getElementById('closeModal');
+            const modalDownloadBtn = document.getElementById('modalDownloadBtn');
+            
+            closeModal.addEventListener('click', function() {
+                modal.classList.remove('active');
+            });
+            
+            modal.addEventListener('click', function(e) {
+                if (e.target === modal) {
+                    modal.classList.remove('active');
+                }
+            });
+            
+            modalDownloadBtn.addEventListener('click', function() {
+                const imageId = parseInt(this.dataset.imageId);
+                if (imageId) {
+                    downloadImage(imageId);
+                }
+            });
+            
+            // Menu hambúrguer
             const hamburger = document.getElementById('hamburger');
             const navMenu = document.querySelector('.nav-menu');
             
-            // Alternar menu hambúrguer
             hamburger.addEventListener('click', function() {
                 hamburger.classList.toggle('active');
                 navMenu.classList.toggle('active');
             });
             
-            // Fechar menu ao clicar em um link (em telas pequenas)
             document.querySelectorAll('.nav-item a').forEach(link => {
                 link.addEventListener('click', function() {
                     if (window.innerWidth <= 768) {
@@ -1160,108 +1190,138 @@
                 });
             });
             
-            // Fechar menu ao clicar fora (em telas pequenas)
-            document.addEventListener('click', function(event) {
-                const isClickInsideNav = navMenu.contains(event.target) || hamburger.contains(event.target);
-                
-                if (window.innerWidth <= 768 && 
-                    navMenu.classList.contains('active') && 
-                    !isClickInsideNav) {
-                    hamburger.classList.remove('active');
-                    navMenu.classList.remove('active');
+            // Botão flutuante
+            window.addEventListener('scroll', function() {
+                const floatingBtn = document.getElementById('floatingTopBtn');
+                if (window.scrollY > 300) {
+                    floatingBtn.classList.add('active');
+                } else {
+                    floatingBtn.classList.remove('active');
                 }
             });
             
-            // Fechar menu ao redimensionar para tamanho grande
-            window.addEventListener('resize', function() {
-                if (window.innerWidth > 768) {
-                    hamburger.classList.remove('active');
-                    navMenu.classList.remove('active');
-                }
+            // Scroll suave
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    
+                    const targetId = this.getAttribute('href');
+                    if (targetId === '#') return;
+                    
+                    const targetElement = document.querySelector(targetId);
+                    if (targetElement) {
+                        window.scrollTo({
+                            top: targetElement.offsetTop - 80,
+                            behavior: 'smooth'
+                        });
+                    }
+                });
             });
+        }
 
-            // Inicializar galeria
-            renderGallery();
-        });
+        // Abrir modal de imagem
+        function openImageModal(imageId) {
+            const image = imagesData.find(img => img.id === imageId);
+            if (!image) return;
+            
+            const modal = document.getElementById('imageModal');
+            const modalImage = document.getElementById('modalImage');
+            const modalTitle = document.getElementById('modalTitle');
+            const modalDimensions = document.getElementById('modalDimensions');
+            const modalSize = document.getElementById('modalSize');
+            const modalType = document.getElementById('modalType');
+            const modalDownloadBtn = document.getElementById('modalDownloadBtn');
+            
+            modalImage.src = image.previewUrl;
+            modalImage.alt = image.name;
+            modalTitle.textContent = image.name;
+            modalDimensions.textContent = image.dimensions;
+            modalSize.textContent = image.size;
+            modalType.textContent = image.type === 'wallpaper' ? 'Wallpaper' : 'Icon';
+            modalDownloadBtn.dataset.imageId = image.id;
+            
+            modal.classList.add('active');
+        }
 
-        // Eventos dos filtros
-        filterButtons.forEach(btn => {
-            btn.addEventListener('click', () => {
-                // Remover classe active de todos os botões
-                filterButtons.forEach(b => b.classList.remove('active'));
-                // Adicionar classe active ao botão clicado
-                btn.classList.add('active');
-                // Atualizar filtro atual
-                currentFilter = btn.dataset.filter;
-                // Renderizar galeria com novo filtro
-                renderGallery();
-            });
-        });
+        // Função para baixar imagem
+        function downloadImage(imageId) {
+            const image = imagesData.find(img => img.id === imageId);
+            if (!image) return;
+            
+            // Usar a URL direta da imagem
+            const imageUrl = image.imageUrl;
+            const fileName = `${image.name.toLowerCase().replace(/\s+/g, '-')}.${image.imageUrl.split('.').pop()}`;
+            
+            // Criar link temporário para download
+            const link = document.createElement('a');
+            link.href = imageUrl;
+            link.download = fileName;
+            link.style.display = 'none';
+            
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+            
+            // Feedback visual
+            showDownloadFeedback(image.name);
+        }
 
-        // Evento da busca
-        searchInput.addEventListener('input', (e) => {
-            currentSearch = e.target.value.trim();
-            renderGallery();
-        });
-
-        // Evento do botão limpar busca
-        clearSearchBtn.addEventListener('click', () => {
-            searchInput.value = '';
-            currentSearch = '';
-            renderGallery();
-        });
-
-        // Eventos do modal
-        modalClose.addEventListener('click', closeModal);
-        
-        // Fechar modal ao clicar fora
-        imageModal.addEventListener('click', (e) => {
-            if (e.target === imageModal) {
-                closeModal();
+        // Mostrar feedback de download
+        function showDownloadFeedback(imageName) {
+            // Criar toast notification
+            const toast = document.createElement('div');
+            toast.style.cssText = `
+                position: fixed;
+                bottom: 100px;
+                right: 30px;
+                background: #f01b85;
+                color: #000;
+                padding: 15px 25px;
+                border-radius: 10px;
+                font-weight: 600;
+                z-index: 3000;
+                box-shadow: 0 5px 20px rgba(240, 27, 133, 0.4);
+                display: flex;
+                align-items: center;
+                gap: 10px;
+                animation: slideIn 0.3s ease;
+            `;
+            
+            toast.innerHTML = `
+                <i class="fas fa-check"></i>
+                <span>Baixando "${imageName}"...</span>
+            `;
+            
+            document.body.appendChild(toast);
+            
+            // Remover após 3 segundos
+            setTimeout(() => {
+                toast.style.animation = 'slideOut 0.3s ease';
+                setTimeout(() => {
+                    document.body.removeChild(toast);
+                }, 300);
+            }, 3000);
+            
+            // Adicionar animações CSS se não existirem
+            if (!document.getElementById('toast-animations')) {
+                const style = document.createElement('style');
+                style.id = 'toast-animations';
+                style.textContent = `
+                    @keyframes slideIn {
+                        from { transform: translateX(100%); opacity: 0; }
+                        to { transform: translateX(0); opacity: 1; }
+                    }
+                    @keyframes slideOut {
+                        from { transform: translateX(0); opacity: 1; }
+                        to { transform: translateX(100%); opacity: 0; }
+                    }
+                `;
+                document.head.appendChild(style);
             }
-        });
-        
-        // Fechar modal com tecla ESC
-        document.addEventListener('keydown', (e) => {
-            if (e.key === 'Escape' && imageModal.classList.contains('active')) {
-                closeModal();
-            }
-        });
-        
-        // Evento do botão de download no modal
-        modalDownloadBtn.addEventListener('click', () => {
-            if (currentImage) {
-                downloadImage(currentImage.id);
-                closeModal();
-            }
-        });
+        }
 
-        // Mostrar/ocultar botão flutuante de voltar ao topo
-        window.addEventListener('scroll', function() {
-            if (window.scrollY > 300) {
-                floatingTopBtn.classList.add('active');
-            } else {
-                floatingTopBtn.classList.remove('active');
-            }
-        });
-
-        // Scroll suave para âncoras
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function(e) {
-                e.preventDefault();
-                
-                const targetId = this.getAttribute('href');
-                if (targetId === '#') return;
-                
-                const targetElement = document.querySelector(targetId);
-                if (targetElement) {
-                    window.scrollTo({
-                        top: targetElement.offsetTop - 80,
-                        behavior: 'smooth'
-                    });
-                }
-            });
-        });
+        // Inicializar quando o DOM carregar
+        document.addEventListener('DOMContentLoaded', initGallery);
     </script>
 </body>
 </html>
