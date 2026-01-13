@@ -535,6 +535,7 @@
             align-items: center;
             gap: 8px;
             transition: all 0.3s ease;
+            cursor: pointer;
         }
 
         .download-btn:hover {
@@ -812,9 +813,9 @@
                 <img id="modalImage" src="" alt="" class="modal-image">
             </div>
             <div class="modal-footer">
-                <a href="#" id="modalDownloadBtn" class="download-btn">
+                <button class="download-btn" id="modalDownloadBtn">
                     <i class="fas fa-download"></i> Baixar Imagem
-                </a>
+                </button>
                 <button class="preview-btn" id="closeModalBtn">
                     <i class="fas fa-times"></i> Fechar
                 </button>
@@ -856,7 +857,7 @@
             </div>
             
             <div class="results-info">
-                Mostrando <span id="resultsCount">6</span> de 6 itens
+                Mostrando <span id="resultsCount">5</span> de 5 itens
             </div>
         </section>
 
@@ -874,13 +875,14 @@
     </main>
 
     <script>
-        // Dados dos wallpapers e icons
+        // Dados dos wallpapers e icons COM CAMINHOS CORRETOS
         const galleryItems = [
             {
                 id: 1,
                 name: "Kaleb",
                 type: "icon",
-                imagePath: "wallpapers&icons/kaleb.jpeg",
+                // CORREÇÃO: URL direta sem duplicação
+                imagePath: "https://lacosprofanos.com.br/wallpapers&icons/kaleb.jpeg",
                 previewImage: "https://i.imgur.com/WVrHpaB.jpeg",
                 size: "136 KB",
                 dimensions: "1000×1000",
@@ -890,7 +892,8 @@
                 id: 2,
                 name: "O Último Anjo",
                 type: "wallpaper",
-                imagePath: "wallpapers&icons/anjo.png",
+                // CORREÇÃO: URL direta sem duplicação
+                imagePath: "https://lacosprofanos.com.br/wallpapers&icons/anjo.png",
                 previewImage: "https://i.imgur.com/IHCgQPS.png",
                 size: "829 KB",
                 dimensions: "1280×720",
@@ -900,7 +903,8 @@
                 id: 3,
                 name: "Enaya vs Hamiah",
                 type: "wallpaper",
-                imagePath: "wallpapers&icons/enamiah.png",
+                // CORREÇÃO: URL direta sem duplicação
+                imagePath: "https://lacosprofanos.com.br/wallpapers&icons/enamiah.png",
                 previewImage: "https://i.imgur.com/RA2LetQ.png",
                 size: "430 KB",
                 dimensions: "1280×720",
@@ -910,7 +914,8 @@
                 id: 4,
                 name: "Wahi",
                 type: "icon",
-                imagePath: "wallpapers&icons/wahi.png",
+                // CORREÇÃO: URL direta sem duplicação
+                imagePath: "https://lacosprofanos.com.br/wallpapers&icons/wahi.png",
                 previewImage: "https://i.imgur.com/Py44HxM.png",
                 size: "171 KB",
                 dimensions: "768×768",
@@ -920,7 +925,8 @@
                 id: 5,
                 name: "Noxum",
                 type: "icon",
-                imagePath: "wallpapers&icons/noxum.png",
+                // CORREÇÃO: URL direta sem duplicação
+                imagePath: "https://lacosprofanos.com.br/wallpapers&icons/noxum.png",
                 previewImage: "https://i.imgur.com/jI5RKKU.png",
                 size: "228 KB",
                 dimensions: "1280×1280",
@@ -935,6 +941,20 @@
                 .normalize('NFD')
                 .replace(/[\u0300-\u036f]/g, '') // Remove acentos
                 .replace(/[^a-z0-9\s]/g, ''); // Remove caracteres especiais
+        }
+
+        // Função para forçar download de uma URL
+        function forceDownload(url, filename) {
+            // Criar um link temporário
+            const link = document.createElement('a');
+            link.href = url;
+            link.download = filename;
+            link.target = '_blank';
+            
+            // Adicionar ao DOM, clicar e remover
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
         }
 
         // Função para gerar os cards da galeria
@@ -963,6 +983,8 @@
                 // Determinar ícone baseado no tipo
                 const typeIcon = item.type === 'icon' ? 'fa-user-circle' : 'fa-image';
                 const typeText = item.type === 'icon' ? 'Icon' : 'Wallpaper';
+                const fileExtension = item.imagePath.split('.').pop();
+                const downloadFilename = `${item.name}.${fileExtension}`;
                 
                 card.innerHTML = `
                     <div class="card-header">
@@ -977,7 +999,7 @@
                     <div class="card-preview">
                         <img src="${item.previewImage}" alt="${item.name}" loading="lazy">
                         <div class="card-overlay">
-                            <button class="preview-btn" onclick="openPreview(${item.id})">
+                            <button class="preview-btn" data-id="${item.id}">
                                 <i class="fas fa-search-plus"></i> Visualizar
                             </button>
                         </div>
@@ -988,13 +1010,33 @@
                                 <i class="fas fa-weight-hanging"></i> ${item.size}
                             </div>
                         </div>
-                        <a href="${item.imagePath}" download="${item.name}.${item.imagePath.split('.').pop()}" class="download-btn">
+                        <button class="download-btn" data-url="${item.imagePath}" data-filename="${downloadFilename}">
                             <i class="fas fa-download"></i> Baixar
-                        </a>
+                        </button>
                     </div>
                 `;
                 
                 galleryContainer.appendChild(card);
+            });
+            
+            // Adicionar event listeners aos botões de download recém-criados
+            document.querySelectorAll('.download-btn').forEach(btn => {
+                btn.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const url = this.getAttribute('data-url');
+                    const filename = this.getAttribute('data-filename');
+                    
+                    // Forçar download
+                    forceDownload(url, filename);
+                });
+            });
+            
+            // Adicionar event listeners aos botões de preview
+            document.querySelectorAll('.preview-btn').forEach(btn => {
+                btn.addEventListener('click', function() {
+                    const itemId = parseInt(this.getAttribute('data-id'));
+                    openPreview(itemId);
+                });
             });
         }
 
@@ -1012,20 +1054,23 @@
             modalImage.alt = item.name;
             modalImageTitle.textContent = `${item.name} - ${item.type === 'icon' ? 'Icon' : 'Wallpaper'}`;
             
-            // Configurar link de download no modal
+            // Configurar botão de download no modal
             const fileExtension = item.imagePath.split('.').pop();
-            modalDownloadBtn.href = item.imagePath;
-            modalDownloadBtn.download = `${item.name}.${fileExtension}`;
+            const downloadFilename = `${item.name}.${fileExtension}`;
+            
+            modalDownloadBtn.onclick = function() {
+                forceDownload(item.imagePath, downloadFilename);
+            };
             
             modal.classList.add('active');
-            document.body.style.overflow = 'hidden'; // Previne scroll no body
+            document.body.style.overflow = 'hidden';
         }
 
         // Função para fechar o modal
         function closePreview() {
             const modal = document.getElementById('previewModal');
             modal.classList.remove('active');
-            document.body.style.overflow = 'auto'; // Restaura scroll
+            document.body.style.overflow = 'auto';
         }
 
         // Função para filtrar e buscar itens
