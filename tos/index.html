@@ -3,10 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Termos de Serviço - Laços Profanos</title>
+    <title>Wallpapers & Icons - Laços Profanos</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
-        /* === ESTILO DA NAVEGAÇÃO (ATUALIZADO) === */
+        /* === ESTILO DA NAVEGAÇÃO === */
         .navbar {
             position: fixed;
             top: 0;
@@ -49,10 +49,88 @@
             letter-spacing: 0.5px;
         }
 
+        /* Botão de idioma */
+        .language-switcher {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-right: 20px;
+        }
+
+        .language-btn {
+            background: rgba(240, 27, 133, 0.15);
+            color: #ffffff;
+            border: 1px solid #f01b85;
+            padding: 8px 16px;
+            border-radius: 20px;
+            cursor: pointer;
+            font-weight: 600;
+            font-size: 0.9rem;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            white-space: nowrap;
+        }
+
+        .language-btn:hover {
+            background: #f01b85;
+            color: #000;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(240, 27, 133, 0.3);
+        }
+
+        .language-btn i {
+            font-size: 0.9rem;
+        }
+
+        .language-dropdown {
+            position: relative;
+            display: inline-block;
+        }
+
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            right: 0;
+            top: 100%;
+            background-color: rgba(10, 10, 10, 0.98);
+            min-width: 150px;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.5);
+            border: 1px solid #f01b85;
+            border-radius: 10px;
+            z-index: 1002;
+            margin-top: 5px;
+            overflow: hidden;
+        }
+
+        .dropdown-content a {
+            color: white;
+            padding: 12px 16px;
+            text-decoration: none;
+            display: block;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            border-bottom: 1px solid rgba(240, 27, 133, 0.1);
+        }
+
+        .dropdown-content a:hover {
+            background-color: #f01b85;
+            color: #000;
+        }
+
+        .dropdown-content a:last-child {
+            border-bottom: none;
+        }
+
         .nav-menu {
             display: flex;
             list-style: none;
             gap: 20px;
+        }
+
+        .nav-item {
+            position: relative;
         }
 
         .nav-item a {
@@ -112,7 +190,71 @@
             transform: rotate(-45deg) translate(7px, -6px);
         }
 
+        /* Classes para alternar entre idiomas */
+        .portuguese-only {
+            display: inline;
+        }
+
+        .english-only {
+            display: none;
+        }
+
+        body.english .portuguese-only {
+            display: none;
+        }
+
+        body.english .english-only {
+            display: inline;
+        }
+
+        /* Links da Wiki específicos */
+        .wiki-link-pt {
+            display: inline-flex;
+        }
+
+        .wiki-link-en {
+            display: none;
+        }
+
+        body.english .wiki-link-pt {
+            display: none;
+        }
+
+        body.english .wiki-link-en {
+            display: inline-flex;
+        }
+
         /* Responsividade da navegação */
+        @media (max-width: 1024px) {
+            .nav-menu {
+                gap: 15px;
+            }
+            
+            .nav-item a {
+                font-size: 0.9rem;
+                padding: 7px 12px;
+            }
+            
+            .logo-text {
+                font-size: 1.3rem;
+            }
+        }
+
+        @media (max-width: 900px) {
+            .nav-menu {
+                gap: 10px;
+            }
+            
+            .nav-item a {
+                font-size: 0.85rem;
+                padding: 6px 10px;
+            }
+            
+            .nav-item i {
+                font-size: 0.9rem;
+            }
+        }
+
         @media (max-width: 768px) {
             .hamburger {
                 display: flex;
@@ -158,6 +300,53 @@
                 color: #000;
                 padding-left: 35px;
             }
+            
+            .logo-text {
+                font-size: 1.2rem;
+            }
+            
+            .language-switcher {
+                margin-right: 15px;
+            }
+            
+            .language-btn {
+                padding: 6px 12px;
+                font-size: 0.85rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .navbar {
+                padding: 12px 15px;
+            }
+            
+            .logo-text {
+                font-size: 1.1rem;
+            }
+            
+            .nav-menu {
+                top: 60px;
+            }
+            
+            .language-switcher {
+                margin-right: 10px;
+            }
+            
+            .language-btn {
+                padding: 5px 10px;
+                font-size: 0.8rem;
+            }
+        }
+
+        /* Ajuste do conteúdo principal para não ficar atrás da navbar fixa */
+        body {
+            padding-top: 70px; /* Altura da navbar */
+        }
+        
+        @media (max-width: 480px) {
+            body {
+                padding-top: 60px;
+            }
         }
 
         /* === ESTILO GERAL === */
@@ -173,7 +362,7 @@
             color: #ffffff;
             line-height: 1.6;
             min-height: 100vh;
-            padding-top: 70px;
+            overflow-x: hidden;
         }
 
         ::-webkit-scrollbar {
@@ -200,16 +389,16 @@
             padding: 30px 0 60px 0;
         }
 
-        /* === ESTILO DO CABEÇALHO DA PÁGINA TOS === */
-        .tos-header {
+        /* === CABEÇALHO DA PÁGINA === */
+        .header {
             text-align: center;
-            margin-bottom: 50px;
+            margin-bottom: 40px;
             padding-bottom: 30px;
             border-bottom: 2px solid #f01b85;
             position: relative;
         }
 
-        .tos-title {
+        .page-title {
             font-size: clamp(2rem, 5vw, 2.8rem);
             margin-bottom: 20px;
             font-weight: 800;
@@ -221,7 +410,7 @@
             padding-bottom: 15px;
         }
 
-        .tos-title::after {
+        .page-title::after {
             content: '';
             position: absolute;
             bottom: 0;
@@ -233,24 +422,11 @@
             border-radius: 2px;
         }
 
-        .last-update {
-            background: rgba(240, 27, 133, 0.15);
+        .subtitle {
+            font-size: 1.2rem;
             color: #cccccc;
-            padding: 12px 25px;
-            border-radius: 25px;
-            display: inline-block;
-            margin-top: 15px;
-            border: 1px solid rgba(240, 27, 133, 0.3);
-            font-size: 0.95rem;
-        }
-
-        .warning-box {
-            background: rgba(240, 27, 133, 0.1);
-            border-left: 4px solid #f01b85;
-            padding: 20px;
-            margin: 30px 0;
-            border-radius: 8px;
-            font-size: 1rem;
+            max-width: 800px;
+            margin: 0 auto;
             line-height: 1.7;
         }
 
@@ -259,18 +435,18 @@
             font-weight: 700;
         }
 
-        /* === ESTILO DO ÍNDICE (TOC) === */
-        .toc-container {
+        /* === BARRA DE FILTROS E PESQUISA === */
+        .filters-section {
             background: rgba(255, 255, 255, 0.05);
             border-radius: 15px;
-            padding: 30px;
+            padding: 25px;
             margin: 40px 0;
             border: 1px solid rgba(255, 255, 255, 0.1);
             position: relative;
             overflow: hidden;
         }
 
-        .toc-container::before {
+        .filters-section::before {
             content: '';
             position: absolute;
             top: 0;
@@ -280,9 +456,23 @@
             background: #f01b85;
         }
 
-        .toc-title {
-            font-size: 1.5rem;
-            margin-bottom: 25px;
+        .filters-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        @media (max-width: 768px) {
+            .filters-container {
+                flex-direction: column;
+                align-items: stretch;
+            }
+        }
+
+        .filters-title {
+            font-size: 1.4rem;
             font-weight: 700;
             color: #ffffff;
             display: flex;
@@ -290,184 +480,371 @@
             gap: 10px;
         }
 
-        .toc-title i {
+        .filters-title i {
             color: #f01b85;
         }
 
-        .toc-list {
-            list-style: none;
-            padding-left: 0;
-        }
-
-        .toc-item {
-            margin-bottom: 15px;
-            padding: 12px 15px;
-            border-radius: 10px;
-            transition: all 0.3s ease;
-            border: 1px solid transparent;
-        }
-
-        .toc-item:hover {
-            background: rgba(240, 27, 133, 0.1);
-            border-color: rgba(240, 27, 133, 0.3);
-            transform: translateX(5px);
-        }
-
-        .toc-link {
-            color: #ffffff;
-            text-decoration: none;
-            font-weight: 600;
-            font-size: 1.1rem;
+        .filter-buttons {
             display: flex;
-            align-items: center;
             gap: 10px;
-            transition: color 0.3s ease;
+            flex-wrap: wrap;
         }
 
-        .toc-link:hover {
-            color: #f01b85;
-        }
-
-        .toc-link i {
-            font-size: 0.9rem;
-            color: #f01b85;
-        }
-
-        .toc-subitem {
-            margin-left: 30px;
-            margin-top: 10px;
-        }
-
-        .toc-sublink {
-            color: #cccccc;
-            text-decoration: none;
-            font-size: 0.95rem;
+        .filter-btn {
+            background: rgba(240, 27, 133, 0.15);
+            color: #ffffff;
+            border: 1px solid #f01b85;
+            padding: 10px 20px;
+            border-radius: 25px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
             display: flex;
             align-items: center;
             gap: 8px;
-            padding: 5px 0;
+        }
+
+        .filter-btn.active {
+            background: #f01b85;
+            color: #000;
+        }
+
+        .filter-btn:hover:not(.active) {
+            background: rgba(240, 27, 133, 0.3);
+            transform: translateY(-2px);
+        }
+
+        .search-container {
+            position: relative;
+            flex: 1;
+            max-width: 400px;
+        }
+
+        .search-input {
+            width: 100%;
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            color: #ffffff;
+            padding: 12px 20px 12px 45px;
+            border-radius: 25px;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+        }
+
+        .search-input:focus {
+            outline: none;
+            border-color: #f01b85;
+            box-shadow: 0 0 0 2px rgba(240, 27, 133, 0.2);
+        }
+
+        .search-icon {
+            position: absolute;
+            left: 15px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #cccccc;
+        }
+
+        .results-info {
+            margin-top: 15px;
+            color: #cccccc;
+            font-size: 0.95rem;
+            text-align: center;
+        }
+
+        /* === GALLERY GRID === */
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+
+        @media (max-width: 768px) {
+            .gallery-grid {
+                grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+                gap: 20px;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .gallery-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .image-card {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 15px;
+            overflow: hidden;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .image-card:hover {
+            transform: translateY(-5px);
+            border-color: #f01b85;
+            box-shadow: 0 15px 30px rgba(240, 27, 133, 0.2);
+        }
+
+        .image-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: #f01b85;
+            z-index: 1;
+        }
+
+        .card-header {
+            padding: 20px 20px 15px;
+            position: relative;
+        }
+
+        .card-title {
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: #ffffff;
+            margin-bottom: 8px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .card-title i {
+            color: #f01b85;
+        }
+
+        .card-type {
+            display: inline-block;
+            background: rgba(240, 27, 133, 0.2);
+            color: #f01b85;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            margin-right: 10px;
+        }
+
+        .card-dimensions {
+            color: #cccccc;
+            font-size: 0.85rem;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            margin-top: 5px;
+        }
+
+        .card-preview {
+            width: 100%;
+            height: 250px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .card-preview img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .image-card:hover .card-preview img {
+            transform: scale(1.05);
+        }
+
+        .card-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.7);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .image-card:hover .card-overlay {
+            opacity: 1;
+        }
+
+        .preview-btn {
+            background: #f01b85;
+            color: #000;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 25px;
+            font-weight: 600;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            transition: all 0.3s ease;
+        }
+
+        .preview-btn:hover {
+            background: #ff4da6;
+            transform: translateY(-2px);
+        }
+
+        .card-footer {
+            padding: 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .file-info {
+            color: #cccccc;
+            font-size: 0.9rem;
+        }
+
+        .file-size {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .download-btn {
+            background: rgba(240, 27, 133, 0.15);
+            color: #ffffff;
+            border: 1px solid #f01b85;
+            padding: 8px 20px;
+            border-radius: 25px;
+            text-decoration: none;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .download-btn:hover {
+            background: #f01b85;
+            color: #000;
+            transform: translateY(-2px);
+        }
+
+        /* === MODAL DE PREVIEW === */
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.9);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 2000;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+        }
+
+        .modal-overlay.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .modal-content {
+            background: #111111;
+            border-radius: 15px;
+            max-width: 90%;
+            max-height: 90%;
+            overflow: hidden;
+            border: 2px solid #f01b85;
+            position: relative;
+            transform: scale(0.9);
+            transition: transform 0.3s ease;
+        }
+
+        .modal-overlay.active .modal-content {
+            transform: scale(1);
+        }
+
+        .modal-header {
+            padding: 20px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .modal-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #ffffff;
+        }
+
+        .close-modal {
+            background: none;
+            border: none;
+            color: #ffffff;
+            font-size: 1.5rem;
+            cursor: pointer;
             transition: color 0.3s ease;
         }
 
-        .toc-sublink:hover {
-            color: #ff4da6;
+        .close-modal:hover {
+            color: #f01b85;
         }
 
-        /* === ESTILO DO CONTEÚDO DOS TERMOS === */
-        .tos-content {
+        .modal-body {
+            padding: 20px;
+            text-align: center;
+            max-height: 70vh;
+            overflow-y: auto;
+        }
+
+        .modal-image {
+            max-width: 100%;
+            max-height: 60vh;
+            border-radius: 10px;
+        }
+
+        .modal-footer {
+            padding: 20px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+        }
+
+        /* === MENSAGEM SEM RESULTADOS === */
+        .no-results {
+            text-align: center;
+            padding: 60px 20px;
             background: rgba(255, 255, 255, 0.02);
             border-radius: 15px;
-            padding: 40px;
             margin-top: 40px;
-            border: 1px solid rgba(255, 255, 255, 0.05);
+            border: 1px dashed rgba(255, 255, 255, 0.1);
         }
 
-        .section {
-            margin-bottom: 50px;
-            padding-bottom: 40px;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-        }
-
-        .section:last-of-type {
-            border-bottom: none;
-            margin-bottom: 0;
-            padding-bottom: 0;
-        }
-
-        .section-title {
-            font-size: 1.8rem;
-            margin-bottom: 25px;
-            font-weight: 800;
-            color: #ffffff;
-            padding-bottom: 10px;
-            border-bottom: 2px solid #f01b85;
-            display: inline-block;
-        }
-
-        .section-subtitle {
-            font-size: 1.3rem;
-            margin: 30px 0 20px 0;
-            font-weight: 700;
+        .no-results i {
+            font-size: 3rem;
             color: #f01b85;
-        }
-
-        .section-text {
-            font-size: 1.05rem;
-            line-height: 1.8;
             margin-bottom: 20px;
-            color: #cccccc;
         }
 
-        .section-list {
-            margin: 20px 0 20px 30px;
-            list-style-position: outside;
-        }
-
-        .section-list li {
-            margin-bottom: 12px;
-            color: #cccccc;
-            line-height: 1.7;
-            padding-left: 10px;
-        }
-
-        .prohibited-list {
-            background: rgba(240, 27, 133, 0.08);
-            border-left: 3px solid #f01b85;
-            padding: 20px 20px 20px 40px;
-            border-radius: 0 8px 8px 0;
-            margin: 25px 0;
-        }
-
-        .prohibited-list li {
+        .no-results h3 {
+            font-size: 1.5rem;
             margin-bottom: 10px;
-            position: relative;
+            color: #ffffff;
         }
 
-        .prohibited-list li::before {
-            content: '✗';
-            color: #f01b85;
-            font-weight: bold;
-            position: absolute;
-            left: -25px;
-        }
-
-        .allowed-list {
-            background: rgba(76, 175, 80, 0.08);
-            border-left: 3px solid #4CAF50;
-            padding: 20px 20px 20px 40px;
-            border-radius: 0 8px 8px 0;
-            margin: 25px 0;
-        }
-
-        .allowed-list li {
-            margin-bottom: 10px;
-            position: relative;
-        }
-
-        .allowed-list li::before {
-            content: '✓';
-            color: #4CAF50;
-            font-weight: bold;
-            position: absolute;
-            left: -25px;
-        }
-
-        .back-to-top {
-            display: inline-block;
-            margin-top: 30px;
-            color: #f01b85;
-            text-decoration: none;
-            font-weight: 600;
-            font-size: 0.95rem;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            transition: all 0.3s ease;
-        }
-
-        .back-to-top:hover {
-            transform: translateY(-3px);
-            text-shadow: 0 0 10px rgba(240, 27, 133, 0.5);
+        .no-results p {
+            color: #cccccc;
+            max-width: 500px;
+            margin: 0 auto;
         }
 
         /* === BOTÃO FLUTUANTE DE VOLTAR AO TOPO === */
@@ -504,12 +881,12 @@
 
         /* === RESPONSIVIDADE === */
         @media (max-width: 992px) {
-            .tos-content {
-                padding: 30px;
+            .filters-section {
+                padding: 20px;
             }
             
-            .toc-container {
-                padding: 25px;
+            .gallery-grid {
+                gap: 25px;
             }
         }
 
@@ -518,29 +895,18 @@
                 padding: 20px 0 50px 0;
             }
             
-            .tos-header {
-                margin-bottom: 40px;
+            .header {
+                margin-bottom: 30px;
                 padding-bottom: 25px;
             }
             
-            .tos-content {
-                padding: 25px 20px;
+            .image-card {
+                margin-bottom: 20px;
             }
             
-            .section-title {
-                font-size: 1.6rem;
-            }
-            
-            .section-subtitle {
-                font-size: 1.2rem;
-            }
-            
-            .toc-container {
-                padding: 20px;
-            }
-            
-            .toc-link {
-                font-size: 1rem;
+            .modal-content {
+                max-width: 95%;
+                max-height: 95%;
             }
             
             .floating-top-btn {
@@ -557,64 +923,78 @@
                 padding: 0 15px;
             }
             
-            .tos-title {
+            .page-title {
                 font-size: 1.8rem;
             }
             
-            .section-title {
-                font-size: 1.4rem;
+            .filter-buttons {
+                justify-content: center;
             }
             
-            .section-text {
-                font-size: 1rem;
-            }
-            
-            .toc-item {
-                padding: 10px 12px;
-            }
-            
-            .toc-subitem {
-                margin-left: 20px;
-            }
-            
-            .prohibited-list, .allowed-list {
-                padding: 15px 15px 15px 30px;
-            }
-            
-            .last-update {
+            .filter-btn {
+                padding: 8px 15px;
                 font-size: 0.9rem;
-                padding: 10px 20px;
+            }
+            
+            .search-input {
+                padding: 10px 15px 10px 40px;
             }
         }
     </style>
 </head>
 <body>
-    <!-- ===== NAVEGAÇÃO ATUALIZADA ===== -->
+    <!-- ===== NAVEGAÇÃO ===== -->
     <nav class="navbar">
         <div class="nav-container">
             <a href="#" class="logo">
-                <span class="logo-text">Laços Profanos</span>
+                <span class="logo-text" id="site-title">Laços Profanos</span>
             </a>
             
-            <ul class="nav-menu">
+            <!-- Botão de seleção de idioma -->
+            <div class="language-switcher">
+                <div class="language-dropdown" id="languageDropdown">
+                    <button class="language-btn" id="languageBtn">
+                        <i class="fas fa-globe"></i>
+                        <span id="current-language">Português</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </button>
+                    <div class="dropdown-content" id="dropdownContent">
+                        <a href="#" class="language-option" data-lang="pt">Português</a>
+                        <a href="#" class="language-option" data-lang="en">English</a>
+                    </div>
+                </div>
+            </div>
+            
+            <ul class="nav-menu" id="navMenu">
                 <li class="nav-item">
                     <a href="https://lacosprofanos.com.br" target="_blank">
-                        <i class="fas fa-home"></i> Site Principal
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a href="https://lacosprofanos.com.br/wallpapers&icons" target="_blank">
-                        <i class="fas fa-image"></i> Wallpapers & Icons
+                        <i class="fas fa-home"></i> 
+                        <span class="portuguese-only">Site Principal</span>
+                        <span class="english-only">Main Site</span>
                     </a>
                 </li>
                 <li class="nav-item">
                     <a href="https://lacosprofanos.blogspot.com/" target="_blank">
-                        <i class="fas fa-blog"></i> Blog
+                        <i class="fas fa-blog"></i> 
+                        <span class="portuguese-only">Blog</span>
+                        <span class="english-only">Blog</span>
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a href="https://lacosprofanos.fandom.com/pt-br/" target="_blank">
-                        <i class="fas fa-book"></i> Wiki
+                    <a href="https://lacosprofanos.fandom.com/pt-br/" target="_blank" class="wiki-link-pt">
+                        <i class="fas fa-book"></i> 
+                        <span class="portuguese-only">Wiki</span>
+                    </a>
+                    <a href="https://profanebonds.fandom.com/wiki/" target="_blank" class="wiki-link-en">
+                        <i class="fas fa-book"></i> 
+                        <span class="english-only">Wiki</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="https://lacosprofanos.com.br/tos/" target="_blank">
+                        <i class="fas fa-file-contract"></i> 
+                        <span class="portuguese-only">Termos de Serviço</span>
+                        <span class="english-only">Terms of Service</span>
                     </a>
                 </li>
             </ul>
@@ -632,201 +1012,526 @@
         <i class="fas fa-arrow-up"></i>
     </a>
 
+    <!-- Modal de Preview -->
+    <div class="modal-overlay" id="previewModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 class="modal-title" id="modalImageTitle">Visualização</h3>
+                <button class="close-modal" id="closeModal">&times;</button>
+            </div>
+            <div class="modal-body">
+                <img id="modalImage" src="" alt="" class="modal-image">
+            </div>
+            <div class="modal-footer">
+                <button class="download-btn" id="modalDownloadBtn">
+                    <i class="fas fa-download"></i> 
+                    <span class="portuguese-only">Baixar Imagem</span>
+                    <span class="english-only">Download Image</span>
+                </button>
+                <button class="preview-btn" id="closeModalBtn">
+                    <i class="fas fa-times"></i> 
+                    <span class="portuguese-only">Fechar</span>
+                    <span class="english-only">Close</span>
+                </button>
+            </div>
+        </div>
+    </div>
+
     <main class="container">
         <!-- Cabeçalho da página -->
-        <header class="tos-header" id="top">
-            <h1 class="tos-title">Termos de Serviço - Laços Profanos</h1>
-            
-            <div class="warning-box">
-                <p><span class="highlight">Aviso:</span> Em caso de divergência entre as versões dos Termos de Serviço, a versão em português prevalecerá.</p>
-            </div>
-            
-            <div class="last-update">
-                <i class="fas fa-calendar-alt"></i> Última atualização: 26/12/2025
-            </div>
-            
-            <p class="section-text" style="text-align: center; margin-top: 20px;">
-                Os Termos de Serviço podem ser atualizados a qualquer momento. É de sua responsabilidade manter-se atualizado(a). Sempre que possível, as atualizações também serão comunicadas por nossos canais oficiais.
+        <header class="header" id="top">
+            <h1 class="page-title" id="pageTitle">Wallpapers & Icons</h1>
+            <p class="subtitle" id="pageSubtitle">
+                <span class="portuguese-only">Baixe wallpapers e icons exclusivos do universo</span>
+                <span class="english-only">Download exclusive wallpapers and icons from the</span> 
+                <span class="highlight" id="site-name">Laços Profanos</span>. 
+                <span class="portuguese-only">Todos os arquivos estão disponíveis para download gratuito.</span>
+                <span class="english-only">All files are available for free download.</span>
             </p>
         </header>
 
-        <!-- Índice (Table of Contents) -->
-        <div class="toc-container">
-            <h2 class="toc-title"><i class="fas fa-list"></i> Índice</h2>
-            <ul class="toc-list">
-                <li class="toc-item">
-                    <a href="#section1" class="toc-link">
-                        <i class="fas fa-chevron-right"></i> 1. Sobre a marca, uso e propriedade intelectual
-                    </a>
-                </li>
-                <li class="toc-item">
-                    <a href="#section2" class="toc-link">
-                        <i class="fas fa-chevron-right"></i> 2. Conteúdo criado por fãs
-                    </a>
-                    <ul class="toc-subitem">
-                        <li>
-                            <a href="#section2-1" class="toc-sublink">
-                                <i class="fas fa-angle-right"></i> Conteúdo de fã não monetizado
-                            </a>
-                        </li>
-                        <li>
-                            <a href="#section2-2" class="toc-sublink">
-                                <i class="fas fa-angle-right"></i> Conteúdo de fã monetizado
-                            </a>
-                        </li>
-                        <li>
-                            <a href="#section2-3" class="toc-sublink">
-                                <i class="fas fa-angle-right"></i> Limites gerais
-                            </a>
-                        </li>
-                    </ul>
-                </li>
-            </ul>
+        <!-- Filtros e Pesquisa -->
+        <section class="filters-section">
+            <h2 class="filters-title">
+                <i class="fas fa-filter"></i> 
+                <span class="portuguese-only">Filtros</span>
+                <span class="english-only">Filters</span>
+            </h2>
+            
+            <div class="filters-container">
+                <div class="filter-buttons">
+                    <button class="filter-btn active" data-filter="all">
+                        <i class="fas fa-layer-group"></i> 
+                        <span class="portuguese-only">Todos</span>
+                        <span class="english-only">All</span>
+                    </button>
+                    <button class="filter-btn" data-filter="icon">
+                        <i class="fas fa-user-circle"></i> 
+                        <span class="portuguese-only">Icons</span>
+                        <span class="english-only">Icons</span>
+                    </button>
+                    <button class="filter-btn" data-filter="wallpaper">
+                        <i class="fas fa-image"></i> 
+                        <span class="portuguese-only">Wallpapers</span>
+                        <span class="english-only">Wallpapers</span>
+                    </button>
+                </div>
+                
+                <div class="search-container">
+                    <i class="fas fa-search search-icon"></i>
+                    <input type="text" id="searchInput" class="search-input" placeholder="Buscar por nome...">
+                </div>
+            </div>
+            
+            <div class="results-info" id="resultsInfo">
+                <span class="portuguese-only">Mostrando</span>
+                <span class="english-only">Showing</span>
+                <span id="resultsCount">5</span>
+                <span class="portuguese-only">de 5 itens</span>
+                <span class="english-only">of 5 items</span>
+            </div>
+        </section>
+
+        <!-- Galeria -->
+        <div class="gallery-grid" id="galleryContainer">
+            <!-- Os cards serão gerados via JavaScript -->
         </div>
 
-        <!-- Conteúdo dos Termos de Serviço -->
-        <div class="tos-content">
-            <!-- Seção 1 -->
-            <section class="section" id="section1">
-                <h2 class="section-title">1. Sobre a marca, uso e propriedade intelectual</h2>
-                
-                <p class="section-text">
-                    Laços Profanos é uma marca indie de entretenimento criada e gerenciada por Wahi, funcionando como marca-guarda-chuva para projetos de entretenimento, incluindo, mas não se limitando a, histórias, narrativas, jogos digitais, animações, sites e outros conteúdos criativos.
-                </p>
-                
-                <p class="section-text">
-                    Todo o conteúdo associado à marca Laços Profanos — incluindo nomes, logotipos, textos, imagens, histórias, personagens, universos, jogos, códigos e demais materiais — é protegido por direitos autorais e pertence exclusivamente a Wahi, salvo quando indicado o contrário.
-                </p>
-                
-                <p class="section-text">
-                    É concedida ao público uma licença limitada, não exclusiva, intransferível e revogável para acessar, consumir e compartilhar os conteúdos de forma não comercial, desde que:
-                </p>
-                
-                <ul class="allowed-list">
-                    <li>seja dado crédito adequado quando aplicável;</li>
-                    <li>o conteúdo não seja alterado de forma enganosa ou prejudicial;</li>
-                    <li>não haja exploração comercial sem autorização prévia.</li>
-                </ul>
-                
-                <h3 class="section-subtitle">É proibido:</h3>
-                
-                <ul class="prohibited-list">
-                    <li>vender, redistribuir ou explorar comercialmente qualquer conteúdo sem autorização;</li>
-                    <li>registrar, reivindicar ou se apropriar de nomes, marcas, personagens ou universos;</li>
-                    <li>apresentar conteúdos ou criações como oficiais quando não forem;</li>
-                    <li>utilizar qualquer material para fins ilegais, ofensivos, discriminatórios ou que violem direitos de terceiros.</li>
-                </ul>
-                
-                <p class="section-text">
-                    Colaborações, contribuições ou participações em projetos associados à marca não concedem direitos totais, coautoria automática ou propriedade intelectual. Qualquer permissão concedida é limitada, não exclusiva, revogável e restrita ao escopo previamente acordado, permanecendo a titularidade da marca e dos projetos com Wahi.
-                </p>
-                
-                <p class="section-text">
-                    O descumprimento destas regras poderá resultar na revogação imediata da licença de uso, sem aviso prévio, ou em casos graves será levado a justiça.
-                </p>
-                
-                <a href="#top" class="back-to-top">
-                    <i class="fas fa-arrow-up"></i> Voltar ao topo
-                </a>
-            </section>
-            
-            <!-- Seção 2 -->
-            <section class="section" id="section2">
-                <h2 class="section-title">2. Conteúdo criado por fãs</h2>
-                
-                <p class="section-text">
-                    Laços Profanos acredita que comunidades criativas fortalecem universos. Criações de fãs são bem-vindas e incentivadas, desde que respeitem estes termos e não prejudiquem a marca, os projetos ou outros membros da comunidade.
-                </p>
-                
-                <!-- Subseção 2.1 -->
-                <div id="section2-1">
-                    <h3 class="section-subtitle">Conteúdo de fã não monetizado</h3>
-                    
-                    <p class="section-text">
-                        Fãs podem criar quase qualquer tipo de conteúdo inspirado, desde que:
-                    </p>
-                    
-                    <ul class="allowed-list">
-                        <li>não seja apresentado como oficial;</li>
-                        <li>não viole leis ou estes Termos;</li>
-                        <li>seja claramente identificado como conteúdo de fã;</li>
-                        <li>não associe a marca, seus projetos ou universos a conteúdos ilegais, ofensivos, discriminatórios, de ódio ou prejudiciais.</li>
-                    </ul>
-                    
-                    <p class="section-text">
-                        Para conteúdos não monetizados, a regra é simples: divirta-se e crie com responsabilidade.
-                    </p>
-                </div>
-                
-                <!-- Subseção 2.2 -->
-                <div id="section2-2">
-                    <h3 class="section-subtitle">Conteúdo de fã monetizado</h3>
-                    
-                    <p class="section-text">
-                        A monetização só é permitida quando o conteúdo apresentar:
-                    </p>
-                    
-                    <ul class="allowed-list">
-                        <li>originalidade real; e</li>
-                        <li>mudanças significativas em relação ao material original.</li>
-                    </ul>
-                    
-                    <p class="section-text">
-                        Isso inclui, mas não se limita a:
-                    </p>
-                    
-                    <ul class="section-list">
-                        <li>novas histórias ou narrativas próprias;</li>
-                        <li>universos alternativos, multiversos ou releituras profundas;</li>
-                        <li>personagens originais;</li>
-                        <li>mudanças relevantes de contexto, perspectiva ou enredo.</li>
-                    </ul>
-                    
-                    <p class="section-text">
-                        Conteúdos que apenas reproduzam ou adaptem superficialmente o material original não estão autorizados para monetização.
-                    </p>
-                </div>
-                
-                <!-- Subseção 2.3 -->
-                <div id="section2-3">
-                    <h3 class="section-subtitle">Limites gerais</h3>
-                    
-                    <p class="section-text">
-                        Independentemente de monetização, não é permitido:
-                    </p>
-                    
-                    <ul class="prohibited-list">
-                        <li>passar-se por conteúdo oficial;</li>
-                        <li>causar confusão sobre autoria, aprovação ou propriedade;</li>
-                        <li>utilizar a marca para promover práticas ilegais, ofensivas ou prejudiciais;</li>
-                        <li>explorar o material original comercialmente sem contribuição criativa relevante.</li>
-                    </ul>
-                    
-                    <p class="section-text">
-                        Caso os limites estabelecidos nestes Termos sejam ultrapassados, Laços Profanos reserva-se o direito de tomar as medidas cabíveis, incluindo solicitações de remoção, suspensão de permissões e, quando necessário, medidas judiciais.
-                    </p>
-                </div>
-                
-                <a href="#top" class="back-to-top">
-                    <i class="fas fa-arrow-up"></i> Voltar ao topo
-                </a>
-            </section>
+        <!-- Mensagem quando não houver resultados -->
+        <div class="no-results" id="noResultsMessage" style="display: none;">
+            <i class="fas fa-search"></i>
+            <h3>
+                <span class="portuguese-only">Nenhum item encontrado</span>
+                <span class="english-only">No items found</span>
+            </h3>
+            <p>
+                <span class="portuguese-only">Tente usar outros termos de busca ou selecione um filtro diferente.</span>
+                <span class="english-only">Try using other search terms or select a different filter.</span>
+            </p>
         </div>
     </main>
 
     <script>
-        // Função do menu hambúrguer
-        document.addEventListener('DOMContentLoaded', function() {
-            const hamburger = document.getElementById('hamburger');
-            const navMenu = document.querySelector('.nav-menu');
+        // Traduções embutidas (fallback)
+        const fallbackTranslations = {
+            'pt': {
+                'title': 'Wallpapers & Icons - Laços Profanos',
+                'current-language': 'Português',
+                'siteTitle': 'Laços Profanos',
+                'pageTitle': 'Wallpapers & Icons',
+                'siteName': 'Laços Profanos',
+                'searchPlaceholder': 'Buscar por nome...',
+                'cardView': 'Visualizar',
+                'cardDownload': 'Baixar',
+                'iconText': 'Icon',
+                'wallpaperText': 'Wallpaper',
+                'modalTitle': 'Visualização',
+                'modalDownload': 'Baixar Imagem',
+                'modalClose': 'Fechar'
+            },
+            'en': {
+                'title': 'Wallpapers & Icons - Profane Bonds',
+                'current-language': 'English',
+                'siteTitle': 'Profane Bonds',
+                'pageTitle': 'Wallpapers & Icons',
+                'siteName': 'Profane Bonds',
+                'searchPlaceholder': 'Search by name...',
+                'cardView': 'Preview',
+                'cardDownload': 'Download',
+                'iconText': 'Icon',
+                'wallpaperText': 'Wallpaper',
+                'modalTitle': 'Preview',
+                'modalDownload': 'Download Image',
+                'modalClose': 'Close'
+            }
+        };
+
+        // Dados dos wallpapers e icons COM DESCRIÇÕES TRADUZIDAS
+        const galleryItems = [
+            {
+                id: 1,
+                name: "Kaleb",
+                type: "icon",
+                imagePath: "https://lacosprofanos.com.br/wallpapers&icons/kaleb.jpeg",
+                previewImage: "https://i.imgur.com/WVrHpaB.jpeg",
+                size: "136 KB",
+                dimensions: "1000×1000",
+                description: {
+                    pt: "Icon do personagem Kaleb",
+                    en: "Icon of character Kaleb"
+                }
+            },
+            {
+                id: 2,
+                name: "O Último Anjo",
+                type: "wallpaper",
+                imagePath: "https://lacosprofanos.com.br/wallpapers&icons/anjo.png",
+                previewImage: "https://i.imgur.com/IHCgQPS.png",
+                size: "829 KB",
+                dimensions: "1280×720",
+                description: {
+                    pt: "Wallpaper do Último Anjo",
+                    en: "Wallpaper of The Last Angel"
+                }
+            },
+            {
+                id: 3,
+                name: "Enaya vs Hamiah",
+                type: "wallpaper",
+                imagePath: "https://lacosprofanos.com.br/wallpapers&icons/enamiah.png",
+                previewImage: "https://i.imgur.com/RA2LetQ.png",
+                size: "430 KB",
+                dimensions: "1280×720",
+                description: {
+                    pt: "Wallpaper da batalha Enaya vs Hamiah",
+                    en: "Wallpaper of the battle Enaya vs Hamiah"
+                }
+            },
+            {
+                id: 4,
+                name: "Wahi",
+                type: "icon",
+                imagePath: "https://lacosprofanos.com.br/wallpapers&icons/wahi.png",
+                previewImage: "https://i.imgur.com/Py44HxM.png",
+                size: "171 KB",
+                dimensions: "768×768",
+                description: {
+                    pt: "Icon da criadora Wahi",
+                    en: "Icon of creator Wahi"
+                }
+            },
+            {
+                id: 5,
+                name: "Noxum",
+                type: "icon",
+                imagePath: "https://lacosprofanos.com.br/wallpapers&icons/noxum.png",
+                previewImage: "https://i.imgur.com/jI5RKKU.png",
+                size: "228 KB",
+                dimensions: "1280×1280",
+                description: {
+                    pt: "Icon do personagem Noxum",
+                    en: "Icon of character Noxum"
+                }
+            }
+        ];
+
+        // Variável global para o idioma atual
+        let currentLanguage = 'pt';
+
+        // Função para carregar traduções do arquivo JSON externo
+        async function loadTranslations(lang) {
+            try {
+                const response = await fetch('main.json');
+                if (!response.ok) {
+                    throw new Error('Arquivo JSON não encontrado');
+                }
+                const data = await response.json();
+                
+                if (!data[lang]) {
+                    console.warn(`Tradução para ${lang} não encontrada no JSON, usando fallback`);
+                    return fallbackTranslations[lang] || fallbackTranslations['pt'];
+                }
+                
+                return data[lang];
+            } catch (error) {
+                console.log('Usando traduções embutidas:', error.message);
+                return fallbackTranslations[lang] || fallbackTranslations['pt'];
+            }
+        }
+
+        // Função para aplicar traduções
+        async function applyTranslations(lang) {
+            currentLanguage = lang;
+            const trans = await loadTranslations(lang);
             
-            // Alternar menu hambúrguer
+            // Atualizar a classe do body para controle CSS
+            document.body.classList.toggle('english', lang === 'en');
+            
+            // Atualizar título da página
+            document.title = trans['title'];
+            
+            // Atualizar nome do site
+            const siteTitle = document.getElementById('site-title');
+            if (siteTitle) siteTitle.textContent = trans['siteTitle'];
+            
+            const siteName = document.getElementById('site-name');
+            if (siteName) siteName.textContent = trans['siteName'];
+            
+            // Atualizar texto do botão de idioma
+            const currentLangElement = document.getElementById('current-language');
+            if (currentLangElement) {
+                currentLangElement.textContent = trans['current-language'];
+            }
+            
+            // Atualizar placeholder da busca
+            const searchInput = document.getElementById('searchInput');
+            if (searchInput) {
+                searchInput.placeholder = trans['searchPlaceholder'];
+            }
+            
+            // Atualizar título da página
+            const pageTitle = document.getElementById('pageTitle');
+            if (pageTitle) pageTitle.textContent = trans['pageTitle'];
+            
+            // Salvar preferência de idioma
+            localStorage.setItem('preferred-language', lang);
+            
+            // Atualizar parâmetro na URL
+            updateUrlLanguageParam(lang);
+            
+            // Renderizar galeria novamente para atualizar textos dos cards
+            renderGallery(getFilteredItems());
+        }
+
+        // Função para atualizar parâmetro de idioma na URL
+        function updateUrlLanguageParam(lang) {
+            const url = new URL(window.location.href);
+            url.searchParams.set('lang', lang);
+            window.history.replaceState({}, '', url.toString());
+        }
+
+        // Função para obter o idioma da URL
+        function getLanguageFromUrl() {
+            const urlParams = new URLSearchParams(window.location.search);
+            return urlParams.get('lang');
+        }
+
+        // Função para mudar o idioma
+        async function changeLanguage(lang) {
+            await applyTranslations(lang);
+            
+            // Fechar o dropdown
+            const dropdownContent = document.getElementById('dropdownContent');
+            if (dropdownContent) {
+                dropdownContent.style.display = 'none';
+            }
+        }
+
+        // Função para inicializar o sistema de idioma
+        async function initializeLanguageSystem() {
+            const urlLang = getLanguageFromUrl();
+            const savedLang = localStorage.getItem('preferred-language');
+            const browserLang = navigator.language.startsWith('en') ? 'en' : 'pt';
+            
+            const lang = urlLang || savedLang || browserLang;
+            
+            await applyTranslations(lang);
+            
+            setupLanguageButtons();
+        }
+
+        // Configurar eventos para os botões de idioma
+        function setupLanguageButtons() {
+            const languageBtn = document.getElementById('languageBtn');
+            const dropdownContent = document.getElementById('dropdownContent');
+            
+            if (languageBtn && dropdownContent) {
+                // Abrir/fechar dropdown ao clicar no botão
+                languageBtn.addEventListener('click', function(e) {
+                    e.stopPropagation();
+                    dropdownContent.style.display = 
+                        dropdownContent.style.display === 'block' ? 'none' : 'block';
+                });
+                
+                // Fechar dropdown ao clicar fora
+                document.addEventListener('click', function(e) {
+                    if (!e.target.closest('.language-dropdown')) {
+                        dropdownContent.style.display = 'none';
+                    }
+                });
+            }
+            
+            // Configurar opções de idioma
+            document.querySelectorAll('.language-option').forEach(option => {
+                option.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const lang = this.getAttribute('data-lang');
+                    changeLanguage(lang);
+                });
+            });
+        }
+
+        // Função para normalizar texto (remover acentos e caracteres especiais)
+        function normalizeText(text) {
+            return text
+                .toLowerCase()
+                .normalize('NFD')
+                .replace(/[\u0300-\u036f]/g, '')
+                .replace(/[^a-z0-9\s]/g, '');
+        }
+
+        // Função para forçar download de uma URL
+        function forceDownload(url, filename) {
+            const link = document.createElement('a');
+            link.href = url;
+            link.download = filename;
+            link.target = '_blank';
+            
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+        }
+
+        // Função para obter os itens filtrados
+        function getFilteredItems() {
+            const activeFilter = document.querySelector('.filter-btn.active')?.dataset.filter || 'all';
+            const searchInput = document.getElementById('searchInput');
+            const searchTerm = searchInput ? normalizeText(searchInput.value) : '';
+            
+            let filteredItems = galleryItems;
+            
+            if (activeFilter !== 'all') {
+                filteredItems = filteredItems.filter(item => item.type === activeFilter);
+            }
+            
+            if (searchTerm) {
+                filteredItems = filteredItems.filter(item => {
+                    const itemName = normalizeText(item.name);
+                    const itemDescription = normalizeText(item.description[currentLanguage] || item.description.pt);
+                    return itemName.includes(searchTerm) || itemDescription.includes(searchTerm);
+                });
+            }
+            
+            return filteredItems;
+        }
+
+        // Função para renderizar a galeria
+        function renderGallery(items) {
+            const galleryContainer = document.getElementById('galleryContainer');
+            const noResultsMessage = document.getElementById('noResultsMessage');
+            const resultsCount = document.getElementById('resultsCount');
+            
+            galleryContainer.innerHTML = '';
+            
+            if (items.length === 0) {
+                noResultsMessage.style.display = 'block';
+                if (resultsCount) resultsCount.textContent = '0';
+                return;
+            }
+            
+            noResultsMessage.style.display = 'none';
+            if (resultsCount) resultsCount.textContent = items.length;
+            
+            // Obter textos de tradução
+            const viewText = currentLanguage === 'en' ? 'Preview' : 'Visualizar';
+            const downloadText = currentLanguage === 'en' ? 'Download' : 'Baixar';
+            const iconText = currentLanguage === 'en' ? 'Icon' : 'Icon';
+            const wallpaperText = currentLanguage === 'en' ? 'Wallpaper' : 'Wallpaper';
+            
+            items.forEach(item => {
+                const card = document.createElement('div');
+                card.className = 'image-card';
+                card.dataset.type = item.type;
+                card.dataset.name = item.name.toLowerCase();
+                
+                const typeIcon = item.type === 'icon' ? 'fa-user-circle' : 'fa-image';
+                const typeText = item.type === 'icon' ? iconText : wallpaperText;
+                const fileExtension = item.imagePath.split('.').pop();
+                const downloadFilename = `${item.name}.${fileExtension}`;
+                const itemDescription = item.description[currentLanguage] || item.description.pt;
+                
+                card.innerHTML = `
+                    <div class="card-header">
+                        <h3 class="card-title">
+                            <i class="fas ${typeIcon}"></i> ${item.name}
+                        </h3>
+                        <span class="card-type">${typeText}</span>
+                        <div class="card-dimensions">
+                            <i class="fas fa-expand-alt"></i> ${item.dimensions}
+                        </div>
+                    </div>
+                    <div class="card-preview">
+                        <img src="${item.previewImage}" alt="${itemDescription}" loading="lazy">
+                        <div class="card-overlay">
+                            <button class="preview-btn" data-id="${item.id}">
+                                <i class="fas fa-search-plus"></i> ${viewText}
+                            </button>
+                        </div>
+                    </div>
+                    <div class="card-footer">
+                        <div class="file-info">
+                            <div class="file-size">
+                                <i class="fas fa-weight-hanging"></i> ${item.size}
+                            </div>
+                        </div>
+                        <button class="download-btn" data-url="${item.imagePath}" data-filename="${downloadFilename}">
+                            <i class="fas fa-download"></i> ${downloadText}
+                        </button>
+                    </div>
+                `;
+                
+                galleryContainer.appendChild(card);
+            });
+            
+            // Adicionar event listeners aos botões
+            document.querySelectorAll('.download-btn').forEach(btn => {
+                btn.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const url = this.getAttribute('data-url');
+                    const filename = this.getAttribute('data-filename');
+                    forceDownload(url, filename);
+                });
+            });
+            
+            document.querySelectorAll('.preview-btn').forEach(btn => {
+                btn.addEventListener('click', function() {
+                    const itemId = parseInt(this.getAttribute('data-id'));
+                    openPreview(itemId);
+                });
+            });
+        }
+
+        // Função para abrir o modal de preview
+        function openPreview(itemId) {
+            const item = galleryItems.find(i => i.id === itemId);
+            if (!item) return;
+            
+            const modal = document.getElementById('previewModal');
+            const modalImage = document.getElementById('modalImage');
+            const modalImageTitle = document.getElementById('modalImageTitle');
+            const modalDownloadBtn = document.getElementById('modalDownloadBtn');
+            
+            modalImage.src = item.previewImage;
+            modalImage.alt = item.description[currentLanguage] || item.description.pt;
+            modalImageTitle.textContent = item.name;
+            
+            const fileExtension = item.imagePath.split('.').pop();
+            const downloadFilename = `${item.name}.${fileExtension}`;
+            
+            modalDownloadBtn.onclick = function() {
+                forceDownload(item.imagePath, downloadFilename);
+            };
+            
+            modal.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+
+        // Função para fechar o modal
+        function closePreview() {
+            const modal = document.getElementById('previewModal');
+            modal.classList.remove('active');
+            document.body.style.overflow = 'auto';
+        }
+
+        // Função para filtrar e buscar itens
+        function filterAndSearch() {
+            const filteredItems = getFilteredItems();
+            renderGallery(filteredItems);
+        }
+
+        // Menu hambúrguer
+        function setupHamburgerMenu() {
+            const hamburger = document.getElementById('hamburger');
+            const navMenu = document.getElementById('navMenu');
+            
+            if (!hamburger || !navMenu) return;
+            
             hamburger.addEventListener('click', function() {
-                hamburger.classList.toggle('active');
+                this.classList.toggle('active');
                 navMenu.classList.toggle('active');
             });
             
-            // Fechar menu ao clicar em um link (em telas pequenas)
+            // Fechar menu ao clicar em um link
             document.querySelectorAll('.nav-item a').forEach(link => {
                 link.addEventListener('click', function() {
                     if (window.innerWidth <= 768) {
@@ -855,33 +1560,76 @@
                     navMenu.classList.remove('active');
                 }
             });
-        });
+        }
 
-        // Mostrar/ocultar botão flutuante de voltar ao topo
-        window.addEventListener('scroll', function() {
-            const floatingBtn = document.getElementById('floatingTopBtn');
-            if (window.scrollY > 300) {
-                floatingBtn.classList.add('active');
-            } else {
-                floatingBtn.classList.remove('active');
+        // Inicialização
+        document.addEventListener('DOMContentLoaded', function() {
+            // Inicializar sistema de idioma
+            initializeLanguageSystem();
+            
+            // Configurar menu hambúrguer
+            setupHamburgerMenu();
+            
+            // Configurar filtros
+            document.querySelectorAll('.filter-btn').forEach(btn => {
+                btn.addEventListener('click', function() {
+                    document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+                    this.classList.add('active');
+                    filterAndSearch();
+                });
+            });
+            
+            // Configurar busca
+            const searchInput = document.getElementById('searchInput');
+            let searchTimeout;
+            
+            if (searchInput) {
+                searchInput.addEventListener('input', function() {
+                    clearTimeout(searchTimeout);
+                    searchTimeout = setTimeout(filterAndSearch, 300);
+                });
             }
-        });
-
-        // Scroll suave para âncoras
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function(e) {
-                e.preventDefault();
-                
-                const targetId = this.getAttribute('href');
-                if (targetId === '#') return;
-                
-                const targetElement = document.querySelector(targetId);
-                if (targetElement) {
-                    window.scrollTo({
-                        top: targetElement.offsetTop - 80,
-                        behavior: 'smooth'
-                    });
+            
+            // Configurar modal
+            document.getElementById('closeModal').addEventListener('click', closePreview);
+            document.getElementById('closeModalBtn').addEventListener('click', closePreview);
+            document.getElementById('previewModal').addEventListener('click', function(e) {
+                if (e.target === this) closePreview();
+            });
+            
+            // Fechar modal com ESC
+            document.addEventListener('keydown', function(e) {
+                if (e.key === 'Escape') closePreview();
+            });
+            
+            // Botão voltar ao topo
+            window.addEventListener('scroll', function() {
+                const floatingBtn = document.getElementById('floatingTopBtn');
+                if (floatingBtn) {
+                    if (window.scrollY > 300) {
+                        floatingBtn.classList.add('active');
+                    } else {
+                        floatingBtn.classList.remove('active');
+                    }
                 }
+            });
+            
+            // Scroll suave
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    
+                    const targetId = this.getAttribute('href');
+                    if (targetId === '#') return;
+                    
+                    const targetElement = document.querySelector(targetId);
+                    if (targetElement) {
+                        window.scrollTo({
+                            top: targetElement.offsetTop - 80,
+                            behavior: 'smooth'
+                        });
+                    }
+                });
             });
         });
     </script>
