@@ -4,7 +4,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Wallpapers & Icons - Laços Profanos</title>
-    <link rel="icon" href="https://i.imgur.com/mgxXSto.png" type="image/png">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         /* === ESTILO DA NAVEGAÇÃO === */
@@ -818,7 +817,7 @@
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a href="tos.html" target="_blank">
+                    <a href="https://lacosprofanos.com.br/tos/" target="_blank">
                         <i class="fas fa-file-contract"></i> Termos
                     </a>
                 </li>
@@ -930,57 +929,62 @@
     </main>
 
     <script>
-        // Dados das imagens
+        // Dados das imagens - CORRIGIDO: usando os arquivos do repositório
         const imagesData = [
             {
                 id: 1,
                 name: "Kaleb",
                 type: "icon",
-                imageUrl: "wallpapers&icons/kaleb.jpeg",
-                previewUrl: "https://i.imgur.com/WVrHpaB.jpeg",
+                imageUrl: "wallpapers&icons/kaleb.jpeg", // Arquivo no repositório
+                previewUrl: "https://i.imgur.com/WVrHpaB.jpeg", // Preview no Imgur
                 size: "136 KB",
                 dimensions: "1000x1000",
-                category: "icon"
+                category: "icon",
+                fileType: "jpeg"
             },
             {
                 id: 2,
                 name: "O Último Anjo",
                 type: "wallpaper",
-                imageUrl: "wallpapers&icons/anjo.png",
-                previewUrl: "https://i.imgur.com/IHCgQPS.png",
+                imageUrl: "wallpapers&icons/anjo.png", // Arquivo no repositório
+                previewUrl: "https://i.imgur.com/IHCgQPS.png", // Preview no Imgur
                 size: "829 KB",
                 dimensions: "1280x720",
-                category: "wallpaper"
+                category: "wallpaper",
+                fileType: "png"
             },
             {
                 id: 3,
                 name: "Enaya vs Hamiah",
                 type: "wallpaper",
-                imageUrl: "wallpapers&icons/enamiah.png",
-                previewUrl: "https://i.imgur.com/RA2LetQ.png",
+                imageUrl: "wallpapers&icons/enamiah.png", // Arquivo no repositório
+                previewUrl: "https://i.imgur.com/RA2LetQ.png", // Preview no Imgur
                 size: "430 KB",
                 dimensions: "1280x720",
-                category: "wallpaper"
+                category: "wallpaper",
+                fileType: "png"
             },
             {
                 id: 4,
                 name: "Wahi",
                 type: "icon",
-                imageUrl: "wallpapers&icons/wahi.png",
-                previewUrl: "https://i.imgur.com/Py44HxM.png",
+                imageUrl: "wallpapers&icons/wahi.png", // Arquivo no repositório
+                previewUrl: "https://i.imgur.com/Py44HxM.png", // Preview no Imgur
                 size: "171 KB",
                 dimensions: "768x768",
-                category: "icon"
+                category: "icon",
+                fileType: "png"
             },
             {
                 id: 5,
                 name: "Noxum",
                 type: "icon",
-                imageUrl: "wallpapers&icons/noxum.png",
-                previewUrl: "https://i.imgur.com/jI5RKKU.png",
+                imageUrl: "wallpapers&icons/noxum.png", // Arquivo no repositório
+                previewUrl: "https://i.imgur.com/jI5RKKU.png", // Preview no Imgur
                 size: "228 KB",
                 dimensions: "1280x1280",
-                category: "icon"
+                category: "icon",
+                fileType: "png"
             }
         ];
 
@@ -1244,27 +1248,57 @@
             modal.classList.add('active');
         }
 
-        // Função para baixar imagem
+        // CORREÇÃO: Função para baixar imagem - usando Fetch API
         function downloadImage(imageId) {
             const image = imagesData.find(img => img.id === imageId);
             if (!image) return;
             
-            // Usar a URL direta da imagem
+            // Usar a URL do arquivo no repositório
             const imageUrl = image.imageUrl;
-            const fileName = `${image.name.toLowerCase().replace(/\s+/g, '-')}.${image.imageUrl.split('.').pop()}`;
+            const fileName = `${image.name.toLowerCase().replace(/\s+/g, '-')}.${image.fileType}`;
             
-            // Criar link temporário para download
-            const link = document.createElement('a');
-            link.href = imageUrl;
-            link.download = fileName;
-            link.style.display = 'none';
-            
-            document.body.appendChild(link);
-            link.click();
-            document.body.removeChild(link);
-            
-            // Feedback visual
-            showDownloadFeedback(image.name);
+            // Usar Fetch API para baixar a imagem
+            fetch(imageUrl)
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error('Erro ao baixar a imagem');
+                    }
+                    return response.blob();
+                })
+                .then(blob => {
+                    // Criar link para download
+                    const url = window.URL.createObjectURL(blob);
+                    const link = document.createElement('a');
+                    link.href = url;
+                    link.download = fileName;
+                    link.style.display = 'none';
+                    
+                    document.body.appendChild(link);
+                    link.click();
+                    
+                    // Limpar
+                    window.URL.revokeObjectURL(url);
+                    document.body.removeChild(link);
+                    
+                    // Feedback visual
+                    showDownloadFeedback(image.name);
+                })
+                .catch(error => {
+                    console.error('Erro no download:', error);
+                    
+                    // Fallback: tentar baixar diretamente se o fetch falhar
+                    const fallbackLink = document.createElement('a');
+                    fallbackLink.href = imageUrl;
+                    fallbackLink.download = fileName;
+                    fallbackLink.style.display = 'none';
+                    
+                    document.body.appendChild(fallbackLink);
+                    fallbackLink.click();
+                    document.body.removeChild(fallbackLink);
+                    
+                    // Feedback visual mesmo com fallback
+                    showDownloadFeedback(image.name);
+                });
         }
 
         // Mostrar feedback de download
