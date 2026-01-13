@@ -49,10 +49,89 @@
             letter-spacing: 0.5px;
         }
 
+        /* Botão de idioma */
+        .language-switcher {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-right: 20px;
+        }
+
+        .language-btn {
+            background: rgba(240, 27, 133, 0.15);
+            color: #ffffff;
+            border: 1px solid #f01b85;
+            padding: 8px 16px;
+            border-radius: 20px;
+            cursor: pointer;
+            font-weight: 600;
+            font-size: 0.9rem;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            white-space: nowrap;
+        }
+
+        .language-btn:hover {
+            background: #f01b85;
+            color: #000;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(240, 27, 133, 0.3);
+        }
+
+        .language-btn i {
+            font-size: 0.9rem;
+        }
+
+        .language-dropdown {
+            position: relative;
+            display: inline-block;
+        }
+
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            right: 0;
+            top: 100%;
+            background-color: rgba(10, 10, 10, 0.98);
+            min-width: 150px;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.5);
+            border: 1px solid #f01b85;
+            border-radius: 10px;
+            z-index: 1002;
+            margin-top: 5px;
+            overflow: hidden;
+        }
+
+        .dropdown-content a {
+            color: white;
+            padding: 12px 16px;
+            text-decoration: none;
+            display: block;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            border-bottom: 1px solid rgba(240, 27, 133, 0.1);
+        }
+
+        .dropdown-content a:hover {
+            background-color: #f01b85;
+            color: #000;
+        }
+
+        .dropdown-content a:last-child {
+            border-bottom: none;
+        }
+
+        .language-dropdown:hover .dropdown-content {
+            display: block;
+        }
+
         .nav-menu {
             display: flex;
             list-style: none;
             gap: 20px;
+            margin-left: auto;
         }
 
         .nav-item a {
@@ -112,6 +191,40 @@
             transform: rotate(-45deg) translate(7px, -6px);
         }
 
+        /* Classes para alternar entre idiomas */
+        .portuguese-only {
+            display: inline;
+        }
+
+        .english-only {
+            display: none;
+        }
+
+        body.english .portuguese-only {
+            display: none;
+        }
+
+        body.english .english-only {
+            display: inline;
+        }
+
+        /* Para elementos de bloco */
+        .portuguese-block {
+            display: block;
+        }
+
+        .english-block {
+            display: none;
+        }
+
+        body.english .portuguese-block {
+            display: none;
+        }
+
+        body.english .english-block {
+            display: block;
+        }
+
         /* Responsividade da navegação */
         @media (max-width: 768px) {
             .hamburger {
@@ -157,6 +270,26 @@
                 background-color: #f01b85;
                 color: #000;
                 padding-left: 35px;
+            }
+
+            .language-switcher {
+                margin-right: 15px;
+            }
+            
+            .language-btn {
+                padding: 6px 12px;
+                font-size: 0.85rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .language-switcher {
+                margin-right: 10px;
+            }
+            
+            .language-btn {
+                padding: 5px 10px;
+                font-size: 0.8rem;
             }
         }
 
@@ -761,25 +894,53 @@
                 <span class="logo-text">Laços Profanos</span>
             </a>
             
+            <!-- Botão de seleção de idioma -->
+            <div class="language-switcher">
+                <div class="language-dropdown" id="languageDropdown">
+                    <button class="language-btn" id="languageBtn">
+                        <i class="fas fa-globe"></i>
+                        <span id="current-language">Português</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </button>
+                    <div class="dropdown-content" id="dropdownContent">
+                        <a href="#" class="language-option" data-lang="pt">Português</a>
+                        <a href="#" class="language-option" data-lang="en">English</a>
+                    </div>
+                </div>
+            </div>
+            
             <ul class="nav-menu">
                 <li class="nav-item">
                     <a href="https://lacosprofanos.com.br" target="_blank">
-                        <i class="fas fa-home"></i> Site Principal
+                        <i class="fas fa-home"></i> 
+                        <span class="portuguese-only">Site Principal</span>
+                        <span class="english-only">Main Site</span>
                     </a>
                 </li>
                 <li class="nav-item">
                     <a href="https://lacosprofanos.blogspot.com/" target="_blank">
-                        <i class="fas fa-blog"></i> Blog
+                        <i class="fas fa-blog"></i> 
+                        <span class="portuguese-only">Blog</span>
+                        <span class="english-only">Blog</span>
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a href="https://lacosprofanos.fandom.com/pt-br/" target="_blank">
-                        <i class="fas fa-book"></i> Wiki
+                    <!-- Link da Wiki em Português -->
+                    <a href="https://lacosprofanos.fandom.com/pt-br/" target="_blank" class="wiki-link portuguese-only">
+                        <i class="fas fa-book"></i> 
+                        <span class="portuguese-only">Wiki</span>
+                    </a>
+                    <!-- Link da Wiki em Inglês -->
+                    <a href="https://profanebonds.fandom.com/wiki/" target="_blank" class="wiki-link english-only">
+                        <i class="fas fa-book"></i> 
+                        <span class="english-only">Wiki</span>
                     </a>
                 </li>
                 <li class="nav-item">
                     <a href="https://lacosprofanos.com.br/tos/" target="_blank">
-                        <i class="fas fa-file-contract"></i> Termos de Serviço
+                        <i class="fas fa-file-contract"></i> 
+                        <span class="portuguese-only">Termos de Serviço</span>
+                        <span class="english-only">Terms of Service</span>
                     </a>
                 </li>
             </ul>
@@ -809,10 +970,14 @@
             </div>
             <div class="modal-footer">
                 <button class="download-btn" id="modalDownloadBtn">
-                    <i class="fas fa-download"></i> Baixar Imagem
+                    <i class="fas fa-download"></i> 
+                    <span class="portuguese-only">Baixar Imagem</span>
+                    <span class="english-only">Download Image</span>
                 </button>
                 <button class="preview-btn" id="closeModalBtn">
-                    <i class="fas fa-times"></i> Fechar
+                    <i class="fas fa-times"></i> 
+                    <span class="portuguese-only">Fechar</span>
+                    <span class="english-only">Close</span>
                 </button>
             </div>
         </div>
@@ -821,38 +986,58 @@
     <main class="container">
         <!-- Cabeçalho da página -->
         <header class="header" id="top">
-            <h1 class="page-title">Wallpapers & Icons</h1>
-            <p class="subtitle">
-                Baixe wallpapers e icons exclusivos do universo <span class="highlight">Laços Profanos</span>. 
-                Todos os arquivos estão disponíveis para download gratuito.
+            <h1 class="page-title" id="pageTitle">Wallpapers & Icons</h1>
+            <p class="subtitle" id="pageSubtitle">
+                <span class="portuguese-only">Baixe wallpapers e icons exclusivos do universo</span>
+                <span class="english-only">Download exclusive wallpapers and icons from the</span> 
+                <span class="highlight">Laços Profanos</span>. 
+                <span class="portuguese-only">Todos os arquivos estão disponíveis para download gratuito.</span>
+                <span class="english-only">All files are available for free download.</span>
             </p>
         </header>
 
         <!-- Filtros e Pesquisa -->
         <section class="filters-section">
-            <h2 class="filters-title"><i class="fas fa-filter"></i> Filtros</h2>
+            <h2 class="filters-title" id="filtersTitle">
+                <i class="fas fa-filter"></i> 
+                <span class="portuguese-only">Filtros</span>
+                <span class="english-only">Filters</span>
+            </h2>
             
             <div class="filters-container">
                 <div class="filter-buttons">
                     <button class="filter-btn active" data-filter="all">
-                        <i class="fas fa-layer-group"></i> Todos
+                        <i class="fas fa-layer-group"></i> 
+                        <span class="portuguese-only">Todos</span>
+                        <span class="english-only">All</span>
                     </button>
                     <button class="filter-btn" data-filter="icon">
-                        <i class="fas fa-user-circle"></i> Icons
+                        <i class="fas fa-user-circle"></i> 
+                        <span class="portuguese-only">Icons</span>
+                        <span class="english-only">Icons</span>
                     </button>
                     <button class="filter-btn" data-filter="wallpaper">
-                        <i class="fas fa-image"></i> Wallpapers
+                        <i class="fas fa-image"></i> 
+                        <span class="portuguese-only">Wallpapers</span>
+                        <span class="english-only">Wallpapers</span>
                     </button>
                 </div>
                 
                 <div class="search-container">
                     <i class="fas fa-search search-icon"></i>
-                    <input type="text" id="searchInput" class="search-input" placeholder="Buscar por nome...">
+                    <input type="text" id="searchInput" class="search-input" 
+                           placeholder="Buscar por nome..." 
+                           data-placeholder-pt="Buscar por nome..."
+                           data-placeholder-en="Search by name...">
                 </div>
             </div>
             
             <div class="results-info">
-                Mostrando <span id="resultsCount">5</span> de 5 itens
+                <span class="portuguese-only">Mostrando</span>
+                <span class="english-only">Showing</span>
+                <span id="resultsCount">5</span>
+                <span class="portuguese-only">de 5 itens</span>
+                <span class="english-only">of 5 items</span>
             </div>
         </section>
 
@@ -864,19 +1049,74 @@
         <!-- Mensagem quando não houver resultados -->
         <div class="no-results" id="noResultsMessage" style="display: none;">
             <i class="fas fa-search"></i>
-            <h3>Nenhum item encontrado</h3>
-            <p>Tente usar outros termos de busca ou selecione um filtro diferente.</p>
+            <h3 id="noResultsTitle">
+                <span class="portuguese-only">Nenhum item encontrado</span>
+                <span class="english-only">No items found</span>
+            </h3>
+            <p id="noResultsText">
+                <span class="portuguese-only">Tente usar outros termos de busca ou selecione um filtro diferente.</span>
+                <span class="english-only">Try using other search terms or select a different filter.</span>
+            </p>
         </div>
     </main>
 
     <script>
+        // JSON de traduções para Wallpapers & Icons
+        const translations = {
+            'pt': {
+                'title': 'Wallpapers & Icons - Laços Profanos',
+                'current-language': 'Português',
+                'pageTitle': 'Wallpapers & Icons',
+                'pageSubtitle': 'Baixe wallpapers e icons exclusivos do universo Laços Profanos. Todos os arquivos estão disponíveis para download gratuito.',
+                'filtersTitle': 'Filtros',
+                'filterAll': 'Todos',
+                'filterIcons': 'Icons',
+                'filterWallpapers': 'Wallpapers',
+                'searchPlaceholder': 'Buscar por nome...',
+                'resultsText': 'Mostrando {count} de {total} itens',
+                'noResultsTitle': 'Nenhum item encontrado',
+                'noResultsText': 'Tente usar outros termos de busca ou selecione um filtro diferente.',
+                'cardView': 'Visualizar',
+                'cardDownload': 'Baixar',
+                'modalTitle': 'Visualização',
+                'modalDownload': 'Baixar Imagem',
+                'modalClose': 'Fechar',
+                'mainSite': 'Site Principal',
+                'blog': 'Blog',
+                'wiki': 'Wiki',
+                'terms': 'Termos de Serviço'
+            },
+            'en': {
+                'title': 'Wallpapers & Icons - Profane Bonds',
+                'current-language': 'English',
+                'pageTitle': 'Wallpapers & Icons',
+                'pageSubtitle': 'Download exclusive wallpapers and icons from the Profane Bonds universe. All files are available for free download.',
+                'filtersTitle': 'Filters',
+                'filterAll': 'All',
+                'filterIcons': 'Icons',
+                'filterWallpapers': 'Wallpapers',
+                'searchPlaceholder': 'Search by name...',
+                'resultsText': 'Showing {count} of {total} items',
+                'noResultsTitle': 'No items found',
+                'noResultsText': 'Try using other search terms or select a different filter.',
+                'cardView': 'Preview',
+                'cardDownload': 'Download',
+                'modalTitle': 'Preview',
+                'modalDownload': 'Download Image',
+                'modalClose': 'Close',
+                'mainSite': 'Main Site',
+                'blog': 'Blog',
+                'wiki': 'Wiki',
+                'terms': 'Terms of Service'
+            }
+        };
+
         // Dados dos wallpapers e icons COM CAMINHOS CORRETOS
         const galleryItems = [
             {
                 id: 1,
                 name: "Kaleb",
                 type: "icon",
-                // CORREÇÃO: URL direta sem duplicação
                 imagePath: "https://lacosprofanos.com.br/wallpapers&icons/kaleb.jpeg",
                 previewImage: "https://i.imgur.com/WVrHpaB.jpeg",
                 size: "136 KB",
@@ -887,7 +1127,6 @@
                 id: 2,
                 name: "O Último Anjo",
                 type: "wallpaper",
-                // CORREÇÃO: URL direta sem duplicação
                 imagePath: "https://lacosprofanos.com.br/wallpapers&icons/anjo.png",
                 previewImage: "https://i.imgur.com/IHCgQPS.png",
                 size: "829 KB",
@@ -898,7 +1137,6 @@
                 id: 3,
                 name: "Enaya vs Hamiah",
                 type: "wallpaper",
-                // CORREÇÃO: URL direta sem duplicação
                 imagePath: "https://lacosprofanos.com.br/wallpapers&icons/enamiah.png",
                 previewImage: "https://i.imgur.com/RA2LetQ.png",
                 size: "430 KB",
@@ -909,7 +1147,6 @@
                 id: 4,
                 name: "Wahi",
                 type: "icon",
-                // CORREÇÃO: URL direta sem duplicação
                 imagePath: "https://lacosprofanos.com.br/wallpapers&icons/wahi.png",
                 previewImage: "https://i.imgur.com/Py44HxM.png",
                 size: "171 KB",
@@ -920,7 +1157,6 @@
                 id: 5,
                 name: "Noxum",
                 type: "icon",
-                // CORREÇÃO: URL direta sem duplicação
                 imagePath: "https://lacosprofanos.com.br/wallpapers&icons/noxum.png",
                 previewImage: "https://i.imgur.com/jI5RKKU.png",
                 size: "228 KB",
@@ -929,45 +1165,225 @@
             }
         ];
 
+        // Função para carregar traduções do arquivo JSON externo
+        async function loadTranslations(lang) {
+            try {
+                const response = await fetch('wallpapers&icons/main.json');
+                if (!response.ok) {
+                    throw new Error('Arquivo JSON não encontrado');
+                }
+                const data = await response.json();
+                
+                if (!data[lang]) {
+                    console.warn(`Tradução para ${lang} não encontrada no JSON, usando fallback`);
+                    return translations[lang] || translations['pt'];
+                }
+                
+                return data[lang];
+            } catch (error) {
+                console.log('Usando traduções embutidas:', error.message);
+                return translations[lang] || translations['pt'];
+            }
+        }
+
+        // Função para aplicar traduções
+        async function applyTranslations(lang) {
+            const trans = await loadTranslations(lang);
+            
+            // Atualizar a classe do body para controle CSS
+            document.body.classList.remove('english');
+            if (lang === 'en') {
+                document.body.classList.add('english');
+            }
+            
+            // Atualizar título da página
+            document.title = trans['title'];
+            
+            // Atualizar texto do botão de idioma
+            const currentLangElement = document.getElementById('current-language');
+            if (currentLangElement) {
+                currentLangElement.textContent = trans['current-language'];
+            }
+            
+            // Atualizar elementos com IDs específicos
+            const elements = {
+                'pageTitle': trans['pageTitle'],
+                'pageSubtitle': trans['pageSubtitle'],
+                'filtersTitle': trans['filtersTitle'],
+                'noResultsTitle': trans['noResultsTitle'],
+                'noResultsText': trans['noResultsText'],
+                'modalImageTitle': trans['modalTitle']
+            };
+            
+            for (const [id, text] of Object.entries(elements)) {
+                const element = document.getElementById(id);
+                if (element) {
+                    element.textContent = text;
+                }
+            }
+            
+            // Atualizar placeholder da busca
+            const searchInput = document.getElementById('searchInput');
+            if (searchInput) {
+                searchInput.placeholder = trans['searchPlaceholder'];
+            }
+            
+            // Atualizar resultados
+            updateResultsText();
+            
+            // Renderizar galeria novamente para atualizar textos dos cards
+            renderGallery(getFilteredItems());
+            
+            // Salvar preferência de idioma
+            localStorage.setItem('preferred-language', lang);
+            
+            // Atualizar parâmetro na URL
+            updateUrlLanguageParam(lang);
+        }
+
+        // Função para atualizar parâmetro de idioma na URL
+        function updateUrlLanguageParam(lang) {
+            const url = new URL(window.location.href);
+            url.searchParams.set('lang', lang);
+            window.history.replaceState({}, '', url.toString());
+        }
+
+        // Função para obter o idioma da URL
+        function getLanguageFromUrl() {
+            const urlParams = new URLSearchParams(window.location.search);
+            return urlParams.get('lang');
+        }
+
+        // Função para mudar o idioma
+        async function changeLanguage(lang) {
+            await applyTranslations(lang);
+            
+            // Fechar o dropdown
+            const dropdownContent = document.getElementById('dropdownContent');
+            if (dropdownContent) {
+                dropdownContent.style.display = 'none';
+            }
+        }
+
+        // Função para inicializar o sistema de idioma
+        async function initializeLanguageSystem() {
+            const urlLang = getLanguageFromUrl();
+            const savedLang = localStorage.getItem('preferred-language');
+            const browserLang = navigator.language.startsWith('en') ? 'en' : 'pt';
+            
+            const lang = urlLang || savedLang || browserLang;
+            
+            await applyTranslations(lang);
+            
+            setupLanguageButtons();
+        }
+
+        // Configurar eventos para os botões de idioma
+        function setupLanguageButtons() {
+            const languageBtn = document.getElementById('languageBtn');
+            const dropdownContent = document.getElementById('dropdownContent');
+            
+            if (languageBtn && dropdownContent) {
+                languageBtn.addEventListener('click', function(e) {
+                    e.stopPropagation();
+                    dropdownContent.style.display = 
+                        dropdownContent.style.display === 'block' ? 'none' : 'block';
+                });
+                
+                document.addEventListener('click', function(e) {
+                    if (!e.target.closest('.language-dropdown')) {
+                        dropdownContent.style.display = 'none';
+                    }
+                });
+            }
+            
+            document.querySelectorAll('.language-option').forEach(option => {
+                option.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const lang = this.getAttribute('data-lang');
+                    changeLanguage(lang);
+                });
+            });
+        }
+
+        // Função para atualizar texto dos resultados
+        function updateResultsText() {
+            const resultsCount = document.getElementById('resultsCount');
+            const resultsInfo = document.querySelector('.results-info');
+            
+            if (resultsCount && resultsInfo) {
+                const count = document.querySelectorAll('.image-card:not([style*="display: none"])').length;
+                const total = galleryItems.length;
+                resultsCount.textContent = count;
+                
+                // O texto do resultado é gerenciado pelo CSS com classes
+                // Apenas atualizamos o número
+            }
+        }
+
         // Função para normalizar texto (remover acentos e caracteres especiais)
         function normalizeText(text) {
             return text
                 .toLowerCase()
                 .normalize('NFD')
-                .replace(/[\u0300-\u036f]/g, '') // Remove acentos
-                .replace(/[^a-z0-9\s]/g, ''); // Remove caracteres especiais
+                .replace(/[\u0300-\u036f]/g, '')
+                .replace(/[^a-z0-9\s]/g, '');
         }
 
         // Função para forçar download de uma URL
         function forceDownload(url, filename) {
-            // Criar um link temporário
             const link = document.createElement('a');
             link.href = url;
             link.download = filename;
             link.target = '_blank';
             
-            // Adicionar ao DOM, clicar e remover
             document.body.appendChild(link);
             link.click();
             document.body.removeChild(link);
         }
 
-        // Função para gerar os cards da galeria
+        // Função para obter os itens filtrados
+        function getFilteredItems() {
+            const activeFilter = document.querySelector('.filter-btn.active')?.dataset.filter || 'all';
+            const searchTerm = normalizeText(document.getElementById('searchInput').value);
+            
+            let filteredItems = galleryItems;
+            
+            if (activeFilter !== 'all') {
+                filteredItems = filteredItems.filter(item => item.type === activeFilter);
+            }
+            
+            if (searchTerm) {
+                filteredItems = filteredItems.filter(item => 
+                    normalizeText(item.name).includes(searchTerm) ||
+                    normalizeText(item.description).includes(searchTerm)
+                );
+            }
+            
+            return filteredItems;
+        }
+
+        // Função para renderizar a galeria
         function renderGallery(items) {
             const galleryContainer = document.getElementById('galleryContainer');
-            const resultsCount = document.getElementById('resultsCount');
             const noResultsMessage = document.getElementById('noResultsMessage');
             
             galleryContainer.innerHTML = '';
             
             if (items.length === 0) {
                 noResultsMessage.style.display = 'block';
-                resultsCount.textContent = '0';
+                updateResultsText();
                 return;
             }
             
             noResultsMessage.style.display = 'none';
-            resultsCount.textContent = items.length;
+            
+            // Obter textos de tradução baseado no idioma atual
+            const isEnglish = document.body.classList.contains('english');
+            const viewText = isEnglish ? 'Preview' : 'Visualizar';
+            const downloadText = isEnglish ? 'Download' : 'Baixar';
+            const iconText = isEnglish ? 'Icon' : 'Icon';
+            const wallpaperText = isEnglish ? 'Wallpaper' : 'Wallpaper';
             
             items.forEach(item => {
                 const card = document.createElement('div');
@@ -975,9 +1391,8 @@
                 card.dataset.type = item.type;
                 card.dataset.name = item.name.toLowerCase();
                 
-                // Determinar ícone baseado no tipo
                 const typeIcon = item.type === 'icon' ? 'fa-user-circle' : 'fa-image';
-                const typeText = item.type === 'icon' ? 'Icon' : 'Wallpaper';
+                const typeText = item.type === 'icon' ? iconText : wallpaperText;
                 const fileExtension = item.imagePath.split('.').pop();
                 const downloadFilename = `${item.name}.${fileExtension}`;
                 
@@ -995,7 +1410,7 @@
                         <img src="${item.previewImage}" alt="${item.name}" loading="lazy">
                         <div class="card-overlay">
                             <button class="preview-btn" data-id="${item.id}">
-                                <i class="fas fa-search-plus"></i> Visualizar
+                                <i class="fas fa-search-plus"></i> ${viewText}
                             </button>
                         </div>
                     </div>
@@ -1006,7 +1421,7 @@
                             </div>
                         </div>
                         <button class="download-btn" data-url="${item.imagePath}" data-filename="${downloadFilename}">
-                            <i class="fas fa-download"></i> Baixar
+                            <i class="fas fa-download"></i> ${downloadText}
                         </button>
                     </div>
                 `;
@@ -1014,25 +1429,24 @@
                 galleryContainer.appendChild(card);
             });
             
-            // Adicionar event listeners aos botões de download recém-criados
+            // Adicionar event listeners aos botões
             document.querySelectorAll('.download-btn').forEach(btn => {
                 btn.addEventListener('click', function(e) {
                     e.preventDefault();
                     const url = this.getAttribute('data-url');
                     const filename = this.getAttribute('data-filename');
-                    
-                    // Forçar download
                     forceDownload(url, filename);
                 });
             });
             
-            // Adicionar event listeners aos botões de preview
             document.querySelectorAll('.preview-btn').forEach(btn => {
                 btn.addEventListener('click', function() {
                     const itemId = parseInt(this.getAttribute('data-id'));
                     openPreview(itemId);
                 });
             });
+            
+            updateResultsText();
         }
 
         // Função para abrir o modal de preview
@@ -1047,9 +1461,10 @@
             
             modalImage.src = item.previewImage;
             modalImage.alt = item.name;
-            modalImageTitle.textContent = `${item.name} - ${item.type === 'icon' ? 'Icon' : 'Wallpaper'}`;
             
-            // Configurar botão de download no modal
+            // O título do modal é gerenciado pelas traduções
+            modalImageTitle.textContent = item.name;
+            
             const fileExtension = item.imagePath.split('.').pop();
             const downloadFilename = `${item.name}.${fileExtension}`;
             
@@ -1070,31 +1485,17 @@
 
         // Função para filtrar e buscar itens
         function filterAndSearch() {
-            const activeFilter = document.querySelector('.filter-btn.active').dataset.filter;
-            const searchTerm = normalizeText(document.getElementById('searchInput').value);
-            
-            let filteredItems = galleryItems;
-            
-            // Aplicar filtro
-            if (activeFilter !== 'all') {
-                filteredItems = filteredItems.filter(item => item.type === activeFilter);
-            }
-            
-            // Aplicar busca
-            if (searchTerm) {
-                filteredItems = filteredItems.filter(item => 
-                    normalizeText(item.name).includes(searchTerm) ||
-                    normalizeText(item.description).includes(searchTerm)
-                );
-            }
-            
+            const filteredItems = getFilteredItems();
             renderGallery(filteredItems);
         }
 
         // Inicialização
         document.addEventListener('DOMContentLoaded', function() {
-            // Renderizar galeria inicial
-            renderGallery(galleryItems);
+            // Inicializar sistema de idioma primeiro
+            initializeLanguageSystem().then(() => {
+                // Depois renderizar a galeria
+                renderGallery(galleryItems);
+            });
             
             // Configurar filtros
             document.querySelectorAll('.filter-btn').forEach(btn => {
@@ -1130,16 +1531,18 @@
             const hamburger = document.getElementById('hamburger');
             const navMenu = document.querySelector('.nav-menu');
             
-            hamburger.addEventListener('click', function() {
-                hamburger.classList.toggle('active');
-                navMenu.classList.toggle('active');
-            });
+            if (hamburger) {
+                hamburger.addEventListener('click', function() {
+                    hamburger.classList.toggle('active');
+                    navMenu.classList.toggle('active');
+                });
+            }
             
             // Fechar menu ao clicar em um link
             document.querySelectorAll('.nav-item a').forEach(link => {
                 link.addEventListener('click', function() {
                     if (window.innerWidth <= 768) {
-                        hamburger.classList.remove('active');
+                        if (hamburger) hamburger.classList.remove('active');
                         navMenu.classList.remove('active');
                     }
                 });
