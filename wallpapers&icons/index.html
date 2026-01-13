@@ -123,15 +123,14 @@
             border-bottom: none;
         }
 
-        .language-dropdown:hover .dropdown-content {
-            display: block;
-        }
-
         .nav-menu {
             display: flex;
             list-style: none;
             gap: 20px;
-            margin-left: auto;
+        }
+
+        .nav-item {
+            position: relative;
         }
 
         .nav-item a {
@@ -157,6 +156,33 @@
 
         .nav-item i {
             font-size: 1rem;
+        }
+
+        /* Link da Wiki - CORREÇÃO ESPECÍFICA */
+        .wiki-link {
+            display: flex !important;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .wiki-link-text {
+            display: inline;
+        }
+
+        .portuguese-only {
+            display: inline;
+        }
+
+        .english-only {
+            display: none;
+        }
+
+        body.english .portuguese-only {
+            display: none;
+        }
+
+        body.english .english-only {
+            display: inline;
         }
 
         .hamburger {
@@ -191,41 +217,37 @@
             transform: rotate(-45deg) translate(7px, -6px);
         }
 
-        /* Classes para alternar entre idiomas - CORRIGIDO */
-        .portuguese-only {
-            display: inline !important;
-        }
-
-        .english-only {
-            display: none !important;
-        }
-
-        body.english .portuguese-only {
-            display: none !important;
-        }
-
-        body.english .english-only {
-            display: inline !important;
-        }
-
-        /* Para elementos de bloco */
-        .portuguese-block {
-            display: block !important;
-        }
-
-        .english-block {
-            display: none !important;
-        }
-
-        body.english .portuguese-block {
-            display: none !important;
-        }
-
-        body.english .english-block {
-            display: block !important;
-        }
-
         /* Responsividade da navegação */
+        @media (max-width: 1024px) {
+            .nav-menu {
+                gap: 15px;
+            }
+            
+            .nav-item a {
+                font-size: 0.9rem;
+                padding: 7px 12px;
+            }
+            
+            .logo-text {
+                font-size: 1.3rem;
+            }
+        }
+
+        @media (max-width: 900px) {
+            .nav-menu {
+                gap: 10px;
+            }
+            
+            .nav-item a {
+                font-size: 0.85rem;
+                padding: 6px 10px;
+            }
+            
+            .nav-item i {
+                font-size: 0.9rem;
+            }
+        }
+
         @media (max-width: 768px) {
             .hamburger {
                 display: flex;
@@ -271,7 +293,11 @@
                 color: #000;
                 padding-left: 35px;
             }
-
+            
+            .logo-text {
+                font-size: 1.2rem;
+            }
+            
             .language-switcher {
                 margin-right: 15px;
             }
@@ -283,6 +309,18 @@
         }
 
         @media (max-width: 480px) {
+            .navbar {
+                padding: 12px 15px;
+            }
+            
+            .logo-text {
+                font-size: 1.1rem;
+            }
+            
+            .nav-menu {
+                top: 60px;
+            }
+            
             .language-switcher {
                 margin-right: 10px;
             }
@@ -290,6 +328,17 @@
             .language-btn {
                 padding: 5px 10px;
                 font-size: 0.8rem;
+            }
+        }
+
+        /* Ajuste do conteúdo principal para não ficar atrás da navbar fixa */
+        body {
+            padding-top: 70px; /* Altura da navbar */
+        }
+        
+        @media (max-width: 480px) {
+            body {
+                padding-top: 60px;
             }
         }
 
@@ -306,7 +355,7 @@
             color: #ffffff;
             line-height: 1.6;
             min-height: 100vh;
-            padding-top: 70px;
+            overflow-x: hidden;
         }
 
         ::-webkit-scrollbar {
@@ -909,33 +958,31 @@
                 </div>
             </div>
             
-            <ul class="nav-menu">
+            <ul class="nav-menu" id="navMenu">
                 <li class="nav-item">
-                    <a href="https://lacosprofanos.com.br" target="_blank">
+                    <a href="https://lacosprofanos.com.br" target="_blank" class="nav-link">
                         <i class="fas fa-home"></i> 
                         <span class="portuguese-only">Site Principal</span>
                         <span class="english-only">Main Site</span>
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a href="https://lacosprofanos.blogspot.com/" target="_blank">
+                    <a href="https://lacosprofanos.blogspot.com/" target="_blank" class="nav-link">
                         <i class="fas fa-blog"></i> 
                         <span class="portuguese-only">Blog</span>
                         <span class="english-only">Blog</span>
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a href="https://lacosprofanos.fandom.com/pt-br/" target="_blank" class="portuguese-only">
+                    <!-- Link da Wiki ÚNICO com href dinâmico -->
+                    <a href="https://lacosprofanos.fandom.com/pt-br/" target="_blank" class="nav-link wiki-link" id="wikiLink">
                         <i class="fas fa-book"></i> 
-                        <span class="portuguese-only">Wiki</span>
-                    </a>
-                    <a href="https://profanebonds.fandom.com/wiki/" target="_blank" class="english-only">
-                        <i class="fas fa-book"></i> 
-                        <span class="english-only">Wiki</span>
+                        <span class="wiki-link-text portuguese-only">Wiki</span>
+                        <span class="wiki-link-text english-only">Wiki</span>
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a href="https://lacosprofanos.com.br/tos/" target="_blank">
+                    <a href="https://lacosprofanos.com.br/tos/" target="_blank" class="nav-link">
                         <i class="fas fa-file-contract"></i> 
                         <span class="portuguese-only">Termos de Serviço</span>
                         <span class="english-only">Terms of Service</span>
@@ -1067,6 +1114,8 @@
                 'searchPlaceholder': 'Buscar por nome...',
                 'cardView': 'Visualizar',
                 'cardDownload': 'Baixar',
+                'iconText': 'Icon',
+                'wallpaperText': 'Wallpaper',
                 'modalTitle': 'Visualização',
                 'modalDownload': 'Baixar Imagem',
                 'modalClose': 'Fechar'
@@ -1080,13 +1129,15 @@
                 'searchPlaceholder': 'Search by name...',
                 'cardView': 'Preview',
                 'cardDownload': 'Download',
+                'iconText': 'Icon',
+                'wallpaperText': 'Wallpaper',
                 'modalTitle': 'Preview',
                 'modalDownload': 'Download Image',
                 'modalClose': 'Close'
             }
         };
 
-        // Dados dos wallpapers e icons
+        // Dados dos wallpapers e icons COM DESCRIÇÕES TRADUZIDAS
         const galleryItems = [
             {
                 id: 1,
@@ -1096,7 +1147,10 @@
                 previewImage: "https://i.imgur.com/WVrHpaB.jpeg",
                 size: "136 KB",
                 dimensions: "1000×1000",
-                description: "Icon do personagem Kaleb"
+                description: {
+                    pt: "Icon do personagem Kaleb",
+                    en: "Icon of character Kaleb"
+                }
             },
             {
                 id: 2,
@@ -1106,7 +1160,10 @@
                 previewImage: "https://i.imgur.com/IHCgQPS.png",
                 size: "829 KB",
                 dimensions: "1280×720",
-                description: "Wallpaper do Último Anjo"
+                description: {
+                    pt: "Wallpaper do Último Anjo",
+                    en: "Wallpaper of The Last Angel"
+                }
             },
             {
                 id: 3,
@@ -1116,7 +1173,10 @@
                 previewImage: "https://i.imgur.com/RA2LetQ.png",
                 size: "430 KB",
                 dimensions: "1280×720",
-                description: "Wallpaper da batalha Enaya vs Hamiah"
+                description: {
+                    pt: "Wallpaper da batalha Enaya vs Hamiah",
+                    en: "Wallpaper of the battle Enaya vs Hamiah"
+                }
             },
             {
                 id: 4,
@@ -1126,7 +1186,10 @@
                 previewImage: "https://i.imgur.com/Py44HxM.png",
                 size: "171 KB",
                 dimensions: "768×768",
-                description: "Icon da criadora Wahi"
+                description: {
+                    pt: "Icon da criadora Wahi",
+                    en: "Icon of creator Wahi"
+                }
             },
             {
                 id: 5,
@@ -1136,7 +1199,10 @@
                 previewImage: "https://i.imgur.com/jI5RKKU.png",
                 size: "228 KB",
                 dimensions: "1280×1280",
-                description: "Icon do personagem Noxum"
+                description: {
+                    pt: "Icon do personagem Noxum",
+                    en: "Icon of character Noxum"
+                }
             }
         ];
 
@@ -1164,12 +1230,24 @@
             }
         }
 
-        // Função para aplicar traduções - SIMPLIFICADA
+        // Função para atualizar o link da Wiki
+        function updateWikiLink() {
+            const wikiLink = document.getElementById('wikiLink');
+            if (wikiLink) {
+                if (currentLanguage === 'en') {
+                    wikiLink.href = 'https://profanebonds.fandom.com/wiki/';
+                } else {
+                    wikiLink.href = 'https://lacosprofanos.fandom.com/pt-br/';
+                }
+            }
+        }
+
+        // Função para aplicar traduções
         async function applyTranslations(lang) {
             currentLanguage = lang;
             const trans = await loadTranslations(lang);
             
-            // Atualizar a classe do body
+            // Atualizar a classe do body para controle CSS
             document.body.classList.toggle('english', lang === 'en');
             
             // Atualizar título da página
@@ -1197,6 +1275,9 @@
             // Atualizar título da página
             const pageTitle = document.getElementById('pageTitle');
             if (pageTitle) pageTitle.textContent = trans['pageTitle'];
+            
+            // Atualizar link da Wiki
+            updateWikiLink();
             
             // Salvar preferência de idioma
             localStorage.setItem('preferred-language', lang);
@@ -1251,12 +1332,14 @@
             const dropdownContent = document.getElementById('dropdownContent');
             
             if (languageBtn && dropdownContent) {
+                // Abrir/fechar dropdown ao clicar no botão
                 languageBtn.addEventListener('click', function(e) {
                     e.stopPropagation();
                     dropdownContent.style.display = 
                         dropdownContent.style.display === 'block' ? 'none' : 'block';
                 });
                 
+                // Fechar dropdown ao clicar fora
                 document.addEventListener('click', function(e) {
                     if (!e.target.closest('.language-dropdown')) {
                         dropdownContent.style.display = 'none';
@@ -1264,6 +1347,7 @@
                 });
             }
             
+            // Configurar opções de idioma
             document.querySelectorAll('.language-option').forEach(option => {
                 option.addEventListener('click', function(e) {
                     e.preventDefault();
@@ -1297,7 +1381,8 @@
         // Função para obter os itens filtrados
         function getFilteredItems() {
             const activeFilter = document.querySelector('.filter-btn.active')?.dataset.filter || 'all';
-            const searchTerm = normalizeText(document.getElementById('searchInput').value);
+            const searchInput = document.getElementById('searchInput');
+            const searchTerm = searchInput ? normalizeText(searchInput.value) : '';
             
             let filteredItems = galleryItems;
             
@@ -1306,10 +1391,11 @@
             }
             
             if (searchTerm) {
-                filteredItems = filteredItems.filter(item => 
-                    normalizeText(item.name).includes(searchTerm) ||
-                    normalizeText(item.description).includes(searchTerm)
-                );
+                filteredItems = filteredItems.filter(item => {
+                    const itemName = normalizeText(item.name);
+                    const itemDescription = normalizeText(item.description[currentLanguage] || item.description.pt);
+                    return itemName.includes(searchTerm) || itemDescription.includes(searchTerm);
+                });
             }
             
             return filteredItems;
@@ -1325,14 +1411,14 @@
             
             if (items.length === 0) {
                 noResultsMessage.style.display = 'block';
-                resultsCount.textContent = '0';
+                if (resultsCount) resultsCount.textContent = '0';
                 return;
             }
             
             noResultsMessage.style.display = 'none';
-            resultsCount.textContent = items.length;
+            if (resultsCount) resultsCount.textContent = items.length;
             
-            // Obter textos de tradução baseado no idioma atual
+            // Obter textos de tradução
             const viewText = currentLanguage === 'en' ? 'Preview' : 'Visualizar';
             const downloadText = currentLanguage === 'en' ? 'Download' : 'Baixar';
             const iconText = currentLanguage === 'en' ? 'Icon' : 'Icon';
@@ -1348,6 +1434,7 @@
                 const typeText = item.type === 'icon' ? iconText : wallpaperText;
                 const fileExtension = item.imagePath.split('.').pop();
                 const downloadFilename = `${item.name}.${fileExtension}`;
+                const itemDescription = item.description[currentLanguage] || item.description.pt;
                 
                 card.innerHTML = `
                     <div class="card-header">
@@ -1360,7 +1447,7 @@
                         </div>
                     </div>
                     <div class="card-preview">
-                        <img src="${item.previewImage}" alt="${item.name}" loading="lazy">
+                        <img src="${item.previewImage}" alt="${itemDescription}" loading="lazy">
                         <div class="card-overlay">
                             <button class="preview-btn" data-id="${item.id}">
                                 <i class="fas fa-search-plus"></i> ${viewText}
@@ -1411,7 +1498,7 @@
             const modalDownloadBtn = document.getElementById('modalDownloadBtn');
             
             modalImage.src = item.previewImage;
-            modalImage.alt = item.name;
+            modalImage.alt = item.description[currentLanguage] || item.description.pt;
             modalImageTitle.textContent = item.name;
             
             const fileExtension = item.imagePath.split('.').pop();
@@ -1438,10 +1525,56 @@
             renderGallery(filteredItems);
         }
 
+        // Menu hambúrguer
+        function setupHamburgerMenu() {
+            const hamburger = document.getElementById('hamburger');
+            const navMenu = document.getElementById('navMenu');
+            
+            if (!hamburger || !navMenu) return;
+            
+            hamburger.addEventListener('click', function() {
+                this.classList.toggle('active');
+                navMenu.classList.toggle('active');
+            });
+            
+            // Fechar menu ao clicar em um link
+            document.querySelectorAll('.nav-item a').forEach(link => {
+                link.addEventListener('click', function() {
+                    if (window.innerWidth <= 768) {
+                        hamburger.classList.remove('active');
+                        navMenu.classList.remove('active');
+                    }
+                });
+            });
+            
+            // Fechar menu ao clicar fora (em telas pequenas)
+            document.addEventListener('click', function(event) {
+                const isClickInsideNav = navMenu.contains(event.target) || hamburger.contains(event.target);
+                
+                if (window.innerWidth <= 768 && 
+                    navMenu.classList.contains('active') && 
+                    !isClickInsideNav) {
+                    hamburger.classList.remove('active');
+                    navMenu.classList.remove('active');
+                }
+            });
+            
+            // Fechar menu ao redimensionar para tamanho grande
+            window.addEventListener('resize', function() {
+                if (window.innerWidth > 768) {
+                    hamburger.classList.remove('active');
+                    navMenu.classList.remove('active');
+                }
+            });
+        }
+
         // Inicialização
         document.addEventListener('DOMContentLoaded', function() {
             // Inicializar sistema de idioma
             initializeLanguageSystem();
+            
+            // Configurar menu hambúrguer
+            setupHamburgerMenu();
             
             // Configurar filtros
             document.querySelectorAll('.filter-btn').forEach(btn => {
@@ -1456,10 +1589,12 @@
             const searchInput = document.getElementById('searchInput');
             let searchTimeout;
             
-            searchInput.addEventListener('input', function() {
-                clearTimeout(searchTimeout);
-                searchTimeout = setTimeout(filterAndSearch, 300);
-            });
+            if (searchInput) {
+                searchInput.addEventListener('input', function() {
+                    clearTimeout(searchTimeout);
+                    searchTimeout = setTimeout(filterAndSearch, 300);
+                });
+            }
             
             // Configurar modal
             document.getElementById('closeModal').addEventListener('click', closePreview);
@@ -1473,34 +1608,15 @@
                 if (e.key === 'Escape') closePreview();
             });
             
-            // Menu hambúrguer
-            const hamburger = document.getElementById('hamburger');
-            const navMenu = document.querySelector('.nav-menu');
-            
-            if (hamburger) {
-                hamburger.addEventListener('click', function() {
-                    hamburger.classList.toggle('active');
-                    navMenu.classList.toggle('active');
-                });
-            }
-            
-            // Fechar menu ao clicar em um link
-            document.querySelectorAll('.nav-item a').forEach(link => {
-                link.addEventListener('click', function() {
-                    if (window.innerWidth <= 768) {
-                        if (hamburger) hamburger.classList.remove('active');
-                        navMenu.classList.remove('active');
-                    }
-                });
-            });
-            
             // Botão voltar ao topo
             window.addEventListener('scroll', function() {
                 const floatingBtn = document.getElementById('floatingTopBtn');
-                if (window.scrollY > 300) {
-                    floatingBtn.classList.add('active');
-                } else {
-                    floatingBtn.classList.remove('active');
+                if (floatingBtn) {
+                    if (window.scrollY > 300) {
+                        floatingBtn.classList.add('active');
+                    } else {
+                        floatingBtn.classList.remove('active');
+                    }
                 }
             });
             
