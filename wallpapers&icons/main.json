@@ -8,6 +8,8 @@
     "searchPlaceholder": "Buscar por nome...",
     "cardView": "Visualizar",
     "cardDownload": "Baixar",
+    "iconText": "Icon",
+    "wallpaperText": "Wallpaper",
     "modalTitle": "Visualização",
     "modalDownload": "Baixar Imagem",
     "modalClose": "Fechar"
@@ -21,6 +23,8 @@
     "searchPlaceholder": "Search by name...",
     "cardView": "Preview",
     "cardDownload": "Download",
+    "iconText": "Icon",
+    "wallpaperText": "Wallpaper",
     "modalTitle": "Preview",
     "modalDownload": "Download Image",
     "modalClose": "Close"
