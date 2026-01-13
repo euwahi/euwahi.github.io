@@ -838,15 +838,15 @@
             
             <!-- Botão de seleção de idioma -->
             <div class="language-switcher">
-                <div class="language-dropdown">
-                    <button class="language-btn">
+                <div class="language-dropdown" id="languageDropdown">
+                    <button class="language-btn" id="languageBtn">
                         <i class="fas fa-globe"></i>
                         <span id="current-language">Português</span>
                         <i class="fas fa-chevron-down"></i>
                     </button>
-                    <div class="dropdown-content">
-                        <a href="#" onclick="changeLanguage('pt')">Português</a>
-                        <a href="#" onclick="changeLanguage('en')">English</a>
+                    <div class="dropdown-content" id="dropdownContent">
+                        <a href="#" class="language-option" data-lang="pt">Português</a>
+                        <a href="#" class="language-option" data-lang="en">English</a>
                     </div>
                 </div>
             </div>
@@ -1014,40 +1014,81 @@
 
     <!-- Sistema de Tradução -->
     <script>
+        // JSON de traduções embutido (fallback se o arquivo não carregar)
+        const fallbackTranslations = {
+            'pt': {
+                'title': 'Laços Profanos',
+                'current-language': 'Português',
+                'about-title': 'Sobre Nós',
+                'about-text1': '<span class="highlight">Laços Profanos</span> é uma história fictícia que nasceu como a ideia de um mangá inspirado em obras populares da época. Com o tempo, essa primeira versão foi totalmente repensada, descartada e reconstruída — e assim o universo se expandiu até se tornar o que conhecemos hoje.',
+                'about-text2': 'Somos um projeto completamente independente, desenvolvido e mantido por apenas duas pessoas. Trabalhamos com dedicação para dar vida a esse universo, criar conteúdo de qualidade e compartilhar nossa visão com quem deseja conhecer mais sobre Laços Profanos.',
+                'social-title': 'Redes Sociais',
+                'social-subtitle': 'Conecte-se conosco através das nossas redes sociais:',
+                'discord-title': 'Discord',
+                'discord-subtitle': 'Servidor no Discord',
+                'youtube-title': 'YouTube',
+                'youtube-subtitle': 'Canal no YouTube',
+                'kofi-title': 'Ko-fi',
+                'kofi-subtitle': 'Apoie-nos no Ko-fi',
+                'earth-title': 'A Terra em Laços Profanos',
+                'earth-intro': 'No universo de Laços Profanos, o planeta Terra não é como o nosso. Ele é dividido em apenas três continentes, cada um com suas próprias características, culturas e histórias:',
+                'earth-description': '❄️ Kelster — o continente frio, marcado por climas rigorosos, paisagens geladas e povos acostumados à resistência.<br>🍃 Molton — o continente intermediário, de equilíbrio entre frio e calor, diversidade natural e cultural.<br>🔥 Clifton — o continente quente, repleto de calor intenso, vida vibrante e tradições moldadas pelo sol.',
+                'creators-title': 'As Mentes por Trás',
+                'wahi-role': 'A Criadora',
+                'wahi-description': 'Mais conhecida pelos pseudônimos Wahipogo ou Wahi, é a mente criativa por trás do universo de Laços Profanos. Além de idealizar a obra, atua como roteirista, diretora criativa e gestora do projeto. Também é programadora, responsável pelo desenvolvimento e manutenção do site oficial da obra.',
+                'elisa-role': 'A Artista',
+                'elisa-description': 'Elisa Lana é a segunda mente por trás de Laços Profanos. Enquanto Eduarda conduz a parte criativa e narrativa, Elisa é responsável pela ilustração e visualização das ideias, dando vida ao universo com seu talento artístico e transformando conceitos em imagens que encantam os fãs.',
+                'social-button-text': 'Redes Sociais',
+                'portfolio-button-text': 'Portfólio'
+            },
+            'en': {
+                'title': 'Profane Bonds',
+                'current-language': 'English',
+                'about-title': 'About Us',
+                'about-text1': '<span class="highlight">Profane Bonds</span> is a fictional story that began as a manga idea inspired by popular works of the time. Over time, this first version was completely rethought, discarded, and rebuilt — and so the universe expanded into what we know today.',
+                'about-text2': 'We are a completely independent project, developed and maintained by just two people. We work diligently to bring this universe to life, create quality content, and share our vision with those who want to learn more about Profane Bonds.',
+                'social-title': 'Social Media',
+                'social-subtitle': 'Connect with us through our social media:',
+                'discord-title': 'Discord',
+                'discord-subtitle': 'Discord Server',
+                'youtube-title': 'YouTube',
+                'youtube-subtitle': 'YouTube Channel',
+                'kofi-title': 'Ko-fi',
+                'kofi-subtitle': 'Support us on Ko-fi',
+                'earth-title': 'Earth in Profane Bonds',
+                'earth-intro': 'In the Profane Bonds universe, planet Earth is not like ours. It is divided into only three continents, each with its own characteristics, cultures, and histories:',
+                'earth-description': '❄️ Kelster — the cold continent, marked by harsh climates, icy landscapes, and peoples accustomed to endurance.<br>🍃 Molton — the intermediate continent, balancing cold and heat, with natural and cultural diversity.<br>🔥 Clifton — the hot continent, full of intense heat, vibrant life, and traditions shaped by the sun.',
+                'creators-title': 'The Minds Behind',
+                'wahi-role': 'The Creator',
+                'wahi-description': 'Better known by the pseudonyms Wahipogo or Wahi, she is the creative mind behind the Profane Bonds universe. In addition to conceptualizing the work, she acts as screenwriter, creative director, and project manager. She is also a programmer, responsible for developing and maintaining the official website.',
+                'elisa-role': 'The Artist',
+                'elisa-description': 'Elisa Lana is the second mind behind Profane Bonds. While Eduarda leads the creative and narrative aspects, Elisa is responsible for illustrating and visualizing ideas, bringing the universe to life with her artistic talent and transforming concepts into images that delight fans.',
+                'social-button-text': 'Social Media',
+                'portfolio-button-text': 'Portfolio'
+            }
+        };
+
         // Função para carregar o JSON de traduções
         async function loadTranslations(lang) {
             try {
+                // Tenta carregar do arquivo JSON externo
                 const response = await fetch('main.json');
+                if (!response.ok) {
+                    throw new Error('Arquivo JSON não encontrado');
+                }
                 const data = await response.json();
-                return data[lang] || data['pt']; // Retorna a língua selecionada ou português como padrão
+                
+                // Se o idioma específico não existir, usa português como fallback
+                if (!data[lang]) {
+                    console.warn(`Tradução para ${lang} não encontrada no JSON, usando fallback`);
+                    return fallbackTranslations[lang] || fallbackTranslations['pt'];
+                }
+                
+                return data[lang];
             } catch (error) {
-                console.error('Erro ao carregar traduções:', error);
-                // Se houver erro, carrega traduções padrão
-                return {
-                    'title': 'Laços Profanos',
-                    'current-language': 'Português',
-                    'about-title': 'Sobre Nós',
-                    'about-text1': '<span class="highlight">Laços Profanos</span> é uma história fictícia que nasceu como a ideia de um mangá inspirado em obras populares da época. Com o tempo, essa primeira versão foi totalmente repensada, descartada e reconstruída — e assim o universo se expandiu até se tornar o que conhecemos hoje.',
-                    'about-text2': 'Somos um projeto completamente independente, desenvolvido e mantido por apenas duas pessoas. Trabalhamos com dedicação para dar vida a esse universo, criar conteúdo de qualidade e compartilhar nossa visão com quem deseja conhecer mais sobre Laços Profanos.',
-                    'social-title': 'Redes Sociais',
-                    'social-subtitle': 'Conecte-se conosco através das nossas redes sociais:',
-                    'discord-title': 'Discord',
-                    'discord-subtitle': 'Servidor no Discord',
-                    'youtube-title': 'YouTube',
-                    'youtube-subtitle': 'Canal no YouTube',
-                    'kofi-title': 'Ko-fi',
-                    'kofi-subtitle': 'Apoie-nos no Ko-fi',
-                    'earth-title': 'A Terra em Laços Profanos',
-                    'earth-intro': 'No universo de Laços Profanos, o planeta Terra não é como o nosso. Ele é dividido em apenas três continentes, cada um com suas próprias características, culturas e histórias:',
-                    'earth-description': '❄️ Kelster — o continente frio, marcado por climas rigorosos, paisagens geladas e povos acostumados à resistência.<br>🍃 Molton — o continente intermediário, de equilíbrio entre frio e calor, diversidade natural e cultural.<br>🔥 Clifton — o continente quente, repleto de calor intenso, vida vibrante e tradições moldadas pelo sol.',
-                    'creators-title': 'As Mentes por Trás',
-                    'wahi-role': 'A Criadora',
-                    'wahi-description': 'Mais conhecida pelos pseudônimos Wahipogo ou Wahi, é a mente criativa por trás do universo de Laços Profanos. Além de idealizar a obra, atua como roteirista, diretora criativa e gestora do projeto. Também é programadora, responsável pelo desenvolvimento e manutenção do site oficial da obra.',
-                    'elisa-role': 'A Artista',
-                    'elisa-description': 'Elisa Lana é a segunda mente por trás de Laços Profanos. Enquanto Eduarda conduz a parte criativa e narrativa, Elisa é responsável pela ilustração e visualização das ideias, dando vida ao universo com seu talento artístico e transformando conceitos em imagens que encantam os fãs.',
-                    'social-button-text': 'Redes Sociais',
-                    'portfolio-button-text': 'Portfólio'
-                };
+                console.log('Usando traduções embutidas:', error.message);
+                // Retorna as traduções embutidas como fallback
+                return fallbackTranslations[lang] || fallbackTranslations['pt'];
             }
         }
 
@@ -1059,13 +1100,16 @@
             document.body.classList.remove('english');
             if (lang === 'en') {
                 document.body.classList.add('english');
-                document.title = 'Profane Bonds';
+                document.title = translations['title'] || 'Profane Bonds';
             } else {
-                document.title = 'Laços Profanos';
+                document.title = translations['title'] || 'Laços Profanos';
             }
             
             // Atualizar o texto do botão de idioma
-            document.getElementById('current-language').textContent = lang === 'en' ? 'English' : 'Português';
+            const currentLangElement = document.getElementById('current-language');
+            if (currentLangElement) {
+                currentLangElement.textContent = translations['current-language'] || (lang === 'en' ? 'English' : 'Português');
+            }
             
             // Aplicar traduções para cada elemento
             for (const [key, value] of Object.entries(translations)) {
@@ -1077,6 +1121,27 @@
             
             // Salvar a preferência de idioma
             localStorage.setItem('preferred-language', lang);
+            
+            // Adicionar parâmetro à URL para outras páginas
+            updateUrlLanguageParam(lang);
+        }
+
+        // Função para atualizar parâmetro de idioma na URL
+        function updateUrlLanguageParam(lang) {
+            // Cria um objeto URL com a URL atual
+            const url = new URL(window.location.href);
+            
+            // Adiciona ou atualiza o parâmetro 'lang'
+            url.searchParams.set('lang', lang);
+            
+            // Atualiza a URL sem recarregar a página
+            window.history.replaceState({}, '', url.toString());
+        }
+
+        // Função para obter o idioma da URL
+        function getLanguageFromUrl() {
+            const urlParams = new URLSearchParams(window.location.search);
+            return urlParams.get('lang');
         }
 
         // Função para mudar o idioma
@@ -1084,17 +1149,61 @@
             await applyTranslations(lang);
             
             // Fechar o menu dropdown após seleção
-            const dropdown = document.querySelector('.dropdown-content');
-            dropdown.style.display = 'none';
+            const dropdownContent = document.getElementById('dropdownContent');
+            if (dropdownContent) {
+                dropdownContent.style.display = 'none';
+            }
+            
+            console.log(`Idioma alterado para: ${lang}`);
         }
 
-        // Função para carregar o idioma salvo
-        async function loadSavedLanguage() {
+        // Função para inicializar o sistema de idioma
+        async function initializeLanguageSystem() {
+            // Obter idioma da URL, localStorage ou navegador
+            const urlLang = getLanguageFromUrl();
             const savedLang = localStorage.getItem('preferred-language');
             const browserLang = navigator.language.startsWith('en') ? 'en' : 'pt';
-            const lang = savedLang || browserLang;
             
+            // Prioridade: URL > LocalStorage > Navegador
+            const lang = urlLang || savedLang || browserLang;
+            
+            // Aplicar o idioma
             await applyTranslations(lang);
+            
+            // Configurar eventos para os botões de idioma
+            setupLanguageButtons();
+        }
+
+        // Configurar eventos para os botões de idioma
+        function setupLanguageButtons() {
+            // Botão para abrir/fechar dropdown
+            const languageBtn = document.getElementById('languageBtn');
+            const dropdownContent = document.getElementById('dropdownContent');
+            
+            if (languageBtn && dropdownContent) {
+                // Alternar dropdown ao clicar no botão
+                languageBtn.addEventListener('click', function(e) {
+                    e.stopPropagation();
+                    dropdownContent.style.display = 
+                        dropdownContent.style.display === 'block' ? 'none' : 'block';
+                });
+                
+                // Fechar dropdown ao clicar fora
+                document.addEventListener('click', function(e) {
+                    if (!e.target.closest('.language-dropdown')) {
+                        dropdownContent.style.display = 'none';
+                    }
+                });
+            }
+            
+            // Configurar opções de idioma
+            document.querySelectorAll('.language-option').forEach(option => {
+                option.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const lang = this.getAttribute('data-lang');
+                    changeLanguage(lang);
+                });
+            });
         }
 
         // ===== FUNCIONALIDADE DO MENU HAMBÚRGUER =====
@@ -1103,16 +1212,18 @@
             const navMenu = document.querySelector('.nav-menu');
             
             // Alternar menu hambúrguer
-            hamburger.addEventListener('click', function() {
-                hamburger.classList.toggle('active');
-                navMenu.classList.toggle('active');
-            });
+            if (hamburger) {
+                hamburger.addEventListener('click', function() {
+                    hamburger.classList.toggle('active');
+                    navMenu.classList.toggle('active');
+                });
+            }
             
             // Fechar menu ao clicar em um link (em telas pequenas)
             document.querySelectorAll('.nav-item a').forEach(link => {
                 link.addEventListener('click', function() {
                     if (window.innerWidth <= 768) {
-                        hamburger.classList.remove('active');
+                        if (hamburger) hamburger.classList.remove('active');
                         navMenu.classList.remove('active');
                     }
                 });
@@ -1120,12 +1231,13 @@
             
             // Fechar menu ao clicar fora (em telas pequenas)
             document.addEventListener('click', function(event) {
-                const isClickInsideNav = navMenu.contains(event.target) || hamburger.contains(event.target);
+                const isClickInsideNav = navMenu.contains(event.target) || 
+                                       (hamburger && hamburger.contains(event.target));
                 
                 if (window.innerWidth <= 768 && 
                     navMenu.classList.contains('active') && 
                     !isClickInsideNav) {
-                    hamburger.classList.remove('active');
+                    if (hamburger) hamburger.classList.remove('active');
                     navMenu.classList.remove('active');
                 }
             });
@@ -1133,23 +1245,13 @@
             // Fechar menu ao redimensionar para tamanho grande
             window.addEventListener('resize', function() {
                 if (window.innerWidth > 768) {
-                    hamburger.classList.remove('active');
+                    if (hamburger) hamburger.classList.remove('active');
                     navMenu.classList.remove('active');
                 }
             });
             
-            // Inicializar tradução
-            loadSavedLanguage();
-        });
-
-        // Fechar dropdown quando clicar fora
-        document.addEventListener('click', function(event) {
-            const dropdown = document.querySelector('.dropdown-content');
-            const languageBtn = document.querySelector('.language-btn');
-            
-            if (!languageBtn.contains(event.target) && dropdown.style.display === 'block') {
-                dropdown.style.display = 'none';
-            }
+            // Inicializar sistema de idioma
+            initializeLanguageSystem();
         });
     </script>
 </body>
