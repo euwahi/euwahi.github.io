@@ -191,38 +191,38 @@
             transform: rotate(-45deg) translate(7px, -6px);
         }
 
-        /* Classes para alternar entre idiomas */
+        /* Classes para alternar entre idiomas - CORRIGIDO */
         .portuguese-only {
-            display: inline;
+            display: inline !important;
         }
 
         .english-only {
-            display: none;
+            display: none !important;
         }
 
         body.english .portuguese-only {
-            display: none;
+            display: none !important;
         }
 
         body.english .english-only {
-            display: inline;
+            display: inline !important;
         }
 
         /* Para elementos de bloco */
         .portuguese-block {
-            display: block;
+            display: block !important;
         }
 
         .english-block {
-            display: none;
+            display: none !important;
         }
 
         body.english .portuguese-block {
-            display: none;
+            display: none !important;
         }
 
         body.english .english-block {
-            display: block;
+            display: block !important;
         }
 
         /* Responsividade da navegação */
@@ -891,7 +891,7 @@
     <nav class="navbar">
         <div class="nav-container">
             <a href="#" class="logo">
-                <span class="logo-text">Laços Profanos</span>
+                <span class="logo-text" id="site-title">Laços Profanos</span>
             </a>
             
             <!-- Botão de seleção de idioma -->
@@ -925,13 +925,11 @@
                     </a>
                 </li>
                 <li class="nav-item">
-                    <!-- Link da Wiki em Português -->
-                    <a href="https://lacosprofanos.fandom.com/pt-br/" target="_blank" class="wiki-link portuguese-only">
+                    <a href="https://lacosprofanos.fandom.com/pt-br/" target="_blank" class="portuguese-only">
                         <i class="fas fa-book"></i> 
                         <span class="portuguese-only">Wiki</span>
                     </a>
-                    <!-- Link da Wiki em Inglês -->
-                    <a href="https://profanebonds.fandom.com/wiki/" target="_blank" class="wiki-link english-only">
+                    <a href="https://profanebonds.fandom.com/wiki/" target="_blank" class="english-only">
                         <i class="fas fa-book"></i> 
                         <span class="english-only">Wiki</span>
                     </a>
@@ -990,7 +988,7 @@
             <p class="subtitle" id="pageSubtitle">
                 <span class="portuguese-only">Baixe wallpapers e icons exclusivos do universo</span>
                 <span class="english-only">Download exclusive wallpapers and icons from the</span> 
-                <span class="highlight">Laços Profanos</span>. 
+                <span class="highlight" id="site-name">Laços Profanos</span>. 
                 <span class="portuguese-only">Todos os arquivos estão disponíveis para download gratuito.</span>
                 <span class="english-only">All files are available for free download.</span>
             </p>
@@ -998,7 +996,7 @@
 
         <!-- Filtros e Pesquisa -->
         <section class="filters-section">
-            <h2 class="filters-title" id="filtersTitle">
+            <h2 class="filters-title">
                 <i class="fas fa-filter"></i> 
                 <span class="portuguese-only">Filtros</span>
                 <span class="english-only">Filters</span>
@@ -1025,14 +1023,11 @@
                 
                 <div class="search-container">
                     <i class="fas fa-search search-icon"></i>
-                    <input type="text" id="searchInput" class="search-input" 
-                           placeholder="Buscar por nome..." 
-                           data-placeholder-pt="Buscar por nome..."
-                           data-placeholder-en="Search by name...">
+                    <input type="text" id="searchInput" class="search-input" placeholder="Buscar por nome...">
                 </div>
             </div>
             
-            <div class="results-info">
+            <div class="results-info" id="resultsInfo">
                 <span class="portuguese-only">Mostrando</span>
                 <span class="english-only">Showing</span>
                 <span id="resultsCount">5</span>
@@ -1049,11 +1044,11 @@
         <!-- Mensagem quando não houver resultados -->
         <div class="no-results" id="noResultsMessage" style="display: none;">
             <i class="fas fa-search"></i>
-            <h3 id="noResultsTitle">
+            <h3>
                 <span class="portuguese-only">Nenhum item encontrado</span>
                 <span class="english-only">No items found</span>
             </h3>
-            <p id="noResultsText">
+            <p>
                 <span class="portuguese-only">Tente usar outros termos de busca ou selecione um filtro diferente.</span>
                 <span class="english-only">Try using other search terms or select a different filter.</span>
             </p>
@@ -1061,57 +1056,37 @@
     </main>
 
     <script>
-        // JSON de traduções para Wallpapers & Icons
-        const translations = {
+        // Traduções embutidas (fallback)
+        const fallbackTranslations = {
             'pt': {
                 'title': 'Wallpapers & Icons - Laços Profanos',
                 'current-language': 'Português',
+                'siteTitle': 'Laços Profanos',
                 'pageTitle': 'Wallpapers & Icons',
-                'pageSubtitle': 'Baixe wallpapers e icons exclusivos do universo Laços Profanos. Todos os arquivos estão disponíveis para download gratuito.',
-                'filtersTitle': 'Filtros',
-                'filterAll': 'Todos',
-                'filterIcons': 'Icons',
-                'filterWallpapers': 'Wallpapers',
+                'siteName': 'Laços Profanos',
                 'searchPlaceholder': 'Buscar por nome...',
-                'resultsText': 'Mostrando {count} de {total} itens',
-                'noResultsTitle': 'Nenhum item encontrado',
-                'noResultsText': 'Tente usar outros termos de busca ou selecione um filtro diferente.',
                 'cardView': 'Visualizar',
                 'cardDownload': 'Baixar',
                 'modalTitle': 'Visualização',
                 'modalDownload': 'Baixar Imagem',
-                'modalClose': 'Fechar',
-                'mainSite': 'Site Principal',
-                'blog': 'Blog',
-                'wiki': 'Wiki',
-                'terms': 'Termos de Serviço'
+                'modalClose': 'Fechar'
             },
             'en': {
                 'title': 'Wallpapers & Icons - Profane Bonds',
                 'current-language': 'English',
+                'siteTitle': 'Profane Bonds',
                 'pageTitle': 'Wallpapers & Icons',
-                'pageSubtitle': 'Download exclusive wallpapers and icons from the Profane Bonds universe. All files are available for free download.',
-                'filtersTitle': 'Filters',
-                'filterAll': 'All',
-                'filterIcons': 'Icons',
-                'filterWallpapers': 'Wallpapers',
+                'siteName': 'Profane Bonds',
                 'searchPlaceholder': 'Search by name...',
-                'resultsText': 'Showing {count} of {total} items',
-                'noResultsTitle': 'No items found',
-                'noResultsText': 'Try using other search terms or select a different filter.',
                 'cardView': 'Preview',
                 'cardDownload': 'Download',
                 'modalTitle': 'Preview',
                 'modalDownload': 'Download Image',
-                'modalClose': 'Close',
-                'mainSite': 'Main Site',
-                'blog': 'Blog',
-                'wiki': 'Wiki',
-                'terms': 'Terms of Service'
+                'modalClose': 'Close'
             }
         };
 
-        // Dados dos wallpapers e icons COM CAMINHOS CORRETOS
+        // Dados dos wallpapers e icons
         const galleryItems = [
             {
                 id: 1,
@@ -1165,10 +1140,13 @@
             }
         ];
 
+        // Variável global para o idioma atual
+        let currentLanguage = 'pt';
+
         // Função para carregar traduções do arquivo JSON externo
         async function loadTranslations(lang) {
             try {
-                const response = await fetch('wallpapers&icons/main.json');
+                const response = await fetch('main.json');
                 if (!response.ok) {
                     throw new Error('Arquivo JSON não encontrado');
                 }
@@ -1176,50 +1154,38 @@
                 
                 if (!data[lang]) {
                     console.warn(`Tradução para ${lang} não encontrada no JSON, usando fallback`);
-                    return translations[lang] || translations['pt'];
+                    return fallbackTranslations[lang] || fallbackTranslations['pt'];
                 }
                 
                 return data[lang];
             } catch (error) {
                 console.log('Usando traduções embutidas:', error.message);
-                return translations[lang] || translations['pt'];
+                return fallbackTranslations[lang] || fallbackTranslations['pt'];
             }
         }
 
-        // Função para aplicar traduções
+        // Função para aplicar traduções - SIMPLIFICADA
         async function applyTranslations(lang) {
+            currentLanguage = lang;
             const trans = await loadTranslations(lang);
             
-            // Atualizar a classe do body para controle CSS
-            document.body.classList.remove('english');
-            if (lang === 'en') {
-                document.body.classList.add('english');
-            }
+            // Atualizar a classe do body
+            document.body.classList.toggle('english', lang === 'en');
             
             // Atualizar título da página
             document.title = trans['title'];
+            
+            // Atualizar nome do site
+            const siteTitle = document.getElementById('site-title');
+            if (siteTitle) siteTitle.textContent = trans['siteTitle'];
+            
+            const siteName = document.getElementById('site-name');
+            if (siteName) siteName.textContent = trans['siteName'];
             
             // Atualizar texto do botão de idioma
             const currentLangElement = document.getElementById('current-language');
             if (currentLangElement) {
                 currentLangElement.textContent = trans['current-language'];
-            }
-            
-            // Atualizar elementos com IDs específicos
-            const elements = {
-                'pageTitle': trans['pageTitle'],
-                'pageSubtitle': trans['pageSubtitle'],
-                'filtersTitle': trans['filtersTitle'],
-                'noResultsTitle': trans['noResultsTitle'],
-                'noResultsText': trans['noResultsText'],
-                'modalImageTitle': trans['modalTitle']
-            };
-            
-            for (const [id, text] of Object.entries(elements)) {
-                const element = document.getElementById(id);
-                if (element) {
-                    element.textContent = text;
-                }
             }
             
             // Atualizar placeholder da busca
@@ -1228,17 +1194,18 @@
                 searchInput.placeholder = trans['searchPlaceholder'];
             }
             
-            // Atualizar resultados
-            updateResultsText();
-            
-            // Renderizar galeria novamente para atualizar textos dos cards
-            renderGallery(getFilteredItems());
+            // Atualizar título da página
+            const pageTitle = document.getElementById('pageTitle');
+            if (pageTitle) pageTitle.textContent = trans['pageTitle'];
             
             // Salvar preferência de idioma
             localStorage.setItem('preferred-language', lang);
             
             // Atualizar parâmetro na URL
             updateUrlLanguageParam(lang);
+            
+            // Renderizar galeria novamente para atualizar textos dos cards
+            renderGallery(getFilteredItems());
         }
 
         // Função para atualizar parâmetro de idioma na URL
@@ -1306,21 +1273,6 @@
             });
         }
 
-        // Função para atualizar texto dos resultados
-        function updateResultsText() {
-            const resultsCount = document.getElementById('resultsCount');
-            const resultsInfo = document.querySelector('.results-info');
-            
-            if (resultsCount && resultsInfo) {
-                const count = document.querySelectorAll('.image-card:not([style*="display: none"])').length;
-                const total = galleryItems.length;
-                resultsCount.textContent = count;
-                
-                // O texto do resultado é gerenciado pelo CSS com classes
-                // Apenas atualizamos o número
-            }
-        }
-
         // Função para normalizar texto (remover acentos e caracteres especiais)
         function normalizeText(text) {
             return text
@@ -1367,23 +1319,24 @@
         function renderGallery(items) {
             const galleryContainer = document.getElementById('galleryContainer');
             const noResultsMessage = document.getElementById('noResultsMessage');
+            const resultsCount = document.getElementById('resultsCount');
             
             galleryContainer.innerHTML = '';
             
             if (items.length === 0) {
                 noResultsMessage.style.display = 'block';
-                updateResultsText();
+                resultsCount.textContent = '0';
                 return;
             }
             
             noResultsMessage.style.display = 'none';
+            resultsCount.textContent = items.length;
             
             // Obter textos de tradução baseado no idioma atual
-            const isEnglish = document.body.classList.contains('english');
-            const viewText = isEnglish ? 'Preview' : 'Visualizar';
-            const downloadText = isEnglish ? 'Download' : 'Baixar';
-            const iconText = isEnglish ? 'Icon' : 'Icon';
-            const wallpaperText = isEnglish ? 'Wallpaper' : 'Wallpaper';
+            const viewText = currentLanguage === 'en' ? 'Preview' : 'Visualizar';
+            const downloadText = currentLanguage === 'en' ? 'Download' : 'Baixar';
+            const iconText = currentLanguage === 'en' ? 'Icon' : 'Icon';
+            const wallpaperText = currentLanguage === 'en' ? 'Wallpaper' : 'Wallpaper';
             
             items.forEach(item => {
                 const card = document.createElement('div');
@@ -1445,8 +1398,6 @@
                     openPreview(itemId);
                 });
             });
-            
-            updateResultsText();
         }
 
         // Função para abrir o modal de preview
@@ -1461,8 +1412,6 @@
             
             modalImage.src = item.previewImage;
             modalImage.alt = item.name;
-            
-            // O título do modal é gerenciado pelas traduções
             modalImageTitle.textContent = item.name;
             
             const fileExtension = item.imagePath.split('.').pop();
@@ -1491,11 +1440,8 @@
 
         // Inicialização
         document.addEventListener('DOMContentLoaded', function() {
-            // Inicializar sistema de idioma primeiro
-            initializeLanguageSystem().then(() => {
-                // Depois renderizar a galeria
-                renderGallery(galleryItems);
-            });
+            // Inicializar sistema de idioma
+            initializeLanguageSystem();
             
             // Configurar filtros
             document.querySelectorAll('.filter-btn').forEach(btn => {
